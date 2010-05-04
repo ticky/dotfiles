@@ -191,7 +191,7 @@ alias l.="ls -d .*"
 # ----------------------------------------------------------------------
 
 #ignore repeat commands and aliases
-HISTIGNORE="ls:ll:cl:s:ts:x:mate*:&"
+export HISTIGNORE="&:ls:ll:cl:s:ts:x:mate"
 alias hi='history | tail -20'
 
 
