@@ -171,13 +171,19 @@ alias l.="ls -d .*"
 # ALIASES / FUNCTIONS
 # ----------------------------------------------------------------------
 
+alias dotfiles="mate ~/Dotfiles/"
 # edit this file
-alias settings="mate ~/.bash_profile"
-alias reload="source ~/.bash_profile"
+alias settings="mate ~/Dotfiles/bash_profile"
+alias reload="source ~/Dotfiles/bash_profile"
 
 # disk usage with human sizes and minimal depth
 alias du1='du -h --max-depth=1'
+
+# find
 alias fn='find . -name'
+
+# history
+HISTIGNORE="ls:ll:cl:s:ts:x:mate*:&"
 alias hi='history | tail -20'
 
 # gem install
