@@ -10,6 +10,17 @@
 # complete hostnames from this file
 : ${HOSTFILE=~/.ssh/known_hosts}
 
+
+# ======================================================================
+# SETTINGS
+# ======================================================================
+
+alias dotfiles="mate $HOME/Dotfiles/"
+
+# edit this file
+alias settings="mate $HOME/Dotfiles/bash_profile"
+alias reload="source $HOME/Dotfiles/bash_profile"
+
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
 # ----------------------------------------------------------------------
@@ -64,6 +75,8 @@ test -d "/Applications/TextMate.app" &&
 export VISUAL="mate -w"
 export EDITOR="mate -w"
 
+alias m.="mate ."
+
 # ----------------------------------------------------------------------
 # PROMPT
 # ----------------------------------------------------------------------
@@ -107,12 +120,27 @@ prompt_color() {
 }
 
 # ----------------------------------------------------------------------
-# TITLE
+# TITLE WINDOW
 # ----------------------------------------------------------------------
 
 #set window title
 function title() { echo -ne "\033]0;$@\007"; }
 title `echo ${PWD##*/}`
+
+# ----------------------------------------------------------------------
+# CD, DIRECTORY NAVIGATION
+# ----------------------------------------------------------------------
+
+function cd() { 
+  # supress bash_completion pwd on cd
+  command cd "$@" >/dev/null; 
+  # title window on cd
+  title `echo ${PWD##*/}`; 
+}
+
+alias ..="cd .."
+alias ....="cd ../.."
+alias ......="cd ../../../"
 
 # ----------------------------------------------------------------------
 # AUTOCOMPLETE
@@ -122,24 +150,12 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
 
-# make tab cycle through commands instead of listing 
-# http://www.macosxhints.com/article.php?story=20050904022246573&lsrc=osxh
-bind '"\t":menu-complete'
-
-function cd() { 
-  # supress bash_completion pwd on cd
-  command cd "$@" >/dev/null; 
-  # title window on cd
-  title `echo ${PWD##*/}`; 
-}
-
 # autocomplete from these directories
 export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku"
 
-#directory navigation
-alias ..="cd .."
-alias ....="cd ../.."
-alias ......="cd ../../../"
+# make tab cycle through commands instead of listing 
+# http://www.macosxhints.com/article.php?story=20050904022246573&lsrc=osxh
+bind '"\t":menu-complete'
 
 # ----------------------------------------------------------------------
 # LS AND DIRCOLORS
@@ -168,33 +184,31 @@ alias ll="ls -la"
 alias l.="ls -d .*"
 
 # ----------------------------------------------------------------------
-# ALIASES / FUNCTIONS
+# COMMAND HISTORY
 # ----------------------------------------------------------------------
 
-alias dotfiles="mate $HOME/Dotfiles/"
-# edit this file
-alias settings="mate $HOME/Dotfiles/bash_profile"
-alias reload="source $HOME/Dotfiles/bash_profile"
-
-# disk usage with human sizes and minimal depth
-alias du1='du -h --max-depth=1'
-
-# find
-alias fn='find . -name'
-
-# history
+#ignore repeat commands and aliases
 HISTIGNORE="ls:ll:cl:s:ts:x:mate*:&"
 alias hi='history | tail -20'
 
-# gem install
-alias sgi32="sudo env ARCHFLAGS=\"-Os -arch i386 -fno-common\" gem install --no-ri --no-rdoc"
-alias sgi64="sudo env ARCHFLAGS=\"-Os -arch x86_64 -fno-common\" gem install --no-ri --no-rdoc"
-alias sgi="sudo env ARCHFLAGS=\"-Os -arch x86_64 -fno-common\" gem install --no-ri --no-rdoc"
 
 
+# ======================================================================
+# ALIASES / FUNCTIONS
+# ======================================================================
+
+# disk usage with human sizes and minimal depth
+alias du1='du -h --max-depth=1'
+# find
+alias fn='find . -name'
+# close window
 alias x="exit"
+# clear window
 alias cl="clear"
-alias m.="mate ."
+
+# ----------------------------------------------------------------------
+# SERVERS
+# ----------------------------------------------------------------------
 
 # thin start
 function ts(){
@@ -221,7 +235,23 @@ alias pgstart="pg_ctl -D `brew --prefix`/var/postgres -l `brew --prefix`/var/pos
 # mongo
 alias mstart="`brew --prefix`/bin/mongod --dbpath=$HOME/Sites/_mongodata/"
 
-# git
+# ----------------------------------------------------------------------
+# RUBY
+# ----------------------------------------------------------------------
+
+# gem install
+alias sgi32="sudo env ARCHFLAGS=\"-Os -arch i386 -fno-common\" gem install --no-ri --no-rdoc"
+alias sgi64="sudo env ARCHFLAGS=\"-Os -arch x86_64 -fno-common\" gem install --no-ri --no-rdoc"
+alias sgi="sudo env ARCHFLAGS=\"-Os -arch x86_64 -fno-common\" gem install --no-ri --no-rdoc"
+
+#rake
+alias rdm="rake db:migrate"
+alias rdfl="rake db:fixtures:load"
+
+# ----------------------------------------------------------------------
+# GIT
+# ----------------------------------------------------------------------
+
 alias gu="git up"
 alias gs="git status"
 alias gf="git fetch"
@@ -239,11 +269,10 @@ alias gpl="git pull"
 alias gc="git commit -am"
 alias ga="git add ."
 
-#rake
-alias rdm="rake db:migrate"
-alias rdfl="rake db:fixtures:load"
+# ----------------------------------------------------------------------
+# PROJECTS
+# ----------------------------------------------------------------------
 
-#projects
 alias s="cd $HOME/Sites/"
 alias cdtmb="cd $HOME/Library/Application\ Support/TextMate/Bundles/"
 
@@ -251,9 +280,11 @@ alias cdtmb="cd $HOME/Library/Application\ Support/TextMate/Bundles/"
 alias h="cd ~/Sites/heroku"
 alias navrestart='for i in "business" "news" "success" "legal" "logos" "about" "public" "blog" "docs"; do heroku restart --app $i && sleep 1; done'
 
-# -------------------------------------------------------------------
+
+
+# ===================================================================
 # USER SHELL ENVIRONMENT
-# -------------------------------------------------------------------
+# ===================================================================
 
 # Use the color prompt by default when interactive
 test -n "$PS1" &&
