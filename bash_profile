@@ -233,7 +233,7 @@ alias pgstop="pg_ctl -D `brew --prefix`/var/postgres stop -s -m fast"
 alias pgstart="pg_ctl -D `brew --prefix`/var/postgres -l `brew --prefix`/var/postgres/server.log start"
 
 # mongo
-alias mstart="`brew --prefix`/bin/mongod --dbpath=$HOME/Sites/_mongodata/"
+alias mstart="title 'MongoDB Server' && `brew --prefix`/bin/mongod --dbpath=$HOME/Sites/_mongodata/"
 
 # ----------------------------------------------------------------------
 # RUBY
