@@ -216,8 +216,7 @@ alias cl="clear"
 function ts(){
   title `echo ${PWD##*/} "$(parse_git_branch) / Server"`
   for ((port=3000; port <= 3010 ; port++)); do
-      thin $options -p $port start;
-     if [ $? == 0 ]; then break; fi
+    if thin -p $port start 2>/dev/null; then break; fi
   done
 }
 
@@ -225,8 +224,7 @@ function ts(){
 function mrs(){
   title server
   for ((port=3000; port <= 3010 ; port++)); do
-      mongrel_rails $options -p $port start;
-     if [ $? == 0 ]; then break; fi
+    if mongrel_rails -p $port start 2>/dev/null; then break; fi
   done
 }
 
