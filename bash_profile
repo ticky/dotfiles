@@ -222,7 +222,7 @@ function ts(){
 
 # mongrel rails start
 function mrs(){
-  title server
+  title `echo ${PWD##*/} "$(parse_git_branch) / Server"`
   for ((port=3000; port <= 3010 ; port++)); do
     if mongrel_rails -p $port start 2>/dev/null; then break; fi
   done
