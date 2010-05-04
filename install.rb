@@ -9,7 +9,7 @@ Dir['*'].each do |file|
   next if file =~ /install/
   target = File.join(home, ".#{file}")
   puts "installing #{File.expand_path file} to #{target}"
-  `ln -s -i #{File.expand_path file} #{target}`
+  `ln -sf #{File.expand_path file} #{target}`
 end
 
 # git push on commit
