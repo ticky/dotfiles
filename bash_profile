@@ -41,6 +41,8 @@ shopt -s interactive_comments >/dev/null 2>&1
 shopt -u mailwarn >/dev/null 2>&1
 shopt -s no_empty_cmd_completion >/dev/null 2>&1
 
+bind 'set completion-ignore-case On'
+
 # fuck that you have new mail shit
 unset MAILCHECK
 
