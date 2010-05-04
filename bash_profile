@@ -41,8 +41,6 @@ shopt -s interactive_comments >/dev/null 2>&1
 shopt -u mailwarn >/dev/null 2>&1
 shopt -s no_empty_cmd_completion >/dev/null 2>&1
 
-bind 'set completion-ignore-case On'
-
 # fuck that you have new mail shit
 unset MAILCHECK
 
@@ -154,6 +152,9 @@ fi
 
 # autocomplete from these directories
 export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku"
+
+# ignore case for autocomplete
+bind 'set completion-ignore-case On'
 
 # make tab cycle through commands instead of listing 
 # http://www.macosxhints.com/article.php?story=20050904022246573&lsrc=osxh
