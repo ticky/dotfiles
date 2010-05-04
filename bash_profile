@@ -1,6 +1,12 @@
 #!/bin/bash
-# seaofclouds <http://seaofclouds.com> with help from: 
-# Ryan Tomayko <http://tomayko.com/about> (with help from the internets).
+
+# seaofclouds <http://seaofclouds.com> with help from:
+# ryan tomayko <http://tomayko.com/about>
+# pedro belo <http://github.com/pedro>
+# peter van hardenberg <http://github.com/pvh>
+# james lindenbaum
+# chris wanstrath <http://ozmm.org/>
+# google, blogs and probably you.
 
 # the basics
 : ${HOME=~}
@@ -11,9 +17,9 @@
 : ${HOSTFILE=~/.ssh/known_hosts}
 
 
-# ======================================================================
+# ==============================================================================
 # SETTINGS
-# ======================================================================
+# ==============================================================================
 
 alias dotfiles="mate $HOME/Dotfiles/"
 
@@ -196,9 +202,9 @@ alias hi='history | tail -20'
 
 
 
-# ======================================================================
+# ==============================================================================
 # ALIASES / FUNCTIONS
-# ======================================================================
+# ==============================================================================
 
 # disk usage with human sizes and minimal depth
 alias du1='du -h --max-depth=1'
@@ -215,7 +221,7 @@ alias cl="clear"
 
 # thin start
 function ts(){
-  title server
+  title `echo ${PWD##*/} "$(parse_git_branch) / Server"`
   for ((port=3000; port <= 3010 ; port++)); do
       thin $options -p $port start;
      if [ $? == 0 ]; then break; fi
@@ -285,9 +291,9 @@ alias navrestart='for i in "business" "news" "success" "legal" "logos" "about" "
 
 
 
-# ===================================================================
+# ==============================================================================
 # USER SHELL ENVIRONMENT
-# ===================================================================
+# ==============================================================================
 
 # Use the color prompt by default when interactive
 test -n "$PS1" &&
