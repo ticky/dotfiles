@@ -1,12 +1,5 @@
 #!/bin/bash
-
-# seaofclouds <http://seaofclouds.com> with help from:
-# ryan tomayko <http://tomayko.com/about>
-# pedro belo <http://github.com/pedro>
-# peter van hardenberg <http://github.com/pvh>
-# james lindenbaum
-# chris wanstrath <http://ozmm.org/>
-# google, blogs and probably you.
+# seaofclouds <http://github.com/seaofclouds/dotfiles>
 
 # the basics
 : ${HOME=~}

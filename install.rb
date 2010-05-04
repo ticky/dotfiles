@@ -6,7 +6,7 @@
 home = File.expand_path(ENV['HOME'])
 
 Dir['*'].each do |file|
-  next if file =~ /install/
+  next if file =~ /install/i || file =~ /readme/i
   target = File.join(home, ".#{file}")
   puts "installing #{File.expand_path file} to #{target}"
   `ln -sf #{File.expand_path file} #{target}`

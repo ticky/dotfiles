@@ -1,0 +1,26 @@
+= Dotfiles
+
+I like colors, a simple workflow, homebrew and ruby.
+If you do to, then you might like my dotfiles.
+
+== Features
+
+* colorful prompt with git info
+* run <tt>ts</tt> inside any rack enabled site to start a thin server with autosensing 30xx port.
+* autocomplete directories and commands
+* directory colors
+* window titling
+
+== Requirements
+
+* install {homebrew}[http://github.com/mxcl/homebrew]
+* <tt>brew install bash-completion</tt>
+
+== Thanks
+
+* {ryan tomayko}[http://tomayko.com/about]
+* {pedro belo}[http://github.com/pedro]
+* {peter van hardenberg}[http://github.com/pvh]
+* james lindenbaum
+* {chris wanstrath}[http://ozmm.org/]
+* google, blogs and probably you.
