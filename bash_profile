@@ -125,7 +125,7 @@ prompt_color() {
 
 #set window title
 function title() { echo -ne "\033]0;$@\007"; }
-title `echo ${PWD##*/}`
+title `echo ${PWD##*/} "$(parse_git_branch)"`
 
 # ----------------------------------------------------------------------
 # CD, DIRECTORY NAVIGATION
@@ -135,7 +135,7 @@ function cd() {
   # supress bash_completion pwd on cd
   command cd "$@" >/dev/null; 
   # title window on cd
-  title `echo ${PWD##*/}`; 
+  title `echo ${PWD##*/} "$(parse_git_branch)"`; 
 }
 
 alias ..="cd .."
