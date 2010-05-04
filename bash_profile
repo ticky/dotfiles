@@ -134,7 +134,7 @@ function cd() {
 }
 
 # autocomplete from these directories
-export CDPATH=".:~:~/Sites:~/Sites/heroku"
+export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku"
 
 #directory navigation
 alias ..="cd .."
@@ -171,10 +171,10 @@ alias l.="ls -d .*"
 # ALIASES / FUNCTIONS
 # ----------------------------------------------------------------------
 
-alias dotfiles="mate ~/Dotfiles/"
+alias dotfiles="mate $HOME/Dotfiles/"
 # edit this file
-alias settings="mate ~/Dotfiles/bash_profile"
-alias reload="source ~/Dotfiles/bash_profile"
+alias settings="mate $HOME/Dotfiles/bash_profile"
+alias reload="source $HOME/Dotfiles/bash_profile"
 
 # disk usage with human sizes and minimal depth
 alias du1='du -h --max-depth=1'
@@ -215,11 +215,11 @@ function mrs(){
 }
 
 # postgresql, psql
-alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
-alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias pgstop="pg_ctl -D `brew --prefix`/var/postgres stop -s -m fast"
+alias pgstart="pg_ctl -D `brew --prefix`/var/postgres -l `brew --prefix`/var/postgres/server.log start"
 
 # mongo
-alias mstart="/usr/local/bin/mongod --dbpath=/Users/todd/Sites/_mongodata/"
+alias mstart="`brew --prefix`/bin/mongod --dbpath=$HOME/Sites/_mongodata/"
 
 # git
 alias gu="git up"
@@ -244,8 +244,8 @@ alias rdm="rake db:migrate"
 alias rdfl="rake db:fixtures:load"
 
 #projects
-alias s="cd ~/Sites/"
-alias cdtmb="cd ~/Library/Application\ Support/TextMate/Bundles/"
+alias s="cd $HOME/Sites/"
+alias cdtmb="cd $HOME/Library/Application\ Support/TextMate/Bundles/"
 
 # heroku
 alias h="cd ~/Sites/heroku"
