@@ -17,8 +17,13 @@
 alias dotfiles="mate $HOME/Dotfiles/"
 
 # edit this file
-alias settings="mate $HOME/Dotfiles/bash_profile"
-alias reload="source $HOME/Dotfiles/bash_profile"
+alias settings-edit="mate $HOME/Dotfiles/bash_profile"
+
+alias settings-load="source $HOME/Dotfiles/bash_profile"
+alias reload="settings-load"
+
+alias settings-install="ruby $HOME/Dotfiles/install.rb && settings-load"
+
 
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
@@ -87,6 +92,8 @@ parse_git_branch() {
 # color chart: http://www.ibm.com/developerworks/linux/library/l-tip-prompt/
 WHITEONPINK="\[\033[37;45;1m\]"
 PINK="\[\033[0;35m\]"
+PINKBOLD="\[\033[0;35;1m\]"
+WHITEONTEAL="\[\033[37;46;1m\]"
 TEAL="\[\033[0;36m\]"
 PS_CLEAR="\[\033[0m\]"
 SCREEN_ESC="\[\033k\033\134\]"
@@ -114,8 +121,8 @@ prompt_compact() {
 }
 
 prompt_color() {
-  PS1="${WHITEONPINK}[\u@\h]${PS_CLEAR}${PINK} \w\$(parse_git_branch) \$${PS_CLEAR} "
-    PS2="${TEAL}>${PS_CLEAR} "
+  PS1="${WHITEONPINK}[\u@\h]${PINK} \w\$(parse_git_branch) ${PINKBOLD}\$${PS_CLEAR} "
+    PS2="${WHITEONTEAL}>${PS_CLEAR} "
 }
 
 # ----------------------------------------------------------------------

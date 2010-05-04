@@ -1,7 +1,7 @@
 = Dotfiles
 
 I like colors, a simple workflow, homebrew and ruby.
-If you do to, then you might like my dotfiles.
+If you do too, then you might like my dotfiles.
 
 == Features
 
@@ -15,6 +15,7 @@ If you do to, then you might like my dotfiles.
 
 * install {homebrew}[http://github.com/mxcl/homebrew]
 * <tt>brew install bash-completion</tt>
+* install {git-bash-completion}[http://github.com/markgandolfo/git-bash-completion]
 
 == Thanks
 
