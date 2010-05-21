@@ -79,6 +79,7 @@ test -d "/Applications/TextMate.app" &&
 export VISUAL="mate -w"
 export EDITOR="mate -w"
 
+alias m="mate "
 alias m.="mate ."
 
 # ----------------------------------------------------------------------
@@ -197,7 +198,7 @@ alias l.="ls -d .*"
 # ----------------------------------------------------------------------
 
 #ignore repeat commands and aliases
-export HISTIGNORE="&:ls:ll:cl:s:ts:x:mate"
+export HISTIGNORE="&:ls:ll:cl:s:x"
 alias hi='history | tail -20'
 
 

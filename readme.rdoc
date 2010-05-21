@@ -6,10 +6,12 @@ If you do too, then you might like my dotfiles.
 == Features
 
 * colorful prompt with git info
-* run <tt>ts</tt> inside any rack enabled site to start a thin server with autosensing 30xx port.
+* autosensing 300x ports for starting mongrel and thin servers.
 * autocomplete directories and commands
 * directory colors
 * window titling
+* easy history navigation
+* aliases for git, postgres, mongodb and more
 
 == Requirements
 
