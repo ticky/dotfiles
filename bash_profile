@@ -111,11 +111,28 @@ title_git
 # PROMPT
 # ----------------------------------------------------------------------
 
-WHITEONPINK="\[\033[37;45;1m\]"
-PINK="\[\033[0;35m\]"
-PINKBOLD="\[\033[0;35;1m\]"
-WHITEONTEAL="\[\033[37;46;1m\]"
-TEAL="\[\033[0;36m\]"
+WHITEONMAGENTA="\[\033[37;45;1m\]"
+MAGENTA="\[\033[0;35m\]"
+MAGENTABOLD="\[\033[0;35;1m\]"
+WHITEONCYAN="\[\033[37;46;1m\]"
+
+BLACK="\[\033[0;30m\]"
+BLUE="\[\033[0;34m\]"
+GREEN="\[\033[0;32m\]"
+CYAN="\[\033[0;36m\]"
+RED="\[\033[0;31m\]"
+PURPLE="\[\033[0;35m\]"
+BROWN="\[\033[0;33m\]"
+LIGHTGRAY="\[\033[0;37m\]"
+DARKGRAY="\[\033[1;30m\]"
+LIGHTBLUE="\[\033[1;34m\]"
+LIGHTGREEN="\[\033[1;32m\]"
+LIGHTCYAN="\[\033[1;36m\]"
+LIGHTRED="\[\033[1;31m\]"
+LIGHTPURPLE="\[\033[1;35m\]"
+YELLOW="\[\033[1;33m\]"
+WHITE="\[\033[1;37m\]"
+
 PS_CLEAR="\[\033[0m\]"
 SCREEN_ESC="\[\033k\033\134\]"
 
@@ -143,7 +160,7 @@ prompt_compact() {
 
 prompt_color() {
   PROMPT_COMMAND='title_git'
-  PS1="${WHITEONPINK}[\u@\h]${PINK} \w\$(parse_git_branch) ${PINKBOLD}\$${PS_CLEAR} "
+  PS1="${WHITEONMAGENTA}[\u@\h]${MAGENTA} \w\$(parse_git_branch) ${MAGENTABOLD}\$${PS_CLEAR} "
     PS2="${WHITEONTEAL}>${PS_CLEAR} "
 }
 
