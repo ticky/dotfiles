@@ -179,22 +179,17 @@ bind '"\t":menu-complete'
 # ----------------------------------------------------------------------
 
 # we always pass these to ls(1)
-LS_COMMON="-hBG"
+LS_COMMON="-hB"
 
-# if the dircolors utility is available, set that up to
-dircolors="$(type -P gdircolors dircolors | head -1)"
-test -n "$dircolors" && {
-    COLORS=/etc/DIR_COLORS
-    test -e "/etc/DIR_COLORS.$TERM"   && COLORS="/etc/DIR_COLORS.$TERM"
-    test -e "$HOME/.dircolors"        && COLORS="$HOME/.dircolors"
-    test ! -e "$COLORS"               && COLORS=
-    eval `$dircolors --sh $COLORS`
-}
-unset dircolors
+# if the dircolors utility is available, set that up too
+if [ "$TERM" != "dumb" ]; then
+    export LS_OPTIONS='--color=auto'
+    eval `dircolors ~/.dircolors`
+fi
 
 # setup the main ls alias if we've established common args
 test -n "$LS_COMMON" &&
-alias ls="command ls $LS_COMMON"
+alias ls='ls $LS_OPTIONS $LS_COMMON'
 
 # these use the ls aliases above
 alias ll="ls -la"
@@ -205,10 +200,10 @@ alias l.="ls -d .*"
 # ----------------------------------------------------------------------
 
 #ignore repeat commands
-export HISTCONTROL=ignoredups
+export HISTCONTROL=erasedups
 
 #ignore specific commands
-#export HISTIGNORE="&:ls:ll:cl:s:x"
+export HISTIGNORE="&:cl:x"
 
 #short history
 alias hi='history | tail -20'
