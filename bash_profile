@@ -206,8 +206,14 @@ alias l.="ls -d .*"
 # COMMAND HISTORY
 # ----------------------------------------------------------------------
 
-#ignore repeat commands and aliases
-export HISTIGNORE="&:ls:ll:cl:s:x"
+#ignore repeat commands
+#http://www.somekindofpaper.info/articles/2010/02/18/control-your-bash-history-with-histcontrol.html
+export HISTCONTROL=ignoredups
+
+#ignore specific commands
+#export HISTIGNORE="&:ls:ll:cl:s:x"
+
+#shor short history
 alias hi='history | tail -20'
 
 
