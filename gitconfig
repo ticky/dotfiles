@@ -1,7 +1,30 @@
 [core]
-	excludesfile = /Users/todd/.gitignore
+  excludesfile = /Users/todd/.gitignore
 [user]
-	name = Todd Matthews
-	email = todd@heroku.com
+  name = Todd Matthews
+  email = todd@heroku.com
 [alias]
+    ci = commit -a
+    co = checkout
+    st = status
     up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+
+[color]
+    ui = auto
+
+[color "diff"]
+    meta = blue bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow bold
+    remote = green bold
+    plain = red bold
+
+[color "status"]
+    added = yellow
+    changed = green bold
+    untracked = blue bold
