@@ -158,9 +158,20 @@ prompt_compact() {
     PS2="> "
 }
 
+function prompt_pwd
+{
+  newPWD="${PWD/#$HOME/~}"
+  local pwdmaxlen=$(($COLUMNS/4))
+  local trunc_symbol="..."
+  if [ ${#newPWD} -gt $pwdmaxlen ]
+  then
+     newPWD="${trunc_symbol}${newPWD: -$pwdmaxlen}"
+  fi
+}
+
 prompt_color() {
-  PROMPT_COMMAND='title_git'
-  PS1="${WHITEONMAGENTA}[\u@\h]${MAGENTA} \w\$(parse_git_branch) ${MAGENTABOLD}\$${PS_CLEAR} "
+  PROMPT_COMMAND='prompt_pwd && title_git'
+  PS1="${WHITEONMAGENTA}[\u@\h]${MAGENTA} ${newPWD}\$(parse_git_branch) ${MAGENTABOLD}\$${PS_CLEAR} "
     PS2="${WHITEONTEAL}>${PS_CLEAR} "
 }
 
