@@ -82,13 +82,31 @@ export EDITOR="mate -w"
 alias m="mate "
 alias m.="mate ."
 
+alias o="open"
+alias o.="open ."
+
 # ----------------------------------------------------------------------
-# PROMPT
+# GIT BRANCH
 # ----------------------------------------------------------------------
 
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
+
+# ----------------------------------------------------------------------
+# TITLE WINDOW
+# ----------------------------------------------------------------------
+
+#set window title
+function title() { echo -ne "\033]0;$@\007"; }
+function title_git() {
+  title `echo ${PWD##*/} "$(parse_git_branch) $@"`
+}
+title_git
+
+# ----------------------------------------------------------------------
+# PROMPT
+# ----------------------------------------------------------------------
 
 # color chart: http://www.ibm.com/developerworks/linux/library/l-tip-prompt/
 WHITEONPINK="\[\033[37;45;1m\]"
@@ -122,17 +140,10 @@ prompt_compact() {
 }
 
 prompt_color() {
+  PROMPT_COMMAND='title_git'
   PS1="${WHITEONPINK}[\u@\h]${PINK} \w\$(parse_git_branch) ${PINKBOLD}\$${PS_CLEAR} "
     PS2="${WHITEONTEAL}>${PS_CLEAR} "
 }
-
-# ----------------------------------------------------------------------
-# TITLE WINDOW
-# ----------------------------------------------------------------------
-
-#set window title
-function title() { echo -ne "\033]0;$@\007"; }
-title `echo ${PWD##*/} "$(parse_git_branch)"`
 
 # ----------------------------------------------------------------------
 # CD, DIRECTORY NAVIGATION
@@ -140,9 +151,7 @@ title `echo ${PWD##*/} "$(parse_git_branch)"`
 
 function cd() { 
   # supress bash_completion pwd on cd
-  command cd "$@" >/dev/null; 
-  # title window on cd
-  title `echo ${PWD##*/} "$(parse_git_branch)"`; 
+  command cd "$@" >/dev/null;
 }
 
 alias ..="cd .."
@@ -222,7 +231,7 @@ alias cl="clear"
 
 # thin start
 function ts(){
-  title `echo ${PWD##*/} "$(parse_git_branch) / Server"`
+  title_git " /  Server"
   for ((port=3000; port <= 3010 ; port++)); do
     if thin -p $port start 2>/dev/null; then break; fi
   done
@@ -230,7 +239,7 @@ function ts(){
 
 # mongrel rails start
 function mrs(){
-  title `echo ${PWD##*/} "$(parse_git_branch) / Server"`
+  title_git " /  Server"
   for ((port=3000; port <= 3010 ; port++)); do
     if mongrel_rails -p $port start 2>/dev/null; then break; fi
   done
