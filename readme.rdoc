@@ -5,13 +5,11 @@ If you do too, then you might like my dotfiles.
 
 == Features
 
-* colorful prompt with git info
-* autosensing 300x ports for starting mongrel and thin servers.
-* autocomplete directories and commands
-* directory colors
-* window titling
-* concise history
-* easy history navigation
+* colorful prompt, directories and git functions
+* window title and prompt updated with working git branch
+* single command to start thin servers with autosensing 300x ports
+* autocomplete directories, history, commands and aliases
+* concise history with arrow and tab key navigation
 * aliases for git, postgres, mongodb and more
 
 == Requirements

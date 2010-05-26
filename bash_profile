@@ -89,8 +89,11 @@ alias o.="open ."
 # GIT BRANCH
 # ----------------------------------------------------------------------
 
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1)$(parse_git_dirty)/"
 }
 
 # ----------------------------------------------------------------------
@@ -198,6 +201,12 @@ alias l.="ls -d .*"
 # ----------------------------------------------------------------------
 # COMMAND HISTORY
 # ----------------------------------------------------------------------
+
+# big history
+export HISTSIZE=1000
+
+# Save and reload the history after each command finishes
+# export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
 
 #ignore repeat commands
 export HISTCONTROL=erasedups
