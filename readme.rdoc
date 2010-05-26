@@ -10,6 +10,7 @@ If you do too, then you might like my dotfiles.
 * autocomplete directories and commands
 * directory colors
 * window titling
+* concise history
 * easy history navigation
 * aliases for git, postgres, mongodb and more
 
@@ -27,3 +28,10 @@ If you do too, then you might like my dotfiles.
 * james lindenbaum
 * {chris wanstrath}[http://ozmm.org/]
 * google, blogs and probably you.
+
+== Resources (incomplete) 
+
+* {Ryan Tomayko's Bash Profile}[http://github.com/rtomayko/dotfiles]
+* {No Duplicates in Bash History}[http://www.somekindofpaper.info/articles/2010/02/18/control-your-bash-history-with-histcontrol.html]
+* {Cycle through history instead of listing}[http://www.macosxhints.com/article.php?story=20050904022246573&lsrc=osxh]
+* {IBM's bash prompt and color chart}[http://www.ibm.com/developerworks/linux/library/l-tip-prompt/]

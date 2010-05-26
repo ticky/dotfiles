@@ -108,7 +108,6 @@ title_git
 # PROMPT
 # ----------------------------------------------------------------------
 
-# color chart: http://www.ibm.com/developerworks/linux/library/l-tip-prompt/
 WHITEONPINK="\[\033[37;45;1m\]"
 PINK="\[\033[0;35m\]"
 PINKBOLD="\[\033[0;35;1m\]"
@@ -173,7 +172,6 @@ export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku"
 bind 'set completion-ignore-case On'
 
 # make tab cycle through commands instead of listing 
-# http://www.macosxhints.com/article.php?story=20050904022246573&lsrc=osxh
 bind '"\t":menu-complete'
 
 # ----------------------------------------------------------------------
@@ -207,13 +205,12 @@ alias l.="ls -d .*"
 # ----------------------------------------------------------------------
 
 #ignore repeat commands
-#http://www.somekindofpaper.info/articles/2010/02/18/control-your-bash-history-with-histcontrol.html
 export HISTCONTROL=ignoredups
 
 #ignore specific commands
 #export HISTIGNORE="&:ls:ll:cl:s:x"
 
-#shor short history
+#short history
 alias hi='history | tail -20'
 
 
