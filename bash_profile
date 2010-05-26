@@ -158,9 +158,8 @@ prompt_compact() {
     PS2="> "
 }
 
-
 # keep working directory to 30 chars, center tuncated
-function prompt_pwd {
+prompt_pwd() {
   local pwd_symbol="..."
   local pwd_length=30
   newPWD="${PWD/#$HOME/~}"
