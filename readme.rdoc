@@ -6,7 +6,7 @@ If you do too, then you might like my dotfiles.
 == Features
 
 * colorful prompt, directories and git functions
-* bash prompt truncated to 1/4 screen width
+* current/working/directory/.../truncated
 * window title and prompt updated with working git branch
 * single command to start thin servers with autosensing 300x ports
 * autocomplete directories, history, commands and aliases
