@@ -36,3 +36,4 @@ If you do too, then you might like my dotfiles.
 * {No Duplicates in Bash History}[http://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/]
 * {Cycle through history instead of listing}[http://www.macosxhints.com/article.php?story=20050904022246573&lsrc=osxh]
 * {IBM's bash prompt and color chart}[http://www.ibm.com/developerworks/linux/library/l-tip-prompt/]
+* {Dircolors}[http://hocuspokus.net/2008/01/a-better-ls-for-mac-os-x]
