@@ -270,14 +270,6 @@ function ts(){
   done
 }
 
-# mongrel rails start
-function mrs(){
-  title_git " /  Server"
-  for ((port=3000; port <= 3010 ; port++)); do
-    if mongrel_rails -p $port start 2>/dev/null; then break; fi
-  done
-}
-
 # postgresql, psql
 alias pgstop="pg_ctl -D `brew --prefix`/var/postgres stop -s -m fast"
 alias pgstart="pg_ctl -D `brew --prefix`/var/postgres -l `brew --prefix`/var/postgres/server.log start"
