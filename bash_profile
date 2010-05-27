@@ -173,6 +173,7 @@ prompt_color() {
     PS2="${WHITEONTEAL}>${PS_CLEAR} "
 }
 
+
 # ----------------------------------------------------------------------
 # CD, DIRECTORY NAVIGATION
 # ----------------------------------------------------------------------
@@ -182,7 +183,9 @@ function cd() {
   command cd "$@" >/dev/null;
 }
 # go to previous directory
-alias -="cd -"
+function -() { 
+  command cd "-" >/dev/null;
+}
 # traverse directories
 alias ..="cd .."
 alias ....="cd ../.."
