@@ -299,6 +299,7 @@ alias rdfl="rake db:fixtures:load"
 # GIT
 # ----------------------------------------------------------------------
 
+alias gd="git diff"
 alias gu="git up"
 alias gs="git status"
 alias gf="git fetch"
