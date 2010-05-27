@@ -177,11 +177,13 @@ prompt_color() {
 # CD, DIRECTORY NAVIGATION
 # ----------------------------------------------------------------------
 
+# supress bash_completion pwd on cd
 function cd() { 
-  # supress bash_completion pwd on cd
   command cd "$@" >/dev/null;
 }
-
+# go to previous directory
+alias -="cd -"
+# traverse directories
 alias ..="cd .."
 alias ....="cd ../.."
 alias ......="cd ../../../"
