@@ -163,12 +163,14 @@ prompt_pwd() {
   local pwd_symbol="..."
   local pwd_length=30
   newPWD="${PWD/#$HOME/~}"
-  [ ${#newPWD} -gt ${pwd_length} ] && newPWD=${newPWD:0:12}${pwd_symbol}${newPWD:${#newPWD}-15}
+  [ ${#newPWD} -le ${pwd_length} ]
+    printf -v newPWD "%-*s" $pwd_length "$newPWD$(parse_git_branch)"
+  [ ${#newPWD} -gt ${pwd_length} ] && newPWD=${newPWD:0:10}${pwd_symbol}${newPWD:${#newPWD}-17}
 }
 
 prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
-  PS1="${WHITEONMAGENTA}[\u@\h]${MAGENTA} \w\$(parse_git_branch) ${MAGENTABOLD}\$${PS_CLEAR} "
+  PS1="${WHITEONMAGENTA}[\u@\h]${MAGENTA} \w ${MAGENTABOLD}\$${PS_CLEAR} "
   PS1=${PS1//\\w/\$\{newPWD\}}
     PS2="${WHITEONTEAL}>${PS_CLEAR} "
 }
