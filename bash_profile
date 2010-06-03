@@ -135,6 +135,8 @@ else
 fi
 
 prompt_pwd() {
+  #replace "/home/username with ~"
+  #newPWD="${PWD/#$HOME/~}"
   newPWD="${PWD} $(parse_git_branch)"
 }
 
