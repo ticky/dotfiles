@@ -17,9 +17,9 @@
 alias dotfiles="mate $HOME/Dotfiles/"
 
 # edit this file
-alias settings-edit="mate $HOME/Dotfiles/bash_profile"
+alias settings-edit="mate $HOME/.bash_profile"
 
-alias settings-load="source $HOME/Dotfiles/bash_profile"
+alias settings-load="source $HOME/.bash_profile"
 alias reload="settings-load"
 
 alias settings-install="ruby $HOME/Dotfiles/install.rb && settings-load"
@@ -124,14 +124,14 @@ PURPLE="\[\033[0;35m\]"
 PS_CLEAR="\[\033[0m\]"
 SCREEN_ESC="\[\033k\033\134\]"
 
-if [ "$LOGNAME" = "root" ]; then
-    COLOR_BACKGROUND="${WHITEONCYAN}"
-    COLOR_REGULAR="${CYAN}"
-    COLOR_BOLD="${CYANBOLD}"
+if [ `/usr/bin/whoami` = "root" ] ; then
+  COLOR_BACKGROUND="${WHITEONCYAN}"
+  COLOR_REGULAR="${CYAN}"
+  COLOR_BOLD="${CYANBOLD}"
 else
-    COLOR_BACKGROUND="${WHITEONMAGENTA}"
-    COLOR_REGULAR="${MAGENTA}"
-    COLOR_BOLD="${MAGENTABOLD}"
+  COLOR_BACKGROUND="${WHITEONMAGENTA}"
+  COLOR_REGULAR="${MAGENTA}"
+  COLOR_BOLD="${MAGENTABOLD}"
 fi
 
 prompt_pwd() {
