@@ -114,65 +114,35 @@ title_git
 WHITEONMAGENTA="\[\033[37;45;1m\]"
 MAGENTA="\[\033[0;35m\]"
 MAGENTABOLD="\[\033[0;35;1m\]"
-WHITEONCYAN="\[\033[37;46;1m\]"
 
-BLACK="\[\033[0;30m\]"
-BLUE="\[\033[0;34m\]"
-GREEN="\[\033[0;32m\]"
+WHITEONCYAN="\[\033[37;46;1m\]"
 CYAN="\[\033[0;36m\]"
-RED="\[\033[0;31m\]"
+CYANBOLD="\[\033[0;36;1m\]"
+
 PURPLE="\[\033[0;35m\]"
-BROWN="\[\033[0;33m\]"
-LIGHTGRAY="\[\033[0;37m\]"
-DARKGRAY="\[\033[1;30m\]"
-LIGHTBLUE="\[\033[1;34m\]"
-LIGHTGREEN="\[\033[1;32m\]"
-LIGHTCYAN="\[\033[1;36m\]"
-LIGHTRED="\[\033[1;31m\]"
-LIGHTPURPLE="\[\033[1;35m\]"
-YELLOW="\[\033[1;33m\]"
-WHITE="\[\033[1;37m\]"
 
 PS_CLEAR="\[\033[0m\]"
 SCREEN_ESC="\[\033k\033\134\]"
 
 if [ "$LOGNAME" = "root" ]; then
-    COLOR1="${RED}"
-    COLOR2="${BROWN}"
-    P="#"
+    COLOR_BACKGROUND="${WHITEONCYAN}"
+    COLOR_REGULAR="${CYAN}"
+    COLOR_BOLD="${CYANBOLD}"
 else
-    COLOR1="${BLUE}"
-    COLOR2="${BROWN}"
-    P="\$"
+    COLOR_BACKGROUND="${WHITEONMAGENTA}"
+    COLOR_REGULAR="${MAGENTA}"
+    COLOR_BOLD="${MAGENTABOLD}"
 fi
 
-prompt_simple() {
-    unset PROMPT_COMMAND
-    PS1="[\u@\h:\w]\$ "
-    PS2="> "
-}
-
-prompt_compact() {
-    unset PROMPT_COMMAND
-    PS1="${COLOR1}${P}${PS_CLEAR} "
-    PS2="> "
-}
-
-# keep working directory to 36 chars, center tuncated
 prompt_pwd() {
-  local pwd_symbol=".."
-  local pwd_length=36
-  newPWD="${PWD/#$HOME/~}"
-  [ ${#newPWD} -le ${pwd_length} ]
-    printf -v newPWD "%-*s" $pwd_length "$newPWD$(parse_git_branch)"
-  [ ${#newPWD} -gt ${pwd_length} ] && newPWD=${newPWD:0:12}${pwd_symbol}${newPWD:${#newPWD}-22}
+  newPWD="${PWD} $(parse_git_branch)"
 }
 
 prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
-  PS1="${WHITEONMAGENTA}[\u@\h]${MAGENTA} \w ${MAGENTABOLD}\$${PS_CLEAR} "
+  PS1="${COLOR_BACKGROUND}\u@\h${COLOR_REGULAR}:\w\n${COLOR_BOLD}\$${PS_CLEAR} "
   PS1=${PS1//\\w/\$\{newPWD\}}
-    PS2="${WHITEONTEAL}>${PS_CLEAR} "
+    PS2="${PURPLE}>${PS_CLEAR} "
 }
 
 
@@ -237,6 +207,10 @@ alias l.="ls -d .*"
 
 # big history
 export HISTSIZE=1000
+
+# format history with timestamp
+# 319  | 2010-06-02 09:02PM | reload
+export HISTTIMEFORMAT="| %F %I:%M%p | "
 
 # Save and reload the history after each command finishes
 # export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
