@@ -165,18 +165,6 @@ alias ..="cd .."
 alias ....="cd ../.."
 alias ......="cd ../../../"
 
-
-# pngcrush images in a directory
-# usage:  $ cd dir_with_images && png dir_to_save_new_images
-# or:     $ cd dir_with_images && png ; will save images to ../crushedimages
-function png() { 
-  if $@ ; then
-    command pngcrush -d "$@" *.png >/dev/null;
-  else
-    command pngcrush -d "../crushedimages" *.png >/dev/null;
-  fi
-}
-
 # ----------------------------------------------------------------------
 # AUTOCOMPLETE
 # ----------------------------------------------------------------------
@@ -252,6 +240,21 @@ alias fn='find . -name'
 alias x="exit"
 # clear window
 alias cl="clear"
+
+
+# ----------------------------------------------------------------------
+# PNGCRUSH, crush images in a directory
+# ----------------------------------------------------------------------
+
+# usage:  $ cd dir_with_images && png dir_to_save_new_images
+# or:     $ cd dir_with_images && png ; will save images to ../crushedimages
+function png() { 
+  if $@ ; then
+    command pngcrush -d "$@" *.png >/dev/null;
+  else
+    command pngcrush -d "../crushedimages" *.png >/dev/null;
+  fi
+}
 
 # ----------------------------------------------------------------------
 # SERVERS
