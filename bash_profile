@@ -261,11 +261,17 @@ function png() {
 # ----------------------------------------------------------------------
 
 # thin start
+# usage:  $ ts ; will start server on first available 300x port
+# or:     $ ts 3001 ; will start server on port 3001
 function ts(){
   title_git " /  Server"
-  for ((port=3000; port <= 3010 ; port++)); do
-    if thin -p $port start 2>/dev/null; then break; fi
-  done
+  if [ "$1" != "" ]; then
+    command thin  -p "$1" start;
+  else
+    for ((port=3000; port <= 3010 ; port++)); do
+      if thin -p $port start 2>/dev/null; then break; fi
+    done
+  fi
 }
 
 # postgresql, psql
