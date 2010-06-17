@@ -272,11 +272,11 @@ function ts(){
 }
 
 # postgresql, psql
-alias pgstop="pg_ctl -D `brew --prefix`/var/postgres stop -s -m fast"
-alias pgstart="pg_ctl -D `brew --prefix`/var/postgres -l `brew --prefix`/var/postgres/server.log start"
+alias pgx="pg_ctl -D `brew --prefix`/var/postgres stop -s -m fast"
+alias pgs="pg_ctl -D `brew --prefix`/var/postgres -l `brew --prefix`/var/postgres/server.log start"
 
 # mongo
-alias mstart="title 'MongoDB Server' && `brew --prefix`/bin/mongod --dbpath=$HOME/Sites/_mongodata/"
+alias ms="title 'MongoDB Server' && `brew --prefix`/bin/mongod --dbpath=$HOME/Sites/_mongodata/"
 
 # ----------------------------------------------------------------------
 # RUBY
@@ -296,6 +296,7 @@ alias rdfl="rake db:fixtures:load"
 # ----------------------------------------------------------------------
 
 alias gd="git diff"
+alias gl="git log"
 alias gu="git up"
 alias gs="git status"
 alias gf="git fetch"
