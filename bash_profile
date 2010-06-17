@@ -162,8 +162,8 @@ function -() {
 }
 # traverse directories
 alias ..="cd .."
-alias ....="cd ../.."
-alias ......="cd ../../../"
+alias ...="cd ../.."
+alias ....="cd ../../../"
 
 # ----------------------------------------------------------------------
 # AUTOCOMPLETE
@@ -224,7 +224,8 @@ export HISTCONTROL=erasedups
 export HISTIGNORE="&:cl:x"
 
 #short history
-alias hi='history | tail -20'
+alias hi="history | tail -20"
+
 
 
 
@@ -249,11 +250,7 @@ alias cl="clear"
 # usage:  $ cd dir_with_images && png dir_to_save_new_images
 # or:     $ cd dir_with_images && png ; will save images to ../crushedimages
 function png() { 
-  if $@ ; then
-    command pngcrush -d "$@" *.png >/dev/null;
-  else
-    command pngcrush -d "../crushedimages" *.png >/dev/null;
-  fi
+  command pngcrush -d "../crushedimages" *.png >/dev/null;
 }
 
 # ----------------------------------------------------------------------
