@@ -41,6 +41,5 @@ If you do too, then you might like my dotfiles.
 * {Dircolors}[http://hocuspokus.net/2008/01/a-better-ls-for-mac-os-x]
 * {Truncated PWD}[http://www.debian-administration.org/article/Fancy_Bash_Prompts]
 * {mkdircd}[http://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/]
-== Candidates
-
 * {history grep alias}[http://wuhrr.wordpress.com/2009/10/11/sweeten-bash-history-by-adding-grep/]
+
