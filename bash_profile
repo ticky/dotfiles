@@ -101,11 +101,12 @@ function parse_git_branch {
 # ----------------------------------------------------------------------
 
 #set window title
-function title() { echo -ne "\033]0;$@\007"; }
+function title() { 
+  echo -ne "\033]0;$@\007"; 
+}
 function title_git() {
   title `echo ${PWD##*/} "$(parse_git_branch) $@"`
 }
-title_git
 
 # ----------------------------------------------------------------------
 # PROMPT
@@ -134,13 +135,13 @@ else
   COLOR_BOLD="${MAGENTABOLD}"
 fi
 
-prompt_pwd() {
+function prompt_pwd() {
   #replace "/home/username with ~"
   #newPWD="${PWD/#$HOME/~}"
   newPWD="${PWD} $(parse_git_branch)"
 }
 
-prompt_color() {
+function prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
   PS1="${COLOR_BACKGROUND}\u@\h${COLOR_REGULAR}:\w\n${COLOR_BOLD}\$${PS_CLEAR} "
   PS1=${PS1//\\w/\$\{newPWD\}}
@@ -195,19 +196,21 @@ bind '"\t":menu-complete'
 # we always pass these to ls(1)
 LS_COMMON="-hB"
 
+# setup the main ls alias if we've established common args
+test -n "$LS_COMMON" &&
+alias ls='ls $LS_OPTIONS $LS_COMMON'
+
+# list all files in directory
+alias ll="ls -la"
+
+# list dot files in directory
+alias l.="ls -d .*"
+
 # if the dircolors utility is available, set that up too
 if [ "$TERM" != "dumb" ]; then
     export LS_OPTIONS='--color=auto'
     eval `dircolors ~/.dircolors`
 fi
-
-# setup the main ls alias if we've established common args
-test -n "$LS_COMMON" &&
-alias ls='ls $LS_OPTIONS $LS_COMMON'
-
-# these use the ls aliases above
-alias ll="ls -la"
-alias l.="ls -d .*"
 
 # ----------------------------------------------------------------------
 # COMMAND HISTORY
@@ -224,7 +227,6 @@ export HISTTIMEFORMAT="| %F %I:%M%p | "
 # export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
 
 #ignore repeat commands
-export HISTCONTROL=ignoredups
 export HISTCONTROL=erasedups
 
 #ignore specific commands
@@ -337,6 +339,8 @@ alias navrestart='for i in "business" "news" "success" "legal" "logos" "about" "
 # ==============================================================================
 # USER SHELL ENVIRONMENT
 # ==============================================================================
+
+title_git
 
 # Use the color prompt by default when interactive
 test -n "$PS1" &&
