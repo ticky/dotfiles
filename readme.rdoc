@@ -6,14 +6,15 @@ If you do too, then you might like my dotfiles.
 == Features
 
 * colorful prompt, directories and git functions
-* current/working/directory/.../truncated (will restore to alternate prompt)
 * window title and prompt updated with working git branch name and status
-* 2 line prompt so commands line up
 * single command to start thin servers with autosensing 300x ports
 * autocomplete directories, history, commands and aliases
 * concise history with arrow and tab key navigation
+* speedy history command and search
 * aliases for git, postgres, mongodb and more
 * functions for pngcrush
+* 2 line prompt so commands line up
+* option to /truncate/current/.../directory/
 
 == Requirements
 

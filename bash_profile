@@ -166,7 +166,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../../"
 
-#create a directory and cd into it
+# create a directory and cd into it
 function mkcd () { 
   mkdir -p "$@" && eval cd "\"\$$#\""; 
 }
@@ -193,7 +193,7 @@ bind '"\t":menu-complete'
 # LS AND DIRCOLORS
 # ----------------------------------------------------------------------
 
-# we always pass these to ls(1)
+# always pass these options to ls(1)
 LS_COMMON="-hB"
 
 # setup the main ls alias if we've established common args
@@ -224,18 +224,26 @@ export HISTSIZE=1000
 export HISTTIMEFORMAT="| %F %I:%M%p | "
 
 # Save and reload the history after each command finishes
-# export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
 
-#ignore repeat commands
+# ignore repeat commands
 export HISTCONTROL=erasedups
 
-#ignore specific commands
+# ignore specific commands
 export HISTIGNORE="&:cl:x"
 
-#short history
-alias hi="history | tail -20"
-
-
+# speedy history
+# usage:  $ hi 4 ; will list last 4 commands
+# or:     $ hi keyword ; will grep history for keyword
+function hi(){
+  if [[ $1 =~ ^[0-9]+$ ]]; then
+    command history | tail -n "$1";
+  elif [ "$1" != "" ]; then
+    command history | grep "$1";
+  else
+    command history | tail -20;
+  fi
+}
 
 
 # ==============================================================================
@@ -272,7 +280,7 @@ function png() {
 function ts(){
   title_git " /  Server"
   if [ "$1" != "" ]; then
-    command thin  -p "$1" start;
+    command thin -p "$1" start;
   else
     for ((port=3000; port <= 3010 ; port++)); do
       if thin -p $port start 2>/dev/null; then break; fi
@@ -296,7 +304,7 @@ alias sgi32="sudo env ARCHFLAGS=\"-Os -arch i386 -fno-common\" gem install --no-
 alias sgi64="sudo env ARCHFLAGS=\"-Os -arch x86_64 -fno-common\" gem install --no-ri --no-rdoc"
 alias sgi="sudo env ARCHFLAGS=\"-Os -arch x86_64 -fno-common\" gem install --no-ri --no-rdoc"
 
-#rake
+# rake tasks
 alias rdm="rake db:migrate"
 alias rdfl="rake db:fixtures:load"
 
