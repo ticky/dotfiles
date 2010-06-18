@@ -165,6 +165,12 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../../"
 
+#create a directory and cd into it
+function mkcd () { 
+  mkdir -p "$@" && eval cd "\"\$$#\""; 
+}
+
+
 # ----------------------------------------------------------------------
 # AUTOCOMPLETE
 # ----------------------------------------------------------------------
@@ -218,6 +224,7 @@ export HISTTIMEFORMAT="| %F %I:%M%p | "
 # export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
 
 #ignore repeat commands
+export HISTCONTROL=ignoredups
 export HISTCONTROL=erasedups
 
 #ignore specific commands
