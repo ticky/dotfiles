@@ -79,11 +79,17 @@ test -d "/Applications/TextMate.app" &&
 export VISUAL="mate -w"
 export EDITOR="mate -w"
 
-alias m="mate "
-alias m.="mate ."
+# mate shortcut
+function m() { 
+  command mate "$@";
+}
+alias m.="m ."
 
-alias o="open"
-alias o.="open ."
+# open shortcut
+function o() { 
+  command open "$@" >/dev/null;
+}
+alias o.="o ."
 
 # ----------------------------------------------------------------------
 # GIT BRANCH
