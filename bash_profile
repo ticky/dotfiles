@@ -118,31 +118,27 @@ function title_git() {
 # PROMPT
 # ----------------------------------------------------------------------
 
-C_BLACK_TXT="$(tput setaf 0)"
-C_BLACK_BKG="$(tput setab 0)"
-C_WHITE_TXT="$(tput setaf 7)"
-C_WHITE_BKG="$(tput setab 7)"
-C_RED_TXT="$(tput setaf 1)"
-C_RED_BKG="$(tput setab 1)"
-C_GREEN_TXT="$(tput setaf 2)"
-C_GREEN_BKG="$(tput setab 2)"
-C_YELLOW_TXT="$(tput setaf 3)"
-C_YELLOW_BKG="$(tput setab 3)"
-C_BLUE_TXT="$(tput setaf 4)"
-C_BLUE_BKG="$(tput setab 4)"
-C_MAGENTA_TXT="$(tput setaf 5)"
-C_MAGENTA_BKG="$(tput setab 5)"
-C_CYAN_TXT="$(tput setaf 6)"
-C_CYAN_BKG="$(tput setab 6)"
-C_RESET="$(tput sgr0)"
-C_BOLD="$(tput bold)"
+WHITEONMAGENTA="\[\033[37;45;1m\]"
+MAGENTA="\[\033[0;35m\]"
+MAGENTABOLD="\[\033[0;35;1m\]"
+
+WHITEONCYAN="\[\033[37;46;1m\]"
+CYAN="\[\033[0;36m\]"
+CYANBOLD="\[\033[0;36;1m\]"
+
+PURPLE="\[\033[0;35m\]"
+
+PS_CLEAR="\[\033[0m\]"
+SCREEN_ESC="\[\033k\033\134\]"
 
 if [ `/usr/bin/whoami` = "root" ] ; then
-  C_BKG="${C_MAGENTA_BKG}"
-  C_TXT="${C_MAGENTA_TXT}"
+  COLOR_BACKGROUND="${WHITEONCYAN}"
+  COLOR_REGULAR="${CYAN}"
+  COLOR_BOLD="${CYANBOLD}"
 else
-  C_BKG="${C_CYAN_BKG}"
-  C_TXT="${C_CYAN_TXT}"
+  COLOR_BACKGROUND="${WHITEONMAGENTA}"
+  COLOR_REGULAR="${MAGENTA}"
+  COLOR_BOLD="${MAGENTABOLD}"
 fi
 
 function prompt_pwd() {
@@ -153,11 +149,10 @@ function prompt_pwd() {
 
 function prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
-  PS1="${C_BKG}${C_BOLD}${C_WHITE_TXT}\u@\h${C_RESET}${C_TXT}:\w\n${C_BOLD}\$${C_RESET} "
+  PS1="${COLOR_BACKGROUND}\u@\h${COLOR_REGULAR}:\w\n${COLOR_BOLD}\$${PS_CLEAR} "
   PS1=${PS1//\\w/\$\{newPWD\}}
-    PS2="${C_GREEN_TXT}>${C_RESET} "
+    PS2="${PURPLE}>${PS_CLEAR} "
 }
-
 
 
 # ----------------------------------------------------------------------
@@ -204,9 +199,6 @@ bind '"\t":menu-complete'
 # LS AND DIRCOLORS
 # ----------------------------------------------------------------------
 
-# set TERM xterm-256color; export TERM
-# CLICOLOR="YES";    export CLICOLOR
-
 # always pass these options to ls(1)
 LS_COMMON="-hB"
 
@@ -234,7 +226,7 @@ fi
 export HISTSIZE=1000
 
 # format history with timestamp
-# 319 | 2010-06-02 09:02PM | reload
+# 319  | 2010-06-02 09:02PM | reload
 export HISTTIMEFORMAT="| %F %I:%M%p | "
 
 # Save and reload the history after each command finishes
@@ -247,8 +239,7 @@ export HISTCONTROL=erasedups
 export HISTIGNORE="&:cl:x"
 
 # speedy history
-# usage:  $ hi ; will list last 20 commands
-# or:     $ hi 4 ; will list last 4 commands
+# usage:  $ hi 4 ; will list last 4 commands
 # or:     $ hi keyword ; will grep history for keyword
 function hi(){
   if [[ $1 =~ ^[0-9]+$ ]]; then
