@@ -281,10 +281,13 @@ alias cl="clear"
 
 # usage:  $ cd dir_with_images && png dir_to_save_new_images
 # or:     $ cd dir_with_images && png ; will save images to ../crushedimages
-function png() { 
-  command pngcrush -d "../crushedimages" *.png >/dev/null;
+function png(){
+  if [ "$1" != "" ]; then
+    command pngcrush -d "../$1" *.png;
+  else
+    command pngcrush -d "../crushedimages" *.png;
+  fi
 }
-
 # ----------------------------------------------------------------------
 # SERVERS
 # ----------------------------------------------------------------------
