@@ -81,7 +81,7 @@ export EDITOR="mate -w"
 
 # mate shortcut
 function m() { 
-  command mate "$@" >/dev/null;
+  command mate "$@";
 }
 alias m.="m ."
 
