@@ -3,3 +3,4 @@
 /_assets
 /_design
 *.sass-cache
+*.bundle

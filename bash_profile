@@ -187,7 +187,7 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
 fi
 
 # autocomplete from these directories
-export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku"
+export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku:$HOME/Library/Application\ Support/TextMate/Bundles/"
 
 # ignore case for autocomplete
 bind 'set completion-ignore-case On'
@@ -338,6 +338,7 @@ alias gplg="git pull github master"
 alias gplo="git pull origin master"
 alias gpl="git pull"
 alias gc="git commit -am"
+alias gco="git checkout"
 alias ga="git add ."
 
 # ----------------------------------------------------------------------
