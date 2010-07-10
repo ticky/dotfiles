@@ -141,12 +141,13 @@ else
   COLOR_BOLD="${MAGENTABOLD}"
 fi
 
+# 2 LINE PROMPT
+
 function prompt_pwd() {
   #replace "/home/username with ~"
   #newPWD="${PWD/#$HOME/~}"
   newPWD="${PWD} $(parse_git_branch)"
 }
-
 function prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
   PS1="${COLOR_BACKGROUND}\u@\h${COLOR_REGULAR}:\w\n${COLOR_BOLD}\$${PS_CLEAR} "
@@ -154,6 +155,20 @@ function prompt_color() {
     PS2="${PURPLE}>${PS_CLEAR} "
 }
 
+# TRUNCATED PROMPT
+#
+# prompt_pwd() {
+#   local pwd_symbol=".."
+#   local pwd_length=30
+#   newPWD="${PWD/#$HOME/~}"
+#   [ ${#newPWD} -gt ${pwd_length} ] && newPWD=${newPWD:0:12}${pwd_symbol}${newPWD:${#newPWD}-15}
+# }
+# prompt_color() {
+#   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
+#   PS1="${COLOR_BACKGROUND}\u@\h${COLOR_REGULAR} \w \$(parse_git_branch) ${COLOR_BOLD}\$${PS_CLEAR} "
+#   PS1=${PS1//\\w/\$\{newPWD\}}
+#     PS2="${WHITEONCYAN}>${PS_CLEAR} "
+# }
 
 # ----------------------------------------------------------------------
 # CD, DIRECTORY NAVIGATION
@@ -279,6 +294,16 @@ function png(){
     command pngcrush -d "../crushedimages" *.png;
   fi
 }
+
+# ----------------------------------------------------------------------
+# ZIP a file or directory
+# ----------------------------------------------------------------------
+
+# usage:  $ zip filename
+function zip(){ 
+  command sudo ditto -c -k -rsrc "$@" "$@.zip";
+}
+
 # ----------------------------------------------------------------------
 # SERVERS
 # ----------------------------------------------------------------------
@@ -293,6 +318,16 @@ function ts(){
   else
     for ((port=3000; port <= 3010 ; port++)); do
       if thin -p $port start 2>/dev/null; then break; fi
+    done
+  fi
+}
+function sg(){
+  title_git " /  Server"
+  if [ "$1" != "" ]; then
+    command shotgun -p "$1" start;
+  else
+    for ((port=3000; port <= 3010 ; port++)); do
+      if shotgun -p $port 2>/dev/null; then break; fi
     done
   fi
 }
