@@ -387,7 +387,13 @@ alias cdtmb="cd $HOME/Library/Application\ Support/TextMate/Bundles/"
 alias h="cd ~/Sites/heroku"
 alias navrestart='for i in "business" "news" "success" "legal" "logos" "about" "public" "blog" "docs"; do heroku restart --app $i && sleep 1; done'
 
-
+function share(){
+  if [ "$1" != "" ]; then
+    command heroku sharing:add "$1";
+  else
+    command heroku sharing:list;
+  fi
+}
 
 # ==============================================================================
 # USER SHELL ENVIRONMENT
