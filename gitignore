@@ -4,3 +4,4 @@
 /_design
 *.sass-cache
 *.bundle
+*.esproj

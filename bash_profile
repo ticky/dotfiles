@@ -17,13 +17,9 @@
 alias dotfiles="mate $HOME/Dotfiles/"
 
 # edit this file
-alias settings-edit="mate $HOME/.bash_profile"
-
-alias settings-load="source $HOME/.bash_profile"
-alias reload="settings-load"
-
-alias settings-install="ruby $HOME/Dotfiles/install.rb && settings-load"
-
+alias profile-edit="mate $HOME/.bash_profile"
+alias profile-load="source $HOME/.bash_profile"
+alias profile-install="ruby $HOME/Dotfiles/install.rb && profile-load"
 
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
@@ -182,6 +178,8 @@ function cd() {
 function -() { 
   command cd "-" >/dev/null;
 }
+# go to home directory
+alias ~="cd ~"
 # traverse directories
 alias ..="cd .."
 alias ...="cd ../.."
@@ -386,6 +384,18 @@ alias cdtmb="cd $HOME/Library/Application\ Support/TextMate/Bundles/"
 # heroku
 alias h="cd ~/Sites/heroku"
 alias navrestart='for i in "business" "news" "success" "legal" "logos" "about" "public" "blog" "docs"; do heroku restart --app $i && sleep 1; done'
+
+# put heroku docbrown on PATH if you have it
+test -d "$HOME/sites/heroku/docbrown" &&
+PATH="$HOME/sites/heroku/docbrown:$PATH"
+
+function docbrown(){
+  if [ "$1" = "" ] && [ "$2" = ""]; then
+    command echo 'appname email';
+  else
+    command cd ~/Sites/heroku/docbrown && ./bin/docbrown collaborator:add "$1" "$2";
+  fi
+}
 
 function share(){
   if [ "$1" != "" ]; then
