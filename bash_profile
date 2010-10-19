@@ -319,6 +319,18 @@ function ts(){
     done
   fi
 }
+# script/server
+function ss(){
+  title_git " /  Server"
+  if [ "$1" != "" ]; then
+    command script/server -p "$1";
+  else
+    for ((port=3000; port <= 3010 ; port++)); do
+      if script/server -p $port 2>/dev/null; then break; fi
+    done
+  fi
+}
+# shotgun
 function sg(){
   title_git " /  Server"
   if [ "$1" != "" ]; then
