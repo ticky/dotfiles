@@ -314,18 +314,19 @@ function ts(){
   if [ "$1" != "" ]; then
     command thin -p "$1" start;
   else
-    for ((port=3000; port <= 3010 ; port++)); do
+    for port in `seq 3000 3010`; do
       if thin -p $port start 2>/dev/null; then break; fi
     done
   fi
 }
+
 # script/server
 function ss(){
   title_git " /  Server"
   if [ "$1" != "" ]; then
     command script/server -p "$1";
   else
-    for ((port=3000; port <= 3010 ; port++)); do
+    for port in `seq 3000 3010`; do
       if script/server -p $port 2>/dev/null; then break; fi
     done
   fi
@@ -336,7 +337,7 @@ function sg(){
   if [ "$1" != "" ]; then
     command shotgun -p "$1" start;
   else
-    for ((port=3000; port <= 3010 ; port++)); do
+    for port in `seq 3000 3010`; do
       if shotgun -p $port 2>/dev/null; then break; fi
     done
   fi
