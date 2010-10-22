@@ -25,6 +25,7 @@ function profile() {
     echo "AVAILABLE COMMANDS: edit, load, install"
   fi
 }
+alias p="profile"
 
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
@@ -417,7 +418,7 @@ function docbrown(){
 
 function share(){
   if [ "$1" != "" ]; then
-    command heroku sharing:add "$1";
+    command heroku sharing:add "$@";
   else
     command heroku sharing:list;
   fi
