@@ -195,6 +195,11 @@ alias ....="cd ../../../"
 function mkcd () { 
   mkdir -p "$@" && eval cd "\"\$$#\""; 
 }
+# use spotlight for locate command
+# http://hints.macworld.com/article.php?story=20050507212241122
+function locate {
+  mdfind "kMDItemDisplayName == '$@'wc"; 
+}
 
 
 # ----------------------------------------------------------------------
