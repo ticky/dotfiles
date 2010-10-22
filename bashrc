@@ -20,7 +20,7 @@ function profile() {
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
   elif [ "$1" = "install" ]; then
-    command ruby $HOME/Dotfiles/install.rb && profile load;
+    command cd $HOME/Dotfiles/ && ruby $HOME/Dotfiles/install.rb && profile load;
   else
     echo "AVAILABLE COMMANDS: edit, load, install"
   fi
