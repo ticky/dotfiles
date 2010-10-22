@@ -14,12 +14,17 @@
 # SETTINGS
 # ==============================================================================
 
-alias dotfiles="mate $HOME/Dotfiles/"
-
-# edit this file
-alias profile-edit="mate $HOME/.bash_profile"
-alias profile-load="source $HOME/.bash_profile"
-alias profile-install="ruby $HOME/Dotfiles/install.rb && profile-load"
+function profile() { 
+  if [ "$1" = "edit" ]; then
+    command mate $HOME/Dotfiles/ && mate $HOME/Dotfiles/bash_profile;
+  elif [ "$1" = "load" ]; then
+    command source $HOME/.bash_profile;
+  elif [ "$1" = "install" ]; then
+    command ruby $HOME/Dotfiles/install.rb && profile load;
+  else
+    echo "AVAILABLE COMMANDS: edit, load, install"
+  fi
+}
 
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
