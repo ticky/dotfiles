@@ -16,9 +16,9 @@
 
 function profile() { 
   if [ "$1" = "edit" ]; then
-    command mate $HOME/Dotfiles/ && mate $HOME/Dotfiles/bash_profile;
+    command mate $HOME/Dotfiles/ && mate $HOME/Dotfiles/bashrc;
   elif [ "$1" = "load" ]; then
-    command source $HOME/.bash_profile;
+    command source $HOME/.bashrc;
   elif [ "$1" = "install" ]; then
     command ruby $HOME/Dotfiles/install.rb && profile load;
   else
