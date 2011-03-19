@@ -326,7 +326,7 @@ function ts(){
     command thin -p "$1" start;
   else
     for port in `seq 3000 3010`; do
-      if thin -p $port start 2>/dev/null; then break; fi
+      if thin -p $port start; then break; fi
     done
   fi
 }
@@ -338,7 +338,18 @@ function ss(){
     command script/server -p "$1";
   else
     for port in `seq 3000 3010`; do
-      if script/server -p $port 2>/dev/null; then break; fi
+      if script/server -p $port; then break; fi
+    done
+  fi
+}
+# rails server
+function rs(){
+  title_git " /  Server"
+  if [ "$1" != "" ]; then
+    command rails server -p "$1";
+  else
+    for port in `seq 3000 3010`; do
+      if rails server -p $port; then break; fi
     done
   fi
 }
@@ -349,7 +360,7 @@ function sg(){
     command shotgun -p "$1" start;
   else
     for port in `seq 3000 3010`; do
-      if shotgun -p $port 2>/dev/null; then break; fi
+      if shotgun -p $port; then break; fi
     done
   fi
 }
@@ -389,11 +400,11 @@ alias gph="git push heroku master"
 alias gps="git push staging staging:master"
 alias gpg="git push github master"
 alias gpo="git push origin master"
-alias gplh="git pull heroku master"
-alias gpls="git pull staging staging:master"
-alias gplg="git pull github master"
-alias gplo="git pull origin master"
-alias gpl="git pull"
+alias gplh="git up heroku master"
+alias gpls="git up staging staging:master"
+alias gplg="git up github master"
+alias gplo="git up origin master"
+alias gpl="git up"
 alias gc="git commit -am"
 alias gco="git checkout"
 alias ga="git add ."
@@ -407,17 +418,23 @@ alias cdtmb="cd $HOME/Library/Application\ Support/TextMate/Bundles/"
 
 # heroku
 alias h="cd ~/Sites/heroku"
-alias navrestart='for i in "business" "news" "success" "legal" "logos" "about" "public" "blog" "docs"; do heroku restart --app $i && sleep 1; done'
+alias navrestart='for i in "business" "news" "success" "policy" "logos" "about" "public" "blog" "docs"; do heroku restart --app $i && sleep 1; done'
+alias shareallherokuapps='for i in "about" "addons" "blog" "business" "core" "dev-center" "docs" "header" "help" "herokucharge" "jobs" "legal" "login" "logos" "news" "payments" "policy" "public" "status-staging" "success" ; do share --app $i max@heroku.com && sleep 1; done'
+
+alias hh="HEROKU_HOST=api-staging.heroku.com heroku "
 
 # put heroku docbrown on PATH if you have it
 test -d "$HOME/sites/heroku/docbrown" &&
 PATH="$HOME/sites/heroku/docbrown:$PATH"
 
-function docbrown(){
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+function share-f(){
   if [ "$1" = "" ] && [ "$2" = ""]; then
     command echo 'appname email';
   else
-    command cd ~/Sites/heroku/docbrown && ./bin/docbrown collaborator:add "$1" "$2";
+    command cd ~/Sites/heroku/docbrown && ./bin/docbrown collaborator:add "$1" "$2" && cd -;
   fi
 }
 
