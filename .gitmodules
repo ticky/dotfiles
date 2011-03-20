@@ -10,3 +10,6 @@
 [submodule "vim/bundle/javascript-syntax"]
 	path = vim/bundle/javascript-syntax
 	url = https://github.com/othree/javascript-syntax.vim.git
+[submodule "vim/bundle/vim-surround"]
+	path = vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git

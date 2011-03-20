@@ -16,7 +16,7 @@
 
 function profile() { 
   if [ "$1" = "edit" ]; then
-    command mate $HOME/Dotfiles/ && mate $HOME/Dotfiles/bashrc;
+    command vim $HOME/Dotfiles/bashrc;
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
   elif [ "$1" = "install" ]; then
@@ -37,6 +37,7 @@ test -r /etc/bashrc &&
 
 # notify of bg job completion immediately
 set -o notify
+
 
 # shell opts. see bash(1) for details
 shopt -s cdspell >/dev/null 2>&1
@@ -76,16 +77,13 @@ PATH="$HOME/.gem/ruby/1.8/bin:$PATH"
 # EDITOR
 # ----------------------------------------------------------------------
 
-# use textmate as default editor
-test -d "/Applications/TextMate.app" &&
-export VISUAL="mate -w"
-export EDITOR="mate -w"
+export EDITOR="vim"
 
-# mate shortcut
-function m() { 
-  command mate "$@" >/dev/null;
+# vim edit shortcut
+function e() { 
+  command vim "$@" >/dev/null;
 }
-alias m.="m ."
+alias e.="e ."
 
 # open shortcut
 function o() { 
@@ -211,7 +209,7 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
 fi
 
 # autocomplete from these directories
-export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku:$HOME/Library/Application\ Support/TextMate/Bundles/"
+export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku"
 
 # ignore case for autocomplete
 bind 'set completion-ignore-case On'
@@ -414,7 +412,6 @@ alias ga="git add ."
 # ----------------------------------------------------------------------
 
 alias s="cd $HOME/Sites/"
-alias cdtmb="cd $HOME/Library/Application\ Support/TextMate/Bundles/"
 
 # heroku
 alias h="cd ~/Sites/heroku"
