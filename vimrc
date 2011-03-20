@@ -44,7 +44,7 @@ if &t_Co > 2 || has("gui_running")
   endif
   syntax on
   set hlsearch
-  colorscheme vividchalk
+  colorscheme ir_black
 endif
 
 " ---------------------------------------------------------------------------
@@ -142,18 +142,6 @@ if system('uname') =~ 'Darwin'
 endif
 
 " ---------------------------------------------------------------------------
-"  Open URL on current line in browser
-" ---------------------------------------------------------------------------
-
-function! Browser ()
-    let line0 = getline (".")
-    let line = matchstr (line0, "http[^ )]*")
-    let line = escape (line, "#?&;|%")
-    exec ':silent !open ' . "\"" . line . "\""
-endfunction
-map <leader>w :call Browser ()<CR>
-
-" ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
 
@@ -192,3 +180,16 @@ map <leader>tp :tabprevious<cr>
 map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
+
+" ---------------------------------------------------------------------------
+"  Open URL on current line in browser
+" ---------------------------------------------------------------------------
+
+function! Browser ()
+    let line0 = getline (".")
+    let line = matchstr (line0, "http[^ )]*")
+    let line = escape (line, "#?&;|%")
+    exec ':silent !open ' . "\"" . line . "\""
+endfunction
+map <leader>w :call Browser ()<CR>
+
