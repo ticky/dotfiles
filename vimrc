@@ -23,8 +23,8 @@ set tabpagemax=50                     " open 50 tabs max
 " the ~/.vim/bundle directory
 
 filetype off                          " force reloading *after* pathogen loaded
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+silent! call pathogen#helptags()
+silent! call pathogen#runtime_append_all_bundles()
 filetype plugin indent on             " enable detection, plugins and 
                                       " indenting in one step
 
@@ -83,6 +83,13 @@ set titlestring=%{expand(\"%:p:h\")}/\%t%(\ %m%)\ \ \ \ \ \ \ \ \ \VIM%(\ %a%)
 set title                   " update the window title to above titlestring
 
 " ----------------------------------------------------------------------------
+"  STATUS LINE
+" ----------------------------------------------------------------------------
+
+set laststatus=2           " always show the status line
+set statusline=[%n]\ %w%y\ %<%.99f\ %m%r\ %=%-16(\ %l,%c\ %)%P
+
+" ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
 
@@ -107,7 +114,6 @@ set nostartofline          " don't jump to the start of line when scrolling
 set showmatch              " brackets/braces that is
 set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
-set laststatus=2           " always show the status line
 set ignorecase             " ignore case when searching
 set nohlsearch             " don't highlight searches
 nnoremap _ :set invhlsearch<CR> " toggle search highlighting
@@ -171,7 +177,7 @@ au BufNewFile,BufRead *.mustache        setf mustache
 :let mapleader = ","
 
 " Tab mappings
-map <leader>tt :tabnew<cr>
+map <leader>tt :tabnew
 map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
 map <leader>to :tabonly<cr>
