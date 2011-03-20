@@ -75,12 +75,18 @@ set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
 set directory=~/.vim/swap,~/tmp,.      " keep swp files under ~/.vim/swap
 
 " ----------------------------------------------------------------------------
-"  UI
+" WINDOW
 " ----------------------------------------------------------------------------
 
 " set window title to path of current buffer
-autocmd BufEnter * let &titlestring = "[vim(" . expand("%:t") . ")]"
+set titlestring=%{expand(\"%:p:h\")}/\%t%(\ %m%)\ \ \ \ \ \ \ \ \ \VIM%(\ %a%)
+set title                   " update the window title to above titlestring
 
+" ----------------------------------------------------------------------------
+"  UI
+" ----------------------------------------------------------------------------
+
+set nohidden               " when i close a tab, remove the buffer
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set nolazyredraw           " turn off lazy redraw
@@ -107,7 +113,6 @@ set nohlsearch             " don't highlight searches
 nnoremap _ :set invhlsearch<CR> " toggle search highlighting
 set visualbell             " shut the fuck up
 
-
 " ----------------------------------------------------------------------------
 " Text Formatting
 " ----------------------------------------------------------------------------
@@ -122,7 +127,7 @@ set expandtab              " expand tabs to spaces
 set nosmarttab             " fuck tabs
 set formatoptions+=n       " support for numbered/bullet lists
 set textwidth=80           " wrap at 80 chars by default
-set virtualedit=block      " allow virtual edit in visual block ..
+set virtualedit=block      " allow virtual edit in visual block mode
 
 " ----------------------------------------------------------------------------
 "  PATH on MacOS X
@@ -170,3 +175,7 @@ au Filetype ruby      set tw=80  ts=2
 au Filetype html,xml,xsl,rhtml source $HOME/.vim/scripts/closetag.vim
 
 au BufNewFile,BufRead *.mustache        setf mustache
+
+" ---------------------------------------------------------------------------
+"  Mappings
+" ---------------------------------------------------------------------------
