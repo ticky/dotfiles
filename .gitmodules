@@ -1,0 +1,12 @@
+[submodule "vim/bundle/vim-css-color"]
+	path = vim/bundle/vim-css-color
+	url = https://github.com/skammer/vim-css-color.git
+[submodule "vim/bundle/html5-vim-minimal"]
+	path = vim/bundle/html5-vim-minimal
+	url = https://github.com/sryche/html5-vim-minimal.git
+[submodule "vim/bundle/css"]
+	path = vim/bundle/css
+	url = https://github.com/xenoterracide/css.vim.git
+[submodule "vim/bundle/javascript-syntax"]
+	path = vim/bundle/javascript-syntax
+	url = https://github.com/othree/javascript-syntax.vim.git
