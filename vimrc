@@ -28,11 +28,6 @@ call pathogen#runtime_append_all_bundles()
 filetype plugin indent on             " enable detection, plugins and 
                                       " indenting in one step
 
-" register bundles found in the runtimepath
-" let s:bundles = tr(globpath(&runtimepath, 'bundle/*/'), "\n", ',')
-" let s:afters = tr(globpath(s:bundles, 'after/'), "\n", ',')
-" let &runtimepath = join([s:bundles, &runtimepath, s:afters], ',')
-
 " ---------------------------------------------------------------------------
 " Colors / Theme
 " ---------------------------------------------------------------------------
@@ -83,6 +78,9 @@ set directory=~/.vim/swap,~/tmp,.      " keep swp files under ~/.vim/swap
 "  UI
 " ----------------------------------------------------------------------------
 
+" set window title to path of current buffer
+autocmd BufEnter * let &titlestring = "[vim(" . expand("%:t") . ")]"
+
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set nolazyredraw           " turn off lazy redraw
@@ -106,7 +104,9 @@ set incsearch              " do incremental searching
 set laststatus=2           " always show the status line
 set ignorecase             " ignore case when searching
 set nohlsearch             " don't highlight searches
+nnoremap _ :set invhlsearch<CR> " toggle search highlighting
 set visualbell             " shut the fuck up
+
 
 " ----------------------------------------------------------------------------
 " Text Formatting

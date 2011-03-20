@@ -16,7 +16,7 @@
 
 function profile() { 
   if [ "$1" = "edit" ]; then
-    command vim $HOME/Dotfiles/bashrc;
+    command vim -p $HOME/Dotfiles/bashrc $HOME/Dotfiles/vimrc $HOME/Dotfiles/gitconfig $HOME/Dotfiles/gitignore;
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
   elif [ "$1" = "install" ]; then
@@ -84,6 +84,7 @@ function e() {
   command vim "$@" >/dev/null;
 }
 alias e.="e ."
+alias vi="vim -p"
 
 # open shortcut
 function o() { 
