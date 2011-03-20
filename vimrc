@@ -44,7 +44,7 @@ if &t_Co > 2 || has("gui_running")
   endif
   syntax on
   set hlsearch
-  colorscheme ir_black
+  colorscheme vividchalk
 endif
 
 " ---------------------------------------------------------------------------
@@ -179,3 +179,5 @@ au BufNewFile,BufRead *.mustache        setf mustache
 " ---------------------------------------------------------------------------
 "  Mappings
 " ---------------------------------------------------------------------------
+"
+"
