@@ -16,7 +16,9 @@
 
 function profile() { 
   if [ "$1" = "edit" ]; then
-    command vim -p $HOME/Dotfiles/bashrc $HOME/Dotfiles/vimrc $HOME/Dotfiles/gitconfig $HOME/Dotfiles/gitignore;
+    command vim -p $HOME/Dotfiles/bashrc $HOME/Dotfiles/vimrc $HOME/Dotfiles/vim/colors/sea_dark.vim $HOME/Dotfiles/gitconfig $HOME/Dotfiles/gitignore;
+  elif [ "$1" = "vim" ]; then
+    command vim -p $HOME/Dotfiles/vimrc $HOME/Dotfiles/vim/colors/sea_dark.vim
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
   elif [ "$1" = "install" ]; then
