@@ -91,10 +91,17 @@ set laststatus=2           " always show the status line
 set statusline=[%n]\ %w%y\ %<%.99f\ %m%r\ %=%-16(\ %l,%c\ %)%P
 
 " ----------------------------------------------------------------------------
-"  UI
+"  TABS
 " ----------------------------------------------------------------------------
 
 set nohidden               " when i close a tab, remove the buffer
+set guitablabel=%t%m       " show filename in tab only
+
+
+" ----------------------------------------------------------------------------
+"  UI
+" ----------------------------------------------------------------------------
+
 set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set nolazyredraw           " turn off lazy redraw
