@@ -16,3 +16,6 @@
 [submodule "vim/bundle/gist-vim"]
 	path = vim/bundle/gist-vim
 	url = https://github.com/mattn/gist-vim.git
+[submodule "vim/bundle/gundo"]
+	path = vim/bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git

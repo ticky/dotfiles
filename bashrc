@@ -16,13 +16,16 @@
 
 function profile() { 
   if [ "$1" = "edit" ]; then
-    command vim -p $HOME/Dotfiles/bashrc $HOME/Dotfiles/vimrc $HOME/Dotfiles/vim/colors/sea_dark.vim $HOME/Dotfiles/gitconfig $HOME/Dotfiles/gitignore;
+    command vim -p $HOME/Dotfiles/bashrc $HOME/Dotfiles/vimrc \
+      $HOME/Dotfiles/vim/colors/sea_dark.vim $HOME/Dotfiles/gonfig;
   elif [ "$1" = "vim" ]; then
-    command vim -p $HOME/Dotfiles/vimrc $HOME/Dotfiles/vim/colors/sea_dark.vim
+    command vim -p $HOME/Dotfiles/vimrc \
+      $HOME/Dotfiles/vim/colors/sea_dark.vim
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
   elif [ "$1" = "install" ]; then
-    command cd $HOME/Dotfiles/ && ruby $HOME/Dotfiles/install.rb && profile load;
+    command cd $HOME/Dotfiles/ && ruby $HOME/Dotfiles/install.rb && \
+      profile load;
   else
     echo "AVAILABLE COMMANDS: edit, load, install"
   fi
@@ -155,7 +158,7 @@ function prompt_pwd() {
 }
 function prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
-  PS1="${COLOR_BACKGROUND}\u@\h${COLOR_REGULAR}:\w\n${COLOR_BOLD}\$${PS_CLEAR} "
+  PS1="${COLOR_BACKGROUND}\u@\h${COLOR_REGULAR}:\w\n${COLOR_BOLD}>${PS_CLEAR} "
   PS1=${PS1//\\w/\$\{newPWD\}}
     PS2="${PURPLE}>${PS_CLEAR} "
 }

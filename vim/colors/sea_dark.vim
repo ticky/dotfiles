@@ -76,8 +76,8 @@ hi LineNr           guifg=#3D3D3D     guibg=black       gui=NONE      ctermfg=da
 hi VertSplit        guifg=#202020     guibg=#202020     gui=NONE      ctermfg=darkgray    ctermbg=darkgray    cterm=NONE
 hi StatusLine       guifg=#CCCCCC     guibg=#202020     gui=italic    ctermfg=white       ctermbg=black       cterm=NONE
 hi StatusLineNC     guifg=black       guibg=#202020     gui=NONE      ctermfg=darkcyan    ctermbg=black       cterm=NONE
-hi TabLineFill                                          term=bold     ctermfg=darkgrey    ctermbg=0           cterm=bold
-hi TabLine                                              term=none     ctermfg=darkgrey    ctermbg=0           cterm=none
+hi TabLineFill                                          term=bold     ctermfg=black       ctermbg=lightgrey   cterm=bold
+hi TabLine                                              term=none     ctermfg=black       ctermbg=lightgrey   cterm=none
 hi TabLineSel                                           term=bold     ctermfg=white       ctermbg=none        cterm=bold
 hi ColorColumn                                                                            ctermbg=black       
 

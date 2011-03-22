@@ -44,7 +44,7 @@ if &t_Co > 2 || has("gui_running")
   endif
   syntax on
   set hlsearch
-  set colorcolumn=80
+  "set colorcolumn=80
   colorscheme sea_dark
 endif
 
@@ -183,6 +183,9 @@ au BufNewFile,BufRead *.mustache        setf mustache
 " ---------------------------------------------------------------------------
 
 :let mapleader = ","
+
+" Use Gundo to navigate multiple undo tree 
+nnoremap <F5> :GundoToggle<CR>
 
 " Tab mappings
 map <leader>tt :tabnew
