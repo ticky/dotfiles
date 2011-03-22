@@ -217,7 +217,7 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
 fi
 
 # autocomplete from these directories
-export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku"
+export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku:$HOME/Dropbox/PlainText"
 
 # ignore case for autocomplete
 bind 'set completion-ignore-case On'
