@@ -125,7 +125,6 @@ set ignorecase             " ignore case when searching
 set nohlsearch             " don't highlight searches
 nnoremap _ :set invhlsearch<CR> " toggle search highlighting
 set visualbell             " shut the fuck up
-set colorcolumn=80
 
 " ----------------------------------------------------------------------------
 " Text Formatting
@@ -209,6 +208,21 @@ function! Browser ()
     exec ':silent !open ' . "\"" . line . "\""
 endfunction
 map <leader>w :call Browser ()<CR>
+
+" ---------------------------------------------------------------------------
+"  Toggle Column Guide
+" ---------------------------------------------------------------------------
+
+function! ColorColumn()
+    if &colorcolumn == '80'
+      set colorcolumn=
+      echo "ColorColumn disabled"
+    else
+      set colorcolumn=80
+      echo "ColorColumn enabled"
+    endif
+endfunction
+nnoremap <leader>cc :call ColorColumn()<CR>
 
 " ---------------------------------------------------------------------------
 "  Strip all trailing whitespace in file
