@@ -16,8 +16,7 @@
 
 function profile() { 
   if [ "$1" = "edit" ]; then
-    command vim -p $HOME/Dotfiles/bashrc $HOME/Dotfiles/vimrc \
-      $HOME/Dotfiles/vim/colors/sea_dark.vim $HOME/Dotfiles/gonfig;
+    command cd $HOME/Dotfiles && command vim -p .;
   elif [ "$1" = "vim" ]; then
     command vim -p $HOME/Dotfiles/vimrc \
       $HOME/Dotfiles/vim/colors/sea_dark.vim
@@ -381,11 +380,6 @@ alias ms="title 'MongoDB Server' && `brew --prefix`/bin/mongod --dbpath=$HOME/Si
 # ----------------------------------------------------------------------
 # RUBY
 # ----------------------------------------------------------------------
-
-# gem install
-alias sgi32="sudo env ARCHFLAGS=\"-Os -arch i386 -fno-common\" gem install --no-ri --no-rdoc"
-alias sgi64="sudo env ARCHFLAGS=\"-Os -arch x86_64 -fno-common\" gem install --no-ri --no-rdoc"
-alias sgi="sudo env ARCHFLAGS=\"-Os -arch x86_64 -fno-common\" gem install --no-ri --no-rdoc"
 
 # rake tasks
 alias rdm="rake db:migrate"

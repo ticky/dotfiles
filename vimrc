@@ -25,7 +25,7 @@ set tabpagemax=50                     " open 50 tabs max
 filetype off                          " force reloading *after* pathogen loaded
 silent! call pathogen#helptags()
 silent! call pathogen#runtime_append_all_bundles()
-filetype plugin indent on             " enable detection, plugins and 
+filetype plugin indent on             " enable detection, plugins and
                                       " indenting in one step
 
 " ---------------------------------------------------------------------------
@@ -44,7 +44,6 @@ if &t_Co > 2 || has("gui_running")
   endif
   syntax on
   set hlsearch
-  "set colorcolumn=80
   colorscheme sea_dark
 endif
 
@@ -126,6 +125,7 @@ set ignorecase             " ignore case when searching
 set nohlsearch             " don't highlight searches
 nnoremap _ :set invhlsearch<CR> " toggle search highlighting
 set visualbell             " shut the fuck up
+set colorcolumn=80
 
 " ----------------------------------------------------------------------------
 " Text Formatting
@@ -184,7 +184,7 @@ au BufNewFile,BufRead *.mustache        setf mustache
 
 :let mapleader = ","
 
-" Use Gundo to navigate multiple undo tree 
+" Use Gundo to navigate multiple undo tree
 nnoremap <F5> :GundoToggle<CR>
 
 " Tab mappings
@@ -210,3 +210,11 @@ function! Browser ()
 endfunction
 map <leader>w :call Browser ()<CR>
 
+" ---------------------------------------------------------------------------
+"  Strip all trailing whitespace in file
+" ---------------------------------------------------------------------------
+
+function! StripWhitespace ()
+    exec ':%s/ \+$//gc'
+endfunction
+map <leader>s :call StripWhitespace ()<CR>

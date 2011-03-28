@@ -16,12 +16,15 @@ If you do too, then you might like my dotfiles.
 * 2 line prompt so commands line up
 * option to /truncate/current/.../directory/
 
-== Requirements
+== Setup
 
 * install {homebrew}[http://github.com/mxcl/homebrew]
-* <tt>brew install bash-completion</tt>
-* <tt>brew install coreutils --default-names</tt>
+* <code>brew install coreutils --default-names</code>
+* <code>brew install bash-completion</code>
 * install {git-bash-completion}[http://github.com/markgandolfo/git-bash-completion]
+* <code>install {rvm}[http://rvm.beginrescueend.com/rvm/install/]</code>
+* <code>brew install mvim</code>
+* <code brew install git</code>
 
 == Thanks
 
