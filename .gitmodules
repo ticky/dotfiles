@@ -19,9 +19,6 @@
 [submodule "vim/bundle/syntax-markdown"]
 	path = vim/bundle/syntax-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
-[submodule "vim/bundle/closetag"]
-	path = vim/bundle/closetag
-	url = https://github.com/vim-scripts/closetag.vim.git
 [submodule "vim/bundle/syntax-html5"]
 	path = vim/bundle/syntax-html5
 	url = https://github.com/othree/html5.vim.git
