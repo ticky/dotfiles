@@ -3,57 +3,7 @@
 " More at: http://blog.infinitered.com/entries/show/8
 
 
-" ********************************************************************************
-" Standard colors used in all ir_black themes:
-" Note, x:x:x are RGB values
-"
-"  normal: #f6f3e8
-" 
-"  string: #A8FF60  168:255:96                   
-"    string inner (punc, code, etc): #00A0A0  0:160:160
-"  number: #FF73FD  255:115:253                 
-"  comments: #7C7C7C  124:124:124
-"  keywords: #96CBFE  150:203:254             
-"  operators: white
-"  class: #FFFFB6  255:255:182
-"  method declaration name: #FFD2A7  255:210:167
-"  regular expression: #E9C062  233:192:98
-"    regexp alternate: #FF8000  255:128:0
-"    regexp alternate 2: #B18A3D  177:138:61
-"  variable: #C6C5FE  198:197:254
-"  
-" Misc colors:
-"  red color (used for whatever): #FF6C60   255:108:96 
-"     light red: #FFB6B0   255:182:176
-"
-"  brown: #E18964  good for special
-"
-"  lightpurpleish: #FFCCFF
-" 
-" Interface colors:
-"  background color: black
-"  cursor (where underscore is used): #FFA560  255:165:96
-"  cursor (where block is used): white
-"  visual selection: #1D1E2C  
-"  current line: #151515  21:21:21
-"  search selection: #07281C  7:40:28
-"  line number: #3D3D3D  61:61:61
-
-
-" ********************************************************************************
-" The following are the preferred 16 colors for your terminal
-"           Colors      Bright Colors
-" Black     #4E4E4E     #7C7C7C
-" Red       #FF6C60     #FFB6B0
-" Green     #A8FF60     #CEFFAB
-" Yellow    #FFFFB6     #FFFFCB
-" Blue      #96CBFE     #FFFFCB
-" Magenta   #FF73FD     #FF9CFE
-" Cyan      #C6C5FE     #DFDFFE
-" White     #EEEEEE     #FFFFFF
-
-
-" ********************************************************************************
+" -----------------------------------------------------------------------------
 set background=dark
 hi clear
 
@@ -79,7 +29,6 @@ hi StatusLineNC     guifg=black       guibg=#202020     gui=NONE      ctermfg=da
 hi TabLineFill                                          term=bold     ctermfg=black       ctermbg=lightgrey   cterm=bold
 hi TabLine                                              term=none     ctermfg=black       ctermbg=lightgrey   cterm=none
 hi TabLineSel                                           term=bold     ctermfg=white       ctermbg=none        cterm=bold
-hi ColorColumn                                                                            ctermbg=black       
 
 
 hi Folded           guifg=#a0a8b0     guibg=#384048     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
@@ -100,11 +49,13 @@ hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=wh
 hi ModeMsg          guifg=black       guibg=#C6C5FE     gui=BOLD      ctermfg=white       ctermbg=darkcyan    cterm=BOLD
 
 if version >= 700 " Vim 7.x specific colors
+  hi ColorColumn                                                                          ctermbg=black
   hi CursorLine     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
   hi CursorColumn   guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=BOLD
   hi MatchParen     guifg=#f6f3e8     guibg=#857b6f     gui=BOLD      ctermfg=white       ctermbg=darkgray    cterm=NONE
-  hi Pmenu          guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
-  hi PmenuSel       guifg=#000000     guibg=#cae682     gui=NONE      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+  hi Pmenu          guifg=#f6f3e8     guibg=#444444     gui=NONE      ctermfg=white       ctermbg=darkcyan    cterm=NONE
+  hi PmenuSel       guifg=#000000     guibg=#cae682     gui=NONE      ctermfg=white       ctermbg=cyan        cterm=BOLD
+  hi PmenuThumb                                                       ctermfg=none        ctermbg=darkcyan    cterm=BOLD
   hi Search         guifg=NONE        guibg=NONE        gui=bold      ctermfg=white       ctermbg=darkcyan    cterm=bold
 endif
 
@@ -167,24 +118,24 @@ hi rubyStringDelimiter         guifg=#336633      guibg=NONE      gui=NONE      
 "hi link rubyArrayDelimiter    Special  " [ , , ]
 "rubyCurlyBlock  { , , }
 
-hi link rubyClass             Keyword 
-hi link rubyModule            Keyword 
-hi link rubyKeyword           Keyword 
+hi link rubyClass             Keyword
+hi link rubyModule            Keyword
+hi link rubyKeyword           Keyword
 hi link rubyOperator          Operator
 hi link rubyIdentifier        Identifier
 hi link rubyInstanceVariable  Identifier
 hi link rubyGlobalVariable    Identifier
 hi link rubyClassVariable     Identifier
-hi link rubyConstant          Type  
+hi link rubyConstant          Type
 
 
 " Special for Java
 " hi link javaClassDecl    Type
-hi link javaScopeDecl         Identifier 
-hi link javaCommentTitle      javaDocSeeTag 
-hi link javaDocTags           javaDocSeeTag 
-hi link javaDocParam          javaDocSeeTag 
-hi link javaDocSeeTagParam    javaDocSeeTag 
+hi link javaScopeDecl         Identifier
+hi link javaCommentTitle      javaDocSeeTag
+hi link javaDocTags           javaDocSeeTag
+hi link javaDocParam          javaDocSeeTag
+hi link javaDocSeeTagParam    javaDocSeeTag
 
 hi javaDocSeeTag              guifg=#CCCCCC     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
 hi javaDocSeeTag              guifg=#CCCCCC     guibg=NONE        gui=NONE      ctermfg=darkgray    ctermbg=NONE        cterm=NONE
@@ -192,27 +143,27 @@ hi javaDocSeeTag              guifg=#CCCCCC     guibg=NONE        gui=NONE      
 
 
 " Special for XML
-hi link xmlTag          Keyword 
-hi link xmlTagName      Conditional 
-hi link xmlEndTag       Identifier 
+hi link xmlTag          Keyword
+hi link xmlTagName      Conditional
+hi link xmlEndTag       Identifier
 
 
 " Special for HTML
-hi link htmlTag         Keyword 
-hi link htmlTagName     Conditional 
-hi link htmlEndTag      Identifier 
+hi link htmlTag         Keyword
+hi link htmlTagName     Conditional
+hi link htmlEndTag      Identifier
 
 
 " Special for Javascript
-hi link javaScriptNumber      Number 
+hi link javaScriptNumber      Number
 
 
 " Special for Python
-"hi  link pythonEscape         Keyword      
+"hi  link pythonEscape         Keyword
 
 
 " Special for CSharp
-hi  link csXmlTag             Keyword      
+hi  link csXmlTag             Keyword
 
 
 " Special for PHP

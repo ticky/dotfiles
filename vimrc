@@ -96,7 +96,6 @@ set statusline=[%n]\ %w%y\ %<%.99f\ %m%r\ %=%-16(\ %l,%c\ %)%P
 set nohidden               " when i close a tab, remove the buffer
 set guitablabel=%t%m       " show filename in tab only
 
-
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
@@ -107,7 +106,7 @@ set nolazyredraw           " turn off lazy redraw
 set number                 " line numbers
 set wildmenu               " turn on wild menu
 set wildmode=list:longest,full
-set ch=1                   " command line height
+set ch=2                   " command line height
 set backspace=2            " allow backspacing over everything in insert mode
 set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
 set shortmess=filtIoOA     " shorten messages
@@ -155,25 +154,34 @@ if system('uname') =~ 'Darwin'
 endif
 
 " ---------------------------------------------------------------------------
+"  OmniComplete
+" ---------------------------------------------------------------------------
+
+" use supertab plugin
+" :let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype *
+        \   if &omnifunc == "" |
+        \     setlocal omnifunc=syntaxcomplete#Complete |
+        \   endif
+endif
+
+" ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
 
-au BufRead,BufNewFile *.rpdf       set ft=ruby
-au BufRead,BufNewFile *.rxls       set ft=ruby
 au BufRead,BufNewFile *.ru         set ft=ruby
-au BufRead,BufNewFile *.god        set ft=ruby
 au BufRead,BufNewFile *.rtxt       set ft=html spell
 au BufRead,BufNewFile *.sql        set ft=pgsql
-au BufRead,BufNewFile *.rl         set ft=ragel
 au BufRead,BufNewFile *.svg        set ft=svg
 au BufRead,BufNewFile *.haml       set ft=haml
 au BufRead,BufNewFile *.md         set ft=mkd tw=80 ts=2 sw=2 expandtab
 au BufRead,BufNewFile *.markdown   set ft=mkd tw=80 ts=2 sw=2 expandtab
-au BufRead,BufNewFile *.ronn       set ft=mkd tw=80 ts=2 sw=2 expandtab
 
 au Filetype gitcommit set tw=68  spell
 au Filetype ruby      set tw=80  ts=2
-au Filetype html,xml,xsl,rhtml source $HOME/.vim/scripts/closetag.vim
+" au Filetype html,xml,xsl,rhtml source $HOME/.vim/plugins/closetag.vim
 
 au BufNewFile,BufRead *.mustache        setf mustache
 
