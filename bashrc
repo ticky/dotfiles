@@ -90,6 +90,7 @@ function e() {
 alias e.="e ."
 alias vi="vim -p"
 alias v="vi"
+alias v.="vi ."
 
 # open shortcut
 function o() { 

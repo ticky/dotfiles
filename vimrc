@@ -181,7 +181,6 @@ au BufRead,BufNewFile *.markdown   set ft=mkd tw=80 ts=2 sw=2 expandtab
 
 au Filetype gitcommit set tw=68  spell
 au Filetype ruby      set tw=80  ts=2
-" au Filetype html,xml,xsl,rhtml source $HOME/.vim/plugins/closetag.vim
 
 au BufNewFile,BufRead *.mustache        setf mustache
 
@@ -193,6 +192,12 @@ au BufNewFile,BufRead *.mustache        setf mustache
 
 " Use Gundo to navigate multiple undo tree
 nnoremap <F5> :GundoToggle<CR>
+
+" Use ColorX on MacOS X
+if system('uname') =~ 'Darwin'
+  map <leader>ch :ColorHEX<CR>
+  map <leader>cr :ColorRGB<CR>
+endif
 
 " Tab mappings
 map <leader>tt :tabnew

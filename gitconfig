@@ -8,7 +8,7 @@
     co = checkout
     st = status
     up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
-
+    ls = !git ls-files -m | xargs ls -la
 [color]
     ui = auto
     branch = auto
