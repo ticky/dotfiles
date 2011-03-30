@@ -1,8 +1,7 @@
 *.DS_Store
 *.db
-/vim/.netrwhist
-/_assets
-/_design
+*/_assets
+*/_design
 *.sass-cache
 *.bundle
-*.esproj
+*.rvmrc
