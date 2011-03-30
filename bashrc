@@ -241,16 +241,19 @@ test -n "$LS_COMMON" &&
 alias ls='ls $LS_OPTIONS $LS_COMMON'
 
 # list all files in directory
-alias ll="ls -la"
+alias ll="ls -lGa"
 
 # list dot files in directory
 alias l.="ls -d .*"
 
 # if the dircolors utility is available, set that up too
 if [ "$TERM" != "dumb" ]; then
-    export LS_OPTIONS='--color=auto'
+    export LS_OPTIONS='--color=always'
     eval `dircolors ~/.dircolors`
 fi
+
+alias lg="git ls -hG"
+
 
 # ----------------------------------------------------------------------
 # COMMAND HISTORY
