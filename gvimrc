@@ -3,6 +3,7 @@
 
 " set the font to use
 set guifont=Inconsolata:h12
+set guioptions-=T
 
 set mousehide		" Hide the mouse when typing text
 

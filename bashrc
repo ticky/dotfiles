@@ -16,9 +16,9 @@
 
 function profile() { 
   if [ "$1" = "edit" ]; then
-    command cd $HOME/Dotfiles && command vim -p .;
+    command cd $HOME/Dotfiles && command mvim -p .;
   elif [ "$1" = "vim" ]; then
-    command vim -p $HOME/Dotfiles/vimrc \
+    command mvim -p $HOME/Dotfiles/vimrc \
       $HOME/Dotfiles/vim/colors/sea_dark.vim
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
@@ -81,14 +81,14 @@ PATH="$HOME/.gem/ruby/1.8/bin:$PATH"
 # EDITOR
 # ----------------------------------------------------------------------
 
-export EDITOR="vim"
+export EDITOR="mvim"
 
 # vim edit shortcut
 function e() { 
-  command vim "$@" >/dev/null;
+  command mvim -p "$@" >/dev/null;
 }
 alias e.="e ."
-alias vi="vim -p"
+alias vi="mvim -p"
 alias v="vi"
 alias v.="vi ."
 
