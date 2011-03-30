@@ -3,9 +3,14 @@
 annotate() {
     while read line
     do
-        f=`echo $line | { read _ _ _ _ _ _ _ f; echo "$f"; }`
-        test -n "$f" && s=`git status -s "$f" | cut -b-2`
-        printf '%2s %s\n' "$s" "$line"
+        s='  '
+        f=`echo "$line" | egrep ':[0-5]' | sed 's/.*:[0-5][0-9] \(.*\)/\1/' | tr -d '/*'`
+        if test -d "$f"
+            then test `git status -s "$f" | wc -l` -gt 0 && s='**'
+        elif test -n "$f"
+            then s=`{ echo '  ' ; git status -s "$f"; } | tail -1 | cut -b-2`
+        fi
+        echo "$line" | sed "s/:[0-5][0-9] /&$s /"
     done
 }
 
