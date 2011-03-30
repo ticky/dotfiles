@@ -69,6 +69,10 @@ umask 0022
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
+# put ~/dotfiles/bin on PATH if you have it
+test -d "$HOME/dotfiles/bin" &&
+PATH="$HOME/dotfiles/bin:$PATH"
+
 # put ~/bin on PATH if you have it
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
@@ -294,8 +298,8 @@ alias fn='find . -name'
 alias x="exit"
 # clear window
 alias cl="clear"
-
-
+# use plaintext folder for notes
+alias pt="cd ~/Dropbox/PlainText && ls"
 # ----------------------------------------------------------------------
 # PNGCRUSH, crush images in a directory
 # ----------------------------------------------------------------------
@@ -329,7 +333,7 @@ function zip(){
 function ts(){
   title_git " /  Server"
   if [ "$1" != "" ]; then
-    command thin -p "$1" start;
+    command cl && thin -p "$1" start;
   else
     for port in `seq 3000 3010`; do
       if thin -p $port start; then break; fi
@@ -341,7 +345,7 @@ function ts(){
 function ss(){
   title_git " /  Server"
   if [ "$1" != "" ]; then
-    command script/server -p "$1";
+    command cl && script/server -p "$1";
   else
     for port in `seq 3000 3010`; do
       if script/server -p $port; then break; fi
@@ -352,7 +356,7 @@ function ss(){
 function rs(){
   title_git " /  Server"
   if [ "$1" != "" ]; then
-    command rails server -p "$1";
+    command cl && rails server -p "$1";
   else
     for port in `seq 3000 3010`; do
       if rails server -p $port; then break; fi
@@ -363,7 +367,7 @@ function rs(){
 function sg(){
   title_git " /  Server"
   if [ "$1" != "" ]; then
-    command shotgun -p "$1" start;
+    command cl && shotgun -p "$1" start;
   else
     for port in `seq 3000 3010`; do
       if shotgun -p $port; then break; fi

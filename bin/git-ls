@@ -1,0 +1,13 @@
+#!/bin/sh
+
+annotate() {
+    while read line
+    do
+        f=`echo $line | { read _ _ _ _ _ _ _ f; echo "$f"; }`
+        test -n "$f" && s=`git status -s "$f" | cut -b-2`
+        printf '%2s %s\n' "$s" "$line"
+    done
+}
+
+ls -l "$@" | annotate
+
