@@ -96,6 +96,17 @@ set statusline=[%n]\ %w%y\ %<%.99f\ %m%r\ %=%-16(\ %l,%c\ %)%P
 set nohidden               " when i close a tab, remove the buffer
 set guitablabel=%t%m       " show filename in tab only
 
+" Tab mappings
+map <leader>tt :tabnew
+map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tf :tabfirst<cr>
+map <leader>tl :tablast<cr>
+map <leader>tm :tabmove
+
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
@@ -122,7 +133,7 @@ set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
 set ignorecase             " ignore case when searching
 set nohlsearch             " don't highlight searches
-nnoremap _ :set invhlsearch<CR> " toggle search highlighting
+nnoremap _ :set invhlsearch<CR>     " toggle search highlighting
 set visualbell             " shut the fuck up
 
 " ----------------------------------------------------------------------------
@@ -140,18 +151,6 @@ set nosmarttab             " fuck tabs
 set formatoptions+=n       " support for numbered/bullet lists
 set textwidth=80           " wrap at 80 chars by default
 set virtualedit=block      " allow virtual edit in visual block mode
-
-" ----------------------------------------------------------------------------
-"  PATH on MacOS X
-" ----------------------------------------------------------------------------
-
-if system('uname') =~ 'Darwin'
-  let $PATH = $HOME .
-    \ '/usr/local/bin:/usr/local/sbin:' .
-    \ '/usr/pkg/bin:' .
-    \ '/opt/local/bin:/opt/local/sbin:' .
-    \ $PATH
-endif
 
 " ---------------------------------------------------------------------------
 "  OmniComplete
@@ -198,17 +197,6 @@ if system('uname') =~ 'Darwin'
   map <leader>ch :ColorHEX<CR>
   map <leader>cr :ColorRGB<CR>
 endif
-
-" Tab mappings
-map <leader>tt :tabnew
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
 
 " ---------------------------------------------------------------------------
 "  Open URL on current line in browser
