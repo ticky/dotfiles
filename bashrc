@@ -211,6 +211,7 @@ function locate {
   mdfind "kMDItemDisplayName == '$@'wc"; 
 }
 
+alias rm!="rm -rf"
 
 # ----------------------------------------------------------------------
 # AUTOCOMPLETE

@@ -31,3 +31,6 @@
 [submodule "vim/bundle/colorx"]
 	path = vim/bundle/colorx
 	url = git@github.com:seaofclouds/vim-colorx.git
+[submodule "vim/bundle/closetag"]
+	path = vim/bundle/closetag
+	url = https://github.com/vim-scripts/closetag.vim.git

@@ -1,4 +1,4 @@
-" Based on Ryan Tomayko's dotfiles
+" Reconstructed line by line from Ryan Tomayko's dotfiles and other sources.
 
 " ---------------------------------------------------------------------------
 " General
