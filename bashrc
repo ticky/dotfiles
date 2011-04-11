@@ -339,7 +339,7 @@ function ts(){
   if [ "$1" != "" ]; then
     command cl && thin -p "$1" start;
   else
-    for port in `seq 3000 3010`; do
+    for port in `seq 3000 3004`; do
       if thin -p $port start; then break; fi
     done
   fi
@@ -351,7 +351,7 @@ function ss(){
   if [ "$1" != "" ]; then
     command cl && script/server -p "$1";
   else
-    for port in `seq 3000 3010`; do
+    for port in `seq 3000 3004`; do
       if script/server -p $port; then break; fi
     done
   fi
@@ -362,7 +362,7 @@ function rs(){
   if [ "$1" != "" ]; then
     command cl && rails server -p "$1";
   else
-    for port in `seq 3000 3010`; do
+    for port in `seq 3000 3004`; do
       if rails server -p $port; then break; fi
     done
   fi
@@ -373,7 +373,7 @@ function sg(){
   if [ "$1" != "" ]; then
     command cl && shotgun -p "$1" start;
   else
-    for port in `seq 3000 3010`; do
+    for port in `seq 3000 3004`; do
       if shotgun -p $port; then break; fi
     done
   fi

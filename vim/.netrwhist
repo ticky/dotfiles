@@ -1,2 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/todd/dotfiles'
+let g:netrw_dirhist_2='/Users/todd/Sites/sinister/public'
+let g:netrw_dirhist_3='/Users/todd/Sites/sinister'
+let g:netrw_dirhist_4='/Users/todd/dotfiles'
