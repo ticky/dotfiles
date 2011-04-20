@@ -153,10 +153,25 @@ set textwidth=80           " wrap at 80 chars by default
 set virtualedit=block      " allow virtual edit in visual block mode
 
 " ---------------------------------------------------------------------------
+" Toggle Soft Wrap
+" ---------------------------------------------------------------------------
+
+function! SoftWrap()
+    if &textwidth == '80'
+      set wrap linebreak nolist textwidth=0
+      echo "SoftWrap enabled"
+    else
+      set nowrap nolinebreak list textwidth=80
+      echo "SoftWrap disabled"
+    endif
+endfunction
+map <F4> :call SoftWrap()<CR>
+
+" ---------------------------------------------------------------------------
 "  OmniComplete
 " ---------------------------------------------------------------------------
 
-" use supertab plugin
+" use supertaib plugin
 " :let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 if has("autocmd") && exists("+omnifunc")
@@ -192,11 +207,14 @@ au BufNewFile,BufRead *.mustache        setf mustache
 " Use Gundo to navigate multiple undo tree
 nnoremap <F5> :GundoToggle<CR>
 
+" use command-t
+nmap <silent> <Leader>o :CommandT<CR>
+
 " Use ColorX on MacOS X
-if system('uname') =~ 'Darwin'
-  map <leader>ch :ColorHEX<CR>
-  map <leader>cr :ColorRGB<CR>
-endif
+" if system('uname') =~ 'Darwin'
+"   map <leader>ch :ColorHEX<CR>
+"   map <leader>cr :ColorRGB<CR>
+" endif
 
 " ---------------------------------------------------------------------------
 "  Open URL on current line in browser
@@ -208,7 +226,7 @@ function! Browser ()
     let line = escape (line, "#?&;|%")
     exec ':silent !open ' . "\"" . line . "\""
 endfunction
-map <leader>w :call Browser ()<CR>
+map <leader>b :call Browser ()<CR>
 
 " ---------------------------------------------------------------------------
 "  Toggle Column Guide

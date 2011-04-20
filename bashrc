@@ -303,7 +303,7 @@ alias x="exit"
 # clear window
 alias cl="clear"
 # use plaintext folder for notes
-alias pt="cd ~/Dropbox/PlainText && ls"
+alias pt="cd ~/Dropbox/PlainText && ll"
 # ----------------------------------------------------------------------
 # PNGCRUSH, crush images in a directory
 # ----------------------------------------------------------------------
