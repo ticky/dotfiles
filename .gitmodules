@@ -37,3 +37,6 @@
 [submodule "vim/bundle/syntax-markdown"]
 	path = vim/bundle/syntax-markdown
 	url = https://github.com/hallison/vim-markdown.git
+[submodule "vim/bundle/syntax-taskpaper"]
+	path = vim/bundle/syntax-taskpaper
+	url = git@github.com:seaofclouds/vim-task.git
