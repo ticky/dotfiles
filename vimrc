@@ -182,18 +182,6 @@ if has("autocmd") && exists("+omnifunc")
 endif
 
 " ---------------------------------------------------------------------------
-"  Taskpaper
-" ---------------------------------------------------------------------------
-
-" toggle task status with Ctrl+Command+Enter
-
-if has("autocmd") && exists("+task")
-  inoremap <silent> <buffer> <C-D-CR> <ESC>:call Toggle_task_status()<CR>i
-  noremap <silent> <buffer> <C-D-CR> :call Toggle_task_status()<CR>
-endif
-
-
-" ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
 
