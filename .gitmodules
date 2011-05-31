@@ -21,13 +21,7 @@
 	url = https://github.com/othree/html5.vim.git
 [submodule "vim/bundle/supertab"]
 	path = vim/bundle/supertab
-	url = https://github.com/ervandew/supertab.git
-[submodule "vim/bundle/csscolor"]
-	path = vim/bundle/csscolor
-	url = https://github.com/skammer/vim-css-color.git
-[submodule "vim/bundle/colorx"]
-	path = vim/bundle/colorx
-	url = git@github.com:seaofclouds/vim-colorx.git
+  url = https://github.com/ervandew/supertab.git
 [submodule "vim/bundle/closetag"]
 	path = vim/bundle/closetag
 	url = https://github.com/vim-scripts/closetag.vim.git

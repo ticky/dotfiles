@@ -1,8 +1,8 @@
 [core]
   excludesfile = /Users/todd/.gitignore
 [user]
-  name = Todd Matthews
-  email = todd@heroku.com
+	name = seaofclouds
+	email = info@seaofclouds.com
 [alias]
     ci = commit -a
     co = checkout

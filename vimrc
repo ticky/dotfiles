@@ -171,7 +171,7 @@ map <F4> :call SoftWrap()<CR>
 "  OmniComplete
 " ---------------------------------------------------------------------------
 
-" use supertaib plugin
+" use supertab plugin
 " :let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 if has("autocmd") && exists("+omnifunc")
