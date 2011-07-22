@@ -426,10 +426,9 @@ alias s="cd $HOME/Sites/"
 
 # heroku
 alias h="cd ~/Sites/heroku"
-alias navrestart='for i in "business" "news" "success" "policy" "logos" "about" "public" "blog" "docs"; do heroku restart --app $i && sleep 1; done'
-alias shareallherokuapps='for i in "about" "addons" "blog" "business" "core" "dev-center" "docs" "header" "help" "herokucharge" "jobs" "legal" "login" "logos" "news" "payments" "policy" "public" "status-staging" "success" ; do share --app $i max@heroku.com && sleep 1; done'
+alias hp="cd ~/Sites/heroku/public"
 
-alias hh="HEROKU_HOST=api-staging.heroku.com heroku "
+alias navrestart='for i in "news" "success" "policy" "logos" "about" "public" "blog" "docs"; do heroku restart --app $i && sleep 1; done'
 
 # put heroku docbrown on PATH if you have it
 test -d "$HOME/sites/heroku/docbrown" &&

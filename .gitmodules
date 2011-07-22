@@ -34,3 +34,6 @@
 [submodule "vim/bundle/syntax-taskpaper"]
 	path = vim/bundle/syntax-taskpaper
 	url = git@github.com:seaofclouds/vim-task.git
+[submodule "vim/bundle/csscolor"]
+	path = vim/bundle/csscolor
+	url = https://github.com/ap/vim-css-color.git
