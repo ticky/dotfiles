@@ -21,10 +21,25 @@ If you do too, then you might like my dotfiles.
 * install {homebrew}[http://github.com/mxcl/homebrew]
 * <code>brew install coreutils --default-names</code>
 * <code>brew install bash-completion</code>
-* install {git-bash-completion}[http://github.com/markgandolfo/git-bash-completion]
-* <code>install {rvm}[http://rvm.beginrescueend.com/rvm/install/]</code>
-* <code>brew install mvim</code>
 * <code brew install git</code>
+* install {git-bash-completion}[http://github.com/markgandolfo/git-bash-completion]
+* {install rbenv}[https://github.com/sstephenson/rbenv#section_2]
+* <code>git clone git@github.com:seaofclouds/dotfiles.git ~/Dotfiles</code>
+
+* <code>brew install mvim</code>
+
+== Configuring VIM
+
+http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
+
+this repo uses pathogen for easy management of vim plugins as git submodules
+
+* <code>cd ~/Dotfiles/</code>
+* <code>git submodule update --init</code>
+
+to keep submodules up to date:
+
+* <code>git submodule foreach git pull origin master</code>
 
 == Thanks
 

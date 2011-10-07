@@ -77,6 +77,11 @@ PATH="$HOME/dotfiles/bin:$PATH"
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
 
+# put ~/.rbenv on PATH if you have it
+test -d "$HOME/.rbenv" &&
+PATH="$HOME/.rbenv/bin:$PATH" &&
+eval "$(rbenv init -)"
+
 # put ~/.gem on PATH if you have it
 test -d "$HOME/.gem" &&
 PATH="$HOME/.gem/ruby/1.8/bin:$PATH"
