@@ -1,6 +1,6 @@
 # Dotfiles
 
-I like colors, a simple workflow, homebrew and ruby.
+I like colors, a simple workflow and homebrew.
 If you do too, then you might like my dotfiles.
 
 ## Features
@@ -26,6 +26,7 @@ If you do too, then you might like my dotfiles.
 
 ## Thanks
 
+* [seaofclouds](http://github.com/seaofclouds)
 * [ryan tomayko](http://tomayko.com/about)
 * [pedro belo](http://github.com/pedro)
 * [peter van hardenberg](http://github.com/pvh)
