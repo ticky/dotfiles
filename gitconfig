@@ -1,13 +1,10 @@
 [core]
-  excludesfile = /Users/todd/.gitignore
+    excludesfile = /Users/ticky/.gitignore
+    quotepath = false
 [user]
-	name = seaofclouds
-	email = info@seaofclouds.com
-[alias]
-    ci = commit -a
-    co = checkout
-    st = status
-    up = !sh -c 'git pull --rebase --prune && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+    name = Geoff Stokes
+    email = geoff@geoffstokes.net
+    
 [color]
     ui = auto
     branch = auto
@@ -27,3 +24,10 @@
     added = yellow
     changed = green bold
     untracked = blue bold
+
+[difftool "Kaleidoscope"]
+    cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+    prompt = false
+[diff]
+    tool = Kaleidoscope

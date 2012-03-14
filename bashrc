@@ -1,5 +1,5 @@
 #!/bin/bash
-# seaofclouds <http://github.com/seaofclouds/dotfiles>
+# ticky <http://github.com/ticky/dotfiles>
 
 # the basics
 : ${HOME=~}
@@ -19,8 +19,11 @@ function profile() {
     command cd $HOME/Dotfiles && command subl .;
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
+  elif [ "$1" = "install" ]; then
+    command cd $HOME/Dotfiles/ && ruby $HOME/Dotfiles/install.rb && \
+      profile load;
   else
-    echo "AVAILABLE COMMANDS: edit, load"
+    echo "AVAILABLE COMMANDS: edit, load, install"
   fi
 }
 alias p="profile"
@@ -141,21 +144,6 @@ function prompt_color() {
     PS2="${PURPLE}>${PS_CLEAR} "
 }
 
-# TRUNCATED PROMPT
-#
-# prompt_pwd() {
-#   local pwd_symbol=".."
-#   local pwd_length=30
-#   newPWD="${PWD/#$HOME/~}"
-#   [ ${#newPWD} -gt ${pwd_length} ] && newPWD=${newPWD:0:12}${pwd_symbol}${newPWD:${#newPWD}-15}
-# }
-# prompt_color() {
-#   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
-#   PS1="${COLOR_BACKGROUND}\u@\h${COLOR_REGULAR} \w \$(parse_git_branch) ${COLOR_BOLD}\$${PS_CLEAR} "
-#   PS1=${PS1//\\w/\$\{newPWD\}}
-#     PS2="${WHITEONCYAN}>${PS_CLEAR} "
-# }
-
 # ----------------------------------------------------------------------
 # CD, DIRECTORY NAVIGATION
 # ----------------------------------------------------------------------
@@ -196,7 +184,7 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
 fi
 
 # autocomplete from these directories
-export CDPATH=".:$HOME:$HOME/Sites:$HOME/Sites/heroku:$HOME/Dropbox/PlainText"
+export CDPATH=".:$HOME"
 
 # ignore case for autocomplete
 bind 'set completion-ignore-case On'
@@ -262,6 +250,7 @@ alias fn='find . -name'
 alias x="exit"
 # clear window
 alias cl="clear"
+
 # ----------------------------------------------------------------------
 # PNGCRUSH, crush images in a directory
 # ----------------------------------------------------------------------

@@ -1,1 +1,0 @@
-bundle/syntax-taskpaper/ftdetect/task.vim

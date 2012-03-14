@@ -1,8 +1,3 @@
 *.DS_Store
 *.db
-*/_assets
-*/_design
-*.sass-cache
 *.bundle
-*.rvmrc
-*.esproj
