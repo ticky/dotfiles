@@ -16,17 +16,11 @@
 
 function profile() { 
   if [ "$1" = "edit" ]; then
-    command cd $HOME/Dotfiles && command mvim -p .;
-  elif [ "$1" = "vim" ]; then
-    command mvim -p $HOME/Dotfiles/vimrc \
-      $HOME/Dotfiles/vim/colors/sea_dark.vim
+    command cd $HOME/Dotfiles && command subl .;
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
-  elif [ "$1" = "install" ]; then
-    command cd $HOME/Dotfiles/ && ruby $HOME/Dotfiles/install.rb && \
-      profile load;
   else
-    echo "AVAILABLE COMMANDS: edit, load, install"
+    echo "AVAILABLE COMMANDS: edit, load"
   fi
 }
 alias p="profile"
@@ -58,6 +52,9 @@ unset MAILCHECK
 # disable core dumps
 ulimit -S -c 0
 
+# ignore case in bash completion
+bind 'set completion-ignore-case On'
+
 # default umask
 umask 0022
 
@@ -69,43 +66,15 @@ umask 0022
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
-# put ~/dotfiles/bin on PATH if you have it
-test -d "$HOME/dotfiles/bin" &&
-PATH="$HOME/dotfiles/bin:$PATH"
-
 # put ~/bin on PATH if you have it
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
-
-# put ~/.rbenv on PATH if you have it
-test -d "$HOME/.rbenv" &&
-PATH="$HOME/.rbenv/bin:$PATH" &&
-eval "$(rbenv init -)"
-
-# put ~/.gem on PATH if you have it
-test -d "$HOME/.gem" &&
-PATH="$HOME/.gem/ruby/1.8/bin:$PATH"
 
 # ----------------------------------------------------------------------
 # EDITOR
 # ----------------------------------------------------------------------
 
-export EDITOR="mvim"
-
-# vim edit shortcut
-function e() { 
-  command mvim -p "$@" >/dev/null;
-}
-alias e.="e ."
-alias vi="mvim -p"
-alias v="vi"
-alias v.="vi ."
-
-# open shortcut
-function o() { 
-  command open "$@" >/dev/null;
-}
-alias o.="o ."
+export EDITOR="subl"
 
 # ----------------------------------------------------------------------
 # GIT BRANCH
@@ -135,11 +104,11 @@ function title_git() {
 # PROMPT
 # ----------------------------------------------------------------------
 
-WHITEONMAGENTA="\[\033[37;45;1m\]"
+WHITEONMAGENTA="\[\033[0;45;1m\]"
 MAGENTA="\[\033[0;35m\]"
 MAGENTABOLD="\[\033[0;35;1m\]"
 
-WHITEONCYAN="\[\033[37;46;1m\]"
+WHITEONCYAN="\[\033[0;46;1m\]"
 CYAN="\[\033[0;36m\]"
 CYANBOLD="\[\033[0;36;1m\]"
 
@@ -239,26 +208,14 @@ bind '"\t":menu-complete'
 # LS AND DIRCOLORS
 # ----------------------------------------------------------------------
 
-# always pass these options to ls(1)
-LS_COMMON="-hB"
-
-# setup the main ls alias if we've established common args
-test -n "$LS_COMMON" &&
-alias ls='ls $LS_OPTIONS $LS_COMMON'
+# setup the main ls alias
+alias ls='ls -hG'
 
 # list all files in directory
-alias ll="ls -lGa"
+alias ll="ls -lGah"
 
 # list dot files in directory
-alias l.="ls -d .*"
-
-# if the dircolors utility is available, set that up too
-if [ "$TERM" != "dumb" ]; then
-    export LS_OPTIONS='--color=always'
-    eval `dircolors ~/.dircolors`
-fi
-
-alias lg="git ls -hG"
+alias l.="ls -dGh .*"
 
 
 # ----------------------------------------------------------------------
@@ -299,16 +256,12 @@ function hi(){
 # ALIASES / FUNCTIONS
 # ==============================================================================
 
-# disk usage with human sizes and minimal depth
-alias du1='du -h --max-depth=1'
 # find
 alias fn='find . -name'
 # close window
 alias x="exit"
 # clear window
 alias cl="clear"
-# use plaintext folder for notes
-alias pt="cd ~/Dropbox/PlainText && ll"
 # ----------------------------------------------------------------------
 # PNGCRUSH, crush images in a directory
 # ----------------------------------------------------------------------
@@ -322,82 +275,6 @@ function png(){
     command pngcrush -d "../crushedimages" *.png;
   fi
 }
-
-# ----------------------------------------------------------------------
-# ZIP a file or directory
-# ----------------------------------------------------------------------
-
-# usage:  $ zip filename
-function zip(){ 
-  command sudo ditto -c -k -rsrc "$@" "$@.zip";
-}
-
-# ----------------------------------------------------------------------
-# SERVERS
-# ----------------------------------------------------------------------
-
-# thin start
-# usage:  $ ts ; will start server on first available 300x port
-# or:     $ ts 3001 ; will start server on port 3001
-function ts(){
-  title_git " /  Server"
-  if [ "$1" != "" ]; then
-    command cl && thin -p "$1" start;
-  else
-    for port in `seq 3000 3004`; do
-      if thin -p $port start; then break; fi
-    done
-  fi
-}
-
-# script/server
-function ss(){
-  title_git " /  Server"
-  if [ "$1" != "" ]; then
-    command cl && script/server -p "$1";
-  else
-    for port in `seq 3000 3004`; do
-      if script/server -p $port; then break; fi
-    done
-  fi
-}
-# rails server
-function rs(){
-  title_git " /  Server"
-  if [ "$1" != "" ]; then
-    command cl && rails server -p "$1";
-  else
-    for port in `seq 3000 3004`; do
-      if rails server -p $port; then break; fi
-    done
-  fi
-}
-# shotgun
-function sg(){
-  title_git " /  Server"
-  if [ "$1" != "" ]; then
-    command cl && shotgun -p "$1" start;
-  else
-    for port in `seq 3000 3004`; do
-      if shotgun -p $port; then break; fi
-    done
-  fi
-}
-
-# postgresql, psql
-alias pgx="pg_ctl -D `brew --prefix`/var/postgres stop -s -m fast"
-alias pgs="pg_ctl -D `brew --prefix`/var/postgres -l `brew --prefix`/var/postgres/server.log start"
-
-# mongo
-alias ms="title 'MongoDB Server' && `brew --prefix`/bin/mongod --dbpath=$HOME/Sites/_mongodata/"
-
-# ----------------------------------------------------------------------
-# RUBY
-# ----------------------------------------------------------------------
-
-# rake tasks
-alias rdm="rake db:migrate"
-alias rdfl="rake db:fixtures:load"
 
 # ----------------------------------------------------------------------
 # GIT
@@ -422,41 +299,6 @@ alias gpl="git pull"
 alias gc="git commit -am"
 alias gco="git checkout"
 alias ga="git add ."
-
-# ----------------------------------------------------------------------
-# PROJECTS
-# ----------------------------------------------------------------------
-
-alias s="cd $HOME/Sites/"
-
-# heroku
-alias h="cd ~/Sites/heroku"
-alias hp="cd ~/Sites/heroku/public"
-
-alias navrestart='for i in "news" "success" "policy" "logos" "about" "public" "blog" "docs"; do heroku restart --app $i && sleep 1; done'
-
-# put heroku docbrown on PATH if you have it
-test -d "$HOME/sites/heroku/docbrown" &&
-PATH="$HOME/sites/heroku/docbrown:$PATH"
-
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-
-function share-f(){
-  if [ "$1" = "" ] && [ "$2" = ""]; then
-    command echo 'appname email';
-  else
-    command cd ~/Sites/heroku/docbrown && ./bin/docbrown collaborator:add "$1" "$2" && cd -;
-  fi
-}
-
-function share(){
-  if [ "$1" != "" ]; then
-    command heroku sharing:add "$@";
-  else
-    command heroku sharing:list;
-  fi
-}
 
 # ==============================================================================
 # USER SHELL ENVIRONMENT
