@@ -16,11 +16,11 @@
 
 function profile() { 
   if [ "$1" = "edit" ]; then
-    command cd $HOME/Dotfiles && command subl .;
+    command cd $HOME/dotfiles && command subl .;
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
   elif [ "$1" = "install" ]; then
-    command cd $HOME/Dotfiles/ && ruby $HOME/Dotfiles/install.rb && \
+    command cd $HOME/dotfiles/ && ruby $HOME/dotfiles/install.rb && \
       profile load;
   else
     echo "AVAILABLE COMMANDS: edit, load, install"
@@ -68,6 +68,10 @@ umask 0022
 # we want the various sbins on the path along with /usr/local/bin
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
+
+# put ~/dotfiles/bin on PATH if you have it
+test -d "$HOME/dotfiles/bin" &&
+PATH="$HOME/dotfiles/bin:$PATH"
 
 # put ~/bin on PATH if you have it
 test -d "$HOME/bin" &&
