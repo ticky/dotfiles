@@ -21,8 +21,7 @@ If you do too, then you might like my dotfiles.
 * `brew install bash-completion`
 * `brew install git`
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
-* [install rbenv](https://github.com/sstephenson/rbenv#section_2)
-* `git clone git@github.com:ticky/dotfiles.git ~/Dotfiles`
+* `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
 
 ## Thanks
 
