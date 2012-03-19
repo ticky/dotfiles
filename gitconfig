@@ -1,33 +1,33 @@
 [core]
-    excludesfile = /Users/ticky/.gitignore
-    quotepath = false
+	excludesfile = /Users/ticky/.gitignore
+	quotepath = false
 [user]
-    name = Geoff Stokes
-    email = geoff@geoffstokes.net
-    
+	name = Geoff Stokes
+	email = geoff@geoffstokes.net
+	
 [color]
-    ui = auto
-    branch = auto
-    diff = auto
-    status = auto
+	ui = auto
+	branch = auto
+	diff = auto
+	status = auto
 [color "diff"]
-    meta = blue bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+	meta = blue bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [color "branch"]
-    current = yellow reverse
-    local = yellow bold
-    remote = green bold
-    plain = red bold
+	current = yellow reverse
+	local = yellow bold
+	remote = green bold
+	plain = red bold
 [color "status"]
-    added = yellow
-    changed = green bold
-    untracked = blue bold
+	added = yellow
+	changed = green bold
+	untracked = blue bold
 
 [difftool "Kaleidoscope"]
-    cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [difftool]
-    prompt = false
+	prompt = false
 [diff]
-    tool = Kaleidoscope
+	tool = Kaleidoscope
