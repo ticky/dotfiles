@@ -1,0 +1,25 @@
+xterm*font: -*-*-*-90-*-*
+
+xterm*foreground: rgb:f6/f6/f6
+xterm*background: rgb:00/00/00
+
+xterm*color0: rgb:00/00/00
+xterm*color1: rgb:f4/65/b6
+xterm*color2: rgb:b3/f3/82
+xterm*color3: rgb:ff/f3/9e
+xterm*color4: rgb:4b/7f/d4
+xterm*color5: rgb:a8/00/a8
+xterm*color6: rgb:9c/69/f6
+xterm*color7: rgb:4d/60/5f
+xterm*color8: rgb:86/93/a5
+xterm*color9: rgb:de/99/bf
+xterm*color10: rgb:61/c8/c3
+xterm*color11: rgb:ff/ff/55
+xterm*color12: rgb:9c/ef/f2
+xterm*color13: rgb:9c/a8/d4
+xterm*color14: rgb:55/ff/ff
+xterm*color15: rgb:ff/ff/ff
+
+xterm*boldMode: false
+xterm*colorBDMode: true
+xterm*colorBD: rgb:ff/ff/ff
