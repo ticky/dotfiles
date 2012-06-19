@@ -234,15 +234,15 @@ export HISTIGNORE="&:cl:x"
 # speedy history
 # usage:  $ hi 4 ; will list last 4 commands
 # or:     $ hi keyword ; will grep history for keyword
-function hi(){
-  if [[ $1 =~ ^[0-9]+$ ]]; then
-    command history | tail -n "$1";
-  elif [ "$1" != "" ]; then
-    command history | grep "$1";
-  else
-    command history | tail -20;
-  fi
-}
+#function hi(){
+#  if [[ $1 =~ ^[0-9]+$ ]]; then
+#    command history | tail -n "$1";
+#  elif [ "$1" != "" ]; then
+#    command history | grep "$1";
+#  else
+#    command history | tail -20;
+#  fi
+#}
 
 
 # ==============================================================================
