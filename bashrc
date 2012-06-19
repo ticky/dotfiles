@@ -123,7 +123,7 @@ PURPLE="\[\033[0;35m\]"
 PS_CLEAR="\[\033[0m\]"
 SCREEN_ESC="\[\033k\033\134\]"
 
-if [ `/bin/env whoami` = "root" ] ; then
+if [ `env whoami` = "root" ] ; then
   COLOR_BACKGROUND="${WHITEONCYAN}"
   COLOR_REGULAR="${CYAN}"
   COLOR_BOLD="${CYANBOLD}"
