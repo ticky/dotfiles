@@ -1,6 +1,6 @@
 # Dotfiles
 
-I like colors, a simple workflow and homebrew.
+I like colors, a simple workflow and homebrew.  
 If you do too, then you might like my dotfiles.
 
 ## Features
@@ -10,11 +10,15 @@ If you do too, then you might like my dotfiles.
 * autocomplete directories, history, commands and aliases
 * concise history with arrow and tab key navigation
 * speedy history command and search
-* aliases for git, postgres, mongodb and more
+* useful aliases for git and more
 * functions for pngcrush
-* 2 line prompt so commands line up
+* 2 line prompt for readability
 
 ## Setup
+
+Note: This section needs revising.
+
+### OS X
 
 * install [homebrew](http://github.com/mxcl/homebrew)
 * `brew install coreutils --default-names`
@@ -22,6 +26,10 @@ If you do too, then you might like my dotfiles.
 * `brew install git`
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
 * `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
+
+### Linux/MINGW32/Cygwin
+
+* Coming Soon
 
 ## Thanks
 
