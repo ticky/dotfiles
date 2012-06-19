@@ -14,7 +14,7 @@
 # SETTINGS
 # ==============================================================================
 
-function profile() { 
+function profile() {
   if [ "$1" = "edit" ]; then
     command cd $HOME/dotfiles && command subl .;
   elif [ "$1" = "load" ]; then
@@ -99,8 +99,8 @@ function parse_git_branch {
 # ----------------------------------------------------------------------
 
 #set window title
-function title() { 
-  echo -ne "\033]0;$@\007"; 
+function title() {
+  echo -ne "\033]0;$@\007";
 }
 function title_git() {
   title `echo ${PWD##*/} "$(parse_git_branch) $@"`
@@ -152,11 +152,11 @@ function prompt_color() {
 # ----------------------------------------------------------------------
 
 # supress bash_completion pwd on cd
-function cd() { 
+function cd() {
   command cd "$@" >/dev/null;
 }
 # go to previous directory
-function -() { 
+function -() {
   command cd "-" >/dev/null;
 }
 # go to home directory
@@ -167,13 +167,13 @@ alias ...="cd ../.."
 alias ....="cd ../../../"
 
 # create a directory and cd into it
-function mkcd () { 
-  mkdir -p "$@" && eval cd "\"\$$#\""; 
+function mkcd () {
+  mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 # use spotlight for locate command
 # http://hints.macworld.com/article.php?story=20050507212241122
 function locate {
-  mdfind "kMDItemDisplayName == '$@'wc"; 
+  mdfind "kMDItemDisplayName == '$@'wc";
 }
 
 alias rm!="rm -rf"
@@ -182,7 +182,7 @@ alias rm!="rm -rf"
 # AUTOCOMPLETE
 # ----------------------------------------------------------------------
 
-if [ `uname -s` != "Darwin"]; then
+if [ `uname -s` = "Darwin" ]; then
   if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
   fi
@@ -194,7 +194,7 @@ export CDPATH=".:$HOME"
 # ignore case for autocomplete
 bind 'set completion-ignore-case On'
 
-# make tab cycle through commands instead of listing 
+# make tab cycle through commands instead of listing
 bind '"\t":menu-complete'
 
 # ----------------------------------------------------------------------
