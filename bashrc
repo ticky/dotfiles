@@ -201,14 +201,25 @@ bind '"\t":menu-complete'
 # LS AND DIRCOLORS
 # ----------------------------------------------------------------------
 
-# setup the main ls alias
-alias ls='ls -hG'
+if [ `uname -s` = "Darwin" ]; then
+  # setup the main ls alias
+  alias ls='ls -hG'
 
-# list all files in directory
-alias ll="ls -lGah"
+  # list all files in directory
+  alias ll="ls -lGah"
 
-# list dot files in directory
-alias l.="ls -dGh .*"
+  # list dot files in directory
+  alias l.="ls -dGh .*"
+else
+  # setup the main ls alias
+  alias ls='ls -h --color'
+
+  # list all files in directory
+  alias ll="ls -lah --color"
+
+  # list dot files in directory
+  alias l.="ls -dh --color .*"
+fi
 
 
 # ----------------------------------------------------------------------
@@ -281,14 +292,6 @@ alias gs="git status"
 alias gf="git fetch"
 alias gr="git remote -v"
 alias gp="git push"
-alias gph="git push heroku master"
-alias gps="git push staging staging:master"
-alias gpg="git push github master"
-alias gpo="git push origin master"
-alias gplh="git up heroku master"
-alias gpls="git up staging staging:master"
-alias gplg="git up github master"
-alias gplo="git up origin master"
 alias gpl="git pull"
 alias gc="git commit -am"
 alias gco="git checkout"

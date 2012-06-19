@@ -13,23 +13,44 @@ If you do too, then you might like my dotfiles.
 * useful aliases for git and more
 * functions for pngcrush
 * 2 line prompt for readability
+* support for OS X, Linux and Cygwin
+
+## Requirements
+
+* Bash 3.2 or newer (Sorry, MINGW32 users)
+* Ruby (for installation - I plan to remove this dependency)
+* Homebrew (On OS X)
+* git
+* GNU Core Utilities
 
 ## Setup
 
-Note: This section needs revising.
-
 ### OS X
+
+On OS X, Homebrew is presently required. (You almost certainly want it anyway)
 
 * install [homebrew](http://github.com/mxcl/homebrew)
 * `brew install coreutils --default-names`
 * `brew install bash-completion`
 * `brew install git`
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
-* `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
 
-### Linux/MINGW32/Cygwin
+### Linux/Cygwin
 
 * Coming Soon
+
+### All Platforms
+
+After completing the relevant platform-specific section,
+
+* `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
+* `~/dotfiles/install.rb`
+* Restart your shell
+
+## Todo
+
+* Clean up PATH settings on different platforms
+* Create platform-specific bin directories
 
 ## Thanks
 
