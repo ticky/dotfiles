@@ -123,7 +123,7 @@ PURPLE="\[\033[0;35m\]"
 PS_CLEAR="\[\033[0m\]"
 SCREEN_ESC="\[\033k\033\134\]"
 
-if [ `/usr/bin/whoami` = "root" ] ; then
+if [ `/bin/env whoami` = "root" ] ; then
   COLOR_BACKGROUND="${WHITEONCYAN}"
   COLOR_REGULAR="${CYAN}"
   COLOR_BOLD="${CYANBOLD}"
@@ -182,8 +182,10 @@ alias rm!="rm -rf"
 # AUTOCOMPLETE
 # ----------------------------------------------------------------------
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
+if [ `uname -s` != "Darwin"]; then
+  if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+  fi
 fi
 
 # autocomplete from these directories
