@@ -178,10 +178,13 @@ alias ....="cd ../../../"
 function mkcd () {
   mkdir -p "$@" && eval cd "\"\$$#\"";
 }
-# use spotlight for locate command
-# http://hints.macworld.com/article.php?story=20050507212241122
-function locate {
-  mdfind "kMDItemDisplayName == '$@'wc";
+# crossplatform find command - uses spotlight data on OS X
+function fn {
+  if [ $UNAME = "Darwin" ]; then
+    mdfind -onlyin . "kMDItemDisplayName == '$@'wc";
+  else
+    find `pwd` -name $@ 2> /dev/null
+  fi
 }
 
 alias rm!="rm -rf"
@@ -268,8 +271,6 @@ export HISTIGNORE="&:cl:x"
 # ALIASES / FUNCTIONS
 # ==============================================================================
 
-# find
-alias fn='find . -name'
 # close window
 alias x="exit"
 # clear window
