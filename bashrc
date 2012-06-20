@@ -5,6 +5,7 @@
 : ${HOME=~}
 : ${LOGNAME=$(id -un)}
 : ${UNAME=$(uname)}
+: ${EDITOR=subl}
 
 # complete hostnames from this file
 : ${HOSTFILE=~/.ssh/known_hosts}
@@ -16,7 +17,7 @@
 
 function profile() {
   if [ "$1" = "edit" ]; then
-    command cd $HOME/dotfiles && command subl .;
+    command cd $HOME/dotfiles && command $EDITOR .;
   elif [ "$1" = "load" ]; then
     command source $HOME/.bashrc;
   elif [ "$1" = "install" ]; then
@@ -69,29 +70,36 @@ umask 0022
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
-# put ~/dotfiles/bin on PATH if you have it
+# All-OS user bin
 test -d "$HOME/dotfiles/bin" &&
 PATH="$HOME/dotfiles/bin:$PATH"
+
+# Allow platform-based overrides
+test -d "$HOME/dotfiles/bin/$UNAME" &&
+PATH="$HOME/dotfiles/bin/$UNAME:$PATH"
+
+# Cygwin-specific platform overrides
+`uname -o > /dev/null 2> /dev/null` && if [ `uname -o` = "Cygwin" ]; then
+  test -d "$HOME/dotfiles/bin/Cygwin" &&
+  PATH="$HOME/dotfiles/bin/Cygwin:$PATH"
+fi
 
 # put ~/bin on PATH if you have it
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
 
 # ----------------------------------------------------------------------
-# EDITOR
-# ----------------------------------------------------------------------
-
-export EDITOR="subl"
-
-# ----------------------------------------------------------------------
 # GIT BRANCH
 # ----------------------------------------------------------------------
 
+function parse_git_email {
+  [[ $(git config user.email) != $(git config --global user.email) ]] && echo "`git config user.email` "
+}
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo " [+]"
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo " ●"
 }
 function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1)$(parse_git_dirty)/"
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/✱ $(parse_git_email)⌥ \1$(parse_git_dirty)/"
 }
 
 # ----------------------------------------------------------------------
@@ -182,7 +190,7 @@ alias rm!="rm -rf"
 # AUTOCOMPLETE
 # ----------------------------------------------------------------------
 
-if [ `uname -s` = "Darwin" ]; then
+if [ $UNAME = "Darwin" ]; then
   if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
   fi
@@ -201,7 +209,7 @@ bind '"\t":menu-complete'
 # LS AND DIRCOLORS
 # ----------------------------------------------------------------------
 
-if [ `uname -s` = "Darwin" ]; then
+if [ $UNAME = "Darwin" ]; then
   # setup the main ls alias
   alias ls='ls -hG'
 
