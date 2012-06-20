@@ -180,7 +180,7 @@ function mkcd () {
 }
 # crossplatform find command - uses spotlight data on OS X
 function fn {
-  if [ $UNAME = "Darwin" ]; then
+  if [ "$UNAME" = "Darwin" ]; then
     mdfind -onlyin . "kMDItemDisplayName == '$@'wc";
   else
     find `pwd` -name $@ 2> /dev/null
@@ -193,7 +193,7 @@ alias rm!="rm -rf"
 # AUTOCOMPLETE
 # ----------------------------------------------------------------------
 
-if [ $UNAME = "Darwin" ]; then
+if [ "$UNAME" = "Darwin" ]; then
   if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
   fi
@@ -212,7 +212,7 @@ bind '"\t":menu-complete'
 # LS AND DIRCOLORS
 # ----------------------------------------------------------------------
 
-if [ $UNAME = "Darwin" ]; then
+if [ "$UNAME" = "Darwin" ]; then
   # setup the main ls alias
   alias ls='ls -hG'
 
