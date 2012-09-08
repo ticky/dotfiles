@@ -8,10 +8,7 @@ If you do too, then you might like my dotfiles.
 * colorful prompt, directories and git functions
 * prompt updated with working git branch name and status
 * autocomplete directories, history, commands and aliases
-* concise history with arrow and tab key navigation
-* speedy history command and search
 * useful aliases for git and more
-* functions for pngcrush
 * 2 line prompt for readability
 * support for OS X, Linux and Cygwin
 
@@ -44,7 +41,7 @@ On OS X, Homebrew is presently required. (You almost certainly want it anyway)
 After completing the relevant platform-specific section,
 
 * `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
-* `~/dotfiles/install.rb`
+* `cd ~/dotfiles && ruby install.rb`
 * Restart your shell
 
 ## Todo
