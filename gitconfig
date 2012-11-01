@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/ticky/.gitignore
+	excludesfile = ~/.gitignore
 	quotepath = false
 [user]
 	name = Geoff Stokes
