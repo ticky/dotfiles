@@ -197,6 +197,7 @@ fi
 # ----------------------------------------------------------------------
 
 if [ "$UNAME" = "Darwin" ]; then
+  # If we're on Darwin, assume we're using BSD utilities
   # setup the main ls alias
   alias ls='ls -hG'
 
@@ -206,6 +207,7 @@ if [ "$UNAME" = "Darwin" ]; then
   # list dot files in directory
   alias l.="ls -dGh .*"
 else
+  # We're on something else - assume GNU utilities (TODO: Make this work correctly on BSDs)
   # setup the main ls alias
   alias ls='ls -h --color'
 

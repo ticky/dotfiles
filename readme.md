@@ -11,42 +11,65 @@ If you do too, then you might like my dotfiles.
 * useful aliases for git and more
 * 2 line prompt for readability
 * support for OS X, Linux and Cygwin
+* built-in compatibility with both GNU utilities and BSD utilities
 
 ## Requirements
 
 * Bash 3.2 or newer (Sorry, MINGW32 users)
 * Ruby (for installation - I plan to remove this dependency)
-* Homebrew (On OS X)
+* Homebrew (On OS X - This means you need Xcode installed first)
 * git
-* GNU Core Utilities
 
 ## Setup
+
+Setup involves a few steps specific to each platform, followed by the "all platforms" steps below.
 
 ### OS X
 
 On OS X, Homebrew is presently required. (You almost certainly want it anyway)
 
+* install [Xcode](https://itunes.apple.com/app/xcode/id497799835)
 * install [homebrew](http://github.com/mxcl/homebrew)
-* `brew install coreutils --default-names`
 * `brew install bash-completion`
 * `brew install git`
-* install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
 
-### Linux/Cygwin
+### Linux
 
-* Coming Soon
+On Linux, you almost certainly have the core utilities needed. Just to be sure, you should install the following with your distro's package manager:
+
+* bash-completion, git
+
+### Cygwin
+
+Cygwin has limited package management built-in. I recommend downloading [apt-cyg](http://code.google.com/p/apt-cyg/) which gives you a command-line interface for Cygwin's package manager.
+
+* `apt-cyg install git`
 
 ### All Platforms
 
 After completing the relevant platform-specific section,
 
+* install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
 * `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
 * `cd ~/dotfiles && ruby install.rb`
 * Restart your shell
 
+## Updating
+
+There is no special method to updating. Simply pull any changes into your working copy and restart your shell.
+
+## Platform-specific `bin` directories
+
+This includes both a generalised `bin` directory for platform-agnostic scripts, and support for platform-specific directories. It's simple to use;
+
+* run `uname` to determine the default name of the system - on OS X, this is `Darwin`, on Linux it varies.
+* Create a directory under `~/dotfiles/bin` with the text output by `uname` (e.g. `~/dotfiles/bin/Darwin`)
+* Place any platform-specific binaries in here
+
+NOTE: I'm still playing around with this idea and the implementation is subject to change - if you have any ideas for how to do it better, let me know.
+
 ## Todo
 
-* Clean up PATH settings on different platforms
 * Create platform-specific bin directories
 
 ## Thanks
