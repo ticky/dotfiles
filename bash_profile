@@ -104,7 +104,7 @@ function title() {
   echo -ne "\033]0;$@\007";
 }
 function title_git() {
-  title `echo ${PWD##*/} "$(parse_git_branch) $@"`
+  title `echo ${PWD} "$(parse_git_branch) $@"`
 }
 
 # ----------------------------------------------------------------------
@@ -190,6 +190,8 @@ if [ "$UNAME" = "Darwin" ]; then
   if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
   fi
+  # Add `killall` tab completion for common apps - Borrowed from https://github.com/mathiasbynens/dotfiles/
+  complete -o "nospace" -W "Adium Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
 fi
 
 # ----------------------------------------------------------------------

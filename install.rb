@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-# originally from
-# from http://errtheblog.com/posts/89-huba-huba
+# originally from http://errtheblog.com/posts/89-huba-huba
 
 home = File.expand_path(ENV['HOME'])
 
