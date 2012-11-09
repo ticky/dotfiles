@@ -17,3 +17,5 @@ vbell_msg " *beep* "
 # Experimenting with hardstatuses. Stay tuned.
 # hardstatus alwayslastline '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
 # caption always '%{= dg} %H %{G}| %{B}%l %{G}|%=%?%{d}%-w%?%{r}(%{d}%n %t%? {%u} %?%{r})%{d}%?%+w%?%=%{G}| %{B}%M%d %c:%s '
+# hardstatus alwayslastline "%c %l %{+b} %t%=%{-b} %H"
+# hardstatus alwayslastline "%{.Bc}%c %l %{+b} %t%=%{-b} %H"

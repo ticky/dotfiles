@@ -55,7 +55,7 @@ After completing the relevant platform-specific section,
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
 * `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
 * `cd ~/dotfiles && ruby install.rb`
-* if on OS X, run `bash ~/.osx` to set OS X defaults (TODO: streamline this)
+* if on OS X, run `osxdefaults.sh` to set OS X defaults (TODO: streamline this into the setup process)
 * Restart your shell
 
 ## Updating
