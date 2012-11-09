@@ -20,4 +20,4 @@ vbell_msg " *beep* "
 # hardstatus alwayslastline "%c %l %{+b} %t%=%{-b} %H"
 # hardstatus alwayslastline "%{.Bc}%c %l %{+b} %t%=%{-b} %H"
 
-hardstatus alwayslastline "%{= mW}%H%{= kM}:%{= kM}%?%-Lw%?%{= mW}%n%f %t%?(%u)%?%{= kM}%?%+Lw%?%{= kM} %=%D %0C"
+hardstatus alwayslastline "%{= mW}%H%{= kM}:%{= kM}%?%-Lw%?%{= mW}%n%f %t%?(%u)%?%{= kM}%?%+Lw%?%{= kM} %=%D %C %A"
