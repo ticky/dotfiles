@@ -13,7 +13,7 @@ If you do too, then you might like my dotfiles.
 * support for OS X, Linux and Cygwin
 * built-in compatibility with both GNU utilities and BSD utilities
 * useful user-level .gitignore
-* basic `screen` defaults - no startup message
+* sensible `screen` setup - no startup message, real bells and your user shell
 * good `wget` defaults
 
 ## Requirements
@@ -75,6 +75,9 @@ This includes both a generalised `bin` directory for platform-agnostic scripts, 
 NOTE: This will likely be replaced entirely with the "Inheritance" concept outlined in the Todo section below.
 
 ## Todo
+
+* Support for tmux
+* Customise `screen` hardstatus/title
 
 ###Inheritance
 
