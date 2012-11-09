@@ -7,11 +7,14 @@ If you do too, then you might like my dotfiles.
 
 * colorful prompt, directories and git functions
 * prompt updated with working git branch name and status
-* autocomplete directories, history, commands and aliases
+* autocomplete directories, history, commands, common `killall` items and aliases
 * useful aliases for git and more
 * 2 line prompt for readability
 * support for OS X, Linux and Cygwin
 * built-in compatibility with both GNU utilities and BSD utilities
+* useful user-level .gitignore
+* basic `screen` defaults - no startup message
+* good `wget` defaults
 
 ## Requirements
 
@@ -52,11 +55,14 @@ After completing the relevant platform-specific section,
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
 * `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
 * `cd ~/dotfiles && ruby install.rb`
+* if on OS X, run `bash ~/.osx` to set OS X defaults (TODO: streamline this)
 * Restart your shell
 
 ## Updating
 
 There is no special method to updating. Simply pull any changes into your working copy and restart your shell.
+
+NOTE: .osx defaults will not be set on shell restart.
 
 ## Platform-specific `bin` directories
 
@@ -66,15 +72,45 @@ This includes both a generalised `bin` directory for platform-agnostic scripts, 
 * Create a directory under `~/dotfiles/bin` with the text output by `uname` (e.g. `~/dotfiles/bin/Darwin`)
 * Place any platform-specific binaries in here
 
-NOTE: I'm still playing around with this idea and the implementation is subject to change - if you have any ideas for how to do it better, let me know.
+NOTE: This will likely be replaced entirely with the "Inheritance" concept outlined in the Todo section below.
 
 ## Todo
 
-* Create platform-specific bin directories
+###Inheritance
+
+I plan to implement "inheritance" of settings and configurations on a host-by-host basis.
+This will require additional folder structure and some intelligent additions to the install
+script to concatenate some files which can't be inherited at run-time.
+
+    +-- ~/dotfiles
+    |   Core dotfile group - OS-agnostic stuff like gitignores,
+    |   core implementation of .bash_profile, etc.
+    | 
+    +--+-- ~/dotfiles/platforms
+    |  |   Platform-specific overrides and additions of certain files like bash_profile.
+    |  |   Stuff which can't inherit at runtime needs to be merged at install time.
+    |  |  
+    |  +-- ~/dotfiles/platforms/cygwin
+    |  |   Cygwin-speficic extras using "source"
+    |  |  
+    |  +-- ~/dotfiles/platforms/darwin
+    |      OS X-specific extras
+    |      Example: This includes a bash_profile which includes extra help for homebrew
+    |     
+    +--+-- ~/dotfiles/hosts
+       |   Host-specific extras and overrides.
+       |   Could include things like host-specific prompt colours
+       |  
+       +-- ~/dotfiles/hosts/lagavulin
+       |   Orange prompt for desktop computer
+       |  
+       +-- ~/dotfiles/hosts/laphroaig
+           Green prompt for home server
 
 ## Thanks
 
 * [seaofclouds](http://github.com/seaofclouds)
+* [mathias bynens](http://mths.be/)
 * [ryan tomayko](http://tomayko.com/about)
 * [pedro belo](http://github.com/pedro)
 * [peter van hardenberg](http://github.com/pvh)
@@ -84,6 +120,8 @@ NOTE: I'm still playing around with this idea and the implementation is subject 
 
 ## Resources
 
+* [GitHub does dotfiles](http://dotfiles.github.com/)
+* [Mathias Bynens' Dotfiles](http://mths.be/dotfiles)
 * [Ryan Tomayko's Bash Profile](http://github.com/rtomayko/dotfiles)
 * [No Duplicates in Bash History](http://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/)
 * [Cycle through history instead of listing](http://www.macosxhints.com/article.php?story=20050904022246573&lsrc=osxh)
