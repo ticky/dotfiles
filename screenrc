@@ -1,2 +1,19 @@
 # Disable the startup message
 startup_message off
+
+# Set shell to the one selected, rather than the system-level one
+shell -$SHELL
+
+# Disable virtual bell (Personally, I let my terminal emulator handle this)
+vbell off
+
+# Customise some alert messages
+activity "activity in %n (%t) [%w:%s]~"
+bell "bell in %n (%t) [%w:%s]~"
+vbell_msg " *beep* "
+
+# For Colors see https://github.com/px/screenrc/blob/master/.screenrc
+
+# Experimenting with hardstatuses. Stay tuned.
+# hardstatus alwayslastline '%{= mK}%-Lw%{= KW}%50>%n%f* %t%{= mK}%+Lw%< %{= kG}%-=%D %d %M %Y %c:%s%{-}'
+# caption always '%{= dg} %H %{G}| %{B}%l %{G}|%=%?%{d}%-w%?%{r}(%{d}%n %t%? {%u} %?%{r})%{d}%?%+w%?%=%{G}| %{B}%M%d %c:%s '
