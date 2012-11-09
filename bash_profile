@@ -137,8 +137,6 @@ fi
 # 2 LINE PROMPT
 
 function prompt_pwd() {
-  #replace "/home/username with ~"
-  #newPWD="${PWD/#$HOME/~}"
   newPWD="${PWD} $(parse_git_branch)"
 }
 function prompt_color() {

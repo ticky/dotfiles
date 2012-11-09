@@ -1,0 +1,15 @@
+BoldAsFont=no
+Transparency=off
+OpaqueWhenFocused=no
+CursorType=block
+Font=DejaVu Sans Mono
+FontHeight=10
+FontSmoothing=full
+Locale=en_AU
+Charset=UTF-8
+Scrollbar=none
+Term=xterm-256color
+BellFlash=yes
+Columns=120
+Rows=40
+CursorBlinks=no
