@@ -166,7 +166,7 @@ alias ...="cd ../.."
 alias ....="cd ../../../"
 
 # create a directory and cd into it
-function mkcd () {
+function mkcd() {
   mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 # crossplatform find command - uses spotlight data on OS X

@@ -21,7 +21,7 @@ If you do too, then you might like my dotfiles.
 * Bash 3.2 or newer (Sorry, MINGW32 users)
 * Ruby (for installation - I plan to remove this dependency)
 * Homebrew (On OS X - This means you need Xcode installed first)
-* git
+* git with ssh support
 
 ## Setup
 
@@ -40,13 +40,13 @@ On OS X, Homebrew is presently required. (You almost certainly want it anyway)
 
 On Linux, you almost certainly have the core utilities needed. Just to be sure, you should install the following with your distro's package manager:
 
-* bash-completion, git
+* bash-completion, git, ruby
 
 ### Cygwin
 
 Cygwin has limited package management built-in. I recommend downloading [apt-cyg](http://code.google.com/p/apt-cyg/) which gives you a command-line interface for Cygwin's package manager.
 
-* `apt-cyg install git`
+* `apt-cyg install openssh git ruby`
 
 ### All Platforms
 
@@ -62,7 +62,7 @@ After completing the relevant platform-specific section,
 
 There is no special method to updating. Simply pull any changes into your working copy and restart your shell.
 
-NOTE: .osx defaults will not be set on shell restart.
+NOTE: OS X defaults will not be set on shell restart.
 
 ## Platform-specific `bin` directories
 
@@ -77,7 +77,6 @@ NOTE: This will likely be replaced entirely with the "Inheritance" concept outli
 ## Todo
 
 * Support for tmux
-* Customise `screen` hardstatus/title
 
 ###Inheritance
 
@@ -88,7 +87,7 @@ script to concatenate some files which can't be inherited at run-time.
     +-- ~/dotfiles
     |   Core dotfile group - OS-agnostic stuff like gitignores,
     |   core implementation of .bash_profile, etc.
-    | 
+    |  
     +--+-- ~/dotfiles/platforms
     |  |   Platform-specific overrides and additions of certain files like bash_profile.
     |  |   Stuff which can't inherit at runtime needs to be merged at install time.
