@@ -134,6 +134,21 @@ else
   COLOR_BOLD="${MAGENTABOLD}"
 fi
 
+ATHOST="@\h"
+
+# Hide hostname in prompt while inside a GNU Screen session on Linux.
+# (Hostname is always shown in hardstatus inside Screen)
+# TODO:
+# - Expand this to allow for tmux
+# - Find a way to implement similar behaviour on OS X (Cygwin/MSYS should be the same as this)
+# - Show hostname if inside a remote ssh session (Maybe?)
+# - Double check that running this once per session is safe (I'm pretty sure it is...)
+if [ "$UNAME" = "Linux" ]; then
+  if [[ `cat /proc/$PPID/cmdline` == SCREEN* ]] ; then
+    ATHOST=""
+  fi
+fi
+
 # 2 LINE PROMPT
 
 function prompt_pwd() {
@@ -141,7 +156,7 @@ function prompt_pwd() {
 }
 function prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
-  PS1="${COLOR_BACKGROUND}\u@\h${COLOR_REGULAR}:\w\n${COLOR_BOLD}>${PS_CLEAR} "
+  PS1="${COLOR_BACKGROUND}\u${ATHOST}${COLOR_REGULAR}:\w\n${COLOR_BOLD}>${PS_CLEAR} "
   PS1=${PS1//\\w/\$\{newPWD\}}
     PS2="${PURPLE}>${PS_CLEAR} "
 }
