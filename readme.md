@@ -19,7 +19,6 @@ If you do too, then you might like my dotfiles.
 ## Requirements
 
 * Bash 3.2 or newer (Sorry, MINGW32 users)
-* Ruby (for installation - I plan to remove this dependency)
 * Homebrew (On OS X - This means you need Xcode installed first)
 * git with ssh support
 
@@ -40,13 +39,13 @@ On OS X, Homebrew is presently required. (You almost certainly want it anyway)
 
 On Linux, you almost certainly have the core utilities needed. Just to be sure, you should install the following with your distro's package manager:
 
-* bash-completion, git, ruby
+* bash-completion, git
 
 ### Cygwin
 
 Cygwin has limited package management built-in. I recommend downloading [apt-cyg](http://code.google.com/p/apt-cyg/) which gives you a command-line interface for Cygwin's package manager.
 
-* `apt-cyg install openssh git ruby`
+* `apt-cyg install openssh git`
 
 ### All Platforms
 
@@ -54,7 +53,7 @@ After completing the relevant platform-specific section,
 
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
 * `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
-* `cd ~/dotfiles && ruby install.rb`
+* `cd ~/dotfiles && chmod +x install.sh && ./install.sh`
 * if on OS X, run `osxdefaults.sh` to set OS X defaults (TODO: streamline this into the setup process)
 * Restart your shell
 
