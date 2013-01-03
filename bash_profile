@@ -1,63 +1,45 @@
 #!/bin/bash
 # ticky <http://github.com/ticky/dotfiles>
 
+# ==============================================================================
+# VARIABLES & BASIC CONFIGURATION
+# ==============================================================================
+
 # the basics
 : ${HOME=~}
-: ${LOGNAME=$(id -un)}
 : ${UNAME=$(uname)}
-: ${EDITOR=subl}
+: ${EDITOR=vim}
 
 # complete hostnames from this file
 : ${HOSTFILE=~/.ssh/known_hosts}
 
+# ----------------------------------------------------------------------
+#  COLOUR DEFINITIONS
+# ----------------------------------------------------------------------
 
-# ==============================================================================
-# SETTINGS
-# ==============================================================================
+# "\[\033[0;35m\]" // Purple
 
-function profile() {
-  if [ "$1" = "edit" ]; then
-    command cd $HOME/dotfiles && command $EDITOR .;
-  elif [ "$1" = "load" ]; then
-    command source $HOME/.bash_profile;
-  elif [ "$1" = "install" ]; then
-    command cd $HOME/dotfiles/ && ruby $HOME/dotfiles/install.rb && \
-      profile load;
-  else
-    echo "AVAILABLE COMMANDS: edit, load, install"
-  fi
-}
-alias p="profile"
+COLOR_DEFAULT="\[\033[0m\]" # Terminal Default Colours
+SCREEN_ESC="\[\033k\033\134\]" # Screen Escape
+
+# root gets a cyan prompt by default
+if [ `env whoami` = "root" ] ; then
+  COLOR_BACKGROUND="\[\033[0;46;1m\]" # White on Cyan
+  COLOR_REGULAR="\[\033[0;36m\]" # Cyan
+  COLOR_BOLD="\[\033[0;36;1m\]" # Bold Cyan
+else
+  COLOR_BACKGROUND="\[\033[0;45;1m\]" # White on Magenta
+  COLOR_REGULAR="\[\033[0;35m\]" # Magenta
+  COLOR_BOLD="\[\033[0;35;1m\]" # Bold Magenta
+fi
 
 # ----------------------------------------------------------------------
-#  SHELL OPTIONS
+#  PATH
 # ----------------------------------------------------------------------
 
 # bring in system bashrc
 test -r /etc/bashrc &&
       . /etc/bashrc
-
-# shell opts. see bash(1) for details
-shopt -s cdspell >/dev/null 2>&1
-shopt -s extglob >/dev/null 2>&1
-shopt -s histappend >/dev/null 2>&1
-shopt -s hostcomplete >/dev/null 2>&1
-shopt -s interactive_comments >/dev/null 2>&1
-shopt -u mailwarn >/dev/null 2>&1
-shopt -s no_empty_cmd_completion >/dev/null 2>&1
-
-# fuck that you have new mail shit
-unset MAILCHECK
-
-# disable core dumps
-ulimit -S -c 0
-
-# default umask
-umask 0022
-
-# ----------------------------------------------------------------------
-# PATH
-# ----------------------------------------------------------------------
 
 # we want the various sbins on the path along with /usr/local/bin
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
@@ -81,25 +63,35 @@ fi
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
 
-# ----------------------------------------------------------------------
-# GIT BRANCH
-# ----------------------------------------------------------------------
 
-function parse_git_email {
-  [[ $(git config user.email) != $(git config --global user.email) ]] && echo "`git config user.email` "
-}
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo " ●"
-}
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/✱ $(parse_git_email)⌥ \1$(parse_git_dirty)/"
-}
+# ==============================================================================
+# SETTINGS
+# ==============================================================================
 
 # ----------------------------------------------------------------------
-# TITLE WINDOW
+#  SHELL OPTIONS
 # ----------------------------------------------------------------------
 
-#set window title
+# shell opts. see bash(1) for details
+shopt -s cdspell >/dev/null 2>&1
+shopt -s extglob >/dev/null 2>&1
+shopt -s histappend >/dev/null 2>&1
+shopt -s hostcomplete >/dev/null 2>&1
+shopt -s interactive_comments >/dev/null 2>&1
+shopt -u mailwarn >/dev/null 2>&1
+shopt -s no_empty_cmd_completion >/dev/null 2>&1
+
+# fuck that you have new mail shit
+unset MAILCHECK
+
+# default umask
+umask 0022
+
+# ----------------------------------------------------------------------
+#  WINDOW TITLE
+# ----------------------------------------------------------------------
+
+# set window title
 function title() {
   echo -ne "\033]0;$@\007";
 }
@@ -108,33 +100,20 @@ function title_git() {
 }
 
 # ----------------------------------------------------------------------
-# PROMPT
+#  PROMPT
 # ----------------------------------------------------------------------
 
-WHITEONMAGENTA="\[\033[0;45;1m\]"
-MAGENTA="\[\033[0;35m\]"
-MAGENTABOLD="\[\033[0;35;1m\]"
+# git info for prompt
+function parse_git_email {
+  [[ $(git config user.email) != $(git config --global user.email) ]] && echo "`git config user.email` "
+}
+function parse_git_dirty {
+  [ -z "$(git status -s 2> /dev/null)" ] || echo " ●"
+}
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/✱ $(parse_git_email)⌥ \1$(parse_git_dirty)/"
+}
 
-WHITEONCYAN="\[\033[0;46;1m\]"
-CYAN="\[\033[0;36m\]"
-CYANBOLD="\[\033[0;36;1m\]"
-
-PURPLE="\[\033[0;35m\]"
-
-PS_CLEAR="\[\033[0m\]"
-SCREEN_ESC="\[\033k\033\134\]"
-
-if [ `env whoami` = "root" ] ; then
-  COLOR_BACKGROUND="${WHITEONCYAN}"
-  COLOR_REGULAR="${CYAN}"
-  COLOR_BOLD="${CYANBOLD}"
-else
-  COLOR_BACKGROUND="${WHITEONMAGENTA}"
-  COLOR_REGULAR="${MAGENTA}"
-  COLOR_BOLD="${MAGENTABOLD}"
-fi
-
-ATHOST="@\h"
 
 # Hide hostname in prompt while inside a GNU Screen session on Linux.
 # (Hostname is always shown in hardstatus inside Screen)
@@ -143,60 +122,26 @@ ATHOST="@\h"
 # - Find a way to implement similar behaviour on OS X (Cygwin/MSYS should be the same as this)
 # - Show hostname if inside a remote ssh session (Maybe?)
 # - Double check that running this once per session is safe (I'm pretty sure it is...)
+ATHOST="@\h"
 if [ "$UNAME" = "Linux" ]; then
   if [[ `cat /proc/$PPID/cmdline` == SCREEN* ]] ; then
     ATHOST=""
   fi
 fi
 
-# 2 LINE PROMPT
-
+# prompt setup functions
 function prompt_pwd() {
   newPWD="${PWD} $(parse_git_branch)"
 }
 function prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
-  PS1="${COLOR_BACKGROUND}\u${ATHOST}${COLOR_REGULAR}:\w\n${COLOR_BOLD}>${PS_CLEAR} "
+  PS1="${COLOR_BACKGROUND}\u${ATHOST}${COLOR_REGULAR}:\w\n${COLOR_BOLD}>${COLOR_DEFAULT} "
   PS1=${PS1//\\w/\$\{newPWD\}}
-    PS2="${PURPLE}>${PS_CLEAR} "
+    PS2="${COLOR_REGULAR}>${COLOR_DEFAULT} "
 }
 
 # ----------------------------------------------------------------------
-# CD, DIRECTORY NAVIGATION
-# ----------------------------------------------------------------------
-
-# supress bash_completion pwd on cd
-function cd() {
-  command cd "$@" >/dev/null;
-}
-# go to previous directory
-function -() {
-  command cd "-" >/dev/null;
-}
-# go to home directory
-alias ~="cd ~"
-# traverse directories
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../../"
-
-# create a directory and cd into it
-function mkcd() {
-  mkdir -p "$@" && eval cd "\"\$$#\"";
-}
-# crossplatform find command - uses spotlight data on OS X
-function fn {
-  if [ "$UNAME" = "Darwin" ]; then
-    mdfind -onlyin . "kMDItemDisplayName == '$@'wc";
-  else
-    find `pwd` -name $@ 2> /dev/null
-  fi
-}
-
-alias rm!="rm -rf"
-
-# ----------------------------------------------------------------------
-# AUTOCOMPLETE
+#  AUTOCOMPLETE
 # ----------------------------------------------------------------------
 
 if [ "$UNAME" = "Darwin" ]; then
@@ -208,7 +153,7 @@ if [ "$UNAME" = "Darwin" ]; then
 fi
 
 # ----------------------------------------------------------------------
-# LS AND DIRCOLORS
+#  LS AND DIRCOLORS
 # ----------------------------------------------------------------------
 
 if [ "$UNAME" = "Darwin" ]; then
@@ -233,9 +178,8 @@ else
   alias l.="ls -dh --color .*"
 fi
 
-
 # ----------------------------------------------------------------------
-# COMMAND HISTORY
+#  COMMAND HISTORY
 # ----------------------------------------------------------------------
 
 # big history
@@ -255,8 +199,60 @@ export HISTCONTROL=erasedups
 export HISTIGNORE="&:cl:x"
 
 # ==============================================================================
-# ALIASES / FUNCTIONS
+# ALIASES & FUNCTIONS
 # ==============================================================================
+
+# ----------------------------------------------------------------------
+#  CD, DIRECTORY NAVIGATION
+# ----------------------------------------------------------------------
+
+function profile() {
+  if [ "$1" = "edit" ]; then
+    command cd $HOME/dotfiles && command $EDITOR .;
+  elif [ "$1" = "load" ]; then
+    command source $HOME/.bash_profile;
+  elif [ "$1" = "install" ]; then
+    command cd $HOME/dotfiles/ && ruby $HOME/dotfiles/install.rb && \
+      profile load;
+  else
+    echo "AVAILABLE COMMANDS: edit, load, install"
+  fi
+}
+alias p="profile"
+
+# supress bash_completion pwd on cd
+function cd() {
+  command cd "$@" >/dev/null;
+}
+
+# go to previous directory
+function -() {
+  command cd "-" >/dev/null;
+}
+
+# go to home directory
+alias ~="cd ~"
+
+# traverse directories
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../../"
+
+# create a directory and cd into it
+function mkcd() {
+  mkdir -p "$@" && eval cd "\"\$$#\"";
+}
+
+# crossplatform find command - uses spotlight data on OS X
+function fn {
+  if [ "$UNAME" = "Darwin" ]; then
+    mdfind -onlyin . "kMDItemDisplayName == '$@'wc";
+  else
+    find `pwd` -name $@ 2> /dev/null
+  fi
+}
+
+alias rm!="rm -rf"
 
 # close window
 alias x="exit"
@@ -264,7 +260,7 @@ alias x="exit"
 alias cl="clear"
 
 # ----------------------------------------------------------------------
-# GIT
+#  GIT
 # ----------------------------------------------------------------------
 
 alias gd="git diff"
@@ -280,7 +276,7 @@ alias gco="git checkout"
 alias ga="git add ."
 
 # ==============================================================================
-# USER SHELL ENVIRONMENT
+# FINAL SETUP
 # ==============================================================================
 
 title_git
