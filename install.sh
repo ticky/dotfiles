@@ -1,10 +1,10 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 for file in ~/dotfiles/*
 do
   basename=$(basename $file)
   target=~/.$basename
-  if [ "${basename}" == "install.sh" -o "${basename}" == "readme.md" ]
+  if [ "${basename}" == "install.sh" -o "${basename}" == "readme.md" -o "${basename}" == "bin" ]
   then
     continue
   fi

@@ -12,6 +12,9 @@ activity "activity in %n (%t) [%w:%s]~"
 bell "bell in %n (%t) [%w:%s]~"
 vbell_msg " *beep* "
 
+defc1 off
+defutf8 on
+
 # For Colors see https://github.com/px/screenrc/blob/master/.screenrc
 
 # Experimenting with hardstatuses. Stay tuned.
