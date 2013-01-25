@@ -252,6 +252,8 @@ function fn {
   fi
 }
 
+alias shttp="python -m SimpleHTTPServer"
+
 alias rm!="rm -rf"
 
 # close window
