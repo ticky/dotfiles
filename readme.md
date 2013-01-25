@@ -14,6 +14,7 @@ If you do too, then you might like my dotfiles.
 * built-in compatibility with both GNU utilities and BSD utilities
 * useful user-level .gitignore
 * sensible `screen` setup - no startup message, real bells and your user shell
+* support for `tmux` (very basic for now)
 * good `wget` defaults
 
 ## Requirements
@@ -73,40 +74,30 @@ This includes both a generalised `bin` directory for platform-agnostic scripts, 
 
 NOTE: This will likely be replaced entirely with the "Inheritance" concept outlined in the Todo section below.
 
-## Todo
-
-* Support for tmux
-
 ###Inheritance
 
-I plan to implement "inheritance" of settings and configurations on a host-by-host basis.
+I plan to implement "inheritance" of settings and configurations on a platform basis.
 This will require additional folder structure and some intelligent additions to the install
 script to concatenate some files which can't be inherited at run-time.
 
-    +-- ~/dotfiles
-    |   Core dotfile group - OS-agnostic stuff like gitignores,
-    |   core implementation of .bash_profile, etc.
-    |  
-    +--+-- ~/dotfiles/platforms
-    |  |   Platform-specific overrides and additions of certain files like bash_profile.
-    |  |   Stuff which can't inherit at runtime needs to be merged at install time.
-    |  |  
-    |  +-- ~/dotfiles/platforms/cygwin
-    |  |   Cygwin-speficic extras using "source"
-    |  |  
-    |  +-- ~/dotfiles/platforms/darwin
-    |      OS X-specific extras
-    |      Example: This includes a bash_profile which includes extra help for homebrew
-    |     
-    +--+-- ~/dotfiles/hosts
-       |   Host-specific extras and overrides.
-       |   Could include things like host-specific prompt colours
-       |  
-       +-- ~/dotfiles/hosts/lagavulin
-       |   Orange prompt for desktop computer
-       |  
-       +-- ~/dotfiles/hosts/laphroaig
-           Green prompt for home server
+    +-- ~
+    |   Local overrides for other configuration.
+    |   Can include prefix and suffix files for files which can't inherit at runtime.
+    |
+    +--+-- ~/dotfiles
+        |   Core dotfile group - OS-agnostic stuff like gitignores,
+        |   core implementation of .bash_profile, etc.
+        |  
+        +--+-- ~/dotfiles/platforms
+           |   Platform-specific overrides and additions of certain files like bash_profile.
+           |   Stuff which can't inherit at runtime needs to be merged at install time.
+           |  
+           +-- ~/dotfiles/platforms/cygwin
+           |   Cygwin-specific extras using "source"
+           |  
+           +-- ~/dotfiles/platforms/darwin
+               OS X-specific extras
+               Example: This includes a bash_profile which includes extra help for homebrew
 
 ## Thanks
 
