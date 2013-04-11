@@ -53,7 +53,7 @@ Cygwin has limited package management built-in. I recommend downloading [apt-cyg
 After completing the relevant platform-specific section,
 
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
-* `git clone git@github.com:ticky/dotfiles.git ~/dotfiles`
+* `git clone git@github.com:geoffstokes/dotfiles.git ~/dotfiles`
 * `cd ~/dotfiles && chmod +x install.sh && ./install.sh`
 * if on OS X, run `osxdefaults.sh` to set OS X defaults (TODO: streamline this into the setup process)
 * Restart your shell
