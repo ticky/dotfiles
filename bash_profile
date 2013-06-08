@@ -7,7 +7,26 @@
 
 # the basics
 : ${HOME=~}
-: ${UNAME=$(uname)}
+
+# kernel name
+: ${UNAME=$(uname | tr '[A-Z]' '[a-z]')}
+
+# working around Cygwin weirdness
+# NOTE: On Linux and Darwin (and likely FreeBSD), `uname` returns the kernel name.
+#       On Cygwin, you get a long string including CYGWIN, kernel version and architecture.
+#       We override Cygwin's entry for brevity here.
+`uname -o > /dev/null 2>&1` && if [ `uname -o` = "Cygwin" ]; then
+  UNAME="cygwin"
+fi
+
+# detect coreutils' type by throwing -G at BSD ls
+if ls -G >/dev/null 2>&1; then
+  COREUTILS="BSD"
+else
+  COREUTILS="GNU"
+fi
+
+# default editor is vim
 : ${EDITOR=vim}
 
 # complete hostnames from this file
@@ -52,12 +71,6 @@ PATH="$HOME/dotfiles/bin:$PATH"
 # Allow platform-based overrides
 test -d "$HOME/dotfiles/bin/$UNAME" &&
 PATH="$HOME/dotfiles/bin/$UNAME:$PATH"
-
-# Cygwin-specific platform overrides
-`uname -o > /dev/null 2> /dev/null` && if [ `uname -o` = "Cygwin" ]; then
-  test -d "$HOME/dotfiles/bin/Cygwin" &&
-  PATH="$HOME/dotfiles/bin/Cygwin:$PATH"
-fi
 
 # put ~/bin on PATH if you have it
 test -d "$HOME/bin" &&
@@ -121,9 +134,11 @@ function parse_git_branch {
 # - Expand this to allow for tmux
 # - Find a way to implement similar behaviour on OS X (Cygwin/MSYS should be the same as this)
 # - Show hostname if inside a remote ssh session (Maybe?)
-# - Double check that running this once per session is safe (I'm pretty sure it is...)
+
+# "athost" variable is for disabling hostname in certain situations
 ATHOST="@\h"
-if [ "$UNAME" = "Linux" ]; then
+
+if [ "$UNAME" = "linux" ]; then
   if [[ `cat /proc/$PPID/cmdline` == SCREEN* ]] ; then
     ATHOST=""
   fi
@@ -144,7 +159,7 @@ function prompt_color() {
 #  AUTOCOMPLETE
 # ----------------------------------------------------------------------
 
-if [ "$UNAME" = "Darwin" ]; then
+if [ "$UNAME" = "darwin" ]; then
   if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
   fi
@@ -156,7 +171,7 @@ fi
 #  LS AND DIRCOLORS
 # ----------------------------------------------------------------------
 
-if [ "$UNAME" = "Darwin" ]; then
+if [ "$COREUTILS" = "BSD" ]; then
   # If we're on Darwin, assume we're using BSD utilities
   # setup the main ls alias
   alias ls='ls -hG'
@@ -208,14 +223,24 @@ export HISTIGNORE="&:cl:x:exit"
 
 function profile() {
   if [ "$1" = "edit" ]; then
-    command cd $HOME/dotfiles && command $EDITOR .;
+    command $EDITOR $HOME/dotfiles;
   elif [ "$1" = "load" ]; then
     command source $HOME/.bash_profile;
   elif [ "$1" = "install" ]; then
-    command cd $HOME/dotfiles/ && ruby $HOME/dotfiles/install.rb && \
+    command $HOME/dotfiles/install.sh && \
       profile load;
   else
-    echo "AVAILABLE COMMANDS: edit, load, install"
+    echo "Usage: profile <command>"
+    echo ""
+    echo "Commands:"
+    echo "    edit"
+    echo "        Open the dotfiles directory in \"$EDITOR\""
+    echo ""
+    echo "    load"
+    echo "        Reload the configuration (Applies only to bash_profile)"
+    echo ""
+    echo "    install"
+    echo "        Run the dotfiles installer again (to add new files)"
   fi
 }
 alias p="profile"
@@ -245,7 +270,7 @@ function mkcd() {
 
 # crossplatform find command - uses spotlight data on OS X
 function fn {
-  if [ "$UNAME" = "Darwin" ]; then
+  if [ "$UNAME" = "darwin" ]; then
     mdfind -onlyin . "kMDItemDisplayName == '$@'wc";
   else
     find `pwd` -name $@ 2> /dev/null
