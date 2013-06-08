@@ -5,7 +5,7 @@
 # VARIABLES & BASIC CONFIGURATION
 # ==============================================================================
 
-# the basics
+# set a variable with the home dir's location (adding "~" to PATH doesn't work)
 : ${HOME=~}
 
 # kernel name
@@ -109,22 +109,25 @@ function title() {
   echo -ne "\033]0;$@\007";
 }
 function title_git() {
-  title `echo ${PWD} "$(parse_git_branch) $@"`
+  title `echo ${PWD} "$(_git_prompt) $@"`
 }
 
 # ----------------------------------------------------------------------
 #  PROMPT
 # ----------------------------------------------------------------------
 
-# git info for prompt
-function parse_git_email {
+# checks the current repo's email against the global value; if they don't match, show the repo's value.
+function _git_prompt_local_email {
   [[ $(git config user.email) != $(git config --global user.email) ]] && echo "`git config user.email` "
 }
-function parse_git_dirty {
+# detect if there are changes to the local working copy
+function _git_prompt_dirty_marker {
   [ -z "$(git status -s 2> /dev/null)" ] || echo " ●"
 }
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/✱ $(parse_git_email)⌥ \1$(parse_git_dirty)/"
+# Serves two functions; shows the current branch (in place of `\1`),
+# and if `git branch` returns a failure code, outputs nothing (i.e. hides the git prompt, and never calls the sub-functions).
+function _git_prompt {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/✱ $(_git_prompt_local_email)⌥ \1$(_git_prompt_dirty_marker)/"
 }
 
 
@@ -146,20 +149,32 @@ fi
 
 # prompt setup functions
 function prompt_pwd() {
-  newPWD="${PWD} $(parse_git_branch)"
+  # This sets up the newPWD value which is used in the prompt and the title.
+  # It is run after every command by the PROMPT_COMMAND variable.
+  newPWD="${PWD} $(_git_prompt)"
 }
 function prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
+
+  # Set up prompt.
   PS1="${COLOR_BACKGROUND}\u${ATHOST}${COLOR_REGULAR}:\w\n${COLOR_BOLD}>${COLOR_DEFAULT} "
+
+  # Replace "\w" with the newPWD variable set in prompt_pwd
+  # (This syntax is evaluated when the prompt is rendered; the one above is evaluated once)
+  # TODO: Investigate why.
   PS1=${PS1//\\w/\$\{newPWD\}}
-    PS2="${COLOR_REGULAR}>${COLOR_DEFAULT} "
+
+  # multi-line command input prompt
+  PS2="${COLOR_REGULAR}>${COLOR_DEFAULT} "
 }
 
 # ----------------------------------------------------------------------
 #  AUTOCOMPLETE
 # ----------------------------------------------------------------------
 
+# OS X-specific autocompletions
 if [ "$UNAME" = "darwin" ]; then
+  # if homebrew's bash_completion is installed, bring it in
   if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
   fi
