@@ -10,9 +10,9 @@ If you do too, then you might like my dotfiles.
 * autocomplete directories, history, commands, common `killall` items and aliases
 * useful aliases for git and more
 * 2 line prompt for readability
-* support for OS X, Linux and Cygwin
-* built-in compatibility with both GNU utilities and BSD utilities
-* useful user-level .gitignore
+* support for OS X, Linux and Cygwin (and exposes `$UNAME` environment variable containing a lower-case platform name)
+* built-in compatibility with both GNU and BSD core utilities (also exposes `$COREUTILS` environment variable)
+* useful user-level `.gitignore`
 * sensible `screen` setup - no startup message, real bells and your user shell
 * support for `tmux` (very basic for now)
 * good `wget` defaults
@@ -54,7 +54,7 @@ After completing the relevant platform-specific section,
 
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
 * `git clone git@github.com:geoffstokes/dotfiles.git ~/dotfiles`
-* `cd ~/dotfiles && chmod +x install.sh && ./install.sh`
+* `~/dotfiles/install.sh`
 * if on OS X, run `osxdefaults.sh` to set OS X defaults (TODO: streamline this into the setup process)
 * Restart your shell
 
@@ -68,36 +68,10 @@ NOTE: OS X defaults will not be set on shell restart.
 
 This includes both a generalised `bin` directory for platform-agnostic scripts, and support for platform-specific directories. It's simple to use;
 
-* run `uname` to determine the default name of the system - on OS X, this is `Darwin`, on Linux it varies.
-* Create a directory under `~/dotfiles/bin` with the text output by `uname` (e.g. `~/dotfiles/bin/Darwin`)
-* Place any platform-specific binaries in here
-
-NOTE: This will likely be replaced entirely with the "Inheritance" concept outlined in the Todo section below.
-
-###Inheritance
-
-I plan to implement "inheritance" of settings and configurations on a platform basis.
-This will require additional folder structure and some intelligent additions to the install
-script to concatenate some files which can't be inherited at run-time.
-
-    +-- ~
-    |   Local overrides for other configuration.
-    |   Can include prefix and suffix files for files which can't inherit at runtime.
-    |
-    +--+-- ~/dotfiles
-        |   Core dotfile group - OS-agnostic stuff like gitignores,
-        |   core implementation of .bash_profile, etc.
-        |  
-        +--+-- ~/dotfiles/platforms
-           |   Platform-specific overrides and additions of certain files like bash_profile.
-           |   Stuff which can't inherit at runtime needs to be merged at install time.
-           |  
-           +-- ~/dotfiles/platforms/cygwin
-           |   Cygwin-specific extras using "source"
-           |  
-           +-- ~/dotfiles/platforms/darwin
-               OS X-specific extras
-               Example: This includes a bash_profile which includes extra help for homebrew
+* run `uname | tr '[A-Z]' '[a-z]'` to determine the default name of the system - on OS X, this is `darwin`, on Linux it varies.
+* if you're running Cygwin, your directory name will be `cygwin`.
+* create a directory under `~/dotfiles/bin` with the text output by `uname | tr '[A-Z]' '[a-z]'` (e.g. `~/dotfiles/bin/darwin`)
+* place any platform-specific binaries in here
 
 ## Thanks
 
