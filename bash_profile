@@ -1,5 +1,5 @@
 #!/bin/bash
-# ticky <http://github.com/ticky/dotfiles>
+# Geoff Stokes <http://github.com/geoffstokes/dotfiles>
 
 # ==============================================================================
 # VARIABLES & BASIC CONFIGURATION
@@ -196,7 +196,7 @@ export PROMPT_COMMAND="history -a; history -r; $PROMPT_COMMAND"
 export HISTCONTROL=erasedups
 
 # ignore specific commands
-export HISTIGNORE="&:cl:x"
+export HISTIGNORE="&:cl:x:exit"
 
 # ==============================================================================
 # ALIASES & FUNCTIONS
@@ -258,6 +258,7 @@ alias rm!="rm -rf"
 
 # close window
 alias x="exit"
+alias :q="exit"
 # clear window
 alias cl="clear"
 
