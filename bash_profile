@@ -274,7 +274,7 @@ alias gf="git fetch"
 alias gr="git remote -v"
 alias gp="git push"
 alias gpl="git pull"
-alias gc="git commit -am"
+alias gc="git commit"
 alias gco="git checkout"
 alias ga="git add ."
 
