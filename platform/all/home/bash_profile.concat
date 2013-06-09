@@ -375,8 +375,23 @@ alias ....="cd ../../../"
 
 # create a directory and cd into it
 function mkcd() {
-  mkdir -p "$@" && eval cd "\"\$$#\"";
+  mkdir -p "$@" && eval cd "$@";
 }
+
+function gz() {
+  local origsize=$(wc -c < "$1")
+  local gzipsize=$(gzip -c "$1" | wc -c)
+  local ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
+  printf "orig: %d bytes\n" "$origsize"
+  printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
+}
+
+if [ "$UNAME" = "darwin" ]; then
+  # Change working directory to the top-most Finder window location
+  function cdf() { # short for `cdfinder`
+    cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
+  }
+fi
 
 # crossplatform find command - uses spotlight data on OS X
 function fn {

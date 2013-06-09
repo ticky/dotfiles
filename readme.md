@@ -102,6 +102,7 @@ _**NOTE**: Due to the way this works, it's not possible to update a concatenated
 ## Thanks
 
 * [seaofclouds](http://github.com/seaofclouds)
+* [ben alman](https://github.com/cowboy)
 * [mathias bynens](http://mths.be/)
 * [ryan tomayko](http://tomayko.com/about)
 * [pedro belo](http://github.com/pedro)
