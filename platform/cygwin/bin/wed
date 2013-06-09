@@ -22,7 +22,7 @@ else
   fileopen=`pwd`
 fi
 
-if [ ! -n "$WINEDITOR" ]
+if [ ! -n "$WINEDITOR" ]; then
   vim "$fileopen"
 else
   cygstart "$WINEDITOR" "`cygpath -aw $fileopen`"
