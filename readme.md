@@ -27,8 +27,10 @@ If you do too, then you might like my dotfiles.
   _Optional, only used for the `shttp` shortcut, which starts an HTTP server for the current directory_
 * **Homebrew**  
   _OS X Only - This means you need Xcode installed first_
-* **`ncurses`**  
+* **`ncurses `**  
   _If this isn't installed, the `clear` command is missing_
+* **DejaVu Sans Mono**  
+  _Cygwin Only - I use this font in MinTTY, and it'll fall back to Courier if it's not installed_
 
 ## Setup
 
