@@ -19,9 +19,16 @@ If you do too, then you might like my dotfiles.
 
 ## Requirements
 
-* Bash 3.2 or newer (Sorry, MINGW32 users)
-* Homebrew (On OS X - This means you need Xcode installed first)
-* git with ssh support
+* **`git`**  
+  _...Welcome to GitHub_
+* **Bash 3.2** or newer  
+  _Sorry, MinGW users_
+* **Python**  
+  _Optional, only used for the `shttp` shortcut, which starts an HTTP server for the current directory_
+* **Homebrew**  
+  _OS X Only - This means you need Xcode installed first_
+* **`ncurses`**  
+  _If this isn't installed, the `clear` command is missing_
 
 ## Setup
 
@@ -32,7 +39,7 @@ Setup involves a few steps specific to each platform, followed by the "all platf
 On OS X, Homebrew is presently required. (You almost certainly want it anyway)
 
 * install [Xcode](https://itunes.apple.com/app/xcode/id497799835)
-* install [homebrew](http://github.com/mxcl/homebrew)
+* install [Homebrew](http://github.com/mxcl/homebrew)
 * `brew install bash-completion`
 * `brew install git`
 
@@ -53,25 +60,31 @@ Cygwin has limited package management built-in. I recommend downloading [apt-cyg
 After completing the relevant platform-specific section,
 
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
-* `git clone git@github.com:geoffstokes/dotfiles.git ~/dotfiles`
-* `~/dotfiles/install.sh`
-* if on OS X, run `osxdefaults.sh` to set OS X defaults (TODO: streamline this into the setup process)
+* `git clone https://github.com/geoffstokes/dotfiles.git ~/dotfiles`
+* `~/dotfiles/install.sh`  
+  _**NOTE**: If `install.sh` detects that dependencies are missing, it will notify you and abort._
+* if on OS X, run `osxdefaults.sh` to set OS X defaults  
+  _**TODO**: streamline this into the setup process)_
 * Restart your shell
 
 ## Updating
 
-There is no special method to updating. Simply pull any changes into your working copy and restart your shell.
+* pull changes into your local copy
+* run `~/dotfiles/install.sh`
+
+In short (if you haven't changed anything locally), `cd ~/dotfiles && git pull && profile install`
 
 NOTE: OS X defaults will not be set on shell restart.
 
 ## Platform-specific `bin` directories
 
-This includes both a generalised `bin` directory for platform-agnostic scripts, and support for platform-specific directories. It's simple to use;
+This includes both a generalised `bin` directory for platform-agnostic scripts, and support for platform-specific `bin` directories.
 
-* run `uname | tr '[A-Z]' '[a-z]'` to determine the default name of the system - on OS X, this is `darwin`, on Linux it varies.
-* if you're running Cygwin, your directory name will be `cygwin`.
-* create a directory under `~/dotfiles/bin` with the text output by `uname | tr '[A-Z]' '[a-z]'` (e.g. `~/dotfiles/bin/darwin`)
-* place any platform-specific binaries in here
+The `bash_profile` includes a helper function for this called `platformbindir`. Running this will;
+* create the platform-specific `bin` directory if it doesn't already exist
+* output the full location of the platform-specific `bin` directory
+
+So it's easy to add stuff; you can do stuff like ``cd `platformbindir` ``, which navigates straight to the current platform's `bin` directory.
 
 ## Thanks
 

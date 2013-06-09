@@ -84,6 +84,14 @@ PATH="$HOME/dotfiles/bin:$PATH"
 test -d "$HOME/dotfiles/bin/$UNAME" &&
 PATH="$HOME/dotfiles/bin/$UNAME:$PATH"
 
+function platformbindir {
+  if [ -d "$HOME/dotfiles/bin/$UNAME" ]; then
+    echo "$HOME/dotfiles/bin/$UNAME"
+  else
+    mkdir "$HOME/dotfiles/bin/$UNAME" && PATH="$HOME/dotfiles/bin/$UNAME:$PATH" && echo "$HOME/dotfiles/bin/$UNAME:$PATH"
+  fi
+}
+
 # put ~/bin on PATH if you have it
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
@@ -344,7 +352,11 @@ function fn {
   fi
 }
 
-alias shttp="python -m SimpleHTTPServer"
+if python --version >/dev/null 2>&1; then
+  alias shttp="python -m SimpleHTTPServer"
+else
+  alias shttp="echo \"Python was not found.\""
+fi
 
 alias rm!="rm -rf"
 
