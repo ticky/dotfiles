@@ -74,17 +74,28 @@ After completing the relevant platform-specific section,
 
 In short (if you haven't changed anything locally), `cd ~/dotfiles && git pull && profile install`
 
-NOTE: OS X defaults will not be set on shell restart.
+_**NOTE**: OS X defaults will not be updated on shell restarts. They are only updated when you explicitly run `osxdefaults.sh`_
 
-## Platform-specific `bin` directories
+## Platform-specific directories
 
-This includes both a generalised `bin` directory for platform-agnostic scripts, and support for platform-specific `bin` directories.
+This supports two kinds of platform-specific functionality;
 
-The `bash_profile` includes a helper function for this called `platformbindir`. Running this will;
+1. Platform-specific `bin` directories
+2. Platform-specific `~` includes
+
+The install script will manage this automatically. You can find these under `dotfiles/platforms`.
+
+* Files in `dotfiles/platforms/{platform}/bin` are automatically available in your `$PATH`.
+
+* Files in `dotfiles/platforms/{platform}/home` are either symlinked (editing `~/{file}` updates `dotfiles/platforms/{platform}/file` - platform-specific includes are only possible if the file is executable) or concatenated (appended; this allows platform-specific stuff to be added to files which aren't executed).
+
+This setup includes a helper function for this called `platformbindir`. Running this will;
 * create the platform-specific `bin` directory if it doesn't already exist
 * output the full location of the platform-specific `bin` directory
 
 So it's easy to add stuff; you can do stuff like ``cd `platformbindir` ``, which navigates straight to the current platform's `bin` directory.
+
+_**NOTE**: Due to the way this works, it's not possible to update a concatenated file in your home directory and commit it immediately. You will need to make the edit twice for those files._
 
 ## Thanks
 

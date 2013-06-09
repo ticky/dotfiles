@@ -56,20 +56,41 @@ else
   echo
   echo "## Installing files..."
 
-  for file in ~/dotfiles/*
+  echo
+  echo "### Installing symlinks..."
+
+  for file in ~/dotfiles/platform/all/home/*.symlink ~/dotfiles/platform/$UNAME/home/*.symlink
   do
     basename=$(basename $file)
-    target=~/.$basename
-    if [ "${basename}" == "install.sh" -o "${basename}" == "readme.md" -o "${basename}" == "bin" ]
-    then
-      continue
+    target=~/.${basename%.symlink}
+    if [ -r $file ]; then
+      echo "* Linking \"$basename\" as \"$target\""
+      if [ "$UNAME" = "cygwin" ]; then
+        ln -f $file $target
+      else
+        ln -sf $file $target
+      fi
     fi
-    echo "* Installing \"$basename\" to \"$target\""
-    if [ "$UNAME" = "cygwin" ]
-    then
-      ln -f $file $target
-    else
-      ln -sf $file $target
+  done
+
+  echo
+  echo "### Concatenating files..."
+
+  for file in ~/dotfiles/platform/all/home/*.concat ~/dotfiles/platform/$UNAME/home/*.concat
+  do
+    basename=$(basename $file)
+    target=~/.${basename%.concat}
+    if [ -r $file ]; then
+      echo "* Creating \"$target\" from \"$basename\""
+      if [ -r $target ]; then
+        echo "  * Moving existing \"$target\" to \"$target.bak\""
+        mv $target "$target.bak"
+      fi
+      if [ -d $file ]; then
+        cp -R $file $target
+      else
+        cat $file >> $target
+      fi
     fi
   done
 

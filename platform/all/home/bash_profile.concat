@@ -77,18 +77,18 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
 # All-OS user bin
-test -d "$HOME/dotfiles/bin" &&
-PATH="$HOME/dotfiles/bin:$PATH"
+test -d "$HOME/dotfiles/platform/all/bin" &&
+PATH="$HOME/dotfiles/platform/all/bin:$PATH"
 
 # Allow platform-based overrides
-test -d "$HOME/dotfiles/bin/$UNAME" &&
-PATH="$HOME/dotfiles/bin/$UNAME:$PATH"
+test -d "$HOME/dotfiles/platform/$UNAME/bin" &&
+PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH"
 
 function platformbindir {
-  if [ -d "$HOME/dotfiles/bin/$UNAME" ]; then
-    echo "$HOME/dotfiles/bin/$UNAME"
+  if [ -d "$HOME/dotfiles/platform/$UNAME/bin" ]; then
+    echo "$HOME/dotfiles/platform/$UNAME/bin"
   else
-    mkdir "$HOME/dotfiles/bin/$UNAME" && PATH="$HOME/dotfiles/bin/$UNAME:$PATH" && echo "$HOME/dotfiles/bin/$UNAME:$PATH"
+    mkdir -p "$HOME/dotfiles/platform/$UNAME/bin" && PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH" && echo "$HOME/dotfiles/platform/$UNAME/bin:$PATH"
   fi
 }
 
