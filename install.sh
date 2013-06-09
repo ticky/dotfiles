@@ -81,11 +81,19 @@ else
     basename=$(basename $file)
     target=~/.${basename%.concat}
     if [ -r $file ]; then
-      echo "* Creating \"$target\" from \"$basename\""
       if [ -r $target ]; then
-        echo "  * Moving existing \"$target\" to \"$target.bak\""
+        echo "* Moving existing \"$target\" to \"$target.bak\""
         mv $target "$target.bak"
       fi
+    fi
+  done
+
+  for file in ~/dotfiles/platform/all/home/*.concat ~/dotfiles/platform/$UNAME/home/*.concat
+  do
+    basename=$(basename $file)
+    target=~/.${basename%.concat}
+    if [ -r $file ]; then
+      echo "* Creating \"$target\" from \"$basename\""
       if [ -d $file ]; then
         cp -R $file $target
       else
