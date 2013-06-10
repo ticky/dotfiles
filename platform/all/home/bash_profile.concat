@@ -386,6 +386,14 @@ function gz() {
   printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
+function untar() {
+  if [[ $1 =~ .*\.gz ]]; then
+    command tar xvfz $1
+  else
+    command tar xvf $1
+  fi
+}
+
 if [ "$UNAME" = "darwin" ]; then
   # Change working directory to the top-most Finder window location
   function cdf() { # short for `cdfinder`
