@@ -45,6 +45,25 @@ fi
 : ${HOSTFILE=~/.ssh/known_hosts}
 
 # ----------------------------------------------------------------------
+#  SHELL OPTIONS
+# ----------------------------------------------------------------------
+
+# shell opts. see bash(1) for details
+shopt -s cdspell >/dev/null 2>&1
+shopt -s extglob >/dev/null 2>&1
+shopt -s histappend >/dev/null 2>&1
+shopt -s hostcomplete >/dev/null 2>&1
+shopt -s interactive_comments >/dev/null 2>&1
+shopt -u mailwarn >/dev/null 2>&1
+shopt -s no_empty_cmd_completion >/dev/null 2>&1
+
+# fuck that you have new mail shit
+unset MAILCHECK
+
+# default umask
+umask 0022
+
+# ----------------------------------------------------------------------
 #  COLOUR DEFINITIONS
 # ----------------------------------------------------------------------
 
@@ -109,6 +128,10 @@ PATH="$HOME/dotfiles/platform/all/bin:$PATH"
 test -d "$HOME/dotfiles/platform/$UNAME/bin" &&
 PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH"
 
+# Allow platform-based overrides
+test -d "$HOME/dotfiles/platform/all-but-!($UNAME)/bin" &&
+PATH="$HOME/dotfiles/platform/all-but-!($UNAME)/bin:$PATH"
+
 function platformbindir {
   if [ -d "$HOME/dotfiles/platform/$UNAME/bin" ]; then
     echo "$HOME/dotfiles/platform/$UNAME/bin"
@@ -120,30 +143,6 @@ function platformbindir {
 # put ~/bin on PATH if you have it
 test -d "$HOME/bin" &&
 PATH="$HOME/bin:$PATH"
-
-
-# ==============================================================================
-# SETTINGS
-# ==============================================================================
-
-# ----------------------------------------------------------------------
-#  SHELL OPTIONS
-# ----------------------------------------------------------------------
-
-# shell opts. see bash(1) for details
-shopt -s cdspell >/dev/null 2>&1
-shopt -s extglob >/dev/null 2>&1
-shopt -s histappend >/dev/null 2>&1
-shopt -s hostcomplete >/dev/null 2>&1
-shopt -s interactive_comments >/dev/null 2>&1
-shopt -u mailwarn >/dev/null 2>&1
-shopt -s no_empty_cmd_completion >/dev/null 2>&1
-
-# fuck that you have new mail shit
-unset MAILCHECK
-
-# default umask
-umask 0022
 
 # ----------------------------------------------------------------------
 #  WINDOW TITLE

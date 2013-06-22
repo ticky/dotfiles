@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Mobile Safari Remote Inspector"
 echo "------------------------------"
 MobileSafari_PID=$(ps x | grep "MobileSafari" | grep -v grep | awk '{ print $1 }')

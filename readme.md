@@ -15,7 +15,7 @@ If you do too, then you might like my dotfiles.
 * built-in compatibility with both GNU and BSD core utilities (also exposes `$COREUTILS` environment variable)
 * useful user-level `.gitignore`
 * sensible `screen` setup - no startup message, real bells and your user shell
-* support for `tmux` (very basic for now)
+* support for `tmux` (very basic for now, on all platforms but Cygwin)
 * good `wget` defaults
 
 ## Requirements
@@ -28,7 +28,7 @@ If you do too, then you might like my dotfiles.
   _Optional, only used for the `shttp` shortcut, which starts an HTTP server for the current directory_
 * **Homebrew**  
   _OS X Only - This means you need Xcode installed first_
-* **`ncurses `**  
+* **`ncurses`**  
   _If this isn't installed, the `clear` command is missing_
 * **DejaVu Sans Mono**  
   _Cygwin Only - I use this font in MinTTY, and it'll fall back to Courier if it's not installed_
@@ -66,8 +66,8 @@ After completing the relevant platform-specific section,
 * `git clone https://github.com/geoffstokes/dotfiles.git ~/dotfiles`
 * `~/dotfiles/install.sh`  
   _**NOTE**: If `install.sh` detects that dependencies are missing, it will notify you and abort._
-* if on OS X, run `osxdefaults.sh` to set OS X defaults  
-  _**TODO**: streamline this into the setup process)_
+* if on OS X, run `osxdefaults` to set OS X defaults  
+  _**TODO**: streamline this into the setup process_
 * Restart your shell
 
 ## Updating
@@ -77,9 +77,11 @@ After completing the relevant platform-specific section,
 
 In short (if you haven't changed anything locally), `cd ~/dotfiles && git pull && profile install`
 
-_**NOTE**: OS X defaults will not be updated on shell restarts. They are only updated when you explicitly run `osxdefaults.sh`_
+_**NOTE**: OS X defaults will not be updated on shell restarts. They are only updated when you explicitly run `osxdefaults` (and are, naturally, only available on OS X)_
 
 ## Platform-specific directories
+
+### Single-Platform
 
 This supports two kinds of platform-specific functionality;
 
@@ -99,6 +101,12 @@ This setup includes a helper function for this called `platformbindir`. Running 
 So it's easy to add stuff; you can do stuff like ``cd `platformbindir` ``, which navigates straight to the current platform's `bin` directory.
 
 _**NOTE**: Due to the way this works, it's not possible to update a concatenated file in your home directory and commit it immediately. You will need to make the edit twice for those files._
+
+### All-But-Platform
+
+Additionally, there is provision for such directories usable for all but a certain platform. For example, `tmux` works anywhere except on Cygwin, so `tmux.conf.concat` is placed in `dotfiles/platforms/all-but-cygwin/home`. It then applies on `linux` and `darwin`, but not `cygwin`.
+
+There are no shortcuts for configuring this, however, it relies on the same `$UNAME` variable as the above, so if you had a `linux` directory, the all-but directory is `all-but-linux`.
 
 ## Thanks
 

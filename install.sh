@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# make sure extended and null globbing are on
+shopt -s extglob
+shopt -s nullglob
+
 # kernel name
 : ${UNAME=$(uname | tr '[A-Z]' '[a-z]')}
 
@@ -63,7 +67,7 @@ else
   echo
   echo "### Installing symlinks..."
 
-  for file in ~/dotfiles/platform/all/home/*.symlink ~/dotfiles/platform/$UNAME/home/*.symlink
+  for file in ~/dotfiles/platform/all/home/*.symlink ~/dotfiles/platform/$UNAME/home/*.symlink ~/dotfiles/platform/all-but-!($UNAME)/home/*.symlink
   do
     basename=$(basename $file)
     target=~/.${basename%.symlink}
@@ -80,7 +84,7 @@ else
   echo
   echo "### Concatenating files..."
 
-  for file in ~/dotfiles/platform/all/home/*.concat ~/dotfiles/platform/$UNAME/home/*.concat
+  for file in ~/dotfiles/platform/all/home/*.concat ~/dotfiles/platform/$UNAME/home/*.concat ~/dotfiles/platform/all-but-!($UNAME)/home/*.concat
   do
     basename=$(basename $file)
     target=~/.${basename%.concat}
@@ -92,7 +96,7 @@ else
     fi
   done
 
-  for file in ~/dotfiles/platform/all/home/*.concat ~/dotfiles/platform/$UNAME/home/*.concat
+  for file in ~/dotfiles/platform/all/home/*.concat ~/dotfiles/platform/$UNAME/home/*.concat ~/dotfiles/platform/all-but-!($UNAME)/home/*.concat
   do
     basename=$(basename $file)
     target=~/.${basename%.concat}
