@@ -23,3 +23,5 @@
 	added = yellow
 	changed = green bold
 	untracked = blue bold
+[hub]
+	protocol = https

@@ -9,6 +9,7 @@ If you do too, then you might like my dotfiles.
 * prompt updated with working git branch name and status
 * autocomplete directories, history, commands, common `killall` items and aliases
 * useful aliases for git and more
+* support for the [hub](https://github.com/defunkt/hub) git extension
 * 2 line prompt for readability
 * support for OS X, Linux and Cygwin (and exposes `$UNAME` environment variable containing a lower-case platform name)
 * built-in compatibility with both GNU and BSD core utilities (also exposes `$COREUTILS` environment variable)
