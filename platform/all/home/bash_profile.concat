@@ -163,16 +163,16 @@ function title_git() {
 
 # checks the current repo's email against the global value; if they don't match, show the repo's value.
 function _git_prompt_local_email {
-  [[ $(git config user.email) != $(git config --global user.email) ]] && echo "`git config user.email` "
+  [[ $(command git config user.email) != $(command git config --global user.email) ]] && echo "`command git config user.email` "
 }
 # detect if there are changes to the local working copy
 function _git_prompt_dirty_marker {
-  [ -z "$(git status -s 2> /dev/null)" ] || echo " ●"
+  [ -z "$(command git status -s 2> /dev/null)" ] || echo " ●"
 }
 # Serves two functions; shows the current branch (in place of `\1`),
 # and if `git branch` returns a failure code, outputs nothing (i.e. hides the git prompt, and never calls the sub-functions).
 function _git_prompt {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/✱ $(_git_prompt_local_email)⌥ \1$(_git_prompt_dirty_marker)/"
+  command git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/✱ $(_git_prompt_local_email)⌥ \1$(_git_prompt_dirty_marker)/"
 }
 
 
@@ -331,9 +331,9 @@ function profile() {
       profile load;
   elif [ "$1" = "update" ]; then
     command cd ~/dotfiles && \
-      git stash && \
-      git fetch && \
-      git stash pop && \
+      command git stash && \
+      command git fetch && \
+      command git stash pop && \
       cd - && \
       profile install
   else
@@ -428,6 +428,8 @@ alias cl="clear"
 #  GIT
 # ----------------------------------------------------------------------
 
+# if hub is installed, enable it
+hub alias -s >/dev/null 2>/dev/null && eval "$(hub alias -s)"
 alias gd="git diff"
 alias gl="git log"
 alias gu="git up"
