@@ -28,5 +28,5 @@ robots = off
 # Print the HTTP and FTP server responses
 server_response = on
 
-# Disguise as IE 9 on Windows 7
+# Disguise as IE 10 on Windows 8
 user_agent = Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)

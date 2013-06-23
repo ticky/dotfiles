@@ -33,6 +33,8 @@ If you do too, then you might like my dotfiles.
 * **DejaVu Sans Mono**  
   _Cygwin Only - I use this font in MinTTY, and it'll fall back to Courier if it's not installed_
 
+_**On Windows?** I'm attempting to improve the Windows command prompt in similar ways, over at [batfiles](https://github.com/geoffstokes/batfiles)._
+
 ## Setup
 
 Setup involves a few steps specific to each platform, followed by the "all platforms" steps below.
