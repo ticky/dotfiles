@@ -67,8 +67,6 @@ umask 0022
 #  COLOUR DEFINITIONS
 # ----------------------------------------------------------------------
 
-# "\[\033[0;35m\]" // Purple
-
 COLOR_DEFAULT="\[\033[0m\]" # Terminal Default Colours
 SCREEN_ESC="\[\033k\033\134\]" # Screen Escape
 
@@ -192,6 +190,7 @@ if [ "$UNAME" = "linux" ]; then
 fi
 
 # prompt setup functions
+# Reference for escape sequences: http://www.ibm.com/developerworks/linux/library/l-tip-prompt/
 function prompt_pwd() {
   # This sets up the newPWD value which is used in the prompt and the title.
   # It is run after every command by the PROMPT_COMMAND variable.
@@ -294,6 +293,7 @@ eval $(dircolors -b ~/.dircolors 2>/dev/null)
 
 # ----------------------------------------------------------------------
 #  COMMAND HISTORY
+#  http://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/
 # ----------------------------------------------------------------------
 
 # big history
@@ -373,6 +373,7 @@ alias ...="cd ../.."
 alias ....="cd ../../../"
 
 # create a directory and cd into it
+# http://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/
 function mkcd() {
   mkdir -p "$@" && eval cd "$@";
 }

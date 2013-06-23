@@ -1,6 +1,6 @@
 # Dotfiles
 
-I like colors, a simple workflow and homebrew.  
+I like colours, a simple workflow and homebrew.  
 If you do too, then you might like my dotfiles.
 
 ## Features
@@ -20,7 +20,7 @@ If you do too, then you might like my dotfiles.
 
 ## Requirements
 
-* **`git`**  
+* `git`  
   _...Welcome to GitHub_
 * **Bash 3.2** or newer  
   _Sorry, MinGW users_
@@ -28,7 +28,7 @@ If you do too, then you might like my dotfiles.
   _Optional, only used for the `shttp` shortcut, which starts an HTTP server for the current directory_
 * **Homebrew**  
   _OS X Only - This means you need Xcode installed first_
-* **`ncurses`**  
+* `ncurses`  
   _If this isn't installed, the `clear` command is missing_
 * **DejaVu Sans Mono**  
   _Cygwin Only - I use this font in MinTTY, and it'll fall back to Courier if it's not installed_
@@ -46,17 +46,17 @@ On OS X, Homebrew is presently required. (You almost certainly want it anyway)
 * `brew install bash-completion`
 * `brew install git`
 
-### Linux
-
-On Linux, you almost certainly have the core utilities needed. Just to be sure, you should install the following with your distro's package manager:
-
-* bash-completion, git
-
 ### Cygwin
 
 Cygwin has limited package management built-in. I recommend downloading [apt-cyg](http://code.google.com/p/apt-cyg/) which gives you a command-line interface for Cygwin's package manager.
 
 * `apt-cyg install openssh git`
+
+### Linux
+
+On Linux, you almost certainly have the core utilities needed. Just to be sure, you should install the following with your distro's package manager:
+
+* `bash-completion`, `git`
 
 ### All Platforms
 
@@ -108,26 +108,11 @@ Additionally, there is provision for such directories usable for all but a certa
 
 There are no shortcuts for configuring this, however, it relies on the same `$UNAME` variable as the above, so if you had a `linux` directory, the all-but directory is `all-but-linux`.
 
-## Thanks
+## History
 
-* [seaofclouds](http://github.com/seaofclouds)
-* [ben alman](https://github.com/cowboy)
-* [mathias bynens](http://mths.be/)
-* [ryan tomayko](http://tomayko.com/about)
-* [pedro belo](http://github.com/pedro)
-* [peter van hardenberg](http://github.com/pvh)
-* james lindenbaum
-* [chris wanstrath](http://ozmm.org/)
-* google, blogs and probably you.
-
-## Resources
-
+These were originally forked from [seaofclouds](http://github.com/seaofclouds)' [dotfiles repo](https://github.com/seaofclouds/dotfiles), and subsequently heavily modified.  
+Lots of inspiration (and some shortcuts and functions) taken from these fine people;
+* [Ben Alman](https://github.com/cowboy/dotfiles)
+* [Mathias Bynens](http://mths.be/dotfiles)
+* [Ryan Tomayko](http://github.com/rtomayko/dotfiles)
 * [GitHub does dotfiles](http://dotfiles.github.com/)
-* [Mathias Bynens' Dotfiles](http://mths.be/dotfiles)
-* [Ryan Tomayko's Bash Profile](http://github.com/rtomayko/dotfiles)
-* [No Duplicates in Bash History](http://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/)
-* [Cycle through history instead of listing](http://www.macosxhints.com/article.php?story=20050904022246573&lsrc=osxh)
-* [IBM's bash prompt and color chart](http://www.ibm.com/developerworks/linux/library/l-tip-prompt/)
-* [Dircolors](http://hocuspokus.net/2008/01/a-better-ls-for-mac-os-x)
-* [mkdircd](http://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/)
-* [history grep alias](http://wuhrr.wordpress.com/2009/10/11/sweeten-bash-history-by-adding-grep/)
