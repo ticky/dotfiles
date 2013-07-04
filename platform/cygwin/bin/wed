@@ -2,7 +2,6 @@
 
 # 32-bit Sublime Text 2
 if [ -n "$PROGRAMFILES" ]; then
-  echo "Program Files (x86) found..."
   if [ -r "`cygpath -u "$PROGRAMFILES\Sublime Text 2\sublime_text.exe"`" ]; then
     WINEDITOR=$(cygpath -u "$PROGRAMFILES\Sublime Text 2\sublime_text.exe")
   fi
@@ -10,7 +9,6 @@ fi
 
 # 64-bit Sublime Text 2
 if [ -n "$ProgramW6432" ]; then
-  echo "Program Files found..."
   if [ -r "`cygpath -u "$ProgramW6432\Sublime Text 2\sublime_text.exe"`" ]; then
     WINEDITOR=$(cygpath -u "$ProgramW6432\Sublime Text 2\sublime_text.exe")
   fi

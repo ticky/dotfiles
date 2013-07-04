@@ -1,27 +1,10 @@
-[core]
-	excludesfile = ~/.gitignore
-	quotepath = false
 [user]
 	name = Geoff Stokes
 	email = geoff@geoffstokes.net
-[color]
-	ui = auto
-	branch = auto
-	diff = auto
-	status = auto
-[color "diff"]
-	meta = blue bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-[color "branch"]
-	current = yellow reverse
-	local = yellow bold
-	remote = green bold
-	plain = red bold
-[color "status"]
-	added = yellow
-	changed = green bold
-	untracked = blue bold
+[core]
+	excludesfile = ~/.gitignore
+	quotepath = false
 [hub]
 	protocol = https
+[color]
+	ui = true
