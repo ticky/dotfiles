@@ -398,7 +398,7 @@ function ipls() {
 
 # retrieves the last (hopefully most relevant) IP address in the `ipls` list
 function cip() {
-  ips | tail -1
+  ipls | tail -1
 }
 
 function gz() {
