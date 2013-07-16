@@ -1,4 +1,6 @@
 
+[push]
+    default = simple
 [difftool "Kaleidoscope"]
     cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [difftool]
