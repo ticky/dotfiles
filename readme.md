@@ -110,6 +110,50 @@ Additionally, there is provision for such directories usable for all but a certa
 
 There are no shortcuts for configuring this, however, it relies on the same `$UNAME` variable as the above, so if you had a `linux` directory, the all-but directory is `all-but-linux`.
 
+## Shortcuts and Variables
+
+### Variables
+
+* `$COREUTILS`: type of core utility distribution available on the local system. Either `OTHER`, `BSD` or `GNU`.
+* `$GCOREUTILS`: when `$COREUTILS` is `BSD`, this may be set to `YES` if there are also GNU core utilities available as, for example, `gls` for GNU `ls`.
+* `$UNAME`: current platform name, in lower case. (In the case of Cygwin, this will always be `cygwin`)
+
+### Shortcuts
+
+#### Public
+
+* `-`: shortcut to `cd -` (change to the previous working directory)
+* `..`: go up a directory
+* `...`: go up two directories
+* `....`: go up three directories
+* `cip`: outputs a single IP address for the current system (last line of `ipls` output), usually the one you want - useful for scripts
+* `cl`: shortcut to `clear`
+* `colourtest`: prints out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh))
+* `fn`: find files under the current directory by name (uses Spotlight's cache on OS X and `find` on other systems)
+* `gz`: output the current size and gzipped size of a file
+* `iosinspect`: (OS X only) open the iOS simulator, and allow remote debugging output
+* `ipls`: outputs a list of local IP addresses for the current system (works for both Linux and OS X)
+* `mkcd`: make a directory and move into it immediately
+* `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
+* `platformbindir`: outputs the current platform's platform-specific `bin` directory
+* `profile`, `p`: utility for updating, editing, installing and loading dotfiles
+* `rm!`: shortcut to `rm -rf`
+* `shttp`: alias for Python's SimpleHTTPServer - starts an HTTP server for the current working directory
+* `title`: set the window title
+* `untar`: you can `unzip`, why can't you `untar`?
+* `wed`: (Cygwin only) open a file or directory in Sublime Text 2 (if available), otherwise `vim`
+* `x`, `:q`: shortcut to `exit`
+* `~`: shortcut to change to the home directory
+
+#### Internal
+
+* `_git_prompt_dirty_marker`: outputs a `●` when the current directory is a git repository, and has local changes
+* `_git_prompt_local_email`: outputs any custom `user.email` git setting for the current directory, if it differs from the global setting
+* `_git_prompt`: outputs the current git branch, and the output of the `_git_prompt_local_email` and `_git_prompt_dirty_marker` commands, for the current working directory
+* `prompt_color`: configures the prompt output
+* `prompt_pwd`: command which updates the prompt's output after each command
+* `title_git`: sets the window title based on the git status of the current directory
+
 ## History
 
 These were originally forked from [seaofclouds](http://github.com/seaofclouds)' [dotfiles repo](https://github.com/seaofclouds/dotfiles), and subsequently heavily modified.  

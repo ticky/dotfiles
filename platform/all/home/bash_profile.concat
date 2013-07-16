@@ -382,6 +382,25 @@ function mkcd() {
   mkdir -p "$@" && eval cd "$@";
 }
 
+# filter out local and zeroconf addresses
+function _inetgrep() {
+  grep inet | grep -v ' 127.' | grep -v ' ::1 ' | grep -v ' 169.254.' | grep -v ' fe80'
+}
+
+# retrieves IP addresses which aren't zeroconf or local-only
+function ipls() {
+  if [ "$UNAME" = "darwin" ]; then
+    ifconfig | _inetgrep | awk '{print $2}'
+  else
+    ip addr show | _inetgrep | awk '{split($2,array,"/")} END{print array[1]}'
+  fi
+}
+
+# retrieves the last (hopefully most relevant) IP address in the `ipls` list
+function cip() {
+  ips | tail -1
+}
+
 function gz() {
   local origsize=$(wc -c < "$1")
   local gzipsize=$(gzip -c "$1" | wc -c)
@@ -437,7 +456,7 @@ hub alias -s >/dev/null 2>/dev/null && eval "$(hub alias -s)"
 alias ga="git add ."
 alias gb="git branch -av"
 alias gbr="git branch -avv --no-merged"
-alias gc="git commit"
+alias gc="git commit -v"
 alias gco="git checkout"
 alias gd="git diff"
 alias gdc="git diff --cached"
