@@ -8,3 +8,5 @@
 	protocol = https
 [color]
 	ui = true
+[push]
+	default = simple

@@ -118,6 +118,10 @@ test -r /etc/bashrc &&
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
+# bring in NPM
+test -d "/usr/local/share/npm/bin" &&
+PATH="$PATH:/usr/local/share/npm/bin"
+
 # All-OS user bin
 test -d "$HOME/dotfiles/platform/all/bin" &&
 PATH="$HOME/dotfiles/platform/all/bin:$PATH"
