@@ -63,6 +63,20 @@ unset MAILCHECK
 # default umask
 umask 0022
 
+# platform & user shortcut functions
+function userIsRoot {
+  [ `env whoami` = "root" ]
+}
+function platformIsDarwin {
+  [ "$UNAME" = "darwin" ]
+}
+function platformIsLinux {
+  [ "$UNAME" = "linux" ]
+}
+function platformIsCygwin {
+  [ "$UNAME" = "cygwin" ]
+}
+
 # ----------------------------------------------------------------------
 #  COLOUR DEFINITIONS
 # ----------------------------------------------------------------------
@@ -71,7 +85,7 @@ COLOR_DEFAULT="\[\033[0m\]" # Terminal Default Colours
 SCREEN_ESC="\[\033k\033\134\]" # Screen Escape
 
 # root gets a cyan prompt by default
-if [ `env whoami` = "root" ] ; then
+if userIsRoot; then
   COLOR_BACKGROUND="\[\033[0;46;1m\]" # White on Cyan
   COLOR_REGULAR="\[\033[0;36m\]" # Cyan
   COLOR_BOLD="\[\033[0;36;1m\]" # Bold Cyan
@@ -187,7 +201,7 @@ function _git_prompt {
 # "athost" variable is for disabling hostname in certain situations
 ATHOST="@\h"
 
-if [ "$UNAME" = "linux" ]; then
+if platformIsLinux; then
   if [[ `cat /proc/$PPID/cmdline` == SCREEN* ]] ; then
     ATHOST=""
   fi
@@ -220,10 +234,14 @@ function prompt_color() {
 # ----------------------------------------------------------------------
 
 # OS X-specific autocompletions
-if [ "$UNAME" = "darwin" ]; then
+if platformIsDarwin; then
   # if homebrew's bash_completion is installed, bring it in
   if [ -f `brew --prefix`/etc/bash_completion ]; then
+    # bash_completion sets and unsets a UNAME variable; this works around it
+    TEMPUNAME=$UNAME
     . `brew --prefix`/etc/bash_completion
+    UNAME=$TEMPUNAME
+    unset TEMPUNAME
   fi
   # Add `killall` tab completion for common apps - Borrowed from https://github.com/mathiasbynens/dotfiles/
   complete -o "nospace" -W "Adium Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
@@ -388,13 +406,15 @@ function _inetgrep() {
 }
 
 # retrieves IP addresses which aren't zeroconf or local-only
-function ipls() {
-  if [ "$UNAME" = "darwin" ]; then
-    ifconfig | _inetgrep | awk '{print $2}'
-  else
+if platformIsDarwin; then
+  function ipls() {
+    ifconfig | _inetgrep | awk '{print $2}';
+  }
+else
+  function ipls() {
     ip addr show | _inetgrep | awk '{split($2,array,"/")} END{print array[1]}'
-  fi
-}
+  }
+fi
 
 # retrieves the last (hopefully most relevant) IP address in the `ipls` list
 function cip() {
@@ -409,6 +429,7 @@ function gz() {
   printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
+# the tar command is bad and you should feel bad
 function untar() {
   if [[ $1 =~ .*\.gz ]]; then
     command tar xvfz $1
@@ -417,7 +438,7 @@ function untar() {
   fi
 }
 
-if [ "$UNAME" = "darwin" ]; then
+if platformIsDarwin; then
   # Change working directory to the top-most Finder window location
   function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
@@ -425,13 +446,15 @@ if [ "$UNAME" = "darwin" ]; then
 fi
 
 # crossplatform find command - uses spotlight data on OS X
-function fn {
-  if [ "$UNAME" = "darwin" ]; then
+if platformIsDarwin; then
+  function fn {
     mdfind -onlyin . "kMDItemDisplayName == '$@'wc";
-  else
+  }
+else
+  function fn {
     find `pwd` -name $@ 2> /dev/null
-  fi
-}
+  }
+fi
 
 if python --version >/dev/null 2>&1; then
   alias shttp="python -m SimpleHTTPServer"
