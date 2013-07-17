@@ -452,6 +452,7 @@ if platformIsDarwin; then
   }
 else
   function fn {
+    # `pwd` is used because find outputs path names attached to the location you give it
     find `pwd` -name $@ 2> /dev/null
   }
 fi
