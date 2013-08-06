@@ -8,12 +8,14 @@ If you do too, then you might like my dotfiles.
 * colorful prompt, directories and git functions
 * prompt updated with working git branch name and status
 * autocomplete directories, history, commands, common `killall` items and aliases
-* useful aliases for git and more
-* support for the [hub](https://github.com/defunkt/hub) git extension
 * 2 line prompt for readability
 * support for OS X, Linux and Cygwin (and exposes `$UNAME` environment variable containing a lower-case platform name)
 * built-in compatibility with both GNU and BSD core utilities (also exposes `$COREUTILS` environment variable)
+* useful aliases for git and more
+* support for the [hub](https://github.com/defunkt/hub) git extension
 * useful user-level `.gitignore`
+* stops `play` from spawning a useless dock icon and stealing focus for no reason
+* imports `rvm` by default
 * sensible `screen` setup - no startup message, real bells and your user shell
 * support for `tmux` (very basic for now, on all platforms but Cygwin)
 * good `wget` defaults
@@ -24,7 +26,7 @@ If you do too, then you might like my dotfiles.
   _...Welcome to GitHub_
 * **Bash 3.2** or newer  
   _Sorry, MinGW users_
-* **Python**  
+* **Python 2.6/2.7**  
   _Optional, only used for the `shttp` shortcut, which starts an HTTP server for the current directory_
 * **Homebrew**  
   _OS X Only - This means you need Xcode installed first_
