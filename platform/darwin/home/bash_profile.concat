@@ -1,0 +1,3 @@
+
+alias replacement-export="/usr/libexec/PlistBuddy -x -c Print\ NSUserReplacementItems ~/Library/Preferences/.GlobalPreferences.plist > ~/dotfiles/platform/darwin/ext/NSUserReplacementItems.plist"
+alias replacement-import="/usr/libexec/PlistBuddy -c Merge\ "$HOME/dotfiles/platform/darwin/ext/NSUserReplacementItems.plist"\ NSUserReplacementItems ~/Library/Preferences/.GlobalPreferences.plist"
