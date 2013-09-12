@@ -10,20 +10,50 @@ fi
 
 git_status() {
   st=$($git status 2>/dev/null | tail -n 1)
-  if [[ $st == "" ]]
-  then
+  if [[ $st == "" ]]; then
     echo ""
   else
-    if [[ "$st" =~ ^nothing ]]; then
-      echo "%{$fg[lightgrey]%}$(git_local_email)%{$fg[magenta]%}⌥ %{$fg_bold[magenta]%}$(git_current_branch)%{$reset_color%} %{$fg[magenta]%}$(git_need_push)%{$reset_color%} "
-    else
-      echo "%{$fg[lightgrey]%}$(git_local_email)%{$fg[magenta]%}⌥ %{$fg_bold[magenta]%}$(git_current_branch)%{$reset_color%} %{$fg[magenta]%}●$(git_need_push)%{$reset_color%} "
+
+    # Output var
+    op=""
+
+    # Fetch flag variables
+    gle="$(git_local_email)"
+    gnp="$(git_need_push)"
+    gcb="$(git_current_branch)"
+
+    # Add email if it's there
+    if [[ $gle != "" ]]; then
+      op="%{$fg[lightgrey]%}$gle%{$reset_color%} "
     fi
+
+    # Append branch info
+    op="$op%{$fg[magenta]%}⌥ %{$fg_bold[magenta]%}$gcb%{$reset_color%}"
+
+    # Add modified dot if status isn't "nothing to commit"
+    if [[ ! "$st" =~ ^nothing ]]; then
+      gf="$gf●"
+    fi
+
+    # Add the "needs push" indicator (output of git_need_push)
+    if [[ $gnp != "" ]]; then
+      gf="$gf$gnp"
+    fi
+
+    # Attach "gf" (git flags) to prompt if exists
+    if [[ $gf != "" ]]; then
+      op="$op %{$fg[magenta]%}$gf%{$reset_color%}"
+    fi
+
+    # Output
+    echo $op
   fi
 }
 
 git_local_email() {
-  [[ $(command git config user.email) != $(command git config --global user.email) ]] && echo "`command git config user.email` "
+  if [[ $($git config user.email) != $($git config --global user.email) ]]; then
+    echo $($git config user.email)
+  fi
 }
 
 git_current_branch () {
@@ -41,7 +71,7 @@ git_need_push () {
 }
 
 export PROMPT=$'%{$bg_bold[magenta]%}%n@%m%{$reset_color%}%{$fg[magenta]%}:%~\n› %{$reset_color%}'
-export RPROMPT=$'$(git_status)%t'
+export RPROMPT=$'$(git_status) %D{%L:%M %p}'
 export PS2=$'%{$fg[magenta]%}› %{$reset_color%}'
 #set_prompt () {
 #}
