@@ -5,7 +5,7 @@ If you do too, then you might like my dotfiles.
 
 ## Features
 
-* colorful prompt, directories and git functions
+* colorful prompt, directories and git functions in both `bash` and `zsh`
 * prompt updated with working git branch name and status
 * autocomplete directories, history, commands, common `killall` items and aliases
 * 2 line prompt for readability
@@ -24,8 +24,6 @@ If you do too, then you might like my dotfiles.
 
 * `git`  
   _...Welcome to GitHub_
-* **Bash 3.2** or newer  
-  _Sorry, MinGW users_
 * **Python 2.6/2.7**  
   _Optional, only used for the `shttp` shortcut, which starts an HTTP server for the current directory_
 * **Homebrew**  
@@ -36,6 +34,14 @@ If you do too, then you might like my dotfiles.
   _Cygwin Only - I use this font in MinTTY, and it'll fall back to Courier if it's not installed_
 
 _**On Windows?** I'm attempting to improve the Windows command prompt in similar ways, over at [batfiles](https://github.com/geoffstokes/batfiles)._
+
+### Supported Shells
+* **zsh 4.3** or newer  
+  _This is not a hard requirement, however, this version is the one supplied with OS X 10.8_
+* **Bash 3.2** or newer  
+  _Sorry, MinGW users_
+
+The focus of future updates to these dotfiles will be zsh. At some point, bash support may be removed, but only once the environments I use consistently have a compatible zsh version available.
 
 ## Setup
 
