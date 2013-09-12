@@ -15,9 +15,9 @@ git_status() {
     echo ""
   else
     if [[ "$st" =~ ^nothing ]]; then
-      echo "%{$fg[lightgrey]%}$(git_local_email)%{$fg[magenta]%}⌥ %{$fg_bold[magenta]%}$(git_current_branch)%{$reset_color%} %{$fg[magenta]%}$(git_need_push)%{$reset_color%}"
+      echo "%{$fg[lightgrey]%}$(git_local_email)%{$fg[magenta]%}⌥ %{$fg_bold[magenta]%}$(git_current_branch)%{$reset_color%} %{$fg[magenta]%}$(git_need_push)%{$reset_color%} "
     else
-      echo "%{$fg[lightgrey]%}$(git_local_email)%{$fg[magenta]%}⌥ %{$fg_bold[magenta]%}$(git_current_branch)%{$reset_color%} %{$fg[magenta]%}●$(git_need_push)%{$reset_color%}"
+      echo "%{$fg[lightgrey]%}$(git_local_email)%{$fg[magenta]%}⌥ %{$fg_bold[magenta]%}$(git_current_branch)%{$reset_color%} %{$fg[magenta]%}●$(git_need_push)%{$reset_color%} "
     fi
   fi
 }
@@ -31,21 +31,18 @@ git_current_branch () {
  echo "${ref#refs/heads/}"
 }
 
-unpushed () {
-  $git cherry -v @{upstream} 2>/dev/null
-}
-
 git_need_push () {
   up=$($git cherry -v @{upstream} 2>/dev/null)
   if [[ $up == "" ]]; then
     echo ""
   else
-    echo "⬆ "
+    echo "⬆"
   fi
 }
 
 export PROMPT=$'%{$bg_bold[magenta]%}%n@%m%{$reset_color%}%{$fg[magenta]%}:%~\n› %{$reset_color%}'
 export RPROMPT=$'$(git_status)%t'
+export PS2=$'%{$fg[magenta]%}› %{$reset_color%}'
 #set_prompt () {
 #}
 
