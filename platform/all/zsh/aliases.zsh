@@ -1,3 +1,27 @@
+# Serve current directory via HTTP on port 8000
+if ruby --version >/dev/null 2>&1; then
+  alias shttp="ruby -run -e httpd . -p8000"
+elif python --version >/dev/null 2>&1; then
+  alias shttp="python -m SimpleHTTPServer"
+else
+  alias shttp="echo \"You don't have Ruby or Python. No HTTP server for you!\""
+fi
+
+if python --version >/dev/null 2>&1; then
+function simplify {
+python - <<END
+from fractions import Fraction
+
+if('/' in '$1'):
+  frac = Fraction('$1')
+else:
+  frac = Fraction($1, $2)
+
+print(str(frac))
+END
+}
+fi
+
 alias rm!="rm -rf"
 
 # close window
