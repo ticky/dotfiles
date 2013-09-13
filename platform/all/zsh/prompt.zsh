@@ -2,6 +2,9 @@ autoload colors && colors
 # cheers, @ehrenmurdick
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
+export PROMPT_PRIMARY=magenta
+export PROMPT_SECONDARY=lightgrey
+
 if (( $+commands[git] )); then
   git="$commands[git]"
 else
@@ -24,11 +27,11 @@ git_status() {
 
     # Add email if it's there
     if [[ $gle != "" ]]; then
-      op="%{$fg[lightgrey]%}$gle%{$reset_color%} "
+      op="%{$fg[$PROMPT_SECONDARY]%}$gle%{$reset_color%} "
     fi
 
     # Append branch info
-    op="$op%{$fg[magenta]%}⌥ %{$fg_bold[magenta]%}$gcb%{$reset_color%}"
+    op="$op%{$fg[$PROMPT_PRIMARY]%}⌥ %{$fg_bold[$PROMPT_PRIMARY]%}$gcb%{$reset_color%}"
 
     # Add modified dot if status isn't "nothing to commit"
     if [[ ! "$st" =~ ^nothing ]]; then
@@ -42,7 +45,7 @@ git_status() {
 
     # Attach "gf" (git flags) to prompt if exists
     if [[ $gf != "" ]]; then
-      op="$op %{$fg[magenta]%}$gf%{$reset_color%}"
+      op="$op %{$fg[$PROMPT_PRIMARY]%}$gf%{$reset_color%}"
     fi
 
     # Output
@@ -70,9 +73,9 @@ git_need_push () {
   fi
 }
 
-export PROMPT=$'%{$bg_bold[magenta]%}%n@%m%{$reset_color%}%{$fg[magenta]%}:%~\n› %{$reset_color%}'
+export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}%n@%m%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:%~\n› %{$reset_color%}'
 export RPROMPT=$'$(git_status) %D{%L:%M %p}'
-export PS2=$'%{$fg[magenta]%}› %{$reset_color%}'
+export PS2=$'%{$fg[$PROMPT_PRIMARY]%}› %{$reset_color%}'
 #set_prompt () {
 #}
 

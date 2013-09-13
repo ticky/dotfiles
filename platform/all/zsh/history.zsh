@@ -3,7 +3,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 setopt HIST_VERIFY
-setopt SHARE_HISTORY # share history between sessions ???
+setopt SHARE_HISTORY # share history between sessions
 setopt EXTENDED_HISTORY # add timestamps to history
 
 setopt APPEND_HISTORY # adds history
