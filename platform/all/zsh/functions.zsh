@@ -79,6 +79,16 @@ function gz() {
   printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
+if builtin command md5 -s "" >/dev/null 2>&1; then
+  function gravatar() {
+    echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5 -q`"
+  }
+elif builtin command md5sum >/dev/null 2>&1; then
+  function gravatar() {
+    echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5sum | awk '{print $1}'`"
+  }
+fi
+
 # the tar command is bad and you should feel bad
 function untar() {
   if [[ $1 =~ .*\.gz ]]; then
