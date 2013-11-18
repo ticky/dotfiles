@@ -139,7 +139,6 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `colourtest`: prints out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh))
 * `fn`: find files under the current directory by name (uses Spotlight's cache on OS X and `find` on other systems)
 * `gz`: output the current size and gzipped size of a file
-* `iosinspect`: (OS X only) open the iOS simulator, and allow remote debugging output
 * `ipls`: outputs a list of local IP addresses for the current system (works for both Linux and OS X)
 * `mkcd`: make a directory and move into it immediately
 * `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications

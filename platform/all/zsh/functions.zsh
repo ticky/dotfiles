@@ -44,6 +44,40 @@ function platformbindir {
   fi
 }
 
+function profile() {
+  if [ "$1" = "edit" ]; then
+    command $EDITOR $HOME/dotfiles;
+  elif [ "$1" = "load" ]; then
+    source $HOME/.zshrc;
+  elif [ "$1" = "install" ]; then
+    command $HOME/dotfiles/install.sh && \
+      profile load;
+  elif [ "$1" = "update" ]; then
+    command cd ~/dotfiles && \
+      command git stash && \
+      command git fetch && \
+      command git stash pop && \
+      cd - && \
+      profile install
+  else
+    echo "Usage: profile <command>"
+    echo
+    echo "Commands:"
+    echo "    edit"
+    echo "        Open the dotfiles directory in \"$EDITOR\""
+    echo
+    echo "    load"
+    echo "        Reload the configuration (Applies only to zshrc)"
+    echo
+    echo "    install"
+    echo "        Run the dotfiles installer again (to add new files)"
+    echo
+    echo "    update"
+    echo "        Fetch updated version of dotfiles and install them"
+  fi
+}
+alias p="profile"
+
 # create a directory and cd into it
 # http://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/
 function mkcd() {
