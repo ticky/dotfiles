@@ -6,11 +6,11 @@ If you do too, then you might like my dotfiles.
 ## Features
 
 * colorful prompt, directories and git functions in both `bash` and `zsh`
-* prompt updated with working git branch name and status
+* prompt updated with working `git` branch name and status
 * autocomplete directories, history, commands, common `killall` items and aliases
 * 2 line prompt for readability
 * support for OS X, Linux and Cygwin (and exposes `$UNAME` environment variable containing a lower-case platform name)
-* built-in compatibility with both GNU and BSD core utilities (also exposes `$COREUTILS` environment variable)
+* built-in compatibility with both GNU and BSD core utilities
 * useful aliases for git and more
 * support for the [hub](https://github.com/defunkt/hub) git extension
 * useful user-level `.gitignore`
@@ -93,16 +93,22 @@ _**NOTE**: OS X defaults will not be updated on shell restarts. They are only up
 
 ### Single-Platform
 
-This supports two kinds of platform-specific functionality;
+This supports three kinds of platform-specific functionality;
 
 1. Platform-specific `bin` directories
 2. Platform-specific `~` includes
+3. Platform-specific `zshrc` includes
 
 The install script will manage this automatically. You can find these under `dotfiles/platforms`.
 
 * Files in `dotfiles/platforms/{platform}/bin` are automatically available in your `$PATH`.
 
 * Files in `dotfiles/platforms/{platform}/home` are either symlinked (editing `~/{file}` updates `dotfiles/platforms/{platform}/file` - platform-specific includes are only possible if the file is executable) or concatenated (appended; this allows platform-specific stuff to be added to files which aren't executed).
+
+* Files in `dotfiles/platforms/{platform}/zsh` are loaded by `.zshrc` (and thus, only when running `zsh`), in the following order;
+	1. `path.zsh` - settings for `$PATH` go here
+	2. All files except `path.zsh` and `completion.zsh`, in alphabetical order - general settings and custom categorisation goes here
+	3. `completion.zsh` - completion settings go here
 
 This setup includes a helper function for this called `platformbindir`. Running this will;
 * create the platform-specific `bin` directory if it doesn't already exist
@@ -122,13 +128,14 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 
 ### Variables
 
-* `$COREUTILS`: type of core utility distribution available on the local system. Either `OTHER`, `BSD` or `GNU`.
-* `$GCOREUTILS`: when `$COREUTILS` is `BSD`, this may be set to `YES` if there are also GNU core utilities available as, for example, `gls` for GNU `ls`.
 * `$UNAME`: current platform name, in lower case. (In the case of Cygwin, this will always be `cygwin`)
 
-### Shortcuts
+#### Bash Only
 
-#### Public
+* `$COREUTILS`: type of core utility distribution available on the local system. Either `OTHER`, `BSD` or `GNU`.
+* `$GCOREUTILS`: when `$COREUTILS` is `BSD`, this may be set to `YES` if there are also GNU core utilities available as, for example, `gls` for GNU `ls`.
+
+### Shortcuts
 
 * `-`: shortcut to `cd -` (change to the previous working directory)
 * `..`: go up a directory
@@ -138,6 +145,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `cl`: shortcut to `clear`
 * `colourtest`: prints out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh))
 * `fn`: find files under the current directory by name (uses Spotlight's cache on OS X and `find` on other systems)
+* `fl`: shortcut to show the Adobe Flash debug log (OS X Only)
 * `gz`: output the current size and gzipped size of a file
 * `ipls`: outputs a list of local IP addresses for the current system (works for both Linux and OS X)
 * `mkcd`: make a directory and move into it immediately
@@ -151,15 +159,6 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `wed`: (Cygwin only) open a file or directory in Sublime Text 2 (if available), otherwise `vim`
 * `x`, `:q`: shortcut to `exit`
 * `~`: shortcut to change to the home directory
-
-#### Internal
-
-* `_git_prompt_dirty_marker`: outputs a `●` when the current directory is a git repository, and has local changes
-* `_git_prompt_local_email`: outputs any custom `user.email` git setting for the current directory, if it differs from the global setting
-* `_git_prompt`: outputs the current git branch, and the output of the `_git_prompt_local_email` and `_git_prompt_dirty_marker` commands, for the current working directory
-* `prompt_color`: configures the prompt output
-* `prompt_pwd`: command which updates the prompt's output after each command
-* `title_git`: sets the window title based on the git status of the current directory
 
 ## History
 

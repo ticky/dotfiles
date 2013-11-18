@@ -44,7 +44,7 @@ for file in ${(M)config_files:#*/completion.zsh}; do
 done
 
 # Enable help (recommended by homebrew. TODO: Ask why)
-unalias run-help
+unalias run-help >/dev/null 2>&1
 autoload run-help
 HELPDIR=/usr/local/share/zsh/helpfiles
 
