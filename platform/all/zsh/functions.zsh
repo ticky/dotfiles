@@ -55,18 +55,7 @@ function _inetgrep() {
   grep inet | grep -v ' 127.' | grep -v ' ::1 ' | grep -v ' 169.254.' | grep -v ' fe80'
 }
 
-# retrieves IP addresses which aren't zeroconf or local-only
-if platformIsDarwin; then
-  function ipls() {
-    ifconfig | _inetgrep | awk '{print $2}';
-  }
-else
-  function ipls() {
-    ip addr show | _inetgrep | awk '{split($2,array,"/")} END{print array[1]}'
-  }
-fi
-
-# retrieves the last (hopefully most relevant) IP address in the `ipls` list
+# retrieves the last (hopefully most relevant) IP address in the `ipls` list (see all-but-darwin and darwin for `ipls`)
 function cip() {
   ipls | tail -1
 }
@@ -97,25 +86,6 @@ function untar() {
     command tar xvf $1
   fi
 }
-
-if platformIsDarwin; then
-  # Change working directory to the top-most Finder window location
-  function cdf() { # short for `cdfinder`
-    cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
-  }
-fi
-
-# crossplatform find command - uses spotlight data on OS X
-if platformIsDarwin; then
-  function fn {
-    mdfind -onlyin . "kMDItemDisplayName == '$@'wc";
-  }
-else
-  function fn {
-    # `pwd` is used because find outputs path names attached to the location you give it
-    find `pwd` -name $@ 2> /dev/null
-  }
-fi
 
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
