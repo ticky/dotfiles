@@ -429,6 +429,16 @@ function gz() {
   printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
+if builtin command md5 -s "" >/dev/null 2>&1; then
+  function gravatar() {
+    echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5 -q`"
+  }
+elif builtin command md5sum >/dev/null 2>&1; then
+  function gravatar() {
+    echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5sum | awk '{print $1}'`"
+  }
+fi
+
 # the tar command is bad and you should feel bad
 function untar() {
   if [[ $1 =~ .*\.gz ]]; then
@@ -460,13 +470,14 @@ fi
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
   function play {
+    clear 2>/dev/null
     _JAVA_OPTIONS="-Djava.awt.headless=true" command play $@
     # restore echo after play 2.1.3+ murders it (Java is great)
     stty echo
   }
 fi
 
-# Server current directory via HTTP on port 8000
+# Serve current directory via HTTP on port 8000
 if ruby --version >/dev/null 2>&1; then
   alias shttp="ruby -run -e httpd . -p8000"
 elif python --version >/dev/null 2>&1; then
@@ -489,6 +500,9 @@ print(str(frac))
 END
 }
 fi
+
+# flash log tail function
+alias fl="clear && tail -f -n 200 ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt"
 
 alias rm!="rm -rf"
 
@@ -513,6 +527,8 @@ alias gd="git diff"
 alias gdc="git diff --cached"
 alias gdh="git diff HEAD"
 alias gdt="git difftool"
+alias gdtc="git difftool --cached"
+alias gdth="git difftool HEAD"
 alias gf="git fetch"
 alias gl="git log"
 alias gp="git push"
