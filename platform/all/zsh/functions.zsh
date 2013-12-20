@@ -11,6 +11,9 @@ function platformIsCygwin {
   [ "$UNAME" = "cygwin" ]
 }
 
+function uppercase { echo -n $@ | tr '[:lower:]' '[:upper:]' }
+function lowercase { echo -n $@ | tr '[:upper:]' '[:lower:]' }
+
 # Colour test script
 # Imported from https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh
 function colourtest {
@@ -34,6 +37,27 @@ function colourtest {
     echo;
   done
   echo
+}
+
+function _hex_split {
+  rgb=
+
+  if [ ${#1} -eq 6 ]; then
+    rgb=(`uppercase "${1:0:2} ${1:2:2} ${1:4:2}"`)
+  elif [ ${#1} -eq 3 ]; then
+    rgb=(`uppercase "${1:0:1}${1:0:1} ${1:1:1}${1:1:1} ${1:2:1}${1:2:1}"`)
+  fi
+
+  echo $rgb
+}
+
+function _base_16_to_10 {
+  echo "ibase=16; `uppercase $1`" | bc
+}
+
+function _hex_to_rgb {
+  rgb=(`_hex_split $1`)
+  echo "`_base_16_to_10 $rgb[1]`,`_base_16_to_10 $rgb[2]`,`_base_16_to_10 $rgb[3]`"
 }
 
 function platformbindir {
@@ -104,11 +128,11 @@ function gz() {
 
 if builtin command md5 -s "" >/dev/null 2>&1; then
   function gravatar() {
-    echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5 -q`"
+    echo "http://www.gravatar.com/avatar/`lowercase $1 | tr -d '\n ' | md5 -q`"
   }
 elif builtin command md5sum --version >/dev/null 2>&1; then
   function gravatar() {
-    echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5sum | awk '{print $1}'`"
+    echo "http://www.gravatar.com/avatar/`lowercase $1 | tr -d '\n ' | md5sum | awk '{print $1}'`"
   }
 fi
 
