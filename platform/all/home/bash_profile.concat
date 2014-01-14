@@ -477,6 +477,9 @@ if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; the
   }
 fi
 
+# give ant moar rams
+export ANT_OPTS="-Xms512m -Xmx512m -XX:MaxPermSize=1024m"
+
 # Serve current directory via HTTP on port 8000
 if ruby --version >/dev/null 2>&1; then
   alias shttp="ruby -run -e httpd . -p8000"
