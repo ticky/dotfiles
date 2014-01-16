@@ -11,10 +11,13 @@ If you do too, then you might like my dotfiles.
 * 2 line prompt for readability
 * support for OS X, Linux and Cygwin (and exposes `$UNAME` environment variable containing a lower-case platform name)
 * built-in compatibility with both GNU and BSD core utilities
+* `zsh` keyboard input map with sensible key combinations for iTerm 2, and hybrid global/local history (thanks to [Eevee](https://github.com/eevee/rc) for that tip)
 * useful aliases for git and more
 * support for the [hub](https://github.com/defunkt/hub) git extension
 * useful user-level `.gitignore`
 * stops `play` from spawning a useless dock icon and stealing focus for no reason
+* gives `ant` enough RAM to complete the simplest of tasks
+* makes `less` output some handy information
 * imports `rvm` by default
 * sensible `screen` setup - no startup message, real bells and your user shell
 * support for `tmux` (very basic for now, on all platforms but Cygwin)
@@ -41,7 +44,7 @@ _**On Windows?** I'm attempting to improve the Windows command prompt in similar
 * **Bash 3.2** or newer  
   _Sorry, MinGW users_
 
-The focus of future updates to these dotfiles will be zsh. At some point, bash support may be removed, but only once the environments I use consistently have a compatible zsh version available.
+The focus of future updates to these dotfiles will be `zsh`. At some point, `bash` support may be removed or reduced, but only once the environments I use consistently have a compatible `zsh` version available.
 
 ## Setup
 
@@ -164,6 +167,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 
 These were originally forked from [seaofclouds](http://github.com/seaofclouds)' [dotfiles repo](https://github.com/seaofclouds/dotfiles), and subsequently heavily modified.  
 Lots of inspiration (and some shortcuts and functions) taken from these fine people;
+* [Eevee](https://github.com/eevee/rc)
 * [Ben Alman](https://github.com/cowboy/dotfiles)
 * [Mathias Bynens](http://mths.be/dotfiles)
 * [Ryan Tomayko](http://github.com/rtomayko/dotfiles)

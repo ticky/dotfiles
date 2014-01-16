@@ -76,6 +76,9 @@ function platformIsLinux {
 function platformIsCygwin {
   [ "$UNAME" = "cygwin" ]
 }
+function sessionIsLocal {
+  [[ $SSH_CONNECTION == '' && $TERM != "screen"* ]]
+}
 
 # ----------------------------------------------------------------------
 #  COLOUR DEFINITIONS
@@ -314,6 +317,13 @@ fi
 eval $(dircolors -b ~/.dircolors 2>/dev/null)
 
 # ----------------------------------------------------------------------
+#  LESS
+# ----------------------------------------------------------------------
+
+export LESS='-RM'   # -R: print ANSI color escapes directly to the screen
+                    # -M: use very verbose prompt, with pos/%
+
+# ----------------------------------------------------------------------
 #  COMMAND HISTORY
 #  http://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/
 # ----------------------------------------------------------------------
@@ -429,6 +439,9 @@ function gz() {
   printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
 }
 
+function uppercase { echo -n $@ | tr '[:lower:]' '[:upper:]' }
+function lowercase { echo -n $@ | tr '[:upper:]' '[:lower:]' }
+
 if builtin command md5 -s "" >/dev/null 2>&1; then
   function gravatar() {
     echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5 -q`"
@@ -477,8 +490,7 @@ if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; the
   }
 fi
 
-# give ant moar rams
-export ANT_OPTS="-Xms512m -Xmx512m -XX:MaxPermSize=1024m"
+export ANT_OPTS="-Xms512m -Xmx512m -XX:MaxPermSize=1024m" # More RAM for Ant
 
 # Serve current directory via HTTP on port 8000
 if ruby --version >/dev/null 2>&1; then

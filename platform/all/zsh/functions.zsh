@@ -11,6 +11,10 @@ function platformIsCygwin {
   [ "$UNAME" = "cygwin" ]
 }
 
+function sessionIsLocal {
+  [[ $SSH_CONNECTION == '' && $TERM != "screen"* ]]
+}
+
 function uppercase { echo -n $@ | tr '[:lower:]' '[:upper:]' }
 function lowercase { echo -n $@ | tr '[:upper:]' '[:lower:]' }
 
