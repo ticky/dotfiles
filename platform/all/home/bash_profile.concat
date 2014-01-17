@@ -487,7 +487,7 @@ if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; the
     if [ $# -eq 0 ]; then
       # automatically "run" if there are no arguments
       echo "run\n" > /tmp/playrunner
-      _JAVA_OPTIONS="-Djava.awt.headless=true" cat /tmp/playrunner - | command play
+      cat /tmp/playrunner - | _JAVA_OPTIONS="-Djava.awt.headless=true" command play
       rm /tmp/playrunner
     else
       _JAVA_OPTIONS="-Djava.awt.headless=true" command play $@
