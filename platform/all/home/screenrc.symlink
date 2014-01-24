@@ -23,4 +23,6 @@ defutf8 on
 # hardstatus alwayslastline "%c %l %{+b} %t%=%{-b} %H"
 # hardstatus alwayslastline "%{.Bc}%c %l %{+b} %t%=%{-b} %H"
 
-hardstatus alwayslastline "%{= mW}%H%{= kM}:%{= kM}%?%-Lw%?%{= mW}%n%f %t%?(%u)%?%{= kM}%?%+Lw%?%{= kM} %=%D %C %a"
+backtick 1 0 15 mediumDate
+
+hardstatus alwayslastline "%{= mW}%H%{= kM}:%{= kM}%?%-Lw%?%{= mW}%n%f %t%?(%u)%?%{= kM}%?%+Lw%?%{= kM} %=%2`"

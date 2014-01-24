@@ -74,7 +74,7 @@ git_need_push () {
 }
 
 export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}%n@%m%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:%~\n› %{$reset_color%}'
-export RPROMPT=$'$(git_status) %D{%L:%M %p}'
+export RPROMPT=$'$(git_status) $(shortDate)'
 export PS2=$'%{$fg[$PROMPT_PRIMARY]%}› %{$reset_color%}'
 #set_prompt () {
 #}
