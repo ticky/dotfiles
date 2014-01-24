@@ -23,4 +23,4 @@ defutf8 on
 # hardstatus alwayslastline "%c %l %{+b} %t%=%{-b} %H"
 # hardstatus alwayslastline "%{.Bc}%c %l %{+b} %t%=%{-b} %H"
 
-hardstatus alwayslastline "%{= mW}%H%{= kM}:%{= kM}%?%-Lw%?%{= mW}%n%f %t%?(%u)%?%{= kM}%?%+Lw%?%{= kM} %=%D %C %A"
+hardstatus alwayslastline "%{= mW}%H%{= kM}:%{= kM}%?%-Lw%?%{= mW}%n%f %t%?(%u)%?%{= kM}%?%+Lw%?%{= kM} %=%D %C %a"
