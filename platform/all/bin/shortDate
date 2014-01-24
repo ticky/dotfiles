@@ -1,3 +1,0 @@
-#!/usr/bin/env zsh
-zmodload zsh/datetime
-strftime "%L:%M %p" $EPOCHSECONDS

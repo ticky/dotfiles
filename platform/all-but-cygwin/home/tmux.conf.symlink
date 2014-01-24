@@ -45,7 +45,7 @@ set-option -g status-attr default
 
 # Status bar configuration
 set -g status-left "#[bg=magenta,bold]#h#[default]:"
-set -g status-right "#(mediumDate)"
+set -g status-right "#(zdate m)"
 
 # Status item configuration
 set -g window-status-format "#I #F #W"

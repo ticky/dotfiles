@@ -20,7 +20,7 @@ If you do too, then you might like my dotfiles.
 * makes `less` output some handy information
 * imports `rvm` by default
 * sensible `screen` setup - no startup message, real bells and your user shell
-* support for `tmux` (very basic for now, on all platforms but Cygwin)
+* similar `tmux` setup - mouse input, nice colours and formatting
 * good `wget` defaults
 
 ## Requirements
@@ -152,6 +152,11 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `gz`: output the current size and gzipped size of a file
 * `ipls`: outputs a list of local IP addresses for the current system (works for both Linux and OS X)
 * `mkcd`: make a directory and move into it immediately
+* `zdate`: date output which leverages `zsh` date utilities to provide consistent date output with nicer syntax than plain `strftime(3)`. custom formats are supported. built-in templates include;
+    * `short` or `s`: time only - `9:41 am`
+    * `medium` or `m`: time and day - `Tue 9:41 am`
+    * `long` or `l`: date, month, day of month and time - `Tue Jan 9 9:41 am`
+    * `8601`, `iso` or `i`: ISO 8601-style format `2007-01-09T09:41:00-0800`
 * `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
 * `platformbindir`: outputs the current platform's platform-specific `bin` directory
 * `profile`, `p`: utility for updating, editing, installing and loading dotfiles

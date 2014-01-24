@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+zmodload zsh/datetime
+
+format_short="%L:%M %p"
+format_medium="%a $format_short"
+format_long="%a %b %f $format_short"
+format_iso8601="%Y-%m-%dT%H:%M:%S%z"
+
+case $1 in
+	short|s)
+		format=$format_short
+		;;
+	medium|m)
+		format=$format_medium
+		;;
+	long|l)
+		format=$format_long
+		;;
+	8601|iso|i)
+		format=$format_iso8601
+		;;
+	*)
+		format=$@
+		;;
+esac
+
+strftime "$format" $EPOCHSECONDS
