@@ -20,8 +20,14 @@ case $1 in
 		format=$format_iso8601
 		;;
 	*)
-		format=$@
+		format=$1
 		;;
 esac
 
-strftime "$format" $EPOCHSECONDS
+timestamp=$EPOCHSECONDS
+
+if [ $# -gt 1 ]; then
+	timestamp=$2
+fi
+
+strftime "$format" $timestamp
