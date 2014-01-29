@@ -1,24 +1,11 @@
 #!/usr/bin/env zsh
 zmodload zsh/datetime
 
-# Detect Meridiem Format String
-format_meridiem="%p"
-
-case `strftime "%P" $EPOCHSECONDS` in
-	P|A)
-		# GNU strftime(3)
-		format_meridiem="%p"
-		;;
-	*)
-		# BSD strftime(3)
-		format_meridiem="%P"
-		;;
-esac
-
-format_short="%L:%M $format_meridiem"
-format_medium="%a %L:%M $format_meridiem"
-format_long="%a %b %f %L:%M $format_meridiem"
-format_full="%A, %B %f %G %L:%M:%S $format_meridiem"
+# Preset Date Formats
+format_short="%L:%M %P"
+format_medium="%a %L:%M %P"
+format_long="%a %b %f %L:%M %P"
+format_full="%A, %B %f %G %L:%M:%S %P"
 format_iso8601="%Y-%m-%dT%H:%M:%S%z"
 
 case $1 in
@@ -41,6 +28,15 @@ case $1 in
 		format=$1
 		;;
 esac
+
+# Detect Meridiem Format String and override
+meridiem=`strftime "%P" $EPOCHSECONDS`
+meridiem=${${meridiem/P/}/A/}
+
+if [ -z $meridiem ]; then
+	# GNU strftime(3)
+	format=${format/"%P"/"%p"}
+fi
 
 timestamp=$EPOCHSECONDS
 
