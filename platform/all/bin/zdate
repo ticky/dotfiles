@@ -2,27 +2,21 @@
 zmodload zsh/datetime
 
 # Preset Date Formats
-format_short="%L:%M %P"
-format_medium="%a %L:%M %P"
-format_long="%a %b %f %L:%M %P"
-format_full="%A, %B %f %G %L:%M:%S %P"
-format_iso8601="%Y-%m-%dT%H:%M:%S%z"
-
 case $1 in
 	short|s)
-		format=$format_short
+		format="%L:%M %P"
 		;;
 	medium|m)
-		format=$format_medium
+		format="%a %L:%M %P"
 		;;
 	long|l)
-		format=$format_long
+		format="%a %b %f %L:%M %P"
 		;;
 	full|f)
-		format=$format_full
+		format="%A, %B %f %G %L:%M:%S %P"
 		;;
 	8601|iso|i)
-		format=$format_iso8601
+		format="%Y-%m-%dT%H:%M:%S%z"
 		;;
 	*)
 		format=$1
