@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+zmodload zsh/datetime
+
+diff=$(($1-$EPOCHSECONDS))
+
+echo $diff

@@ -31,6 +31,8 @@ If you do too, then you might like my dotfiles.
   _Optional, only used for the `shttp` shortcut, which starts an HTTP server for the current directory_
 * **Homebrew**  
   _OS X Only - This means you need Xcode installed first_
+* `reattach-to-user-namespace`  
+  _OS X Only - Allows lots of things to work better inside `tmux`_
 * `ncurses`  
   _If this isn't installed, the `clear` command is missing_
 * **DejaVu Sans Mono**  
@@ -56,14 +58,13 @@ On OS X, Homebrew is presently required. (You almost certainly want it anyway)
 
 * install [Xcode](https://itunes.apple.com/app/xcode/id497799835)
 * install [Homebrew](http://github.com/mxcl/homebrew)
-* `brew install bash-completion`
-* `brew install git`
+* `brew install bash-completion reattach-to-user-namespace git`
 
 ### Cygwin
 
 Cygwin has limited package management built-in. I recommend downloading [apt-cyg](http://code.google.com/p/apt-cyg/) which gives you a command-line interface for Cygwin's package manager.
 
-* `apt-cyg install openssh git`
+* `apt-cyg install bash-completion openssh`
 
 ### Linux
 

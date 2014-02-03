@@ -60,7 +60,7 @@ git_local_email() {
 }
 
 git_current_branch () {
- ref=$($git symbolic-ref HEAD 2>/dev/null) || return
+ ref=$($git symbolic-ref HEAD 2>/dev/null) || ref=$(git show-ref --head -s --abbrev | head -n1 2> /dev/null) || return
  echo "${ref#refs/heads/}"
 }
 

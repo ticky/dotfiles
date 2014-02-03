@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+zmodload zsh/datetime
+
+datestrs=(%A %a %B %b %C %c %D %d %E %e %F %G %g %h %H %I %j %k %l %M %m %O %P %p %R %r %S %T %U %u %V %W %X %x %Y %y %Z %z)
+
+for str in "${datestrs[@]}"; do
+   echo $str: \"`strftime $str $EPOCHSECONDS`\"
+done

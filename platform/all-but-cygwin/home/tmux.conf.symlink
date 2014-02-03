@@ -10,6 +10,10 @@
 set -g base-index 1
 set -w -g pane-base-index 1
 
+# Start $SHELL with reattach-to-user-namespace if available
+# (allows clipboard integration on OS X among other things; https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
+set -g default-command 'command -v reattach-to-user-namespace >/dev/null && exec reattach-to-user-namespace -l "$SHELL" || exec "/bin/bash"'
+
 # Use screen terminal name for compatibility (?)
 set -g default-terminal "screen-256color"
 set -g history-limit 10000

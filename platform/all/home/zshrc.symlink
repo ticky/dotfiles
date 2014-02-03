@@ -4,30 +4,11 @@
 # This file bootstraps the rest of the configuration.
 # Loading mechanism borrowed from Zach Holman's dotfiles <https://github.com/holman>
 
-export UNAME=$(uname | tr '[:upper:]' '[:lower:]')
-
-# working around Cygwin weirdness
-# NOTE: On Linux and Darwin (and likely FreeBSD), `uname` returns the kernel name.
-#       On Cygwin, you get a long string including CYGWIN, kernel version and architecture.
-#       We override Cygwin's entry for brevity here.
-`uname -o > /dev/null 2>&1` && if [ `uname -o` = "Cygwin" ]; then
-  UNAME="cygwin"
-fi
-
-# Shortcut to dotfiles directory
-export DOTFILES=$HOME/dotfiles
-
-# We need extended globbing now, so we can do all that platform stuff in one shot (awesome)
-setopt EXTENDEDGLOB
-
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/platform/(all|$UNAME|all-but-^$UNAME)/zsh/*.zsh)
 
-# load the path files
-for file in ${(M)config_files:#*/path.zsh}; do
-  source $file
-done
+# NOTE: path files are now loaded by .zshenv
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
