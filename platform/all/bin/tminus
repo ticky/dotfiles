@@ -1,6 +1,66 @@
-#!/usr/bin/env zsh
-zmodload zsh/datetime
+#!/usr/bin/env python3
 
-diff=$(($1-$EPOCHSECONDS))
+import argparse
+from datetime import datetime
 
-echo $diff
+def main():
+
+	parser = argparse.ArgumentParser(description='Utility to print a human-readable difference between two times')
+
+	parser.add_argument('finish', type=int, help='finish time for comparison', default=None)
+	parser.add_argument('-s', '--start', metavar='time', type=int, help='start time for comparison', default=None)
+	parser.add_argument('-v', '--verbose', help='print debug information', action='store_true')
+
+	args = parser.parse_args()
+
+	if args.verbose:
+		print('args:', args)
+
+	if args.start == None:
+		start = datetime.now()
+	else:
+		start = datetime.fromtimestamp(args.start)
+
+	if args.verbose:
+		print('start:', start)
+
+	finish = datetime.fromtimestamp(args.finish)
+
+	if args.verbose:
+		print('finish:', finish)
+
+	diff = finish - start
+
+	if args.verbose:
+		print('diff:', diff)
+
+	print(formatTimeDiff(diff))
+
+def formatTimeDiff(timeDiffObject):
+
+    seconds = int(timeDiffObject.total_seconds())
+
+    # This is all a bit naïve...
+    periods = [
+        ('year',   60*60*24*365),
+        ('month',  60*60*24*30),
+        ('day',    60*60*24),
+        ('hour',   60*60),
+        ('minute', 60),
+        ('second', 1)
+    ]
+
+    strings=[]
+
+    for period_name, period_seconds in periods:
+        if seconds > period_seconds:
+            period_value, seconds = divmod(seconds, period_seconds)
+            if period_value == 1:
+                strings.append("%s %s" % (period_value, period_name))
+            else:
+                strings.append("%s %ss" % (period_value, period_name))
+
+    return ", ".join(strings)
+
+if __name__ == "__main__":
+	main()
