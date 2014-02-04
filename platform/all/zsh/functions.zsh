@@ -25,9 +25,11 @@ function returnOneOf {
   TEMPOPTIONS=($@);
   # Combine the following to get a random item;
   # `${VAR[x]}`  - Get variable at index `x` of `$VAR`
-  # `$RANDOM`    - shell random number generator, max number 32767
   # `${#VAR[*]}` - Number of indexes in `$VAR`
-  echo -n ${TEMPOPTIONS[$((RANDOM/(32767/${#TEMPOPTIONS[*]})+1))]}
+
+  typeset -F SECONDS
+  typeset -F6 SECONDS
+  echo ${TEMPOPTIONS[$((${SECONDS#*.}%${#TEMPOPTIONS[*]}+1))]}
 }
 
 # Colour test script
