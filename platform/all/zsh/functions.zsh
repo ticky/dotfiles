@@ -18,6 +18,18 @@ function sessionIsLocal {
 function uppercase { echo -n $@ | tr '[:lower:]' '[:upper:]' }
 function lowercase { echo -n $@ | tr '[:upper:]' '[:lower:]' }
 
+# Returns one of the arguments given
+# `returnOneOf foo bar baz`, returns, at random, either `foo`, `bar` or `baz`.
+function returnOneOf {
+  # Convert to Array
+  TEMPOPTIONS=($@);
+  # Combine the following to get a random item;
+  # `${VAR[x]}`  - Get variable at index `x` of `$VAR`
+  # `$RANDOM`    - shell random number generator, max number 32767
+  # `${#VAR[*]}` - Number of indexes in `$VAR`
+  echo -n ${TEMPOPTIONS[$((RANDOM/(32767/${#TEMPOPTIONS[*]})+1))]}
+}
+
 # Colour test script
 # Imported from https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh
 function colourtest {

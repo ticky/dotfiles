@@ -442,6 +442,16 @@ function gz() {
 function uppercase { echo -n $@ | tr '[:lower:]' '[:upper:]' }
 function lowercase { echo -n $@ | tr '[:upper:]' '[:lower:]' }
 
+function returnOneOf {
+  # Convert to Array
+  TEMPOPTIONS=($@);
+  # Combine the following to get a random item;
+  # `${VAR[x]}`  - Get variable at index `x` of `$VAR`
+  # `$RANDOM`    - shell random number generator, max number 32767
+  # `${#VAR[*]}` - Number of indexes in `$VAR`
+  echo -n ${TEMPOPTIONS[$((RANDOM/(32767/${#TEMPOPTIONS[*]})+1))]}
+}
+
 if builtin command md5 -s "" >/dev/null 2>&1; then
   function gravatar() {
     echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5 -q`"
