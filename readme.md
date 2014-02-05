@@ -157,6 +157,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
     * `short` or `s`: time only - `9:41 am`
     * `medium` or `m`: time and day - `Tue 9:41 am`
     * `long` or `l`: date, month, day of month and time - `Tue Jan 9 9:41 am`
+    * `full` or `f`: date, month, day of month and time - `Tuesday, January 9 2007 9:41:00 am`
     * `8601`, `iso` or `i`: ISO 8601-style format `2007-01-09T09:41:00-0800`
 * `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
 * `platformbindir`: outputs the current platform's platform-specific `bin` directory
