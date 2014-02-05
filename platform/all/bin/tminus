@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# tminus
+# Utility to print a human-readable difference between two times
+
 import argparse
 from datetime import datetime
 

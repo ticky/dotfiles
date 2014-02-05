@@ -97,11 +97,15 @@ alias cl="clear"
 
 # git aliases
 
-# if hub is installed, enable it
-hub alias -s >/dev/null 2>/dev/null && eval "$(hub alias -s)"
+# if hub is installed, enable it and add some aliases
+if hub alias -s >/dev/null 2>&1; then
+  eval "$(hub alias -s)"
+  alias gbr="git browse"
+fi
+
 alias ga="git add ."
-alias gb="git branch -av"
-alias gbr="git branch -avv --no-merged"
+alias gb="git branch -avv --no-merged"
+alias gba="git branch -av"
 alias gc="git commit -v"
 alias gco="git checkout"
 alias gd="git diff"

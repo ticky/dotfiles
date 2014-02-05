@@ -1,4 +1,9 @@
 #!/usr/bin/env zsh
+
+# zdate
+# zsh-powered strftime(3) date formatting with preset formats.
+# Uses BSD-style strftime(3) formatting strings (yes, even on GNU systems)
+
 zmodload zsh/datetime
 
 # Preset Date Formats
