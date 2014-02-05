@@ -1,4 +1,3 @@
-
 # platform/cygwin/bash_profile.concat
 function winpath() {
   if [ -z "$1" ]; then
