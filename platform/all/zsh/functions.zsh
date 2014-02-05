@@ -97,24 +97,6 @@ function cip() {
   ipls | tail -1
 }
 
-function gz() {
-  local origsize=$(wc -c < "$1")
-  local gzipsize=$(gzip -c "$1" | wc -c)
-  local ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
-  printf "orig: %d bytes\n" "$origsize"
-  printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
-}
-
-if builtin command md5 -s "" >/dev/null 2>&1; then
-  function gravatar() {
-    echo "http://www.gravatar.com/avatar/`lowercase $1 | tr -d '\n ' | md5 -q`"
-  }
-elif builtin command md5sum --version >/dev/null 2>&1; then
-  function gravatar() {
-    echo "http://www.gravatar.com/avatar/`lowercase $1 | tr -d '\n ' | md5sum | awk '{print $1}'`"
-  }
-fi
-
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
   function play() {

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# shttp
+# Serve current directory via HTTP on port 8000
+
+if ruby --version >/dev/null 2>&1; then
+  ruby -run -e httpd . -p8000
+elif python --version >/dev/null 2>&1; then
+  python -m SimpleHTTPServer
+else
+  echo "You don't have Ruby or Python. No HTTP server for you!"
+  return 1
+fi

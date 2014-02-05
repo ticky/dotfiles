@@ -406,26 +406,8 @@ function cip() {
   ipls | tail -1
 }
 
-function gz() {
-  local origsize=$(wc -c < "$1")
-  local gzipsize=$(gzip -c "$1" | wc -c)
-  local ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
-  printf "orig: %d bytes\n" "$origsize"
-  printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
-}
-
 function uppercase { echo -n $@ | tr '[:lower:]' '[:upper:]' }
 function lowercase { echo -n $@ | tr '[:upper:]' '[:lower:]' }
-
-if builtin command md5 -s "" >/dev/null 2>&1; then
-  function gravatar() {
-    echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5 -q`"
-  }
-elif builtin command md5sum >/dev/null 2>&1; then
-  function gravatar() {
-    echo "http://www.gravatar.com/avatar/`echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ' | md5sum | awk '{print $1}'`"
-  }
-fi
 
 if platformIsDarwin; then
   # Change working directory to the top-most Finder window location
@@ -453,15 +435,6 @@ if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; the
 fi
 
 export ANT_OPTS="-Xms512m -Xmx512m -XX:MaxPermSize=1024m" # More RAM for Ant
-
-# Serve current directory via HTTP on port 8000
-if ruby --version >/dev/null 2>&1; then
-  alias shttp="ruby -run -e httpd . -p8000"
-elif python --version >/dev/null 2>&1; then
-  alias shttp="python -m SimpleHTTPServer"
-else
-  alias shttp="echo \"You don't have Ruby or Python. No HTTP server for you!\""
-fi
 
 if python --version >/dev/null 2>&1; then
 function simplify {

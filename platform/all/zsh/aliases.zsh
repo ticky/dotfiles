@@ -63,15 +63,6 @@ fi
 # GNU ls' colours are defined in ~/.dircolors
 eval $(dircolors -b ~/.dircolors 2>/dev/null)
 
-# Serve current directory via HTTP on port 8000
-if ruby --version >/dev/null 2>&1; then
-  alias shttp="ruby -run -e httpd . -p8000"
-elif python --version >/dev/null 2>&1; then
-  alias shttp="python -m SimpleHTTPServer"
-else
-  alias shttp="echo \"You don't have Ruby or Python. No HTTP server for you!\""
-fi
-
 if python --version >/dev/null 2>&1; then
 function simplify {
 python - <<END
