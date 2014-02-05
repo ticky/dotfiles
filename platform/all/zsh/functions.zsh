@@ -27,9 +27,7 @@ function returnOneOf {
   # `${VAR[x]}`  - Get variable at index `x` of `$VAR`
   # `${#VAR[*]}` - Number of indexes in `$VAR`
 
-  typeset -F SECONDS
-  typeset -F6 SECONDS
-  echo ${TEMPOPTIONS[$((${SECONDS#*.}%${#TEMPOPTIONS[*]}+1))]}
+  echo ${TEMPOPTIONS[`perl -e "print(int(rand(${#TEMPOPTIONS[*]}))+1)"`]}
 }
 
 # Colour test script
