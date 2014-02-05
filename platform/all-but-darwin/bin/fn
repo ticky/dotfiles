@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# fn
+# Find-by-Name (Linux version) - searches current directory and all subdirectories for the supplied name
+
+# `pwd` is used because find outputs path names attached to the location you give it
+find `pwd` -name $@ 2> /dev/null

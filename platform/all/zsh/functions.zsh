@@ -115,15 +115,6 @@ elif builtin command md5sum --version >/dev/null 2>&1; then
   }
 fi
 
-# the tar command is bad and you should feel bad
-function untar() {
-  if [[ $1 =~ .*\.gz ]]; then
-    command tar xvfz $1
-  else
-    command tar xvf $1
-  fi
-}
-
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
   function play() {

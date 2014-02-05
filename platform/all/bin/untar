@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# untar
+# You can `unzip`, why not `untar`?
+
+# the tar command is bad and you should feel bad
+if [[ $1 =~ .*\.gz ]]; then
+  command tar xvfz $1
+else
+  command tar xvf $1
+fi

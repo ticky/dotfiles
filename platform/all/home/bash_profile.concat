@@ -427,31 +427,10 @@ elif builtin command md5sum >/dev/null 2>&1; then
   }
 fi
 
-# the tar command is bad and you should feel bad
-function untar() {
-  if [[ $1 =~ .*\.gz ]]; then
-    command tar xvfz $1
-  else
-    command tar xvf $1
-  fi
-}
-
 if platformIsDarwin; then
   # Change working directory to the top-most Finder window location
   function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
-  }
-fi
-
-# crossplatform find command - uses spotlight data on OS X
-if platformIsDarwin; then
-  function fn {
-    mdfind -onlyin . "kMDItemDisplayName == '$@'wc";
-  }
-else
-  function fn {
-    # `pwd` is used because find outputs path names attached to the location you give it
-    find `pwd` -name $@ 2> /dev/null
   }
 fi
 
