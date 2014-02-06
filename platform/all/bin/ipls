@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# ipls
+# List computer's IP addresses
+
+function _inetgrep {
+	# select only internet addresses which aren't localhost, or zeroconfig
+	grep 'inet' | grep -v ' 127.' | grep -v ' ::1 ' | grep -v ' ::1/' | grep -v ' 169.254.' | grep -v ' fe80'
+}
+
+if ip >/dev/null 2>&1; then
+	# Linux
+	ip addr show | _inetgrep | awk '{split($2,array,"/")} END{print array[1]}'
+else
+	# BSD
+	ifconfig | _inetgrep | awk '{print $2}';
+fi

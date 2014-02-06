@@ -87,12 +87,7 @@ function mkcd() {
   mkdir -p "$@" && eval cd "$@";
 }
 
-# filter out local and zeroconf addresses
-function _inetgrep() {
-  grep inet | grep -v ' 127.' | grep -v ' ::1 ' | grep -v ' 169.254.' | grep -v ' fe80'
-}
-
-# retrieves the last (hopefully most relevant) IP address in the `ipls` list (see all-but-darwin and darwin for `ipls`)
+# retrieves the last (hopefully most relevant) IP address in the `ipls` list
 function cip() {
   ipls | tail -1
 }
