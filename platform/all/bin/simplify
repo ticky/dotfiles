@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+# simplify
+# Simplifies fractions when you're too lazy to!
+
+import sys
+from fractions import Fraction
+
+if('/' in sys.argv[0]):
+	frac = Fraction(sys.argv[0])
+else:
+	frac = Fraction(sys.argv[0], sys.argv[1])
+
+print(str(frac))

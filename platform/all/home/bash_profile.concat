@@ -336,12 +336,12 @@ function profile() {
     command $HOME/dotfiles/install.sh && \
       profile load;
   elif [ "$1" = "update" ]; then
-    command cd ~/dotfiles && \
-      command git stash && \
-      command git fetch && \
-      command git stash pop && \
-      cd - && \
-      profile install
+    cd ~/dotfiles && \
+    command git stash && \
+    command git fetch && \
+    command git stash pop && \
+    cd - && \
+    profile install
   else
     echo "Usage: profile <command>"
     echo
@@ -385,22 +385,6 @@ function mkcd() {
   mkdir -p "$@" && eval cd "$@";
 }
 
-# filter out local and zeroconf addresses
-function _inetgrep() {
-  grep inet | grep -v ' 127.' | grep -v ' ::1 ' | grep -v ' 169.254.' | grep -v ' fe80'
-}
-
-# retrieves IP addresses which aren't zeroconf or local-only
-if platformIsDarwin; then
-  function ipls() {
-    ifconfig | _inetgrep | awk '{print $2}';
-  }
-else
-  function ipls() {
-    ip addr show | _inetgrep | awk '{split($2,array,"/")} END{print array[1]}'
-  }
-fi
-
 # retrieves the last (hopefully most relevant) IP address in the `ipls` list
 function cip() {
   ipls | tail -1
@@ -435,21 +419,6 @@ if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; the
 fi
 
 export ANT_OPTS="-Xms512m -Xmx512m -XX:MaxPermSize=1024m" # More RAM for Ant
-
-if python --version >/dev/null 2>&1; then
-function simplify {
-python - <<END
-from fractions import Fraction
-
-if('/' in '$1'):
-  frac = Fraction('$1')
-else:
-  frac = Fraction($1, $2)
-
-print(str(frac))
-END
-}
-fi
 
 # flash log tail function
 alias fl="clear && tail -f -n 200 ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt"
