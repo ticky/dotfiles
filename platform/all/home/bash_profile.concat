@@ -9,15 +9,7 @@
 : ${HOME=~}
 
 # kernel name
-: ${UNAME=$(uname | tr '[A-Z]' '[a-z]')}
-
-# working around Cygwin weirdness
-# NOTE: On Linux and Darwin (and likely FreeBSD), `uname` returns the kernel name.
-#       On Cygwin, you get a long string including CYGWIN, kernel version and architecture.
-#       We override Cygwin's entry for brevity here.
-`uname -o > /dev/null 2>&1` && if [ `uname -o` = "Cygwin" ]; then
-  UNAME="cygwin"
-fi
+: ${UNAME=$($HOME/dotfiles/platform/all/bin/nuname)}
 
 # coreutils type
 COREUTILS="OTHER"
@@ -366,18 +358,8 @@ function cd() {
   command cd "$@" >/dev/null;
 }
 
-# go to previous directory
-function -() {
-  command cd "-" >/dev/null;
-}
-
 # go to home directory
 alias ~="cd ~"
-
-# traverse directories
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../../"
 
 # create a directory and cd into it
 # http://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/

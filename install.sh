@@ -5,15 +5,7 @@ shopt -s extglob
 shopt -s nullglob
 
 # kernel name
-: ${UNAME=$(uname | tr '[A-Z]' '[a-z]')}
-
-# working around Cygwin weirdness
-# NOTE: On Linux and Darwin (and likely FreeBSD), `uname` returns the kernel name.
-#       On Cygwin, you get a long string including CYGWIN, kernel version and architecture.
-#       We override Cygwin's entry for brevity here.
-`uname -o > /dev/null 2> /dev/null` && if [ `uname -o` = "Cygwin" ]; then
-  UNAME="cygwin"
-fi
+: ${UNAME=$(~/dotfiles/platform/all/nuname)}
 
 echo "# Geoff's Dotfiles"
 echo "https://github.com/geoffstokes/dotfiles"
@@ -30,9 +22,9 @@ function missingdep {
 }
 
 # git
-git --version >/dev/null 2>&1 || missingdep git
+command -v git >/dev/null 2>&1 || missingdep Git
 # SSH
-ssh -V >/dev/null 2>&1 || missingdep SSH
+command -v ssh >/dev/null 2>&1 || missingdep SSH
 
 # Check for Bash 3.2 or newer
 eval $(bash --version | sed -e '/^[^G]/d' -e "s/.* \([0-9]\)\.\([0-9]\).*/BASHMAJ=\1;BASHMIN=\2/")
@@ -42,16 +34,17 @@ fi
 
 # On Cygwin, check for the `clear` command (because it sucks when it's missing)
 if [ "$UNAME" = "cygwin" ]; then
-  clear >/dev/null 2>&1 || missingdep "ncurses"
+  command -v clear >/dev/null 2>&1 || missingdep "ncurses"
   if [ ! -r `cygpath -u $WINDIR/Fonts/DejaVuSansMono.ttf` ]; then
     missingdep "DejaVu Sans Mono"
     explorer http://dejavu-fonts.org/wiki/Download
   fi
 fi
 
-# On OS X, check for Homebrew
+# On OS X, check for Homebrew and reattach-to-user-namespace
 if [ "$UNAME" = "darwin" ]; then
-  brew --version >/dev/null 2>&1 || missingdep "Homebrew"
+  command -v brew >/dev/null 2>&1 || missingdep "Homebrew"
+  command -v reattach-to-user-namespace >/dev/null 2>&1 || missingdep "reattach-to-user-namespace"
 fi
 
 if [ "$MISSINGDEPS" == "YES" ]; then

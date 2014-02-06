@@ -139,36 +139,38 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `$COREUTILS`: type of core utility distribution available on the local system. Either `OTHER`, `BSD` or `GNU`.
 * `$GCOREUTILS`: when `$COREUTILS` is `BSD`, this may be set to `YES` if there are also GNU core utilities available as, for example, `gls` for GNU `ls`.
 
-### Shortcuts
+### Aliases
 
-* `-`: shortcut to `cd -` (change to the previous working directory)
-* `..`: go up a directory
-* `...`: go up two directories
-* `....`: go up three directories
 * `cip`: outputs a single IP address for the current system (last line of `ipls` output), usually the one you want - useful for scripts
 * `cl`: shortcut to `clear`
+* `fl`: shortcut to show the Adobe Flash debug log (OS X Only)
+* `mkcd`: make a directory and move into it immediately
+* `platformbindir`: outputs the current platform's platform-specific `bin` directory
+* `profile`, `p`: utility for updating, editing, installing and loading dotfiles
+* `rm!`: shortcut to `rm -rf`
+* `title`: set the window title
+* `x`, `:q`: shortcut to `exit`
+
+### Utilities
+
 * `colourtest`: prints out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh))
 * `fn`: find files under the current directory by name (uses Spotlight's cache on OS X and `find` on other systems)
-* `fl`: shortcut to show the Adobe Flash debug log (OS X Only)
+* `gravatar`: output gravatar URLs for email addresses passed in
 * `gz`: output the current size and gzipped size of a file
 * `ipls`: outputs a list of local IP addresses for the current system (works for both Linux and OS X)
-* `mkcd`: make a directory and move into it immediately
+* `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
+* `returnOneOf`: pass in a bunch of parameters, it'll randomly echo one of them.
+* `shttp`: starts an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.
+* `simplify`: simplifies fractions when you're too lazy to.
+* `tminus`: prints the time until a unix date passed in.
+* `untar`: you can `unzip`, why can't you `untar`?
+* `wed`: (Cygwin only) open a file or directory in Sublime Text 2 (if available), otherwise `vim`
 * `zdate`: date output which leverages `zsh` date utilities to provide consistent date output with nicer syntax than plain `strftime(3)`. custom formats are supported. built-in templates include;
     * `short` or `s`: time only - `9:41 am`
     * `medium` or `m`: time and day - `Tue 9:41 am`
     * `long` or `l`: date, month, day of month and time - `Tue Jan 9 9:41 am`
     * `full` or `f`: date, month, day of month and time - `Tuesday, January 9 2007 9:41:00 am`
     * `8601`, `iso` or `i`: ISO 8601-style format `2007-01-09T09:41:00-0800`
-* `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
-* `platformbindir`: outputs the current platform's platform-specific `bin` directory
-* `profile`, `p`: utility for updating, editing, installing and loading dotfiles
-* `rm!`: shortcut to `rm -rf`
-* `shttp`: alias for Python's SimpleHTTPServer - starts an HTTP server for the current working directory
-* `title`: set the window title
-* `untar`: you can `unzip`, why can't you `untar`?
-* `wed`: (Cygwin only) open a file or directory in Sublime Text 2 (if available), otherwise `vim`
-* `x`, `:q`: shortcut to `exit`
-* `~`: shortcut to change to the home directory
 
 ## History
 
