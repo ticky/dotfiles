@@ -4,11 +4,15 @@
 # This file bootstraps the rest of the configuration.
 # Loading mechanism borrowed from Zach Holman's dotfiles <https://github.com/holman>
 
+# NOTE: path files are now loaded by .zshenv;
+# if we're missing a $UNAME, it hasn't been loaded yet.
+if [[ -z "$UNAME" ]]; then
+	source ~/.zshenv
+fi
+
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/platform/(all|$UNAME|all-but-^$UNAME)/zsh/*.zsh)
-
-# NOTE: path files are now loaded by .zshenv
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
