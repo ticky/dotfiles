@@ -14,7 +14,6 @@ fi
 typeset -U config_files
 config_files=($DOTFILES/platform/(all|$UNAME|all-but-^$UNAME)/zsh/*.zsh)
 
-
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}; do
   source $file
