@@ -4,10 +4,13 @@
 # Output a Gravatar URL for the given email address
 
 baseurl="http://www.gravatar.com/avatar/"
-address=$(echo -n $1 | awk '{print tolower($0)}' | tr -d '\n ')
 
-if builtin command md5 -s "" >/dev/null 2>&1; then
-	echo "$baseurl`echo -n $address | md5 -q`"
-elif builtin command md5sum >/dev/null 2>&1; then
-    echo "$baseurl`echo -n $address | md5sum | awk '{print $1}'`"
-fi
+for ARG in $*; do
+	address=$(echo -n $ARG | awk '{print tolower($0)}' | tr -d '\n ')
+
+	if builtin command md5 -s "" >/dev/null 2>&1; then
+		echo "$ARG: $baseurl`echo -n $address | md5 -q`"
+	elif builtin command md5sum >/dev/null 2>&1; then
+		echo "$ARG: $baseurl`echo -n $address | md5sum | awk '{print $1}'`"
+	fi
+done

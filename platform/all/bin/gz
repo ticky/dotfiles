@@ -3,8 +3,14 @@
 # gz
 # Output gzipped size of a file
 
-local origsize=$(wc -c < "$1")
-local gzipsize=$(gzip -c "$1" | wc -c)
-local ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
-printf "orig: %d bytes\n" "$origsize"
-printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
+for ARG in $*; do
+	if [ -f $ARG ]; then
+		origsize=$(wc -c < "$ARG")
+		gzipsize=$(gzip -c "$ARG" | wc -c)
+		ratio=$(echo "100 - ($gzipsize * 100 / $origsize)" | bc -l)
+
+		printf "%s: %d bytes -> %d bytes (%2.2f%% reduction)\n" "$ARG" "$origsize" "$gzipsize" "$ratio"
+	else
+		printf "%s: not a file\n" "$ARG" 1>&2
+	fi
+done

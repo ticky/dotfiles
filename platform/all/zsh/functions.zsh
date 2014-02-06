@@ -97,6 +97,21 @@ function cip() {
   ipls | tail -1
 }
 
+if python --version >/dev/null 2>&1; then
+function simplify {
+python - <<END
+from fractions import Fraction
+
+if('/' in '$1'):
+  frac = Fraction('$1')
+else:
+  frac = Fraction($1, $2)
+
+print(str(frac))
+END
+}
+fi
+
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
   function play() {

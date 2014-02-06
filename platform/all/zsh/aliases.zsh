@@ -63,21 +63,6 @@ fi
 # GNU ls' colours are defined in ~/.dircolors
 eval $(dircolors -b ~/.dircolors 2>/dev/null)
 
-if python --version >/dev/null 2>&1; then
-function simplify {
-python - <<END
-from fractions import Fraction
-
-if('/' in '$1'):
-  frac = Fraction('$1')
-else:
-  frac = Fraction($1, $2)
-
-print(str(frac))
-END
-}
-fi
-
 alias rm!="rm -rf"
 
 # close window
