@@ -8,3 +8,31 @@
 	protocol = https
 [color]
 	ui = true
+[help]
+	autocorrect = 1
+[alias]
+	a=add .
+	b=branch --all --verbose --verbose --no-merged
+	ba=branch --all --verbose
+	br=browse
+	c=commit --verbose
+	ca=commit --verbose --amend
+	cc=checkout -b
+	co=checkout
+	diff=diff --word-diff
+	d=diff --word-diff
+	dc=diff --word-diff --cached
+	dh=diff --word-diff HEAD
+	dt=difftool
+	dtc=difftool --cached
+	dth=difftool HEAD
+	f=fetch
+	l=log --graph --date-order
+	lg=log --graph
+	p=push
+	pl=pull
+	r=remote --verbose
+	s=status
+	st=stash
+	sp=stash pop
+	u=up

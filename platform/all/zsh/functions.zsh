@@ -43,7 +43,7 @@ function platformbindir {
   if [ -d "$HOME/dotfiles/platform/$UNAME/bin" ]; then
     echo "$HOME/dotfiles/platform/$UNAME/bin"
   else
-    mkdir -p "$HOME/dotfiles/platform/$UNAME/bin" && PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH" && echo "$HOME/dotfiles/platform/$UNAME/bin:$PATH"
+    mkdir -p "$HOME/dotfiles/platform/$UNAME/bin" && PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH" && echo "$HOME/dotfiles/platform/$UNAME/bin"
   fi
 }
 
