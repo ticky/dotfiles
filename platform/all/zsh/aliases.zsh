@@ -71,6 +71,8 @@ alias :q="exit"
 # clear window
 alias cl="clear"
 
+alias ipls="ifconfig | ipgrep"
+
 # git aliases
 
 # if hub is installed, enable it and add some aliases

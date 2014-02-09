@@ -32,6 +32,9 @@ if [ $BASHMAJ -lt 3 -o $BASHMAJ -eq 3 -a $BASHMIN -lt 2 ]; then
   missingdep "Bash 3.2 (or newer)"
 fi
 
+# Check for IPv6 capable Perl Regexp::Common
+$(which perl) -MRegexp::Common -e 'print $RE{net}{IPv6}' >/dev/null 2>&1 || missingdep "Regexp::Common 2013031301 or newer"
+
 # On Cygwin, check for the `clear` command (because it sucks when it's missing)
 if [ "$UNAME" = "cygwin" ]; then
   command -v clear >/dev/null 2>&1 || missingdep "ncurses"

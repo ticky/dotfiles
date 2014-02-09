@@ -1,0 +1,16 @@
+#!/usr/bin/env perl
+
+# ipgrep
+# Display public IP addresses from STDIN (`ifconfig | ipgrep`)
+
+use strict;
+use warnings;
+use diagnostics;
+
+use feature "say";
+use Regexp::Common;
+
+while (<>) {
+	my $ip = $1 if /($RE{net}{IPv4}|$RE{net}{IPv6})/;
+	say $ip unless !defined $ip or $ip =~ /^(::|fcce|fe80|0\.|127\.|169\.254|22[0-9]\.|2[3-4][0-9]\.|25[0-5]\.)/
+}

@@ -35,6 +35,8 @@ If you do too, then you might like my dotfiles.
   _OS X Only - Allows lots of things to work better inside `tmux`_
 * `ncurses`  
   _If this isn't installed, the `clear` command is missing_
+* `Regexp::Common` version `2013031301` or newer  
+  _Perl module used for `ipgrep` and `ipls` commands. Older versions do not suport IPv6 and will break._
 * **DejaVu Sans Mono**  
   _Cygwin Only - I use this font in MinTTY, and it'll fall back to Courier if it's not installed_
 
@@ -77,6 +79,7 @@ On Linux, you almost certainly have the core utilities needed. Just to be sure, 
 After completing the relevant platform-specific section,
 
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
+* `cpan Regexp::Common` (frustratingly, will require some basic interaction if you haven't set up CPAN before)
 * `git clone https://github.com/geoffstokes/dotfiles.git ~/dotfiles`
 * `~/dotfiles/install.sh`  
   _**NOTE**: If `install.sh` detects that dependencies are missing, it will notify you and abort._
@@ -144,6 +147,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `cip`: outputs a single IP address for the current system (last line of `ipls` output), usually the one you want - useful for scripts
 * `cl`: shortcut to `clear`
 * `fl`: shortcut to show the Adobe Flash debug log (OS X Only)
+* `ipls`: outputs a list of local IP addresses for the current system (works for both Linux and OS X)
 * `mkcd`: make a directory and move into it immediately
 * `platformbindir`: outputs the current platform's platform-specific `bin` directory
 * `profile`, `p`: utility for updating, editing, installing and loading dotfiles
@@ -157,7 +161,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `fn`: find files under the current directory by name (uses Spotlight's cache on OS X and `find` on other systems)
 * `gravatar`: output gravatar URLs for email addresses passed in
 * `gz`: output the current size and gzipped size of a file
-* `ipls`: outputs a list of local IP addresses for the current system (works for both Linux and OS X)
+* `ipgrep`: finds valid IP addresses within input which are not link-local
 * `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
 * `returnOneOf`: pass in a bunch of parameters, it'll randomly echo one of them.
 * `shttp`: starts an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.
