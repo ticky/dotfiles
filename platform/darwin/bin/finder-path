@@ -1,0 +1,8 @@
+#!/usr/bin/env osascript -l AppleScript
+
+-- finder-path
+-- Output the path of the most recently used Finder window
+
+tell application "Finder"
+	POSIX path of (insertion location as alias)
+end tell
