@@ -162,6 +162,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `gravatar`: output gravatar URLs for email addresses passed in
 * `gz`: output the current size and gzipped size of a file
 * `ipgrep`: finds valid IP addresses within input which are not link-local
+* `imessage`: (OS X only) sends an iMessage to the specified address/number (`imessage "+61491570156" "This is an iMessage to a fictitious Australian telephone number"`)
 * `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
 * `returnOneOf`: pass in a bunch of parameters, it'll randomly echo one of them.
 * `shttp`: starts an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.

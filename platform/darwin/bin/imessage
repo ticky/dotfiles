@@ -1,0 +1,27 @@
+#!/usr/bin/env osascript -l AppleScript
+
+-- imessage
+-- Send iMessages from the command line
+--
+-- Usage:
+-- imessage <contact address> <message>
+
+on run arguments
+	tell application "Messages"
+		set iMessageService to ""
+		set serviceList to get every service
+		repeat with currentService in serviceList
+			set currentServiceType to service type of currentService
+			if currentServiceType is iMessage then
+				set iMessageService to currentService
+			end if
+		end repeat
+		
+		if iMessageService is not "" then
+			log "iMessage Service is " & id of iMessageService
+			send (item 2 of arguments) to buddy (item 1 of arguments) of iMessageService
+		else
+			log "Could not find iMessage service"
+		end if
+	end tell
+end run
