@@ -1,27 +1,41 @@
 #!/usr/bin/env osascript -l AppleScript
 
 -- imessage
--- Send iMessages from the command line
+-- Send messages (iMessages by default) from the command line
 --
 -- Usage:
--- imessage <contact address> <message>
+-- imessage <contact address> <message> [service type]
 
 on run arguments
-	tell application "Messages"
-		set iMessageService to ""
-		set serviceList to get every service
-		repeat with currentService in serviceList
-			set currentServiceType to service type of currentService
-			if currentServiceType is iMessage then
-				set iMessageService to currentService
-			end if
-		end repeat
-		
-		if iMessageService is not "" then
-			log "iMessage Service is " & id of iMessageService
-			send (item 2 of arguments) to buddy (item 1 of arguments) of iMessageService
+	if count of arguments is not less than 2 then
+
+		set buddyAddress to item 1 of arguments
+		set messageText to item 2 of arguments
+
+		if count of arguments is 3 then
+			set serviceType to item 3 of arguments
 		else
-			log "Could not find iMessage service"
+			set serviceType to "iMessage"
 		end if
-	end tell
+
+		tell application "Messages"
+			set messagingService to missing value
+			set serviceList to get every service
+			repeat with currentService in every service
+				if service type of currentService as string is serviceType then
+					set messagingService to currentService
+				end if
+			end repeat
+			
+			if messagingService is not missing value then
+				send messageText to buddy buddyAddress of messagingService
+				return "Message Sent using " & service type of messagingService as string & " service \"" & name of messagingService & "\""
+			else
+				return "Error: Could not find a service whose type was called \"" & serviceType & "\""
+			end if
+		end tell
+
+	else
+		return "Error: You need to pass both an address or phone number, and a message"
+	end if
 end run
