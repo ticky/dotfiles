@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# learn-spelling
+# Merges custom spelling dictionary with the user's local spelling dictionaty
+
+# Load existing dictionary words, and custom additions
+WORDS=$(cat ~/Library/Spelling/LocalDictionary ~/dotfiles/platform/darwin/ext/Spelling\ Dictionary.txt)
+
+# Put the list of words back in the LocalDictionary file, delimited with newlines, and alphabetically
+(IFS=$'\n'; echo "${WORDS[*]}") | sort | uniq > ~/Library/Spelling/LocalDictionary
+
+# Restart (more accurately stop; next time it's needed it'll be started automatically) the Apple spell checking service
+killall AppleSpell 2>/dev/null
