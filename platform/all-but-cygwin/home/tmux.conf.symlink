@@ -38,9 +38,9 @@ set -g message-fg white
 set -g message-bg black
 
 # Selection and mode text colours
-set -w mode-fg black
-set -w mode-bg blue
-set -w mode-attr bright
+set -g mode-fg black
+set -g mode-bg blue
+set -g mode-attr none
 
 # Statusbar colours
 set -g status-fg white
