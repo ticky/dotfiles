@@ -37,6 +37,11 @@ set -g pane-active-border-bg black
 set -g message-fg white
 set -g message-bg black
 
+# Selection and mode text colours
+set -w mode-fg black
+set -w mode-bg blue
+set -w mode-attr bright
+
 # Statusbar colours
 set -g status-fg white
 set -g status-bg black
@@ -63,6 +68,13 @@ set -w -g clock-mode-style 12
 
 # vim key binding mode
 set -w -g mode-keys vi
+
+# Integrate with OS X Clipboard
+bind -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+unbind ]
+bind ] run-shell 'reattach-to-user-namespace pbpaste | tmux load-buffer - \; paste-buffer -d'
+bind C-c run-shell 'tmux save-buffer - | reattach-to-user-namespace pbcopy'
+bind C-v run-shell 'reattach-to-user-namespace pbpaste | tmux load-buffer - \; paste-buffer -d'
 
 # Turn on xterm keys
 set -w -g xterm-keys on
