@@ -4,10 +4,27 @@ set shiftwidth=4
 set autoindent
 set wildchar=<Tab>
 
+" Highlight cursor's line
+set cursorline
+
+" Show a ruler at 120 characters
+set cc=120
+
+" Enable spell check
+set spell
+set spelllang=en
+
+" Mouse Enabled
+set mouse=a
+set mousef
+
 " Show Line Numbers
 set number
 
-" Bracket handline
+" Show cursor position
+set ruler
+
+" Bracket handling
 set foldmethod=marker
 set showmatch
 
@@ -18,9 +35,9 @@ set nocompatible
 set hlsearch
 set incsearch
 
-" Highlight syntax - Disabled for now
+" Highlight syntax
 syntax on
-" set t_Co=256
+set t_Co=256
 
 " Base16 Default (https://github.com/chriskempson/base16)
 " Scheme: Chris Kempson (http://chriskempson.com)
