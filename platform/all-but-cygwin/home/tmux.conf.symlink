@@ -10,10 +10,6 @@
 set -g base-index 1
 set -w -g pane-base-index 1
 
-# Start $SHELL with reattach-to-user-namespace if available
-# (allows clipboard integration on OS X among other things; https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
-set -g default-command 'command -v reattach-to-user-namespace >/dev/null && exec reattach-to-user-namespace -l "$SHELL" || exec "$SHELL"'
-
 # Use screen terminal name for compatibility (?)
 set -g default-terminal "screen-256color"
 set -g history-limit 10000
@@ -69,13 +65,6 @@ set -w -g clock-mode-style 12
 # vim key binding mode
 set -w -g mode-keys vi
 
-# Integrate with OS X Clipboard
-bind -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
-unbind ]
-bind ] run-shell 'reattach-to-user-namespace pbpaste | tmux load-buffer - \; paste-buffer -d'
-bind C-c run-shell 'tmux save-buffer - | reattach-to-user-namespace pbcopy'
-bind C-v run-shell 'reattach-to-user-namespace pbpaste | tmux load-buffer - \; paste-buffer -d'
-
 # Turn on xterm keys
 set -w -g xterm-keys on
 
@@ -109,3 +98,6 @@ bind | split-window -h
 
 # Open man page with /
 bind / command-prompt -p "Show manual for" "split-window -h 'exec man %%'"
+
+# If we're on OS X, load the extra OS X configuration
+if-shell 'test "$(uname -s)" = Darwin' 'source-file ~/dotfiles/platform/darwin/ext/tmux-integration.conf'
