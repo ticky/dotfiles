@@ -1,7 +1,20 @@
-# detect coreutils' type by throwing -G at BSD ls
-if ls -G >/dev/null 2>&1; then
+# detect coreutils' type by throwing --color=auto at GNU ls
+if ls --color=auto ~ >/dev/null 2>&1; then
 
-  # If BSD Coreutils has been detected, set up BSD ls
+  # Is GNU Coreutils has been detected, set up GNU ls
+
+  # setup the main ls alias
+  alias ls='ls -h --color'
+
+  # list all files in directory
+  alias ll="ls -ahl --color"
+
+  # list dot files in directory
+  alias l.="ls -dh --color .*"
+
+else
+
+  # BSD ls errors out when passed `--color`, GNU ls doesn't seem to care about unexpected arguments
 
   # Use environment variable rather than alias to enable colours.
   export CLICOLOR="yes"
@@ -47,17 +60,6 @@ if ls -G >/dev/null 2>&1; then
     alias gl.="gls -dh --color .*"
   fi
 
-elif ls --color=auto >/dev/null 2>&1; then
-  # If we haven't found BSD Coreutils, it's pretty likely we're on a GNU system.
-
-  # setup the main ls alias
-  alias ls='ls -h --color'
-
-  # list all files in directory
-  alias ll="ls -ahl --color"
-
-  # list dot files in directory
-  alias l.="ls -dh --color .*"
 fi
 
 # GNU ls' colours are defined in ~/.dircolors
