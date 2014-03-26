@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# chcase
+# transform case of text input
+
+LOWER='[:lower:]'
+UPPER='[:upper:]'
+
+case $1 in
+	upper|up|u)
+		FROM=$LOWER
+		TO=$UPPER
+		;;
+	lower|low|lo|l)
+		FROM=$UPPER
+		TO=$LOWER
+		;;
+	*)
+		echo "Unrecognised transformation '$1'" >&2
+		echo "Usage: chcase <transformation> <text>..." >&2
+		exit 1
+		;;
+esac
+
+shift
+
+echo -n $@ | tr $FROM $TO

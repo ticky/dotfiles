@@ -15,23 +15,20 @@ function sessionIsLocal {
   [[ $SSH_CONNECTION == '' && $TERM != "screen"* ]]
 }
 
-function uppercase { echo -n $@ | tr '[:lower:]' '[:upper:]' }
-function lowercase { echo -n $@ | tr '[:upper:]' '[:lower:]' }
-
 function _hex_split {
   rgb=
 
   if [ ${#1} -eq 6 ]; then
-    rgb=(`uppercase "${1:0:2} ${1:2:2} ${1:4:2}"`)
+    rgb=(`chcase upper "${1:0:2} ${1:2:2} ${1:4:2}"`)
   elif [ ${#1} -eq 3 ]; then
-    rgb=(`uppercase "${1:0:1}${1:0:1} ${1:1:1}${1:1:1} ${1:2:1}${1:2:1}"`)
+    rgb=(`chcase upper "${1:0:1}${1:0:1} ${1:1:1}${1:1:1} ${1:2:1}${1:2:1}"`)
   fi
 
   echo $rgb
 }
 
 function _base_16_to_10 {
-  echo "ibase=16; `uppercase $1`" | bc
+  echo "ibase=16; `chcase upper $1`" | bc
 }
 
 function _hex_to_rgb {
@@ -84,46 +81,6 @@ alias p="profile"
 # retrieves the last (hopefully most relevant) IP address in the `ipls` list
 function cip() {
   ipls | tail -1
-}
-
-# coloured manual pages
-function man() {
-
-  # This is a *hack*; overrides the TERMCAP for `man`'s output
-  # `tput` should make this safe-ish for use on basic terminals though? maybe?
-
-  # More info on variables;
-  # http://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
-
-  # "start blink mode" (mb)
-  # * used for: not sure
-  # * shown as: bold cyan
-
-  # "start bold mode" (md)
-  # * used for: headings, argument names and keywords
-  # * shown as: dim bold cyan
-
-  # "start standout mode" (so)
-  # * used for: status bar
-  # * shown as: bold white on magenta
-
-  # "start underline mode" (us)
-  # * used for: argument values, file names
-  # * shown as: underlined green
-
-  # "end mode" (me)
-  # "end standout mode" (se)
-  # "end underline mode" (ue)
-
-  env LESS_TERMCAP_mb=$(tput bold; tput setaf 6) \
-      LESS_TERMCAP_md=$(tput bold; tput setaf 6; tput dim) \
-      LESS_TERMCAP_so=$(tput bold; tput setaf 7; tput setab 5) \
-      LESS_TERMCAP_us=$(tput smul; tput setaf 2) \
-      LESS_TERMCAP_me=$(tput sgr0) \
-      LESS_TERMCAP_se=$(tput rmso; tput sgr0) \
-      LESS_TERMCAP_ue=$(tput rmul; tput sgr0) \
-  man "$@"
-
 }
 
 # create a directory and cd into it

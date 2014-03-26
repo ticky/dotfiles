@@ -372,55 +372,12 @@ function cip() {
   ipls | tail -1
 }
 
-function uppercase { echo -n $@ | tr '[:lower:]' '[:upper:]' }
-function lowercase { echo -n $@ | tr '[:upper:]' '[:lower:]' }
-
 if platformIsDarwin; then
   # Change working directory to the top-most Finder window location
   function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
   }
 fi
-
-# coloured manual pages
-function man() {
-
-  # This is a *hack*; overrides the TERMCAP for `man`'s output
-  # `tput` should make this safe-ish for use on basic terminals though? maybe?
-
-  # More info on variables;
-  # http://unix.stackexchange.com/questions/108699/documentation-on-less-termcap-variables
-
-  # "start blink mode" (mb)
-  # * used for: not sure
-  # * shown as: bold cyan
-
-  # "start bold mode" (md)
-  # * used for: headings, argument names and keywords
-  # * shown as: dim bold cyan
-
-  # "start standout mode" (so)
-  # * used for: status bar
-  # * shown as: bold white on magenta
-
-  # "start underline mode" (us)
-  # * used for: argument values, file names
-  # * shown as: underlined green
-
-  # "end mode" (me)
-  # "end standout mode" (se)
-  # "end underline mode" (ue)
-
-  env LESS_TERMCAP_mb=$(tput bold; tput setaf 6) \
-      LESS_TERMCAP_md=$(tput bold; tput setaf 6; tput dim) \
-      LESS_TERMCAP_so=$(tput bold; tput setaf 7; tput setab 5) \
-      LESS_TERMCAP_us=$(tput smul; tput setaf 2) \
-      LESS_TERMCAP_me=$(tput sgr0) \
-      LESS_TERMCAP_se=$(tput rmso; tput sgr0) \
-      LESS_TERMCAP_ue=$(tput rmul; tput sgr0) \
-  man "$@"
-
-}
 
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
@@ -445,6 +402,9 @@ export ANT_OPTS="-Xms512m -Xmx512m -XX:MaxPermSize=1024m" # More RAM for Ant
 # flash log tail function
 alias fl="clear && tail -f -n 200 ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt"
 
+# coloured man pages
+alias man="mansi"
+
 alias rm!="rm -rf"
 
 # close window
@@ -459,24 +419,6 @@ alias cl="clear"
 
 # if hub is installed, enable it
 hub alias -s >/dev/null 2>/dev/null && eval "$(hub alias -s)"
-alias ga="git add ."
-alias gb="git branch -av"
-alias gbr="git branch -avv --no-merged"
-alias gc="git commit -v"
-alias gco="git checkout"
-alias gd="git diff"
-alias gdc="git diff --cached"
-alias gdh="git diff HEAD"
-alias gdt="git difftool"
-alias gdtc="git difftool --cached"
-alias gdth="git difftool HEAD"
-alias gf="git fetch"
-alias gl="git log"
-alias gp="git push"
-alias gpl="git pull"
-alias gr="git remote -v"
-alias gs="git status"
-alias gu="git up"
 
 # ==============================================================================
 # FINAL SETUP
