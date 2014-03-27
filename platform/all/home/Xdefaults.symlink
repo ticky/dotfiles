@@ -1,5 +1,11 @@
-xterm*font: -*-*-*-90-*-*
+! Enable 256-colour support
+xterm*termName: xterm-256color
+! Enable UTF-8 where applicable
+xterm*locale: true
+! Alt sends Escape
+xterm*metaSendsEscape: true
 
+! Pretty colours
 xterm*foreground: rgb:f6/f6/f6
 xterm*background: rgb:00/00/00
 
@@ -23,3 +29,13 @@ xterm*color15: rgb:ff/ff/ff
 xterm*boldMode: false
 xterm*colorBDMode: true
 xterm*colorBD: rgb:ff/ff/ff
+
+! Blinking cursor
+xterm*cursorBlink: true
+
+! Show scrollbar on the right
+xterm*rightScrollBar: true
+xterm*ScrollBar: true
+
+! Don't scroll on output
+xterm*scrollTtyOutput: false

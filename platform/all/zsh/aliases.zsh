@@ -1,16 +1,18 @@
+# LS Alias definitions
+
+# main ls alias
+LS="ls -h"   # `-h` enables "human" units for file sizes
+LL="${LS}al" # `-a` shows all files, `-l` shows list in a long format
+LD="${LS}d"  # `-d` shows directories as regular files (allows limiting display to current directory rather than listing contents of subdirectories)
+
 # detect coreutils' type by throwing --color=auto at GNU ls
 if ls --color=auto ~ >/dev/null 2>&1; then
 
-  # Is GNU Coreutils has been detected, set up GNU ls
+  # If GNU Coreutils has been detected, configure aliases to use `--color`
 
-  # setup the main ls alias
-  alias ls='ls -h --color'
-
-  # list all files in directory
-  alias ll="ls -ahl --color"
-
-  # list dot files in directory
-  alias l.="ls -dh --color .*"
+  LS="${LS} --color"
+  LL="${LL} --color"
+  LD="${LD} --color"
 
 else
 
@@ -36,31 +38,31 @@ else
   export LSCOLORS="GxfxFxcxFxcgcdfbfgacad"
   # See `man ls` on a Mac or FreeBSD system for info on this
 
-  # setup the main ls alias
-  alias ls='ls -h'
-
-  # list all files in directory
-  alias ll="ls -ahl"
-
-  # list dot files in directory
-  alias l.="ls -dh .*"
-
   # Support for additional GNU Coreutils
 
   if gls > /dev/null 2>&1; then
     # If the GNU Coreutils are included as "gls"
 
     # setup the main ls alias
-    alias gls='gls -h --color'
+    alias gls="g${LS} --color"
 
     # list all files in directory
-    alias gll="gls -ahl --color"
+    alias gll="g${LL} --color"
 
     # list dot files in directory
-    alias gl.="gls -dh --color .*"
+    alias gl.="g${LD} --color .*"
   fi
 
 fi
+
+# setup the main ls alias
+alias ls="${LS}"
+
+# list all files in directory
+alias ll="${LL}"
+
+# list dot files in directory
+alias l.="${LD} .*"
 
 # GNU ls' colours are defined in ~/.dircolors
 eval $(dircolors -b ~/.dircolors 2>/dev/null)
@@ -83,5 +85,4 @@ alias ipls="ifconfig | ipgrep"
 # if hub is installed, enable it and add some aliases
 if hub alias -s >/dev/null 2>&1; then
   eval "$(hub alias -s)"
-  alias gbr="echo \"Please use \\\"git br\\\" instead.\" >&2;git br"
 fi

@@ -226,6 +226,11 @@ fi
 #  LS AND DIRCOLORS
 # ----------------------------------------------------------------------
 
+# main ls alias
+LS="ls -h"   # `-h` enables "human" units for file sizes
+LL="${LS}al" # `-a` shows all files, `-l` shows list in a long format
+LD="${LS}d"  # `-d` shows directories as regular files (allows limiting display to current directory rather than listing contents of subdirectories)
+
 if [ "$COREUTILS" = "BSD" ]; then
 
   # Use environment variable rather than alias to enable colours.
@@ -248,41 +253,38 @@ if [ "$COREUTILS" = "BSD" ]; then
   export LSCOLORS="GxfxFxcxFxcgcdfbfgacad"
   # See `man ls` on a Mac or FreeBSD system for info on this
 
-  # setup the main ls alias
-  alias ls='ls -h'
-
-  # list all files in directory
-  alias ll="ls -ahl"
-
-  # list dot files in directory
-  alias l.="ls -dh .*"
-
   # Support for additional GNU Coreutils
   if [ "$GCOREUTILS" = "YES" ]; then
     # If the GNU Coreutils are included as "gls"
 
     # setup the main ls alias
-    alias gls='gls -h --color'
+    alias gls="g${LS} --color"
 
     # list all files in directory
-    alias gll="gls -ahl --color"
+    alias gll="g${LL} --color"
 
     # list dot files in directory
-    alias gl.="gls -dh --color .*"
+    alias gl.="g${LD} --color .*"
   fi
 
 elif [ "$COREUTILS" = "GNU" ]; then
 
-  # setup the main ls alias
-  alias ls='ls -h --color'
+  # If GNU Coreutils has been detected, configure aliases to use `--color`
 
-  # list all files in directory
-  alias ll="ls -ahl --color"
-
-  # list dot files in directory
-  alias l.="ls -dh --color .*"
+  LS="${LS} --color"
+  LL="${LL} --color"
+  LD="${LD} --color"
 
 fi
+
+# setup the main ls alias
+alias ls="${LS}"
+
+# list all files in directory
+alias ll="${LL}"
+
+# list dot files in directory
+alias l.="${LD} .*"
 
 # GNU ls' colours are defined in ~/.dircolors
 eval $(dircolors -b ~/.dircolors 2>/dev/null)
@@ -422,7 +424,9 @@ alias cl="clear"
 # ----------------------------------------------------------------------
 
 # if hub is installed, enable it
-hub alias -s >/dev/null 2>/dev/null && eval "$(hub alias -s)"
+if hub alias -s >/dev/null 2>&1; then
+  eval "$(hub alias -s)"
+fi
 
 # ==============================================================================
 # FINAL SETUP
