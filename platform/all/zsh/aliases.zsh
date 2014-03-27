@@ -1,8 +1,8 @@
 # LS Alias definitions
 
 # main ls alias
-LS="ls -h"   # `-h` enables "human" units for file sizes
-LL="${LS}al" # `-a` shows all files, `-l` shows list in a long format
+LS="ls -hF"  # `-h` enables "human" units for file sizes, `-F` shows characters to denote directory and file types
+LL="${LS}Al" # `-A` shows all files except `.` and `..`, `-l` shows list in a long format
 LD="${LS}d"  # `-d` shows directories as regular files (allows limiting display to current directory rather than listing contents of subdirectories)
 
 # detect coreutils' type by throwing --color=auto at GNU ls
