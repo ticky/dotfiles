@@ -45,36 +45,42 @@ function platformbindir {
 }
 
 function profile() {
-  if [ "$1" = "edit" ]; then
-    command $EDITOR $HOME/dotfiles;
-  elif [ "$1" = "load" ]; then
-    source $HOME/.zshrc;
-  elif [ "$1" = "install" ]; then
-    command $HOME/dotfiles/install.sh && \
-      profile load;
-  elif [ "$1" = "update" ]; then
-    command cd ~/dotfiles && \
-    command git stash && \
-    command git fetch && \
-    command git stash pop && \
-    cd - && \
-    profile install
-  else
-    echo "Usage: profile <command>"
-    echo
-    echo "Commands:"
-    echo "    edit"
-    echo "        Open the dotfiles directory in \"$EDITOR\""
-    echo
-    echo "    load"
-    echo "        Reload the configuration (Applies only to zshrc)"
-    echo
-    echo "    install"
-    echo "        Run the dotfiles installer again (to add new files)"
-    echo
-    echo "    update"
-    echo "        Fetch updated version of dotfiles and install them"
-  fi
+  case $1 in
+    edit|ed|e)
+      command $EDITOR $HOME/dotfiles
+      ;;
+    load|lo|l)
+      source $HOME/.zshrc
+      ;;
+    install|inst|in|i)
+      command $HOME/dotfiles/install.sh && \
+      profile load
+      ;;
+    update|up|u)
+      cd ~/dotfiles && \
+      command git stash && \
+      command git fetch && \
+      command git stash pop && \
+      cd - && \
+      profile install
+      ;;
+    *)
+      echo "Usage: $0 <command>" && \
+      echo && \
+      echo "Commands:" && \
+      echo "    edit, ed, e" && \
+      echo "        Open the dotfiles directory in \"$EDITOR\"" && \
+      echo && \
+      echo "    load, lo, l" && \
+      echo "        Reload the configuration (Applies only to zshrc)" && \
+      echo && \
+      echo "    install, inst, in, i" && \
+      echo "        Run the dotfiles installer again (to add new files)" && \
+      echo && \
+      echo "    update, up, u" && \
+      echo "        Fetch updated version of dotfiles and install them"
+      ;;
+  esac
 }
 alias p="profile"
 
