@@ -338,7 +338,7 @@ function profile() {
       profile load
       ;;
     update|up|u)
-      cd ~/dotfiles && \
+      cd $HOME/dotfiles && \
       command git stash && \
       command git fetch && \
       command git stash pop && \
@@ -349,16 +349,16 @@ function profile() {
       echo "Usage: $0 <command>" && \
       echo && \
       echo "Commands:" && \
-      echo "    edit" && \
+      echo "    edit, ed, e" && \
       echo "        Open the dotfiles directory in \"$EDITOR\"" && \
       echo && \
-      echo "    load" && \
+      echo "    load, lo, l" && \
       echo "        Reload the configuration (Applies only to zshrc)" && \
       echo && \
-      echo "    install" && \
+      echo "    install, inst, in, i" && \
       echo "        Run the dotfiles installer again (to add new files)" && \
       echo && \
-      echo "    update" && \
+      echo "    update, up, u" && \
       echo "        Fetch updated version of dotfiles and install them"
       ;;
   esac

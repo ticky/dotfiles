@@ -57,7 +57,7 @@ function profile() {
       profile load
       ;;
     update|up|u)
-      cd ~/dotfiles && \
+      cd $HOME/dotfiles && \
       command git stash && \
       command git fetch && \
       command git stash pop && \
