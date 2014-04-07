@@ -3,6 +3,7 @@
 ## Guidelines for Configuration ##
 # Always use `set` (alias for `set-option`) and `bind` (alias for `bind-key`) in lieu of their longer counterparts
 # Where there exists an alias to a flagged option (e.g. `set-window-option` for `set-option -w`), use the flag instead
+# All key codes given to the `bind` command should be in single quotes, unless a single quote is required to be in the binding, in which case double quotes should be used
 
 ## GENERAL SETTINGS ##
 
@@ -65,6 +66,9 @@ set -w -g clock-mode-style 12
 # vim key binding mode
 set -w -g mode-keys vi
 
+# Reduce time waited to disambiguate alt and escape key input
+set -g -s escape-time 50
+
 # Turn on xterm keys
 set -w -g xterm-keys on
 
@@ -75,29 +79,33 @@ set -g mouse-resize-pane on
 set -g mouse-select-window on
 
 # GNU Screen-style prefix key
-unbind C-b
-set -g prefix C-a
+unbind 'C-b'
+set -g prefix 'C-a'
 
 # Allow C-a a to send C-a to application
-bind C-a send-prefix
+bind 'C-a' send-prefix
 
 # Allow reloading source file
-bind r source-file ~/.tmux.conf \; display-message "Configuration Reloaded"
+bind 'r' source-file ~/.tmux.conf \; display-message "✔︎ Settings have been reloaded from `.tmux.conf`."
 
 # Toggle status bar
-bind b set status
+bind 'b' set status
 
 # Switch panes with Tab
-unbind Tab
-bind Tab select-pane -t :.+
+unbind 'Tab'
+bind 'Tab' select-pane -t :.+
 
 # Horizontal window splits with |
-unbind %
-unbind |
-bind | split-window -h
+unbind '%'
+unbind '|'
+bind '|' split-window -h
+
+# Use alt+split buttons to open a new split and immediately run a command
+bind 'M-"' command-prompt -p "Open a new horizontal split pane and run" "split-window 'exec $SHELL -ci \"%%\"'"
+bind 'M-|' command-prompt -p "Open a new verical split pane and run" "split-window -h 'exec $SHELL -ci \"%%\"'"
 
 # Open man page with /
-bind / command-prompt -p "Show manual for" "split-window -h 'exec man %%'"
+bind '/' command-prompt -p "Show manual for" "split-window -h 'exec $SHELL -ci \"man %%\"'"
 
 # If we're on OS X, load the extra OS X configuration
 if-shell 'test "$(uname -s)" = Darwin' 'source-file ~/dotfiles/platform/darwin/ext/tmux-integration.conf'
