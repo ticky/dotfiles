@@ -5,7 +5,7 @@
 # `returnOneOf foo bar baz`, returns, at random, either `foo`, `bar` or `baz`.
 
 # Convert to Array
-TEMPOPTIONS=($@);
+TEMPOPTIONS=("$@");
 
 # Combine the following to get a random item;
 # `${VAR[x]}`  - Get variable at index `x` of `$VAR`

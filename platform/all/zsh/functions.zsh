@@ -1,5 +1,5 @@
 function userIsRoot {
-  [ `env whoami` = "root" ]
+  [ "$(env whoami)" = "root" ]
 }
 function platformIsDarwin {
   [ "$UNAME" = "darwin" ]
@@ -19,21 +19,21 @@ function _hex_split {
   rgb=
 
   if [ ${#1} -eq 6 ]; then
-    rgb=(`chcase upper "${1:0:2} ${1:2:2} ${1:4:2}"`)
+    rgb=($(chcase upper "${1:0:2} ${1:2:2} ${1:4:2}"))
   elif [ ${#1} -eq 3 ]; then
-    rgb=(`chcase upper "${1:0:1}${1:0:1} ${1:1:1}${1:1:1} ${1:2:1}${1:2:1}"`)
+    rgb=($(chcase upper "${1:0:1}${1:0:1} ${1:1:1}${1:1:1} ${1:2:1}${1:2:1}"))
   fi
 
   echo $rgb
 }
 
 function _base_16_to_10 {
-  echo "ibase=16; `chcase upper $1`" | bc
+  echo "ibase=16; $(chcase upper "$1")" | bc
 }
 
 function _hex_to_rgb {
-  rgb=(`_hex_split $1`)
-  echo "`_base_16_to_10 $rgb[1]`,`_base_16_to_10 $rgb[2]`,`_base_16_to_10 $rgb[3]`"
+  rgb=($(_hex_split "$1"))
+  echo "$(_base_16_to_10 $rgb[1]),$(_base_16_to_10 $rgb[2]),$(_base_16_to_10 $rgb[3])"
 }
 
 function platformbindir {
@@ -47,17 +47,17 @@ function platformbindir {
 function profile() {
   case $1 in
     edit|ed|e)
-      command $EDITOR $HOME/dotfiles
+      command "$EDITOR" "$HOME/dotfiles"
       ;;
     load|lo|l)
-      source $HOME/.zshrc
+      source "$HOME/.zshrc"
       ;;
     install|inst|in|i)
-      command $HOME/dotfiles/install.sh && \
+      command "$HOME/dotfiles/install.sh" && \
       profile load
       ;;
     update|up|u)
-      cd $HOME/dotfiles && \
+      cd "$HOME/dotfiles" && \
       command git stash && \
       command git fetch && \
       command git stash pop && \
@@ -101,7 +101,7 @@ if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; the
     clear 2>/dev/null
     if [ $# -eq 0 ]; then
       # automatically "run" if there are no arguments
-      echo "run\n" > /tmp/playrunner
+      printf "run\n" > /tmp/playrunner
       cat /tmp/playrunner - | _JAVA_OPTIONS="-Djava.awt.headless=true" command play
       rm /tmp/playrunner
     else

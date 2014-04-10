@@ -29,10 +29,10 @@ case $1 in
 esac
 
 # Detect Meridiem Format String and override
-meridiem=`strftime "%P" $EPOCHSECONDS`
+meridiem=$(strftime "%P" "$EPOCHSECONDS")
 meridiem=${${meridiem/P/}/A/}
 
-if [ -z $meridiem ]; then
+if [ -z "$meridiem" ]; then
 	# GNU strftime(3)
 	format=${format/"%P"/"%p"}
 fi
@@ -43,4 +43,4 @@ if [ $# -gt 1 ]; then
 	timestamp=$2
 fi
 
-strftime "$format" $timestamp
+strftime "$format" "$timestamp"

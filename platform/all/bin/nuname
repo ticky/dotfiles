@@ -3,12 +3,12 @@
 # nuname
 # Normalised `uname` output
 
-UNAME=$(uname | tr '[A-Z]' '[a-z]')
+UNAME=$(uname | chcase lower)
 # working around Cygwin weirdness
 # NOTE: On Linux and Darwin (and likely FreeBSD), `uname` returns the kernel name.
 #       On Cygwin, you get a long string including CYGWIN, kernel version and architecture.
 #       We override Cygwin's entry for brevity here.
-`uname -o > /dev/null 2> /dev/null` && if [ `uname -o` = "Cygwin" ]; then
+uname -o > /dev/null 2> /dev/null && if [ "$(uname -o)" = "Cygwin" ]; then
   UNAME="cygwin"
 fi
 

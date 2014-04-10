@@ -7,7 +7,7 @@
 # Loading mechanism borrowed from Zach Holman's dotfiles <https://github.com/holman>
 
 # Shortcut to dotfiles directory
-export DOTFILES=$HOME/dotfiles
+export DOTFILES="$HOME/dotfiles"
 
 export UNAME=$($DOTFILES/platform/all/bin/nuname)
 
@@ -20,7 +20,7 @@ config_files=($DOTFILES/platform/(all|$UNAME|all-but-^$UNAME)/zsh/path.zsh)
 
 # load the path files
 for file in $config_files; do
-  source $file
+  source "$file"
 done
 
 unset config_files

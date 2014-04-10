@@ -24,4 +24,4 @@ esac
 
 shift
 
-echo -n $@ | tr $FROM $TO
+echo -n "$@" | tr $FROM $TO

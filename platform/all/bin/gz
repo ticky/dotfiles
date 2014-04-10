@@ -3,8 +3,8 @@
 # gz
 # Output gzipped size of a file
 
-for ARG in $*; do
-	if [ -f $ARG ]; then
+for ARG in "$@"; do
+	if [ -f "$ARG" ]; then
 		origsize=$(wc -c < "$ARG")
 		gzipsize=$(gzip -c "$ARG" | wc -c)
 		ratio=$(echo "100 - ($gzipsize * 100 / $origsize)" | bc -l)

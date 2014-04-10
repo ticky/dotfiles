@@ -49,13 +49,13 @@ git_status() {
     fi
 
     # Output
-    echo $op
+    echo "$op"
   fi
 }
 
 git_local_email() {
   if [[ $($git config user.email) != $($git config --global user.email) ]]; then
-    echo $($git config user.email)
+    $git config user.email
   fi
 }
 
