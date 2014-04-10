@@ -5,7 +5,7 @@ shopt -s extglob
 shopt -s nullglob
 
 # kernel name
-: ${UNAME=$(~/dotfiles/platform/all/bin/nuname)}
+UNAME="$(~/dotfiles/platform/all/bin/nuname)"
 
 echo "# Geoff's Dotfiles"
 echo "https://github.com/geoffstokes/dotfiles"
