@@ -1,14 +1,14 @@
 function userIsRoot {
-  [ "$(env whoami)" = "root" ]
+  [[ "$(env whoami)" = "root" ]]
 }
 function platformIsDarwin {
-  [ "$UNAME" = "darwin" ]
+  [[ "$UNAME" = "darwin" ]]
 }
 function platformIsLinux {
-  [ "$UNAME" = "linux" ]
+  [[ "$UNAME" = "linux" ]]
 }
 function platformIsCygwin {
-  [ "$UNAME" = "cygwin" ]
+  [[ "$UNAME" = "cygwin" ]]
 }
 
 function sessionIsLocal {
@@ -18,9 +18,9 @@ function sessionIsLocal {
 function _hex_split {
   rgb=
 
-  if [ ${#1} -eq 6 ]; then
+  if [[ ${#1} -eq 6 ]]; then
     rgb=($(chcase upper "${1:0:2} ${1:2:2} ${1:4:2}"))
-  elif [ ${#1} -eq 3 ]; then
+  elif [[ ${#1} -eq 3 ]]; then
     rgb=($(chcase upper "${1:0:1}${1:0:1} ${1:1:1}${1:1:1} ${1:2:1}${1:2:1}"))
   fi
 
@@ -37,7 +37,7 @@ function _hex_to_rgb {
 }
 
 function platformbindir {
-  if [ -d "$HOME/dotfiles/platform/$UNAME/bin" ]; then
+  if [[ -d "$HOME/dotfiles/platform/$UNAME/bin" ]]; then
     echo "$HOME/dotfiles/platform/$UNAME/bin"
   else
     mkdir -p "$HOME/dotfiles/platform/$UNAME/bin" && PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH" && echo "$HOME/dotfiles/platform/$UNAME/bin"
@@ -99,7 +99,7 @@ function mkcd() {
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
   function play() {
     clear 2>/dev/null
-    if [ $# -eq 0 ]; then
+    if [[ $# -eq 0 ]]; then
       # automatically "run" if there are no arguments
       printf "run\n" > /tmp/playrunner
       cat /tmp/playrunner - | _JAVA_OPTIONS="-Djava.awt.headless=true" command play

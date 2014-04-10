@@ -3,23 +3,28 @@ PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
 # bring in NPM
-test -d "/usr/local/share/npm/bin" &&
-PATH="$PATH:/usr/local/share/npm/bin"
+if [[ -d "/usr/local/share/npm/bin" ]]; then
+  PATH="$PATH:/usr/local/share/npm/bin"
+fi
 
 # All-OS user bin
-test -d "$HOME/dotfiles/platform/all/bin" &&
-PATH="$HOME/dotfiles/platform/all/bin:$PATH"
+if [[ -d "$HOME/dotfiles/platform/all/bin" ]]; then
+  PATH="$HOME/dotfiles/platform/all/bin:$PATH"
+fi
 
 # Allow platform-based overrides
-test -d "$HOME/dotfiles/platform/$UNAME/bin" &&
-PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH"
+if [[ -d "$HOME/dotfiles/platform/$UNAME/bin" ]]; then
+  PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH"
+fi
 
 # Allow platform-based overrides
-test -d "$HOME/dotfiles/platform/all-but-!($UNAME)/bin" &&
-PATH="$HOME/dotfiles/platform/all-but-!($UNAME)/bin:$PATH"
+if [[ -d "$HOME/dotfiles/platform/all-but-!($UNAME)/bin" ]]; then
+  PATH="$HOME/dotfiles/platform/all-but-!($UNAME)/bin:$PATH"
+fi
 
 # put ~/bin on PATH if you have it
-test -d "$HOME/bin" &&
-PATH="$HOME/bin:$PATH"
+if [[ -d "$HOME/bin" ]]; then
+  PATH="$HOME/bin:$PATH"
+fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 
 # 32-bit Sublime Text 2
-if [ -n "$PROGRAMFILES" ]; then
-  if [ -r "`cygpath -u "$PROGRAMFILES\Sublime Text 2\sublime_text.exe"`" ]; then
+if [[ -n "$PROGRAMFILES" ]]; then
+  if [[ -r "`cygpath -u "$PROGRAMFILES\Sublime Text 2\sublime_text.exe"`" ]]; then
     WINEDITOR=$(cygpath -u "$PROGRAMFILES\Sublime Text 2\sublime_text.exe")
   fi
 fi
 
 # 64-bit Sublime Text 2
-if [ -n "$ProgramW6432" ]; then
-  if [ -r "`cygpath -u "$ProgramW6432\Sublime Text 2\sublime_text.exe"`" ]; then
+if [[ -n "$ProgramW6432" ]]; then
+  if [[ -r "`cygpath -u "$ProgramW6432\Sublime Text 2\sublime_text.exe"`" ]]; then
     WINEDITOR=$(cygpath -u "$ProgramW6432\Sublime Text 2\sublime_text.exe")
   fi
 fi
 
-if [ -n "$1" ]; then
+if [[ -n "$1" ]]; then
   fileopen=$1
 else
   fileopen=`pwd`
 fi
 
-if [ ! -n "$WINEDITOR" ]; then
+if [[ ! -n "$WINEDITOR" ]]; then
   vim "$fileopen"
 else
   cygstart "$WINEDITOR" "`cygpath -aw $fileopen`"

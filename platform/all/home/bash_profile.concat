@@ -62,16 +62,16 @@ umask 0022
 
 # platform & user shortcut functions
 function userIsRoot {
-  [ "$(env whoami)" = "root" ]
+  [[ "$(env whoami)" = "root" ]]
 }
 function platformIsDarwin {
-  [ "$UNAME" = "darwin" ]
+  [[ "$UNAME" = "darwin" ]]
 }
 function platformIsLinux {
-  [ "$UNAME" = "linux" ]
+  [[ "$UNAME" = "linux" ]]
 }
 function platformIsCygwin {
-  [ "$UNAME" = "cygwin" ]
+  [[ "$UNAME" = "cygwin" ]]
 }
 function sessionIsLocal {
   [[ $SSH_CONNECTION == '' && $TERM != "screen"* ]]
@@ -100,31 +100,36 @@ fi
 # ----------------------------------------------------------------------
 
 # bring in system bashrc
-test -r /etc/bashrc &&
-      . /etc/bashrc
+if [[ -r /etc/bashrc ]]; then
+  source /etc/bashrc
+fi
 
 # we want the various sbins on the path along with /usr/local/bin
 PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
 PATH="/usr/local/bin:$PATH"
 
 # bring in NPM
-test -d "/usr/local/share/npm/bin" &&
-PATH="$PATH:/usr/local/share/npm/bin"
+if [[ -d "/usr/local/share/npm/bin" ]]; then
+  PATH="$PATH:/usr/local/share/npm/bin"
+fi
 
 # All-OS user bin
-test -d "$HOME/dotfiles/platform/all/bin" &&
-PATH="$HOME/dotfiles/platform/all/bin:$PATH"
+if [[ -d "$HOME/dotfiles/platform/all/bin" ]]; then
+  PATH="$HOME/dotfiles/platform/all/bin:$PATH"
+fi
 
 # Allow platform-based overrides
-test -d "$HOME/dotfiles/platform/$UNAME/bin" &&
-PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH"
+if [[ -d "$HOME/dotfiles/platform/$UNAME/bin" ]]; then
+  PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH"
+fi
 
 # Allow platform-based overrides
-test -d "$HOME/dotfiles/platform/all-but-!($UNAME)/bin" &&
-PATH="$HOME/dotfiles/platform/all-but-!($UNAME)/bin:$PATH"
+if [[ -d "$HOME/dotfiles/platform/all-but-!($UNAME)/bin" ]]; then
+  PATH="$HOME/dotfiles/platform/all-but-!($UNAME)/bin:$PATH"
+fi
 
 function platformbindir {
-  if [ -d "$HOME/dotfiles/platform/$UNAME/bin" ]; then
+  if [[ -d "$HOME/dotfiles/platform/$UNAME/bin" ]]; then
     echo "$HOME/dotfiles/platform/$UNAME/bin"
   else
     mkdir -p "$HOME/dotfiles/platform/$UNAME/bin" && PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH" && echo "$HOME/dotfiles/platform/$UNAME/bin:$PATH"
@@ -132,8 +137,9 @@ function platformbindir {
 }
 
 # put ~/bin on PATH if you have it
-test -d "$HOME/bin" &&
-PATH="$HOME/bin:$PATH"
+if [[ -d "$HOME/bin" ]]; then
+  PATH="$HOME/bin:$PATH"
+fi
 
 # ----------------------------------------------------------------------
 #  WINDOW TITLE
@@ -153,11 +159,15 @@ function title_git() {
 
 # checks the current repo's email against the global value; if they don't match, show the repo's value.
 function _git_prompt_local_email {
-  [[ $(command git config user.email) != $(command git config --global user.email) ]] && echo "$(command git config user.email) "
+  if [[ $(command git config user.email) != $(command git config --global user.email) ]]; then
+    echo "$(command git config user.email) "
+  fi
 }
 # detect if there are changes to the local working copy
 function _git_prompt_dirty_marker {
-  [ -z "$(command git status -s 2> /dev/null)" ] || echo " ●"
+  if [[ -z "$(command git status -s 2> /dev/null)" ]]; then
+    echo " ●"
+  fi
 }
 # Serves two functions; shows the current branch (in place of `\1`),
 # and if `git branch` returns a failure code, outputs nothing (i.e. hides the git prompt, and never calls the sub-functions).
@@ -177,7 +187,7 @@ function _git_prompt {
 ATHOST="@\h"
 
 if platformIsLinux; then
-  if [[ $(cat /proc/$PPID/cmdline) == SCREEN* ]] ; then
+  if [[ $(cat /proc/$PPID/cmdline) == SCREEN* ]]; then
     ATHOST=""
   fi
 fi
@@ -211,10 +221,10 @@ function prompt_color() {
 # OS X-specific autocompletions
 if platformIsDarwin; then
   # if homebrew's bash_completion is installed, bring it in
-  if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+  if [[ -f "$(brew --prefix)/etc/bash_completion" ]]; then
     # bash_completion sets and unsets a UNAME variable; this works around it
     TEMPUNAME=$UNAME
-    . "$(brew --prefix)/etc/bash_completion"
+    source "$(brew --prefix)/etc/bash_completion"
     UNAME=$TEMPUNAME
     unset TEMPUNAME
   fi
@@ -231,7 +241,7 @@ LS="ls -h"   # `-h` enables "human" units for file sizes
 LL="${LS}al" # `-a` shows all files, `-l` shows list in a long format
 LD="${LS}d"  # `-d` shows directories as regular files (allows limiting display to current directory rather than listing contents of subdirectories)
 
-if [ "$COREUTILS" = "BSD" ]; then
+if [[ "$COREUTILS" = "BSD" ]]; then
 
   # Use environment variable rather than alias to enable colours.
   export CLICOLOR="yes"
@@ -254,7 +264,7 @@ if [ "$COREUTILS" = "BSD" ]; then
   # See `man ls` on a Mac or FreeBSD system for info on this
 
   # Support for additional GNU Coreutils
-  if [ "$GCOREUTILS" = "YES" ]; then
+  if [[ "$GCOREUTILS" = "YES" ]]; then
     # If the GNU Coreutils are included as "gls"
 
     # setup the main ls alias
@@ -267,7 +277,7 @@ if [ "$COREUTILS" = "BSD" ]; then
     alias gl.="g${LD} --color .*"
   fi
 
-elif [ "$COREUTILS" = "GNU" ]; then
+elif [[ "$COREUTILS" = "GNU" ]]; then
 
   # If GNU Coreutils has been detected, configure aliases to use `--color`
 
@@ -395,7 +405,7 @@ fi
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
   function play() {
     clear 2>/dev/null
-    if [ $# -eq 0 ]; then
+    if [[ $# -eq 0 ]]; then
       # automatically "run" if there are no arguments
       printf "run\n" > /tmp/playrunner
       cat /tmp/playrunner - | _JAVA_OPTIONS="-Djava.awt.headless=true" command play
@@ -441,8 +451,11 @@ fi
 title_git
 
 # Use the color prompt by default when interactive
-test -n "$PS1" &&
-prompt_color
+if [[ -n "$PS1" ]]; then
+  prompt_color
+fi
 
 # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  source "$HOME/.rvm/scripts/rvm"
+fi

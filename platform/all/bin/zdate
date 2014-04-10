@@ -32,14 +32,14 @@ esac
 meridiem=$(strftime "%P" "$EPOCHSECONDS")
 meridiem=${${meridiem/P/}/A/}
 
-if [ -z "$meridiem" ]; then
+if [[ -z "$meridiem" ]]; then
 	# GNU strftime(3)
 	format=${format/"%P"/"%p"}
 fi
 
 timestamp=$EPOCHSECONDS
 
-if [ $# -gt 1 ]; then
+if [[ $# -gt 1 ]]; then
 	timestamp=$2
 fi
 
