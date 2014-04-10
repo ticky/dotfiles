@@ -59,7 +59,7 @@ Setup involves a few steps specific to each platform, followed by the "all platf
 On OS X, Homebrew is presently required. (You almost certainly want it anyway)
 
 * install [Xcode](https://itunes.apple.com/app/xcode/id497799835)
-* install [Homebrew](http://github.com/mxcl/homebrew)
+* install [Homebrew](https://github.com/Homebrew/homebrew)
 * `brew install bash-completion reattach-to-user-namespace git`
 
 ### Cygwin
@@ -89,10 +89,7 @@ After completing the relevant platform-specific section,
 
 ## Updating
 
-* pull changes into your local copy
-* run `~/dotfiles/install.sh`
-
-In short (if you haven't changed anything locally), `cd ~/dotfiles && git pull && profile install`
+`profile update` will fetch the latest changes from GitHub and install them.
 
 _**NOTE**: OS X defaults will not be updated on shell restarts. They are only updated when you explicitly run `osxdefaults` (and are, naturally, only available on OS X)_
 
@@ -113,9 +110,9 @@ The install script will manage this automatically. You can find these under `dot
 * Files in `dotfiles/platforms/{platform}/home` are either symlinked (editing `~/{file}` updates `dotfiles/platforms/{platform}/file` - platform-specific includes are only possible if the file is executable) or concatenated (appended; this allows platform-specific stuff to be added to files which aren't executed).
 
 * Files in `dotfiles/platforms/{platform}/zsh` are loaded by `.zshrc` (and thus, only when running `zsh`), in the following order;
-	1. `path.zsh` - settings for `$PATH` go here
-	2. All files except `path.zsh` and `completion.zsh`, in alphabetical order - general settings and custom categorisation goes here
-	3. `completion.zsh` - completion settings go here
+    1. `path.zsh` - settings for `$PATH` go here
+    2. All files except `path.zsh` and `completion.zsh`, in alphabetical order - general settings and custom   categorisation goes here
+    3. `completion.zsh` - completion settings go here
 
 This setup includes a helper function for this called `platformbindir`. Running this will;
 * create the platform-specific `bin` directory if it doesn't already exist
@@ -137,11 +134,6 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 
 * `$UNAME`: current platform name, in lower case. (In the case of Cygwin, this will always be `cygwin`)
 
-#### Bash Only
-
-* `$COREUTILS`: type of core utility distribution available on the local system. Either `OTHER`, `BSD` or `GNU`.
-* `$GCOREUTILS`: when `$COREUTILS` is `BSD`, this may be set to `YES` if there are also GNU core utilities available as, for example, `gls` for GNU `ls`.
-
 ### Aliases
 
 * `cip`: outputs a single IP address for the current system (last line of `ipls` output), usually the one you want - useful for scripts
@@ -157,6 +149,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 
 ### Utilities
 
+* `chcase`: Utility to change the case of text input. Uses `tr` internally to support multiple character sets.
 * `colourtest`: prints out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh))
 * `fn`: find files under the current directory by name (uses Spotlight's cache on OS X and `find` on other systems)
 * `gravatar`: output gravatar URLs for email addresses passed in
@@ -164,6 +157,8 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `ipgrep`: finds valid IP addresses within input which are not link-local
 * `imessage`: (OS X only) sends an iMessage to the specified address/number (`imessage "+61491570156" "This is an iMessage to a fictitious Australian telephone number"`)
 * `learn-spelling`: (OS X only) merges a backed up list of spelling words into the OS X user spell checking dictionary
+* `mansi`: Colourful `man` output.
+* `nuname`: Normalised `uname` command; used to derive the `$UNAME` variable. Lower case for all platforms.
 * `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
 * `returnOneOf`: pass in a bunch of parameters, it'll randomly echo one of them.
 * `shttp`: starts an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.
@@ -182,6 +177,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 
 These were originally forked from [seaofclouds](http://github.com/seaofclouds)' [dotfiles repo](https://github.com/seaofclouds/dotfiles), and subsequently heavily modified.  
 Lots of inspiration (and some shortcuts and functions) taken from these fine people;
+
 * [Eevee](https://github.com/eevee/rc)
 * [Ben Alman](https://github.com/cowboy/dotfiles)
 * [Mathias Bynens](http://mths.be/dotfiles)
