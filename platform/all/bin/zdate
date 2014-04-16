@@ -8,6 +8,9 @@ zmodload zsh/datetime
 
 # Preset Date Formats
 case $1 in
+	beats|b)
+		format="@%i"
+		;;
 	short|s)
 		format="%L:%M %P"
 		;;
@@ -41,6 +44,23 @@ timestamp=$EPOCHSECONDS
 
 if [[ $# -gt 1 ]]; then
 	timestamp=$2
+fi
+
+# Swatch Internet Time (Beats)
+
+function beats() {
+
+	zmodload zsh/mathfunc
+	integer BEATS
+
+	((BEATS=floor(($(strftime "%S" "$1")+($(strftime "%M" "$1")*60)+(($(strftime "%H" "$1")+1)*3600))/86.4)))
+
+	printf $BEATS
+
+}
+
+if [[ $format = *%i* ]]; then
+	format=${format/"%i"/"$(TZ=UTC beats $timestamp)"}
 fi
 
 strftime "$format" "$timestamp"
