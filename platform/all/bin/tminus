@@ -41,29 +41,31 @@ def main():
 
 def formatTimeDiff(timeDiffObject):
 
-    seconds = int(timeDiffObject.total_seconds())
+	seconds = int(timeDiffObject.total_seconds())
 
-    # This is all a bit naïve...
-    periods = [
-        ('year',   60*60*24*365),
-        ('month',  60*60*24*30),
-        ('day',    60*60*24),
-        ('hour',   60*60),
-        ('minute', 60),
-        ('second', 1)
-    ]
+	# This is all a bit naïve...
+	periods = [
+		('decade', 60*60*24*365*10),
+		('year',   60*60*24*365),
+		('month',  60*60*24*30),
+		('week',   60*60*24*7),
+		('day',    60*60*24),
+		('hour',   60*60),
+		('minute', 60),
+		('second', 1)
+	]
 
-    strings=[]
+	strings=[]
 
-    for period_name, period_seconds in periods:
-        if seconds > period_seconds:
-            period_value, seconds = divmod(seconds, period_seconds)
-            if period_value == 1:
-                strings.append("%s %s" % (period_value, period_name))
-            else:
-                strings.append("%s %ss" % (period_value, period_name))
+	for period_name, period_seconds in periods:
+		if seconds > period_seconds:
+			period_value, seconds = divmod(seconds, period_seconds)
+			if period_value == 1:
+				strings.append("%s %s" % (period_value, period_name))
+			else:
+				strings.append("%s %ss" % (period_value, period_name))
 
-    return ", ".join(strings)
+	return ", ".join(strings)
 
 if __name__ == "__main__":
 	main()
