@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+# appLink
+# Creates symlinks for app data
+
+function mdir() {
+	if [[ ! -e "$1" ]]; then
+		mkdir -p "$1"
+	fi
+}
+
+function backupln() {
+	echo "* Link \"${1/$HOME/~}\" -> \"${2/$HOME/~}\"..."
+	if [[ -e "$2" ]]; then
+		if [[ "$(readlink "$2")" = "$1" ]]; then
+			echo "  * Link already exists, and points to the same place. Nothing to do!"
+		else
+			echo "  * Link already exists, backing up as \"${2/$HOME/~}.bak\"..."
+			if [[ -e "$2.bak" ]]; then
+				rm -rf "$2.bak"
+			fi
+			mv "$2" "$2.bak"
+			ln -s "$1" "$2"
+		fi
+	else
+		ln -s "$1" "$2"
+	fi
+}
+
+function linker() {
+	echo "## AppLink for $1..."
+
+	shift
+	SYNCDIR="$1"
+	shift
+	ROOTDIR="$1"
+
+	mdir "$ROOTDIR"
+
+	shift
+
+	TO_LINK=("$@")
+
+	for ((idx = 0; idx < ${#TO_LINK[@]}; idx++)); do
+		backupln "$SYNCDIR/${TO_LINK[$idx]}" "$ROOTDIR/${TO_LINK[$idx]}"
+	done
+	echo
+}
+
+function Adium() {
+	ROOTDIR="$HOME/Library/Application Support/Adium 2.0"
+
+	mdir "$ROOTDIR/Users/Default"
+
+	linker "Adium" "$1/Adium" "$ROOTDIR" "Contact List" "Dock Icons" "Emoticons" "Menu Bar Icons" "Message Styles" "Scripts" "Service Icons" "Sounds" "Status Icons" "Users/Default/Logs"
+}
+
+function iTunes() {
+	linker "iTunes" "$1/iTunes" "$HOME/Library/iTunes" Scripts
+}
+
+function SublimeText() {
+	linker "Sublime Text 3" "$1/Sublime Text 3" "$HOME/Library/Application Support/Sublime Text 3" "Installed Packages" "Packages"
+}
+
+case $1 in
+	sparkleshare)
+		LINKDIR="$HOME/SparkleShare/Library"
+		;;
+	dropbox)
+		LINKDIR="$HOME/Dropbox/Library"
+		;;
+esac
+
+case $2 in
+	adium|Adium)
+		Adium "$LINKDIR"
+		;;
+	itunes|iTunes)
+		iTunes "$LINKDIR"
+		;;
+	subl)
+		SublimeText "$LINKDIR"
+		;;
+	all)
+		Adium "$LINKDIR"
+		iTunes "$LINKDIR"
+		SublimeText "$LINKDIR"
+		;;
+esac
