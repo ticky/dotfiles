@@ -1,0 +1,3 @@
+# Show progress of dependency check and compiler output when installing
+install: --verbose
+update: --verbose
