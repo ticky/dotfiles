@@ -75,14 +75,14 @@ function beats() {
 	zmodload zsh/mathfunc
 	integer BEATS
 
-	((BEATS=floor(($(strftime "%S" "$1")+($(strftime "%M" "$1")*60)+(($(strftime "%H" "$1")+1)*3600))/86.4)))
+	((BEATS=floor(($(strftime "%S" "$1")+$(strftime "%M" "$1")*60+$(strftime "%H" "$1")*3600)/86.4)))
 
 	printf $BEATS
 
 }
 
 if [[ $format = *%i* ]]; then
-	format=${format/"%i"/"$(TZ=UTC beats $timestamp)"}
+	format=${format/"%i"/"$(TZ=Etc/GMT-1 beats $timestamp)"}
 fi
 
 strftime "$format" "$timestamp"
