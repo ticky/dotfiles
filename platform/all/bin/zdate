@@ -6,6 +6,11 @@
 
 zmodload zsh/datetime
 
+# Show help when given no arguments
+if [[ $# = 0 ]]; then
+	1=--help
+fi
+
 # Preset Date Formats
 case $1 in
 	beats|b)
@@ -25,6 +30,23 @@ case $1 in
 		;;
 	8601|iso|i)
 		format="%Y-%m-%dT%H:%M:%S%z"
+		;;
+	--help|-h)
+		echo "usage: $(basename $0) <format> [<datestamp>]"
+		echo
+		echo "Values for <format>:"
+		echo "    beats, b      Output the current Swatch Internet Time (e.g. \`@778\`)"
+		echo "    short, s      Short date (e.g. \`9:41 am\`)"
+		echo "    medium, m     Medium date (e.g. \`Tue 9:41 am\`)"
+		echo "    long, l       Long date (e.g. \`Tue Jan 9 9:41 am\`)"
+		echo "    full, f       Full date (e.g. \`Tuesday, January 9 2007 9:41:00 am\`)"
+		echo "    8601, iso, i  ISO 8601 date (e.g. \`2007-01-09T09:41:00-0800\`)"
+		echo
+		echo "Custom formats may also be specified, using BSD-style strftime(3) formats,"
+		echo "with the following additions;"
+		echo "    %i            Swatch Internet Time @Beats"
+		echo "    %P            %P is converted into %p when GNU-style strftime(3) is detected."
+		exit
 		;;
 	*)
 		format=$1

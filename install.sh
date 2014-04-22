@@ -9,6 +9,12 @@ UNAME="$(~/dotfiles/platform/all/bin/nuname)"
 
 echo "# Geoff's Dotfiles"
 echo "https://github.com/geoffstokes/dotfiles"
+if [[ -z "$UNAME" ]]; then
+  echo "Unable to determine platform." >&2
+  echo >&2
+  echo "Installation aborted." >&2
+  exit 1
+fi
 echo "Setting up for platform \"$UNAME\""
 echo
 
@@ -84,9 +90,9 @@ fi
 
 if [[ "$MISSINGDEPS" == "YES" ]]; then
 
-  echo -e "$MISSINGLIST"
-  echo
-  echo "Installation aborted."
+  echo -e "$MISSINGLIST" >&2
+  echo >&2
+  echo "Installation aborted." >&2
   exit 1
 
 else
@@ -105,12 +111,20 @@ else
 
     if [[ -r "$file" ]]; then
 
-      echo "* Linking \"$basename\" as \"$target\""
+      if [[ "$(readlink "$target")" != "$file" ]]; then
 
-      if [[ "$UNAME" = "cygwin" ]]; then
-        ln -f "$file" "$target"
+        echo "* Linking \"${target/$HOME/~}\" to \"$basename\""
+
+        if [[ "$UNAME" = "cygwin" ]]; then
+          ln -f "$file" "$target"
+        else
+          ln -sf "$file" "$target"
+        fi
+
       else
-        ln -sf "$file" "$target"
+
+        echo "* \"${target/$HOME\//}\" is already linked"
+
       fi
 
     fi
@@ -128,7 +142,7 @@ else
     if [[ -r "$file" ]]; then
 
       if [[ -r "$target" ]]; then
-        echo "* Moving existing \"$target\" to \"$target.bak\""
+        echo "* Moving \"${target/$HOME\//}\" to \"${target/$HOME\//}.bak\""
         mv "$target" "$target.bak"
       fi
 
@@ -143,7 +157,7 @@ else
 
     if [[ -r "$file" ]]; then
 
-      echo "* Creating \"$target\" from \"$basename\""
+      echo "* Adding to \"${target/$HOME\//}\" from \"${file/$HOME/~}\""
 
       if [[ -d "$file" ]]; then
         cp -R "$file" "$target"

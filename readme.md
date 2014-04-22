@@ -167,6 +167,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `untar`: you can `unzip`, why can't you `untar`?
 * `wed`: (Cygwin only) open a file or directory in Sublime Text 2 (if available), otherwise `vim`
 * `zdate`: date output which leverages `zsh` date utilities to provide consistent date output with nicer syntax than plain `strftime(3)`. custom formats are supported. built-in templates include;
+    * `beats` or `b`: Swatch Internet Time - `@778`
     * `short` or `s`: time only - `9:41 am`
     * `medium` or `m`: time and day - `Tue 9:41 am`
     * `long` or `l`: date, month, day of month and time - `Tue Jan 9 9:41 am`
