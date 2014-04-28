@@ -1,21 +1,21 @@
-function userIsRoot {
+userIsRoot() {
   [[ "$(env whoami)" = "root" ]]
 }
-function platformIsDarwin {
+platformIsDarwin() {
   [[ "$UNAME" = "darwin" ]]
 }
-function platformIsLinux {
+platformIsLinux() {
   [[ "$UNAME" = "linux" ]]
 }
-function platformIsCygwin {
+platformIsCygwin() {
   [[ "$UNAME" = "cygwin" ]]
 }
 
-function sessionIsLocal {
+sessionIsLocal() {
   [[ $SSH_CONNECTION == '' && $TERM != "screen"* ]]
 }
 
-function _hex_split {
+_hex_split() {
   rgb=
 
   if [[ ${#1} -eq 6 ]]; then
@@ -27,16 +27,16 @@ function _hex_split {
   echo $rgb
 }
 
-function _base_16_to_10 {
+_base_16_to_10() {
   echo "ibase=16; $(chcase upper "$1")" | bc
 }
 
-function _hex_to_rgb {
+_hex_to_rgb() {
   rgb=($(_hex_split "$1"))
   echo "$(_base_16_to_10 $rgb[1]),$(_base_16_to_10 $rgb[2]),$(_base_16_to_10 $rgb[3])"
 }
 
-function platformbindir {
+platformbindir() {
   if [[ -d "$HOME/dotfiles/platform/$UNAME/bin" ]]; then
     echo "$HOME/dotfiles/platform/$UNAME/bin"
   else
@@ -44,7 +44,7 @@ function platformbindir {
   fi
 }
 
-function profile() {
+profile() {
   case $1 in
     edit|ed|e)
       command "$EDITOR" "$HOME/dotfiles"
@@ -85,19 +85,19 @@ function profile() {
 alias p="profile"
 
 # retrieves the last (hopefully most relevant) IP address in the `ipls` list
-function cip() {
+cip() {
   ipls | tail -1
 }
 
 # create a directory and cd into it
 # http://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/
-function mkcd() {
+mkcd() {
   mkdir -p "$@" && eval cd "$@";
 }
 
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
-  function play() {
+  play() {
     clear 2>/dev/null
     if [[ $# -eq 0 ]]; then
       # automatically "run" if there are no arguments

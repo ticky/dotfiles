@@ -70,7 +70,7 @@ fi
 
 # Swatch Internet Time (Beats)
 
-function beats() {
+beats() {
 
 	zmodload zsh/mathfunc
 	integer BEATS

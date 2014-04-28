@@ -22,7 +22,7 @@ echo "## Checking for missing dependencies..."
 MISSINGDEPS="NO"
 MISSINGLIST="Missing Depdnencies:"
 
-function missingdep {
+missingdep() {
   MISSINGDEPS="YES"
   MISSINGLIST="$MISSINGLIST\n* $1"
 }

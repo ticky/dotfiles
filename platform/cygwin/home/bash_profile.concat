@@ -1,5 +1,5 @@
 # platform/cygwin/bash_profile.concat
-function winpath() {
+winpath() {
   if [[ -z "$1" ]]; then
     command cygpath -aw "`pwd`"
   else

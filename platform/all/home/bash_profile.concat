@@ -37,19 +37,19 @@ unset MAILCHECK
 umask 0022
 
 # platform & user shortcut functions
-function userIsRoot {
+userIsRoot() {
   [[ "$(env whoami)" = "root" ]]
 }
-function platformIsDarwin {
+platformIsDarwin() {
   [[ "$UNAME" = "darwin" ]]
 }
-function platformIsLinux {
+platformIsLinux() {
   [[ "$UNAME" = "linux" ]]
 }
-function platformIsCygwin {
+platformIsCygwin() {
   [[ "$UNAME" = "cygwin" ]]
 }
-function sessionIsLocal {
+sessionIsLocal() {
   [[ $SSH_CONNECTION == '' && $TERM != "screen"* ]]
 }
 
@@ -104,7 +104,7 @@ if [[ -d "$HOME/dotfiles/platform/all-but-!($UNAME)/bin" ]]; then
   PATH="$HOME/dotfiles/platform/all-but-!($UNAME)/bin:$PATH"
 fi
 
-function platformbindir {
+platformbindir() {
   if [[ -d "$HOME/dotfiles/platform/$UNAME/bin" ]]; then
     echo "$HOME/dotfiles/platform/$UNAME/bin"
   else
@@ -122,10 +122,10 @@ fi
 # ----------------------------------------------------------------------
 
 # set window title
-function title() {
+title() {
   echo -ne "\033]0;$@\007";
 }
-function title_git() {
+title_git() {
   title "${PWD} $(_git_prompt) $@"
 }
 
@@ -134,20 +134,20 @@ function title_git() {
 # ----------------------------------------------------------------------
 
 # checks the current repo's email against the global value; if they don't match, show the repo's value.
-function _git_prompt_local_email {
+_git_prompt_local_email() {
   if [[ $(command git config user.email) != $(command git config --global user.email) ]]; then
     echo "$(command git config user.email) "
   fi
 }
 # detect if there are changes to the local working copy
-function _git_prompt_dirty_marker {
+_git_prompt_dirty_marker() {
   if [[ -z "$(command git status -s 2> /dev/null)" ]]; then
     echo " ●"
   fi
 }
 # Serves two functions; shows the current branch (in place of `\1`),
 # and if `git branch` returns a failure code, outputs nothing (i.e. hides the git prompt, and never calls the sub-functions).
-function _git_prompt {
+_git_prompt() {
   command git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/✱ $(_git_prompt_local_email)⌥ \1$(_git_prompt_dirty_marker)/"
 }
 
@@ -170,12 +170,12 @@ fi
 
 # prompt setup functions
 # Reference for escape sequences: http://www.ibm.com/developerworks/linux/library/l-tip-prompt/
-function prompt_pwd() {
+prompt_pwd() {
   # This sets up the newPWD value which is used in the prompt and the title.
   # It is run after every command by the PROMPT_COMMAND variable.
   newPWD="${PWD} $(_git_prompt)"
 }
-function prompt_color() {
+prompt_color() {
   PROMPT_COMMAND='prompt_pwd;history -a;title_git'
 
   # Set up prompt.
@@ -315,7 +315,7 @@ export HISTIGNORE="&:cl:x:exit"
 #  CD, DIRECTORY NAVIGATION
 # ----------------------------------------------------------------------
 
-function profile() {
+profile() {
   case $1 in
     edit|ed|e)
       command $EDITOR $HOME/dotfiles
@@ -356,7 +356,7 @@ function profile() {
 alias p="profile"
 
 # supress bash_completion pwd on cd
-function cd() {
+cd() {
   command cd "$@" >/dev/null;
 }
 
@@ -365,25 +365,25 @@ alias ~="cd ~"
 
 # create a directory and cd into it
 # http://www.thegeekstuff.com/2008/10/6-awesome-linux-cd-command-hacks-productivity-tip3-for-geeks/
-function mkcd() {
+mkcd() {
   mkdir -p "$@" && eval cd "$@";
 }
 
 # retrieves the last (hopefully most relevant) IP address in the `ipls` list
-function cip() {
+cip() {
   ipls | tail -1
 }
 
 if platformIsDarwin; then
   # Change working directory to the top-most Finder window location
-  function cdf() { # short for `cdfinder`
+  cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
   }
 fi
 
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
-  function play() {
+  play() {
     clear 2>/dev/null
     if [[ $# -eq 0 ]]; then
       # automatically "run" if there are no arguments

@@ -3,13 +3,13 @@
 # appLink
 # Creates symlinks for app data
 
-function mdir() {
+mdir() {
 	if [[ ! -e "$1" ]]; then
 		mkdir -p "$1"
 	fi
 }
 
-function backupln() {
+backupln() {
 	echo "* Linking \"${1/$HOME/~}\" to \"${2/$HOME/~}\"..."
 	if [[ -e "$2" ]]; then
 		if [[ "$(readlink "$2")" = "$1" ]]; then
@@ -27,7 +27,7 @@ function backupln() {
 	fi
 }
 
-function linker() {
+linker() {
 	echo "## AppLink for $1..."
 
 	shift
@@ -47,7 +47,7 @@ function linker() {
 	echo
 }
 
-function Adium() {
+Adium() {
 	ROOTDIR="$HOME/Library/Application Support/Adium 2.0"
 
 	mdir "$ROOTDIR/Users/Default"
@@ -55,11 +55,11 @@ function Adium() {
 	linker "Adium" "$1/Adium" "$ROOTDIR" "Contact List" "Dock Icons" "Emoticons" "Menu Bar Icons" "Message Styles" "Scripts" "Service Icons" "Sounds" "Status Icons" "Users/Default/Logs"
 }
 
-function iTunes() {
+iTunes() {
 	linker "iTunes" "$1/iTunes" "$HOME/Library/iTunes" Scripts
 }
 
-function SublimeText() {
+SublimeText() {
 	linker "Sublime Text 3" "$1/Sublime Text 3" "$HOME/Library/Application Support/Sublime Text 3" "Installed Packages" "Packages"
 }
 

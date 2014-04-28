@@ -59,12 +59,12 @@ git_local_email() {
   fi
 }
 
-git_current_branch () {
+git_current_branch() {
  ref=$($git symbolic-ref HEAD 2>/dev/null) || ref=$(git show-ref --head -s --abbrev | head -n1 2> /dev/null) || return
  echo "${ref#refs/heads/}"
 }
 
-git_need_push () {
+git_need_push() {
   up=$($git cherry -v @{upstream} 2>/dev/null)
   if [[ $up == "" ]]; then
     echo ""
@@ -76,10 +76,7 @@ git_need_push () {
 export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}%n@%m%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:%~\n› %{$reset_color%}'
 export RPROMPT=$'$(git_status) $(zdate s)'
 export PS2=$'%{$fg[$PROMPT_PRIMARY]%}› %{$reset_color%}'
-#set_prompt () {
-#}
 
 precmd() {
   title "zsh" "%~ — %n@%m" "%55<...<%~"
-#  set_prompt
 }
