@@ -3,7 +3,7 @@
 # nuname
 # Normalised `uname` output
 
-UNAME=$(chcase lower "$(uname)")
+UNAME=$(echo -n "$(uname)" | tr '[:upper:]' '[:lower:]')
 # working around Cygwin weirdness
 # NOTE: On Linux and Darwin (and likely FreeBSD), `uname` returns the kernel name.
 #       On Cygwin, you get a long string including CYGWIN, kernel version and architecture.
