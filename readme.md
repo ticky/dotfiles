@@ -1,34 +1,19 @@
 # Dotfiles
 
-I like colours, a simple workflow and homebrew.  
-If you do too, then you might like my dotfiles.
+What I do have are a very particular set of dotfiles, dotfiles I have acquired over a very long career. Dotfiles that make unix less of a nightmare for people like me.
 
 ## Features
 
-* colorful prompt, directories and git functions in both `bash` and `zsh`
-* prompt updated with working `git` branch name and status
-* autocomplete directories, history, commands, common `killall` items and aliases
-* 2 line prompt for readability
-* support for OS X, Linux and Cygwin (and exposes `$UNAME` environment variable containing a lower-case platform name)
-* built-in compatibility with both GNU and BSD core utilities
-* `zsh` keyboard input map with sensible key combinations for iTerm 2, and hybrid global/local history (thanks to [Eevee](https://github.com/eevee/rc) for that tip)
-* useful aliases for git and more
-* support for the [hub](https://github.com/defunkt/hub) git extension
-* useful user-level `.gitignore`
-* stops `play` from spawning a useless dock icon and stealing focus for no reason
-* gives `ant` enough RAM to complete the simplest of tasks
-* makes `less` output some handy information
-* imports `rvm` by default
-* sensible `screen` setup - no startup message, real bells and your user shell
-* similar `tmux` setup - mouse input, nice colours and formatting
-* good `wget` defaults
+* colourful prompt, directory listing, `man` pages and `git` output
+* 2-line prompt with `git` status and clock
+* works on OS X, Linux and Cygwin - and with both GNU and BSD core utilities
+* shell history from `↑`/`↓` keys is from the current shell, `^r` is from all (`zsh` only)
+* stops `play` and `ant` from being unruly citizens on OS X
 
 ## Requirements
 
-* `git`  
-  _...Welcome to GitLab_
-* **Python 2.6/2.7**  
-  _Optional, only used for the `shttp` shortcut, which starts an HTTP server for the current directory_
+* `git`
+* **Python 2.6/2.7 and 3.x**
 * **Homebrew**  
   _OS X Only - This means you need Xcode installed first_
 * `reattach-to-user-namespace`  
@@ -54,42 +39,32 @@ Setup involves a few steps specific to each platform, followed by the "all platf
 
 ### OS X
 
-On OS X, Homebrew is presently required. (You almost certainly want it anyway)
-
 * install [Xcode](https://itunes.apple.com/app/xcode/id497799835)
 * install [Homebrew](https://github.com/Homebrew/homebrew)
-* `brew install bash-completion reattach-to-user-namespace git`
+* `brew install reattach-to-user-namespace`
+* (if using `bash`) `brew install bash-completion`
 
 ### Cygwin
 
 Cygwin has limited package management built-in. I recommend downloading [apt-cyg](http://code.google.com/p/apt-cyg/) which gives you a command-line interface for Cygwin's package manager.
 
-* `apt-cyg install bash-completion openssh`
-
-### Linux
-
-On Linux, you almost certainly have the core utilities needed. Just to be sure, you should install the following with your distro's package manager:
-
-* `bash-completion`, `git`
+* `apt-cyg install openssh ncurses`
+* (if using `bash`) `apt-cyg install bash-completion`
 
 ### All Platforms
 
 After completing the relevant platform-specific section,
 
-* install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
+* (if using `bash`) install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
 * `cpan Regexp::Common` (frustratingly, will require some basic interaction if you haven't set up CPAN before)
 * `git clone https://gitlab.com/geoffstokes/dotfiles.git ~/dotfiles`
 * `~/dotfiles/install.sh`  
   _**NOTE**: If `install.sh` detects that dependencies are missing, it will notify you and abort._
-* if on OS X, run `osxdefaults` to set OS X defaults  
-  _**TODO**: streamline this into the setup process_
 * Restart your shell
 
 ## Updating
 
 `profile update` will fetch the latest changes and install them.
-
-_**NOTE**: OS X defaults will not be updated on shell restarts. They are only updated when you explicitly run `osxdefaults` (and are, naturally, only available on OS X)_
 
 ## Platform-specific directories
 
@@ -113,6 +88,7 @@ The install script will manage this automatically. You can find these under `dot
     3. `completion.zsh` - completion settings go here
 
 This setup includes a helper function for this called `platformbindir`. Running this will;
+
 * create the platform-specific `bin` directory if it doesn't already exist
 * output the full location of the platform-specific `bin` directory
 
