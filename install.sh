@@ -8,7 +8,7 @@ shopt -s nullglob
 UNAME="$(~/dotfiles/platform/all/bin/nuname)"
 
 echo "# Geoff's Dotfiles"
-echo "https://github.com/geoffstokes/dotfiles"
+echo "https://gitlab.com/geoffstokes/dotfiles"
 if [[ -z "$UNAME" ]]; then
   echo "Unable to determine platform." >&2
   echo >&2

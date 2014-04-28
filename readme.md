@@ -26,7 +26,7 @@ If you do too, then you might like my dotfiles.
 ## Requirements
 
 * `git`  
-  _...Welcome to GitHub_
+  _...Welcome to GitLab_
 * **Python 2.6/2.7**  
   _Optional, only used for the `shttp` shortcut, which starts an HTTP server for the current directory_
 * **Homebrew**  
@@ -39,8 +39,6 @@ If you do too, then you might like my dotfiles.
   _Perl module used for `ipgrep` and `ipls` commands. Older versions do not suport IPv6 and will break._
 * **DejaVu Sans Mono**  
   _Cygwin Only - I use this font in MinTTY, and it'll fall back to Courier if it's not installed_
-
-_**On Windows?** I'm attempting to improve the Windows command prompt in similar ways, over at [batfiles](https://github.com/geoffstokes/batfiles)._
 
 ### Supported Shells
 * **zsh 4.3** or newer  
@@ -80,7 +78,7 @@ After completing the relevant platform-specific section,
 
 * install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
 * `cpan Regexp::Common` (frustratingly, will require some basic interaction if you haven't set up CPAN before)
-* `git clone https://github.com/geoffstokes/dotfiles.git ~/dotfiles`
+* `git clone https://gitlab.com/geoffstokes/dotfiles.git ~/dotfiles`
 * `~/dotfiles/install.sh`  
   _**NOTE**: If `install.sh` detects that dependencies are missing, it will notify you and abort._
 * if on OS X, run `osxdefaults` to set OS X defaults  
@@ -89,7 +87,7 @@ After completing the relevant platform-specific section,
 
 ## Updating
 
-`profile update` will fetch the latest changes from GitHub and install them.
+`profile update` will fetch the latest changes and install them.
 
 _**NOTE**: OS X defaults will not be updated on shell restarts. They are only updated when you explicitly run `osxdefaults` (and are, naturally, only available on OS X)_
 
