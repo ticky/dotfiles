@@ -45,19 +45,19 @@ if ! command -v clear >/dev/null 2>&1; then
 fi
 
 # Check for Bash 3.2 or newer
-eval "$($(which bash) --version | sed -e '/^[^G]/d' -e "s/.* \([0-9]\)\.\([0-9]\).*/BASHMAJ=\1;BASHMIN=\2/")"
+eval "$($(command -v bash) --version | sed -e '/^[^G]/d' -e "s/.* \([0-9]\)\.\([0-9]\).*/BASHMAJ=\1;BASHMIN=\2/")"
 if [[ $BASHMAJ -le 3 && $BASHMIN -lt 2 ]]; then
   missingdep "Bash 3.2 (or newer)"
 fi
 
 # Check for zsh 4.3 or newer
-eval "$($(which zsh) --version | sed -e "s/.* \([0-9]\)\.\([0-9]\).*/ZSHMAJ=\1;ZSHMIN=\2/")"
+eval "$($(command -v zsh) --version | sed -e "s/.* \([0-9]\)\.\([0-9]\).*/ZSHMAJ=\1;ZSHMIN=\2/")"
 if [[ $ZSHMAJ -le 4 && $ZSHMIN -lt 3 ]]; then
   missingdep "zsh 4.3 (or newer)"
 fi
 
 # Check for IPv6 capable Perl Regexp::Common
-if ! $(which perl) -MRegexp::Common -e 'print $RE{net}{IPv6}' >/dev/null 2>&1; then
+if ! $(command -v perl) -MRegexp::Common -e 'print $RE{net}{IPv6}' >/dev/null 2>&1; then
   missingdep "Regexp::Common 2013031301 or newer"
 fi
 

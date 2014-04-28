@@ -10,4 +10,4 @@ TEMPOPTIONS=("$@");
 # Combine the following to get a random item;
 # `${VAR[x]}`  - Get variable at index `x` of `$VAR`
 # `${#VAR[*]}` - Number of indexes in `$VAR`
-echo ${TEMPOPTIONS[$($(which perl) -e "print(int(rand(${#TEMPOPTIONS[*]})))")]}
+echo ${TEMPOPTIONS[$($(command -v perl) -e "print(int(rand(${#TEMPOPTIONS[*]})))")]}

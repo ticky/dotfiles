@@ -7,8 +7,8 @@
 
 for ARG in "$@"; do
 	if [[ $ARG =~ .*\.gz ]]; then
-		$(which tar) xvfz "$ARG"
+		$(command -v tar) xvfz "$ARG"
 	else
-		$(which tar) xvf "$ARG"
+		$(command -v tar) xvf "$ARG"
 	fi
 done
