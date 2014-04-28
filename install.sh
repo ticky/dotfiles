@@ -64,10 +64,6 @@ fi
 # On Cygwin, check for the `clear` command (because it sucks when it's missing)
 if [[ "$UNAME" = "cygwin" ]]; then
 
-  if ! command -v clear >/dev/null 2>&1; then
-    missingdep "ncurses"
-  fi
-
   if [[ ! -r $(cygpath -u "$WINDIR/Fonts/DejaVuSansMono.ttf") ]]; then
     missingdep "DejaVu Sans Mono"
     explorer http://dejavu-fonts.org/wiki/Download
