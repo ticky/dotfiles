@@ -5,6 +5,8 @@
 
 if $(which ruby) --version >/dev/null 2>&1; then
 	$(which ruby) -run -e httpd . -p8000
+elif $(which python3) --version >/dev/null 2>&1; then
+	$(which python3) -m http.server
 elif $(which python) --version >/dev/null 2>&1; then
 	$(which python) -m SimpleHTTPServer
 else
