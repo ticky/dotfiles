@@ -7,24 +7,9 @@ if [[ -d "/usr/local/share/npm/bin" ]]; then
   PATH="$PATH:/usr/local/share/npm/bin"
 fi
 
-# All-OS user bin
-if [[ -d "$HOME/dotfiles/platform/all/bin" ]]; then
-  PATH="$HOME/dotfiles/platform/all/bin:$PATH"
-fi
-
-# Allow platform-based overrides
-if [[ -d "$HOME/dotfiles/platform/$UNAME/bin" ]]; then
-  PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH"
-fi
-
-# Allow platform-based overrides
-if [[ -d "$HOME/dotfiles/platform/all-but-!($UNAME)/bin" ]]; then
-  PATH="$HOME/dotfiles/platform/all-but-!($UNAME)/bin:$PATH"
-fi
-
-# put ~/bin on PATH if you have it
-if [[ -d "$HOME/bin" ]]; then
-  PATH="$HOME/bin:$PATH"
-fi
+# Prepend all-platform bin directory, platform-based bin directories, all-but-platform directories and user bin directory to PATH
+for dir in ~/dotfiles/platform/all/bin(N) ~/dotfiles/platform/$UNAME/bin(N) ~/dotfiles/platform/all-but-!($UNAME)/bin(N) ~/bin(N); do
+  PATH="$dir:$PATH"
+done
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
