@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # fl
-# Configures Flash for debug output, and `tail`s the log output
+# Configures Flash for debug output, and follows the log output using `less`
 
 ERRORREPORT="ErrorReportingEnable=1"
 TRACEOUTPUT="TraceOutputFileEnable=1"
@@ -30,4 +30,4 @@ if ! grep -Fxq "$NODIALOGS" "$CONFIGFILE"; then
 fi
 
 clear
-tail -f -n 200 ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt
+less +F ~/Library/Preferences/Macromedia/Flash\ Player/Logs/flashlog.txt
