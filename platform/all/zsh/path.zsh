@@ -8,7 +8,7 @@ if [[ -d "/usr/local/share/npm/bin" ]]; then
 fi
 
 # Prepend all-platform bin directory, platform-based bin directories, all-but-platform directories and user bin directory to PATH
-for dir in ~/dotfiles/platform/all/bin(N) ~/dotfiles/platform/$UNAME/bin(N) ~/dotfiles/platform/all-but-!($UNAME)/bin(N) ~/bin(N); do
+for dir in ~/dotfiles/platform/all/bin(N) ~/dotfiles/platform/$UNAME/bin(N) ~/dotfiles/platform/all-but-^$UNAME/bin(N) ~/bin(N); do
   PATH="$dir:$PATH"
 done
 
