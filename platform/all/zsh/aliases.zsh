@@ -80,6 +80,8 @@ alias cl="clear"
 
 alias ipls="ifconfig | ipgrep"
 
+alias killall="killall -v"
+
 # git aliases
 
 # if hub is installed, enable it and add some aliases
