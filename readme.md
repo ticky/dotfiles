@@ -130,6 +130,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `gz`: output the current size and gzipped size of a file
 * `ipgrep`: finds valid IP addresses within input which are not link-local
 * `imessage`: (OS X only) sends an iMessage to the specified address/number (`imessage "+61491570156" "This is an iMessage to a fictitious Australian telephone number"`)
+* `keystroke`: (OS X only) sends text to whichever window is in focus (best used with a delay)
 * `learn-spelling`: (OS X only) merges a backed up list of spelling words into the OS X user spell checking dictionary
 * `mansi`: Colourful `man` output.
 * `nuname`: Normalised `uname` command; used to derive the `$UNAME` variable. Lower case for all platforms.

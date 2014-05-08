@@ -1,0 +1,10 @@
+#!/usr/bin/env osascript -l AppleScript
+
+-- keystroke
+-- Send keystrokes from the command line
+
+on run arguments
+	tell application "System Events"
+		keystroke (item 1 of arguments)
+	end tell
+end run
