@@ -82,6 +82,8 @@ alias ipls="ifconfig | ipgrep"
 
 alias killall="killall -v"
 
+alias tmx="tmux has-session && exec tmux attach || exec tmux"
+
 # git aliases
 
 # if hub is installed, enable it and add some aliases

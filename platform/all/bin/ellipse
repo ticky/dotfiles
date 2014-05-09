@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+string="$1"
+maxlength="$2"
+ellipses="…"
+
+if [[ ${#string} -gt $maxlength ]]; then
+	string=$(echo "${string:0:$maxlength}" | sed -e 's/ *$//')$ellipses
+fi
+
+echo "$string"

@@ -1,0 +1,18 @@
+#!/usr/bin/env osascript -l AppleScript
+
+-- np
+-- Current iTunes playback information
+
+tell application "iTunes"
+	if player state is playing or player state is paused then
+		set myTrack to current track
+		set icon to "❚❚"
+		if player state is playing then
+			set icon to "▶"
+		end if
+		icon & " " & name of myTrack & " by " & artist of myTrack & " from " & album of myTrack
+	else
+		set icon to "⬛︎"
+		icon & " Nothing Playing"
+	end if
+end tell

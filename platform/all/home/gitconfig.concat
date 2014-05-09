@@ -15,10 +15,10 @@
 	amend    = commit --verbose --amend                          # Amend last commit
 	b        = branch --all --verbose --verbose --no-merged      # Useful listing of branches
 	ba       = branch --all --verbose                            # Listing of all branches including merged (but less verbose)
-	br       = browse                                            # Go to GitHub page for branch
 	c        = commit --verbose                                  # Commit verbosely, always!
+	commit   = commit --verbose                                  # Commit verbosely, always!
 	ca       = commit --verbose --amend                          # Amend shortcut
-	cc       = checkout -b                                       # Checkout branch
+	cb       = checkout -b                                       # Checkout branch
 	co       = checkout                                          # Checkout
 	d        = diff --word-diff                                  # Diff using word-diff
 	diff     = diff --word-diff                                  # Diff using word-diff
@@ -28,6 +28,7 @@
 	dtc      = difftool --cached                                 # Open cached changes in diff tool
 	dth      = difftool HEAD                                     # Open changes from HEAD in diff tool
 	f        = fetch                                             # Fetch changes
+	hub      = browse                                            # Go to GitHub page for branch
 	l        = log --graph --date-order                          # More useful log output
 	lg       = log --graph                                       # Log with a graph in merge order
 	m        = checkout master                                   # Shortcut to master
