@@ -1,0 +1,10 @@
+tip: zsh: ^l: clear the screen
+%
+tip: zsh: ^u: clear command line, saving contents
+          ^y: yank saved command
+%
+tip: zsh: ⌥.: cycle through previous command arguments
+%
+tip: shell: `fc`: open the last command in $EDITOR, run on exit
+%
+tip: less: ⇧f: begin following changes to file (same as using `less +F` on the command line)

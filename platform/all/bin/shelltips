@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# shelltips
+# Get a random tip
+
+if command -v strfile >/dev/null 2>&1 && command -v fortune >/dev/null 2>&1; then
+
+	if [[ ! -f "$HOME/dotfiles/platform/all/ext/shelltips.dat" || "$1" -eq "rebuild" ]]; then
+		strfile "$HOME/dotfiles/platform/all/ext/shelltips" "$HOME/dotfiles/platform/all/ext/shelltips.dat" >/dev/null 2>&1
+	fi
+
+	fortune "$HOME/dotfiles/platform/all/ext/shelltips"
+
+else
+
+	exit 1
+
+fi

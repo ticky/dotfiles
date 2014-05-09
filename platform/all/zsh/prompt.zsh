@@ -78,5 +78,11 @@ export RPROMPT=$'$(git_status) $(zdate s)'
 export PS2=$'%{$fg[$PROMPT_PRIMARY]%}› %{$reset_color%}'
 
 precmd() {
+  RETURNVALUE=$?
+
+  if [[ $RETURNVALUE -gt 0 ]]; then
+    shelltips
+  fi
+
   title "zsh" "%~ — %n@%m" "%55<...<%~"
 }
