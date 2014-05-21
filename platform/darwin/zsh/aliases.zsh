@@ -1,0 +1,1 @@
+alias internet-sharing-ip="sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.nat NAT.AirPort -dict-add SharingNetworkNumberStart"
