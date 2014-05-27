@@ -1,0 +1,27 @@
+#!/usr/bin/env osascript -l AppleScript
+
+-- replacements2hotstrings
+-- Export the current Text Replacements as AutoHotKey HotStrings
+
+set replacementItems to "; AutoHotKey HotStrings
+; Generated from OS X NSUserDictionaryReplacementItems " & (current date) & "
+"
+
+set theFile to (path to preferences folder from user domain) & ".GlobalPreferences.plist" as string
+
+tell application "System Events"
+	set PLRoot to contents of property list file theFile
+	if "NSUserDictionaryReplacementItems" is in name of property list items of PLRoot then
+		tell property list item "NSUserDictionaryReplacementItems" of PLRoot
+			repeat with i from 1 to count (property list items)
+				set replacementItem to (value of property list item i) & {replace:"", |on|:0, |with|:""} --default values
+				if (|on| of replacementItem) as boolean then
+					set replacementItems to replacementItems & ":*:" & replace of replacementItem & "::" & |with| of replacementItem & "
+"
+				end if
+			end repeat
+		end tell
+	end if
+end tell
+
+return replacementItems
