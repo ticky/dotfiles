@@ -1,12 +1,13 @@
 #!/usr/bin/env zsh
 
-# ZSH Environment Configuration
+# ZSH Profile Configuration
 # Geoff Stokes <https://gitlab.com/geoffstokes/dotfiles>
 
-# This file loads all path.zsh files when not in an interactive, login shell (so add path info to platform directories, not here).
+# This file loads path.zsh files when in an interactive, login shell.
+# This behaviour is necessary to override OS X' path configuration in /etc/zprofile.
 # Loading mechanism borrowed from Zach Holman's dotfiles <https://github.com/holman>
 
-if [[ $- != *i* ]] && [[ $- != *l* ]]; then
+if [[ $- == *i* ]] && [[ $- == *l* ]]; then
 
   # Shortcut to dotfiles directory
   export DOTFILES="$HOME/dotfiles"

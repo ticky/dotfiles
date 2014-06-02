@@ -5,7 +5,7 @@ What I do have are a very particular set of dotfiles, dotfiles I have acquired o
 ## Features
 
 * colourful prompt, directory listing, `man` pages and `git` output
-* 2-line prompt with `git` status and clock
+* 2-line prompt with `git` status, clock and command syntax highlighting
 * works on OS X, Linux and Cygwin - and with both GNU and BSD core utilities
 * shell history from `↑`/`↓` keys is from the current shell, `^r` is from all (`zsh` only)
 * stops `play` and `ant` from being unruly citizens on OS X
@@ -130,11 +130,13 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `gz`: output the current size and gzipped size of a file
 * `ipgrep`: finds valid IP addresses within input which are not link-local
 * `imessage`: (OS X only) sends an iMessage to the specified address/number (`imessage "+61491570156" "This is an iMessage to a fictitious Australian telephone number"`)
+* `internet-sharing-ip`: (OS X only) sets the IP range of the Internet Sharing service. Restart sharing after running. (`internet-sharing-ip 172.27.2.0`)
 * `keystroke`: (OS X only) sends text to whichever window is in focus (best used with a delay)
 * `learn-spelling`: (OS X only) merges a backed up list of spelling words into the OS X user spell checking dictionary
 * `mansi`: Colourful `man` output.
 * `nuname`: Normalised `uname` command; used to derive the `$UNAME` variable. Lower case for all platforms.
 * `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
+* `replacements2hotstrings`: (OS X only) export the current OS X Text Replacements as AutoHotKey HotStrings for use on Windows
 * `returnOneOf`: pass in a bunch of parameters, it'll randomly echo one of them.
 * `shttp`: starts an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.
 * `simplify`: simplifies fractions when you're too lazy to.
