@@ -18,6 +18,8 @@ What I do have are a very particular set of dotfiles, dotfiles I have acquired o
   _OS X Only - This means you need Xcode installed first_
 * `reattach-to-user-namespace`  
   _OS X Only - Allows lots of things to work better inside `tmux`_
+* `zsh-syntax-highlighting`
+  _Only under `zsh` - provides syntax highlighting for the `zsh` prompt_
 * `ncurses`  
   _If this isn't installed, the `clear` command is missing_
 * `Regexp::Common` version `2013031301` or newer  
@@ -42,6 +44,7 @@ Setup involves a few steps specific to each platform, followed by the "all platf
 * install [Xcode](https://itunes.apple.com/app/xcode/id497799835)
 * install [Homebrew](https://github.com/Homebrew/homebrew)
 * `brew install reattach-to-user-namespace`
+* (if using `zsh`) `brew install zsh-syntax-highlighting`
 * (if using `bash`) `brew install bash-completion`
 
 ### Cygwin
@@ -55,7 +58,8 @@ Cygwin has limited package management built-in. I recommend downloading [apt-cyg
 
 After completing the relevant platform-specific section,
 
-* (if using `bash`) install [git-bash-completion](http://github.com/markgandolfo/git-bash-completion)
+* (if using `zsh`) install [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+* (if using `bash`) install [git-bash-completion](https://github.com/markgandolfo/git-bash-completion)
 * `cpan Regexp::Common` (frustratingly, will require some basic interaction if you haven't set up CPAN before)
 * `git clone https://gitlab.com/geoffstokes/dotfiles.git ~/dotfiles`
 * `~/dotfiles/install.sh`  
