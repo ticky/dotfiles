@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+printf "{\"jsonrpc\":\"2.0\",\"method\":\"player.open\",\"params\":{\"item\":{\"file\":\"%s\"}}}" "$1" | \
+curl -X POST \
+	--user media:media \
+	--header "Content-Type:application/json" \
+	--data @- \
+	"http://penderyn.local:8080/jsonrpc"
