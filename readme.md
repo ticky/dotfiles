@@ -116,7 +116,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 
 * `cip`: outputs a single IP address for the current system (last line of `ipls` output), usually the one you want - useful for scripts
 * `cl`: shortcut to `clear`
-* `fl`: shortcut to show the Adobe Flash debug log (OS X Only)
+* `internet-sharing-ip`: (OS X only) Set the IP range of the Internet Sharing service. Restart sharing after running. (`internet-sharing-ip 172.27.2.0`)
 * `ipls`: outputs a list of local IP addresses for the current system (works for both Linux and OS X)
 * `mkcd`: make a directory and move into it immediately
 * `platformbindir`: outputs the current platform's platform-specific `bin` directory
@@ -127,28 +127,33 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 
 ### Utilities
 
-* `chcase`: Utility to change the case of text input. Uses `tr` internally to support multiple character sets.
-* `colourtest`: prints out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh))
-* `fn`: find files under the current directory by name (uses Spotlight's cache on OS X and `find` on other systems)
-* `gravatar`: output gravatar URLs for email addresses passed in
-* `gz`: output the current size and gzipped size of a file
-* `ipgrep`: finds valid IP addresses within input which are not link-local
-* `imessage`: (OS X only) sends an iMessage to the specified address/number (`imessage "+61491570156" "This is an iMessage to a fictitious Australian telephone number"`)
-* `internet-sharing-ip`: (OS X only) sets the IP range of the Internet Sharing service. Restart sharing after running. (`internet-sharing-ip 172.27.2.0`)
-* `keystroke`: (OS X only) sends text to whichever window is in focus (best used with a delay)
-* `learn-spelling`: (OS X only) merges a backed up list of spelling words into the OS X user spell checking dictionary
-* `mansi`: Colourful `man` output.
-* `nuname`: Normalised `uname` command; used to derive the `$UNAME` variable. Lower case for all platforms.
-* `osxdefaults`: (OS X only) configure behaviours for the OS X desktop and applications
-* `replacements2hotstrings`: (OS X only) export the current OS X Text Replacements as AutoHotKey HotStrings for use on Windows
-* `returnOneOf`: pass in a bunch of parameters, it'll randomly echo one of them.
-* `shttp`: starts an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.
-* `simplify`: simplifies fractions when you're too lazy to.
-* `sshmux`: `ssh` with automatic remote `tmux` (re)attachment, and fallback to the remote user's default shell.
-* `tminus`: prints the time until a unix date passed in.
-* `untar`: you can `unzip`, why can't you `untar`?
-* `wed`: (Cygwin only) open a file or directory in Sublime Text 2 (if available), otherwise `vim`
-* `zdate`: date output which leverages `zsh` date utilities to provide consistent date output with nicer syntax than plain `strftime(3)`. custom formats are supported. built-in templates include;
+* [`applink`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/applink): (OS X only) Create symlinks to Dropbox or SparkleShare for app data.
+* [`chcase`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/chcase): Change the case of text input. Uses `tr` internally to support multiple character sets.
+* [`colourtest`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/colourtest): Print out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh)).
+* [`ellipse`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/ellipse): Truncate a string to a particular length, appending ellipses if necessary.
+* [`finder-path`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/finder-path): (OS X only) Output the path of the most recently used Finder window.
+* [`fl`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/fl): (OS X only) Show (and, if not done already, enable) the Adobe Flash debug log.
+* `fn` ([OS X](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/fn), [Linux](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all-but-darwin/bin/fn)): Find files under the current directory by name. (uses Spotlight's cache on OS X and `find` on other systems)
+* [`gravatar`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/gravatar): Output gravatar URLs for email addresses passed in.
+* [`gz`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/gz): Output the current size and gzipped size of a file
+* [`ipgrep`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/ipgrep): Find valid IP addresses within input which are not link-local
+* [`imessage`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/imessage): (OS X only) Send an iMessage to the specified address/number. (`imessage "+61491570156" "This is an iMessage to a fictitious Australian telephone number"`)
+* [`keystroke`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/keystroke): (OS X only) Send text to whichever window is in focus (best used with a delay).
+* [`learn-spelling`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/learn-spelling): (OS X only) Merge a backed up list of spelling words into the OS X user spell checking dictionary.
+* [`mansi`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/mansi): Colourful `man` output.
+* [`np`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/np): (OS X only) Show the current iTunes playback status.
+* [`nuname`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/nuname): Normalised `uname` command; used to derive the `$UNAME` variable. Lower case for all platforms.
+* [`osxdefaults`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/osxdefaults): (OS X only) Configure behaviours for the OS X desktop and applications.
+* [`replacements2hotstrings`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/replacements2hotstrings): (OS X only) Export the current OS X Text Replacements as AutoHotKey HotStrings for use on Windows.
+* [`returnOneOf`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/returnOneOf): Pass in a bunch of parameters, it'll randomly echo one of them.
+* [`shttp`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/shttp): Start an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.
+* [`simplify`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/simplify): Simplify fractions when you're too lazy to.
+* [`sshmux`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/sshmux): `ssh` with automatic remote `tmux` (re)attachment, and fallback to the remote user's default shell.
+* [`tminus`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/tminus): Print the time until a unix date passed in.
+* [`untar`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/untar): You can `unzip`, why can't you `untar`?
+* [`wed`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/cygwin/bin/wed): (Cygwin only) Open a file or directory in Sublime Text 2 (if available), otherwise `vim`.
+* [`xbmcplay`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/xbmcplay): Tell an XBMC instance to open a URL.
+* [`zdate`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/zdate): Date output which leverages `zsh` date utilities to provide consistent date output with nicer syntax than plain `strftime(3)`. custom formats are supported. built-in templates include;
     * `beats` or `b`: Swatch Internet Time - `@778`
     * `short` or `s`: time only - `9:41 am`
     * `medium` or `m`: time and day - `Tue 9:41 am`
