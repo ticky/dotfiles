@@ -144,6 +144,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `returnOneOf`: pass in a bunch of parameters, it'll randomly echo one of them.
 * `shttp`: starts an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.
 * `simplify`: simplifies fractions when you're too lazy to.
+* `sshmux`: `ssh` with automatic remote `tmux` (re)attachment, and fallback to the remote user's default shell.
 * `tminus`: prints the time until a unix date passed in.
 * `untar`: you can `unzip`, why can't you `untar`?
 * `wed`: (Cygwin only) open a file or directory in Sublime Text 2 (if available), otherwise `vim`

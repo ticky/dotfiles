@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# sshmux
+# ssh with automatic tmux (re)attachment
+
+if [[ $# = 0 ]]; then
+	echo "usage: $(basename $0) [user@]hostname"
+else
+	ssh "$1" -t -- \
+	"/bin/sh -c \"" \
+		"if command -v tmux >/dev/null 2>&1; then" \
+			"if tmux has-session >/dev/null 2>&1; then" \
+				"tmux attach;" \
+			"else" \
+				"tmux;" \
+			"fi;" \
+		"else" \
+			"\`getent passwd \$LOGNAME | cut -d: -f7\` -l;" \
+		"fi" \
+	"\""
+fi
