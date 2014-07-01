@@ -27,7 +27,7 @@ git_status() {
 
     # Add email if it's there
     if [[ $gle != "" ]]; then
-      op="%{$fg[$PROMPT_SECONDARY]%}$gle%{$reset_color%} "
+      op="$gle "
     fi
 
     # Append branch info
@@ -55,13 +55,17 @@ git_status() {
 
 git_local_email() {
   if [[ $($git config user.email) != $($git config --global user.email) ]]; then
-    $git config user.email
+    if [[ $(tput cols) -ge 80 ]]; then
+      $git config user.email
+    else
+      echo "@"
+    fi
   fi
 }
 
 git_current_branch() {
- ref=$($git symbolic-ref HEAD 2>/dev/null) || ref=$(git show-ref --head -s --abbrev | head -n1 2> /dev/null) || return
- echo "${ref#refs/heads/}"
+  ref=$($git symbolic-ref HEAD 2>/dev/null) || ref=$(git show-ref --head -s --abbrev | head -n1 2> /dev/null) || return
+  echo "${ref#refs/heads/}"
 }
 
 git_need_push() {
@@ -73,9 +77,9 @@ git_need_push() {
   fi
 }
 
-export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}%n@%m%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:%~\n› %{$reset_color%}'
-export RPROMPT=$'$(git_status) $(zdate s)'
-export PS2=$'%{$fg[$PROMPT_PRIMARY]%}› %{$reset_color%}'
+export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$([[ $(tput cols) -ge 40 ]] && (echo -n "%n@"))%m%{$reset_color%}:%~\n› '
+export RPROMPT=$' $([[ $(tput cols) -ge 50 ]] && (git_status))$([[ $(tput cols) -ge 55 ]] && (echo -n "%{$reset_color%} "); [[ $(tput cols) -ge 110 ]] && zdate l || ([[ $(tput cols) -ge 80 ]] && zdate m || ([[ $(tput cols) -ge 55 ]] &&  zdate s)))'
+export PS2=$'› '
 
 if [[ -r /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
 

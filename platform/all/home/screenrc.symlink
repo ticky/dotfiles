@@ -25,4 +25,4 @@ defutf8 on
 
 backtick 1 0 15 zdate m
 
-hardstatus alwayslastline "%{= mW}%H%{= kM}:%{= kM}%?%-Lw%?%{= mW}%n%f %t%?(%u)%?%{= kM}%?%+Lw%?%{= kM} %=%1`"
+hardstatus alwayslastline "%{= md}%H%{= 9d}: %{= 9M}%?%-Lw%?%{= md}%n%f %t%?(%u)%?%{= 9M}%?%+Lw%?%{= 9d} %=%1`"
