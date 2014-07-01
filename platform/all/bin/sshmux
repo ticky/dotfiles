@@ -4,18 +4,28 @@
 # ssh with automatic tmux (re)attachment
 
 if [[ $# = 0 ]]; then
+
 	echo "usage: $(basename $0) [user@]hostname"
+
 else
-	ssh "$1" -t -- \
-	"/bin/sh -c \"" \
-		"if command -v tmux >/dev/null 2>&1; then" \
-			"if tmux has-session >/dev/null 2>&1; then" \
-				"tmux attach;" \
+
+	TMXPATH=$(command -v tmx)
+
+	if [[ -x "$TMXPATH" ]]; then
+
+		ssh "$1" -t -- \
+		"/bin/sh -c \"" \
+			"if command -v tmux >/dev/null 2>&1; then" \
+				"$(< "$TMXPATH");" \
 			"else" \
-				"tmux;" \
-			"fi;" \
-		"else" \
-			"\`getent passwd \$LOGNAME | cut -d: -f7\` -l;" \
-		"fi" \
-	"\""
+				"\\\$(getent passwd \\\$LOGNAME | cut -d: -f7) -l;" \
+			"fi" \
+		"\""
+
+	else
+
+		echo "$(basename $0): tmx was not found"
+		exit 1
+
+	fi
 fi

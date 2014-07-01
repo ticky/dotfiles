@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# tmx
+# automatic tmux (re)attachment
+
+if tmux has-session >/dev/null 2>&1; then
+	tmux attach
+else
+	tmux
+fi
