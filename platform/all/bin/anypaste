@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# anypaste
+# retrieve text from a clipboard; either remote (via SSH tunnel) or local
+
+PORTPASTE=2225
+
+if nc -z localhost $PORTPASTE >/dev/null 2>&1; then
+	nc localhost $PORTPASTE
+else
+	if command -v pbpaste >/dev/null 2>&1; then
+		if command -v reattach-to-user-namespace >/dev/null 2>&1; then
+			reattach-to-user-namespace pbpaste
+		else
+			pbpaste
+		fi
+	fi
+	# TODO: xclip
+fi

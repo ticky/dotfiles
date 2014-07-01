@@ -59,11 +59,18 @@ iTunes() {
 	linker "iTunes" "$1/iTunes" "$HOME/Library/iTunes" Scripts
 }
 
+Services() {
+	linker "Services" "$1" "$HOME/Library" Services
+}
+
 SublimeText() {
 	linker "Sublime Text 3" "$1/Sublime Text 3" "$HOME/Library/Application Support/Sublime Text 3" "Installed Packages" "Packages"
 }
 
 case $1 in
+	btsync)
+		LINKDIR="$HOME/Sync/Library"
+		;;
 	sparkleshare)
 		LINKDIR="$HOME/SparkleShare/Library"
 		;;
@@ -79,12 +86,16 @@ case $2 in
 	itunes|iTunes)
 		iTunes "$LINKDIR"
 		;;
+	services)
+		Services "$LINKDIR"
+		;;
 	subl)
 		SublimeText "$LINKDIR"
 		;;
 	all)
 		Adium "$LINKDIR"
 		iTunes "$LINKDIR"
+		Services "$LINKDIR"
 		SublimeText "$LINKDIR"
 		;;
 esac

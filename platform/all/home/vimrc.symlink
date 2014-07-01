@@ -39,6 +39,21 @@ set incsearch
 syntax on
 set t_Co=256
 
+" Cross-platform, SSH-aware clipboard integration
+function! VimAnyCopy()
+  let @n=getreg("*")
+  call system('anycopy', @n)
+  echo "done"
+endfunction
+
+function! VimAnyPaste()
+  let @+ = system('anypaste')
+  echo "done"
+endfunction
+
+nnoremap <leader>6 :call VimAnyPaste()<cr>
+nnoremap <leader>7 :call VimAnyCopy()<cr>
+
 " Base16 Default (https://github.com/chriskempson/base16)
 " Scheme: Chris Kempson (http://chriskempson.com)
 

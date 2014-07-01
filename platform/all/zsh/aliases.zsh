@@ -74,6 +74,7 @@ alias rm!="rm -rf"
 
 # close window
 alias x="exit"
+alias q="exit"
 alias :q="exit"
 # clear window
 alias cl="clear"

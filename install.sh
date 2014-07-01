@@ -127,6 +127,42 @@ else
 
   done
 
+  if [[ "$UNAME" = "darwin" ]]; then
+
+    echo
+    echo "### Installing LaunchAgents..."
+
+    for file in ~/dotfiles/platform/darwin/LaunchAgents/*.plist; do
+
+      basename="$(basename "$file")"
+      target=~/Library/LaunchAgents/$basename
+
+      if [[ -r "$file" ]]; then
+
+        if [[ "$(readlink "$target")" != "$file" ]]; then
+
+          echo "* Installing \"${target/$HOME/~}\" to \"$basename\""
+
+          ln -sf "$file" "$target"
+
+          launchctl load "$target"
+
+        else
+
+          echo "* \"$basename\" is already linked; reloading"
+
+          launchctl unload "$target" 2>/dev/null
+
+          launchctl load "$target"
+
+        fi
+
+      fi
+
+    done
+
+  fi
+
   echo
   echo "### Concatenating files..."
 

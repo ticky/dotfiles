@@ -107,5 +107,12 @@ bind 'M-|' command-prompt -p "Open a new verical split pane and run" "split-wind
 # Open man page with /
 bind '/' command-prompt -p "Show manual for" "split-window -h 'exec $SHELL -ci \"man %%\"'"
 
+# Cross-platform, SSH-aware clipboard integration
+bind -t vi-copy 'Enter' copy-pipe "anycopy"
+bind 'C-c' run-shell 'tmux save-buffer - | anycopy'
+unbind ']'
+bind ']' run-shell 'anypaste | tmux load-buffer - \; paste-buffer -d'
+bind 'C-v' run-shell 'anypaste | tmux load-buffer - \; paste-buffer -d'
+
 # If we're on OS X, load the extra OS X configuration
 if-shell 'test "$(uname -s)" = Darwin' 'source-file ~/dotfiles/platform/darwin/ext/tmux-integration.conf'

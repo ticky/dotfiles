@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# anycopy
+# propagate text to a clipboard; either remote (via SSH tunnel) or local
+
+PORTCOPY=2224
+
+if nc -z localhost $PORTCOPY >/dev/null 2>&1; then
+	if [[ "$(uname -s)" = Darwin ]]; then
+		cat | nc -c localhost $PORTCOPY
+	else
+		cat | nc -q1 localhost $PORTCOPY
+	fi
+else
+	if command -v pbcopy >/dev/null 2>&1; then
+		if command -v reattach-to-user-namespace >/dev/null 2>&1; then
+			cat | reattach-to-user-namespace pbcopy
+		else
+			cat | pbcopy
+		fi
+	fi
+	# TODO: xclip
+fi
