@@ -55,7 +55,7 @@ git_status() {
 
 git_local_email() {
   if [[ $($git config user.email) != $($git config --global user.email) ]]; then
-    if [[ $(tput cols) -ge 80 ]]; then
+    if breakpt md-up; then
       $git config user.email
     else
       echo "@"
@@ -77,8 +77,8 @@ git_need_push() {
   fi
 }
 
-export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$([[ $(tput cols) -ge 40 ]] && (echo -n "%n@"))%m%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:%~\n› %{$reset_color%}'
-export RPROMPT=$' $([[ $(tput cols) -ge 50 ]] && (git_status))$([[ $(tput cols) -ge 55 ]] && (echo -n "%{$reset_color%} "); [[ $(tput cols) -ge 110 ]] && zdate l || ([[ $(tput cols) -ge 80 ]] && zdate m || ([[ $(tput cols) -ge 55 ]] &&  zdate s)))'
+export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$(breakpt sm-up && echo -n "%n@")%m%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:$(breakpt xl && echo -n "%d" || (breakpt xs && echo -n "%1d" || echo -n "%~"))\n› %{$reset_color%}'
+export RPROMPT=$' $(breakpt md-up && git_status)$(breakpt md-up && echo -n "%{$reset_color%} "; breakpt xl && zdate l || (breakpt lg-up && zdate m || (breakpt md-up && zdate s)))'
 export PS2=$'› '
 
 if [[ -r /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then

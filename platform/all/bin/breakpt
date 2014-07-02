@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# breakpt
+# console breakpoint shortcut function
+
+case $1 in
+	xs)
+		MINCOLS=0
+		MAXCOLS=40
+		;;
+	sm-dn)
+		MAXCOLS=60
+		;;
+	sm)
+		MINCOLS=40
+		MAXCOLS=60
+		;;
+	sm-up)
+		MINCOLS=40
+		;;
+	md-dn)
+		MAXCOLS=90
+		;;
+	md)
+		MINCOLS=60
+		MAXCOLS=90
+		;;
+	md-up)
+		MINCOLS=60
+		;;
+	lg-dn)
+		MAXCOLS=120
+		;;
+	lg)
+		MINCOLS=90
+		MAXCOLS=120
+		;;
+	lg-up)
+		MINCOLS=90
+		;;
+	xl|xl-up)
+		MINCOLS=120
+		;;
+	*)
+		exit
+		;;
+esac
+
+COLS=$(tput cols)
+
+[[ ($COLS -gt $MINCOLS || $MINCOLS = "") && ($COLS -le $MAXCOLS || $MAXCOLS = "") ]]

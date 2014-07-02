@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# breakpt-test
+# console breakpoint test
+
+for mode in 'xs' 'sm-down' 'sm' 'sm-up' 'md-down' 'md' 'md-up' 'lg-down' 'lg' 'lg-up' 'xl' 'xl-up'; do
+	breakpt $mode 2>&1 && echo -e "✅ $mode: matches" || echo -e "❌ $mode: doesn't match"
+done
