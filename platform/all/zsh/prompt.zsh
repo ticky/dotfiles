@@ -77,7 +77,7 @@ git_need_push() {
   fi
 }
 
-export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$([[ $(tput cols) -ge 40 ]] && (echo -n "%n@"))%m%{$reset_color%}:%~\n› '
+export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$([[ $(tput cols) -ge 40 ]] && (echo -n "%n@"))%m%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:%~\n› %{$reset_color%}'
 export RPROMPT=$' $([[ $(tput cols) -ge 50 ]] && (git_status))$([[ $(tput cols) -ge 55 ]] && (echo -n "%{$reset_color%} "); [[ $(tput cols) -ge 110 ]] && zdate l || ([[ $(tput cols) -ge 80 ]] && zdate m || ([[ $(tput cols) -ge 55 ]] &&  zdate s)))'
 export PS2=$'› '
 
