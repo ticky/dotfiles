@@ -86,7 +86,7 @@ set -g prefix 'C-a'
 bind 'C-a' send-prefix
 
 # Allow reloading source file
-bind 'r' source-file ~/.tmux.conf \; display-message "✔︎ Settings have been reloaded from `.tmux.conf`."
+bind 'r' source ~/.tmux.conf \; display-message "✔︎ Settings have been reloaded from `.tmux.conf`."
 
 # Toggle status bar
 bind 'b' set status
@@ -108,11 +108,13 @@ bind 'M-|' command-prompt -p "Open a new verical split pane and run" "split-wind
 bind '/' command-prompt -p "Show manual for" "split-window -h 'exec $SHELL -ci \"man %%\"'"
 
 # Cross-platform, SSH-aware clipboard integration
-bind -t vi-copy 'Enter' copy-pipe "anycopy"
-bind 'C-c' run-shell 'tmux save-buffer - | anycopy'
+bind 'C-c' run 'tmux save-buffer - | anycopy'
 unbind ']'
-bind ']' run-shell 'anypaste | tmux load-buffer - \; paste-buffer -d'
-bind 'C-v' run-shell 'anypaste | tmux load-buffer - \; paste-buffer -d'
+bind ']' run 'anypaste | tmux load-buffer - \; paste-buffer -d'
+bind 'C-v' run 'anypaste | tmux load-buffer - \; paste-buffer -d'
+
+# 'Enter' key copies in copy mode (in 1.8+, where copy-pipe is available)
+if '[[ $($(command -v tmux) -V | sed -e "s/.* \([0-9]\)\.\([0-9]\).*/\1/") -gt 1 || $($(command -v tmux) -V | sed -e "s/.* \([0-9]\)\.\([0-9]\).*/\2/") -ge 8 ]]' "bind -t vi-copy 'Enter' copy-pipe 'anycopy'"
 
 # If we're on OS X, load the extra OS X configuration
-if-shell 'test "$(uname -s)" = Darwin' 'source-file ~/dotfiles/platform/darwin/ext/tmux-integration.conf'
+if '[[ "$(uname -s)" = Darwin ]]' 'source ~/dotfiles/platform/darwin/ext/tmux-integration.conf'

@@ -4,6 +4,7 @@
 # retrieve text from a clipboard; either remote (via SSH tunnel) or local
 
 PORTPASTE=2225
+FILECLIP=~/.anyclip
 
 if nc -z localhost $PORTPASTE >/dev/null 2>&1; then
 	nc localhost $PORTPASTE
@@ -14,6 +15,9 @@ else
 		else
 			pbpaste
 		fi
+	elif command -v xclip >/dev/null 2>&1; then
+		xclip -o -selection clipboard
+	else
+		cat $FILECLIP
 	fi
-	# TODO: xclip
 fi

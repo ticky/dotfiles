@@ -4,6 +4,7 @@
 # propagate text to a clipboard; either remote (via SSH tunnel) or local
 
 PORTCOPY=2224
+FILECLIP=~/.anyclip
 
 if nc -z localhost $PORTCOPY >/dev/null 2>&1; then
 	if [[ "$(uname -s)" = Darwin ]]; then
@@ -18,6 +19,10 @@ else
 		else
 			cat | pbcopy
 		fi
+	elif command -v xclip >/dev/null 2>&1; then
+		cat | xclip -i -selection clipboard
+	else
+		cat > $FILECLIP
+		chmod 700 $FILECLIP
 	fi
-	# TODO: xclip
 fi
