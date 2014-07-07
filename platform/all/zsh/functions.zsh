@@ -59,7 +59,7 @@ profile() {
     update|up|u)
       cd "$HOME/dotfiles" && \
       command git stash && \
-      command git fetch && \
+      command git pull && \
       command git stash pop && \
       cd - && \
       profile install

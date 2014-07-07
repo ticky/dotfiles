@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# divider
+# Render a red divider
+
+cols=$(tput cols)
+
+if [[ $# = 0 ]]; then
+	text="$(zdate l)"
+else
+	text="$1"
+fi
+
+paddingleft=$((($cols - 2 - ${#text}) / 2))
+paddingright=$(($paddingleft + ($cols - 2 - ${#text}) % 2))
+
+printf "\e[01;31m$(printf "%${paddingleft}s" | tr " " "-") $text $(printf "%${paddingright}s" | tr " " "-")\e[0m\n"

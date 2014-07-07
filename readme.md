@@ -115,7 +115,6 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 ### Aliases
 
 * `cip`: outputs a single IP address for the current system (last line of `ipls` output), usually the one you want - useful for scripts
-* `cl`: shortcut to `clear`
 * `internet-sharing-ip`: (OS X only) Set the IP range of the Internet Sharing service. Restart sharing after running. (`internet-sharing-ip 172.27.2.0`)
 * `ipls`: outputs a list of local IP addresses for the current system (works for both Linux and OS X)
 * `mkcd`: make a directory and move into it immediately
@@ -123,13 +122,14 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 * `profile`, `p`: utility for updating, editing, installing and loading dotfiles
 * `rm!`: shortcut to `rm -rf`
 * `title`: set the window title
-* `x`, `:q`: shortcut to `exit`
+* `q`, `x`, `:q`: shortcut to `exit`
 
 ### Utilities
 
 * [`applink`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/applink): (OS X only) Create symlinks to Dropbox or SparkleShare for app data.
 * [`chcase`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/chcase): Change the case of text input. Uses `tr` internally to support multiple character sets.
 * [`colourtest`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/colourtest): Print out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh)).
+* [`divider`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/divider): Renders a red divider on the screen, with the current date and time displayed by default.
 * [`ellipse`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/bin/ellipse): Truncate a string to a particular length, appending ellipses if necessary.
 * [`finder-path`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/finder-path): (OS X only) Output the path of the most recently used Finder window.
 * [`fl`](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/fl): (OS X only) Show (and, if not done already, enable) the Adobe Flash debug log.

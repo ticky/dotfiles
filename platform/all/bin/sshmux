@@ -13,7 +13,7 @@ else
 
 	if [[ -x "$TMXPATH" ]]; then
 
-		ssh "$1" -t -- \
+		ssh "$@" -t -- \
 		"/bin/sh -c \"" \
 			"if command -v tmux >/dev/null 2>&1; then" \
 				"$(< "$TMXPATH");" \
