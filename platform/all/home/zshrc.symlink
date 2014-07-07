@@ -9,7 +9,7 @@
 # NOTE: path files are now loaded by .zshenv;
 # if we're missing a $UNAME, it hasn't been loaded yet.
 if [[ -z "$UNAME" ]]; then
-	source "$HOME/.zshenv"
+  source "$HOME/.zshenv"
 fi
 
 # all of our zsh files

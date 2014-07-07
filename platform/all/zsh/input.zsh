@@ -30,15 +30,15 @@ bindkey '^x^e' edit-command-line
 # I want shared history for ^R, but I don't want another shell's activity to
 # mess with up/down.  This does that.
 down-line-or-local-history() {
-    zle set-local-history 1
-    zle down-line-or-history
-    zle set-local-history 0
+  zle set-local-history 1
+  zle down-line-or-history
+  zle set-local-history 0
 }
 zle -N down-line-or-local-history
 up-line-or-local-history() {
-    zle set-local-history 1
-    zle up-line-or-history
-    zle set-local-history 0
+  zle set-local-history 1
+  zle up-line-or-history
+  zle set-local-history 0
 }
 zle -N up-line-or-local-history
 

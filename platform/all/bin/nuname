@@ -9,7 +9,7 @@ UNAME=$(echo -n "$(uname)" | tr '[:upper:]' '[:lower:]')
 #       On Cygwin, you get a long string including CYGWIN, kernel version and architecture.
 #       We override Cygwin's entry for brevity here.
 uname -o > /dev/null 2> /dev/null && if [[ "$(uname -o)" = "Cygwin" ]]; then
-  UNAME="cygwin"
+	UNAME="cygwin"
 fi
 
 echo -n $UNAME
