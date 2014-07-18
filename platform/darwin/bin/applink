@@ -77,6 +77,9 @@ case $1 in
 	dropbox)
 		LINKDIR="$HOME/Dropbox/Library"
 		;;
+	*)
+		exit 1
+		;;
 esac
 
 case $2 in
@@ -97,5 +100,8 @@ case $2 in
 		iTunes "$LINKDIR"
 		Services "$LINKDIR"
 		SublimeText "$LINKDIR"
+		;;
+	*)
+		exit 1
 		;;
 esac
