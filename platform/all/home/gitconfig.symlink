@@ -1,0 +1,15 @@
+[user]
+	name = Geoff Stokes
+	email = geoff@geoffstokes.net
+[core]
+	excludesfile = ~/.gitignore
+	quotepath = false
+[hub]
+	protocol = https
+[color]
+	ui = true
+[help]
+	autocorrect = 1
+[include]
+	path = .gitaliases
+	path = .gitplatform

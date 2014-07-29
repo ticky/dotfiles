@@ -12,7 +12,7 @@ What I do have are a very particular set of dotfiles, dotfiles I have acquired o
 
 ## Requirements
 
-* `git`
+* `git` version 1.8 or newer
 * **Python 2.6/2.7 and 3.x**
 * **Homebrew**  
   _OS X Only - This means you need Xcode installed first_

@@ -80,8 +80,3 @@ alias :q="exit"
 alias ipls="ifconfig | ipgrep"
 
 alias killall="killall -v"
-
-# if hub is installed, enable it
-if hub alias -s >/dev/null 2>&1; then
-  eval "$(hub alias -s)"
-fi

@@ -1,15 +1,3 @@
-[user]
-	name = Geoff Stokes
-	email = geoff@geoffstokes.net
-[core]
-	excludesfile = ~/.gitignore
-	quotepath = false
-[hub]
-	protocol = https
-[color]
-	ui = true
-[help]
-	autocorrect = 1
 [alias]
 	a        = add .                                             # Add anything which is new/changed (not deleted!)
 	amend    = commit --verbose --amend                          # Amend last commit
@@ -17,6 +5,7 @@
 	ba       = branch --all --verbose                            # Listing of all branches including merged (but less verbose)
 	c        = commit --verbose                                  # Commit verbosely, always!
 	commit   = commit --verbose                                  # Commit verbosely, always!
+	compare  = "!hub compare"                                    # Go to GitHub page for branch
 	ca       = commit --verbose --amend                          # Amend shortcut
 	cb       = checkout -b                                       # Checkout branch
 	co       = checkout                                          # Checkout
@@ -28,7 +17,7 @@
 	dtc      = difftool --cached                                 # Open cached changes in diff tool
 	dth      = difftool HEAD                                     # Open changes from HEAD in diff tool
 	f        = fetch                                             # Fetch changes
-	hub      = browse                                            # Go to GitHub page for branch
+	hub      = "!hub browse"                                     # Go to GitHub page for branch
 	l        = log --graph --date-order                          # More useful log output
 	lg       = log --graph                                       # Log with a graph in merge order
 	m        = checkout master                                   # Shortcut to master
