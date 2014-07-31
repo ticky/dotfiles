@@ -1,5 +1,5 @@
 [alias]
-	a        = add .                                             # Add anything which is new/changed (not deleted!)
+	a        = add --no-ignore-removal .                         # Add anything which is new/changed/deleted
 	amend    = commit --verbose --amend                          # Amend last commit
 	b        = branch --all --verbose --verbose --no-merged      # Useful listing of branches
 	ba       = branch --all --verbose                            # Listing of all branches including merged (but less verbose)
