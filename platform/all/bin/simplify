@@ -6,9 +6,9 @@
 import sys
 from fractions import Fraction
 
-if('/' in sys.argv[0]):
-	frac = Fraction(sys.argv[0])
+if('/' in sys.argv[1]):
+	frac = Fraction(sys.argv[1])
 else:
-	frac = Fraction(sys.argv[0], sys.argv[1])
+	frac = Fraction(int(sys.argv[1]), int(sys.argv[2]))
 
 print(str(frac))

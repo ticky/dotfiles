@@ -67,6 +67,9 @@ alias l.="${LD} .*"
 # GNU ls' colours are defined in ~/.dircolors
 eval $(dircolors -b ~/.dircolors 2>/dev/null)
 
+alias disk-usage="du -h"
+alias disk-free="df -h"
+
 # coloured man pages
 alias man="mansi"
 
