@@ -1,0 +1,14 @@
+xbmcplay(1) -- tell an XBMC instance to open a URL
+==================================================
+
+## SYNOPSIS
+
+`xbmcplay` <url>
+
+## DESCRIPTION
+
+Tells an XBMC instance to open the specified URL using the JSON RPC API.
+
+## BUGS
+
+At present, the IP address of the XBMC instance is hard-coded. In the future, this will ideally use Bonjour to retrieve the first available XBMC instance on the current network.

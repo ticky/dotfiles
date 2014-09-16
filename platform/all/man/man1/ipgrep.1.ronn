@@ -1,0 +1,20 @@
+ipgrep(1) -- calculate gzipped size of a file
+=============================================
+
+## SYNOPSIS
+
+`ipgrep`
+
+## DESCRIPTION
+
+The ipgrep(1) command filters out valid, non-loopback IP addresses from **STDIN**.
+
+## USAGE
+
+Pipe the output of ifconfig(8) into ipgrep(1) to list the IP addresses;
+
+	$ ifconfig | ipgrep
+
+## SEE ALSO
+
+ifconfig(8)

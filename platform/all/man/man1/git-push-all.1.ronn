@@ -1,0 +1,18 @@
+git-push-all(1) -- push data for current branch, as well as tags
+================================================================
+
+## SYNOPSIS
+
+`git push-all`
+
+## DESCRIPTION
+
+Pushes the current branch's data, as well as all tags.
+
+In git(1)-speak: Updates remote refs using local refs for the current HEAD, also pushes all refs under refs/tags.
+
+Any parameters given are appended to the git-push(1) command.
+
+## SEE ALSO
+
+git-push(1)

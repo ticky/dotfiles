@@ -1,0 +1,14 @@
+shttp(1) -- serve current directory via HTTP on port 8000
+=========================================================
+
+## SYNOPSIS
+
+`shttp`
+
+## DESCRIPTION
+
+The shttp(1) command will use either ruby(1), python3(1) or python(1) to create a simple HTTP server on port 8000, serving the current working directory.
+
+## SEE ALSO
+
+python(1), python3(1), pwd(1), ruby(1)

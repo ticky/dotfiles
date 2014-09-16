@@ -1,0 +1,24 @@
+chcase(1) -- transform the case of text input
+=============================================
+
+## SYNOPSIS
+
+`chcase` <transformation> <text>
+
+## DESCRIPTION
+
+The chcase(1) command converts supplied <text> between cases.
+
+## TRANSFORMATIONS
+
+The <transformation> parameter accepts the following values;
+
+* `upper`, `up`, `u`:
+  Transforms text to upper case.
+
+* `lower`, `low`, `lo`, `l`:
+  Transforms text to lower case.
+
+## SEE ALSO
+
+tr(1)

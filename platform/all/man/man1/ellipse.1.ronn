@@ -1,0 +1,18 @@
+ellipse(1) -- truncate text intelligently
+=========================================
+
+## SYNOPSIS
+
+`ellipse` <text> <length>
+
+## DESCRIPTION
+
+The ellipse(1) command truncates text to the nearest space within a specified length if it is longer, and appends a horizontal ellipse (…) character.
+
+## OPTIONS
+
+* <text>:
+  Text to render and, if too long, truncate.
+
+* <length>:
+  Maximum length to output.

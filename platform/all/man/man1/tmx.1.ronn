@@ -1,0 +1,18 @@
+tmx(1) -- automatic tmux (re)attachment
+===================================================
+
+## SYNOPSIS
+
+`tmx`
+
+## DESCRIPTION
+
+The tmx(1) command creates or reconnects to a tmux(1) session.
+
+## USAGE
+
+tmx(1) accepts no arguments. if `tmux has-session` returns a non-error output, it calls `tmux attach`, otherwise, it calls `tmux`. The exact behaviour will depend upon your tmux(1) configuration.
+
+## SEE ALSO
+
+tmux(1)

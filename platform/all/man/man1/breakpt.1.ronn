@@ -1,0 +1,43 @@
+breakpt(1) -- console breakpoint shortcut function
+==================================================
+
+## SYNOPSIS
+
+`breakpt` <breakpoint>
+
+## DESCRIPTION
+
+The breakpt(1) command tests the size of the terminal against preset [BREAKPOINTS][], which are sets of minimum and maximum sizes.
+
+These [BREAKPOINTS][] are intended to be used for conditional formatting of the terminal, as in responsive web design.
+
+## BREAKPOINTS
+
+For each of these breakpoints, breakpt(1) will exit with status 0 if the terminal width is;
+
+* `xs`:
+  between 0 and 40 columns
+* `sm`:
+  between 40 and 60 columns
+* `md`:
+  between 60 and 90 columns
+* `lg`:
+  between 90 and 120 columns
+* `sm-dn`:
+  less than 60 columns
+* `md-dn`:
+  less than 90 columns
+* `lg-dn`:
+  less than 120 columns
+* `sm-up`:
+  more than 40 columns
+* `md-up`:
+  more than 60 columns
+* `lg-up`:
+  more than 90 columns
+* `xl`, `xl-up`:
+  more than 120 columns
+
+## SEE ALSO
+
+breakpt-test(1)

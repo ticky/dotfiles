@@ -1,0 +1,22 @@
+anycopy(1) -- propagate text to any clipboard
+=============================================
+
+## SYNOPSIS
+
+`anycopy`
+
+## DESCRIPTION
+
+The anycopy(1) command propagates STDIN to the first available clipboard. It is the counterpart to anypaste(1).
+
+It uses port 2224 to transmit pastes to an SSH client's clipboard, if available.
+
+It uses pbcopy(1) to propagate to the clipboard on OS X, via `reattach-to-user-namespace` if available.
+
+xclip(1) is used where available.
+
+As a last resort, text is stored in the file `~/.anyclip`.
+
+## SEE ALSO
+
+anypaste(1), pbcopy(1), xclip(1)

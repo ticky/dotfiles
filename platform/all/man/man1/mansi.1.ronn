@@ -1,0 +1,18 @@
+mansi(1) -- pass through to man(1) with colour enabled
+======================================================
+
+## SYNOPSIS
+
+`mansi`
+
+## DESCRIPTION
+
+The mansi(1) command runs man(1) with formatting overridden to be in colour.
+
+## USAGE
+
+You can use any man(1) arguments on mansi(1) in the same way.
+
+## SEE ALSO
+
+man(1)

@@ -1,0 +1,15 @@
+returnOneOf(1) -- return one of the items given
+===============================================
+
+## SYNOPSIS
+
+`returnOneOf` [<item>...] <item>
+
+## DESCRIPTION
+
+The returnOneOf(1) command will print one of the given <item>s to STDOUT at random.
+
+## OPTIONS
+
+* <item>:
+  item to potentially print to STDOUT. Spaces are supported, but must be quoted or escaped.

@@ -1,0 +1,15 @@
+gravatar(1) -- get Gravatar URL for an email address
+====================================================
+
+## SYNOPSIS
+
+`gravatar` [<email>...] <email>
+
+## DESCRIPTION
+
+The gravatar(1) command outputs the URL to a Gravatar for a given email address
+
+## OPTIONS
+
+* <email>:
+  Email address to fetch Gravatar URL for

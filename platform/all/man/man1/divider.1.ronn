@@ -1,0 +1,19 @@
+divider(1) -- render a red divider
+==================================
+
+## SYNOPSIS
+
+`divider` [<text>]
+
+## DESCRIPTION
+
+The divider(1) command renders a divider which spans the width of your terminal.
+
+## OPTIONS
+
+* <text>:
+  Change the text rendered at the centre of the divider. If not set, this defaults to the current date and time.
+
+## SEE ALSO
+
+zdate(1)

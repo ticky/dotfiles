@@ -1,0 +1,16 @@
+nuname(1) -- normalised operating system name
+=============================================
+
+## SYNOPSIS
+
+`nuname`
+
+## DESCRIPTION
+
+The nuname(1) command prints out a normalised operating system name.
+
+On all systems, it outputs a lowercase, single-word operating system name. This is intended to work around the fact that Cygwin outputs kernel information with uname output, while other operating systems do not.
+
+## SEE ALSO
+
+uname(1)

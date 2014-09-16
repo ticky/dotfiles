@@ -1,0 +1,25 @@
+tminus(1) -- print a human-readable difference between two times
+================================================================
+
+## SYNOPSIS
+
+`tminus` [`-h`] [`-s time`] [`-v`] <finish>
+
+## DESCRIPTION
+
+The tminus(1) command will print a human-readable difference between two times, using approximate values for seconds, minutes, hours, days, weeks, months, years and decades.
+
+## USAGE
+
+* `--help`, `-h`:
+  print a help message and exit
+* `--start time`, `-s time`:
+  set the start time for comparison; accepts a UNIX timestamp
+* `--verbose`, `-v`:
+  print debug information when calculating output
+* <finish>:
+  set the finish time for the comparison; accepts a UNIX timestamp
+
+## SEE ALSO
+
+date(1)

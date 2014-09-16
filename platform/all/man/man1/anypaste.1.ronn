@@ -1,0 +1,22 @@
+anypaste(1) -- retrieve text from any clipboard
+===============================================
+
+## SYNOPSIS
+
+`anypaste`
+
+## DESCRIPTION
+
+The anypaste(1) command propagates the contents of the first available clipboard to STDOUT. It is the counterpart to anycopy(1).
+
+It uses port 2225 to request pastes from an SSH client's clipboard, if available.
+
+It uses pbcopy(1) to retrieve the clipboard on OS X, via `reattach-to-user-namespace` if available.
+
+xclip(1) is used where available.
+
+As a last resort, text is retrieved from the file `~/.anyclip`.
+
+## SEE ALSO
+
+anycopy(1), pbcopy(1), xclip(1)

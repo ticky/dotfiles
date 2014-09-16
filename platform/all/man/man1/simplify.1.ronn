@@ -1,0 +1,12 @@
+simplify(1) -- Simplifies fractions when you're too lazy to!
+============================================================
+
+## SYNOPSIS
+
+`simplify` [<fraction> | <numerator> <denominator>]
+
+## DESCRIPTION
+
+Simplifies fractions. Fractions may be supplied as a <fraction> in the form numerator/denominator, or may be supplied with the <numerator> and <denominator> as separate arguments.
+
+Output is always in the form numerator/denominator.

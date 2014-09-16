@@ -1,0 +1,15 @@
+colourtest(1) -- terminal colour support test
+=============================================
+
+## SYNOPSIS
+
+`colourtest` [<text>]
+
+## DESCRIPTION
+
+The colourtest(1) command renders all a table of terminal colour codes for testing your terminal and comparison.
+
+## OPTIONS
+
+* <text>:
+  Change text label to be rendered in colour test cells. If not set, this defaults to "gYw".

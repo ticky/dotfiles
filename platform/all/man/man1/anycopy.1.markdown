@@ -1,0 +1,55 @@
+anycopy(1) -- propagate text to any clipboard
+=============================================
+
+## SYNOPSIS
+
+`anycopy`
+
+## DESCRIPTION
+
+The anycopy(1) command propagates STDIN to the first available clipboard. It is the counterpart to anypaste(1).
+
+It uses port 2224 to transmit pastes to an SSH client's clipboard, if available.
+
+It uses pbcopy(1) to propagate to the clipboard on OS X, via `reattach-to-user-namespace` if available.
+
+xclip(1) is used where available.
+
+As a last resort, text is stored in the file `~/.anyclip`.
+
+## SEE ALSO
+
+anypaste(1), pbcopy(1), xclip(1)
+
+
+[SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
+[DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
+[SEE ALSO]: #SEE-ALSO "SEE ALSO"
+
+
+[anycopy(1)]: anycopy.1.html
+[anypaste(1)]: anypaste.1.html
+[breakpt-test(1)]: breakpt-test.1.html
+[breakpt(1)]: breakpt.1.html
+[chcase(1)]: chcase.1.html
+[colourtest(1)]: colourtest.1.html
+[divider(1)]: divider.1.html
+[ellipse(1)]: ellipse.1.html
+[fn(1)]: fn.1.html
+[git-push-all(1)]: git-push-all.1.html
+[gravatar(1)]: gravatar.1.html
+[gz(1)]: gz.1.html
+[ipgrep(1)]: ipgrep.1.html
+[mansi(1)]: mansi.1.html
+[nuname(1)]: nuname.1.html
+[pycturetube(1)]: pycturetube.1.html
+[returnOneOf(1)]: returnOneOf.1.html
+[shttp(1)]: shttp.1.html
+[simplify(1)]: simplify.1.html
+[sshmux(1)]: sshmux.1.html
+[tminus(1)]: tminus.1.html
+[tmx(1)]: tmx.1.html
+[untar(1)]: untar.1.html
+[xbmcplay(1)]: xbmcplay.1.html
+[xbmcqueue(1)]: xbmcqueue.1.html
+[zdate(1)]: zdate.1.html

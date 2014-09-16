@@ -1,0 +1,10 @@
+untar(1) -- you can unzip(1L), why not untar?
+=============================================
+
+## SYNOPSIS
+
+`untar` [<file>...] <file>
+
+## DESCRIPTION
+
+The untar(1) command untars archives supplied to it. It automatically applies the `z` flag if the file name ends with ".gz".

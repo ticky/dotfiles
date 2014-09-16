@@ -1,0 +1,63 @@
+pycturetube(1) -- render images on the terminal
+===============================================
+
+## SYNOPSIS
+
+`pycturetube` [`-h`] [`-c columns`] [`-g`] [`-i`] [<var>picture</var>...] <var>picture</var>
+
+## DESCRIPTION
+
+The pycturetube(1) command renders images using terminal colour codes.
+
+## OPTIONS
+
+* `--help`, `-h`:
+  show a help message and exit
+* `--columns`, `-c`:
+  set the number of columns to render the image in (and therefore rescale the image to)
+* `--gradual`, `-g`:
+  render the image line-by-line, rather than all at once when loaded
+* `--interpolate`, `-i`:
+  interpolate the image, rather than using nearest-neighbour scaling
+* <var>picture</var>:
+  path to picture file to render. If multiple paths are supplied, they will each be rendered in the order they are provided
+
+## HISTORY
+
+pycturetube(1) is a python(1) replacement for the node.js(1) program, `picture-tube` by James Halliday (mail@substack.net) <https://github.com/substack/picture-tube>
+
+pycturetube(1) was originally written by Martin Garcia (newluxfero@gmail.com) <https://github.com/magarcia/pycture-tube>
+
+
+[SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
+[DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
+[OPTIONS]: #OPTIONS "OPTIONS"
+[HISTORY]: #HISTORY "HISTORY"
+
+
+[anycopy(1)]: anycopy.1.html
+[anypaste(1)]: anypaste.1.html
+[breakpt-test(1)]: breakpt-test.1.html
+[breakpt(1)]: breakpt.1.html
+[chcase(1)]: chcase.1.html
+[colourtest(1)]: colourtest.1.html
+[divider(1)]: divider.1.html
+[ellipse(1)]: ellipse.1.html
+[fn(1)]: fn.1.html
+[git-push-all(1)]: git-push-all.1.html
+[gravatar(1)]: gravatar.1.html
+[gz(1)]: gz.1.html
+[ipgrep(1)]: ipgrep.1.html
+[mansi(1)]: mansi.1.html
+[nuname(1)]: nuname.1.html
+[pycturetube(1)]: pycturetube.1.html
+[returnOneOf(1)]: returnOneOf.1.html
+[shttp(1)]: shttp.1.html
+[simplify(1)]: simplify.1.html
+[sshmux(1)]: sshmux.1.html
+[tminus(1)]: tminus.1.html
+[tmx(1)]: tmx.1.html
+[untar(1)]: untar.1.html
+[xbmcplay(1)]: xbmcplay.1.html
+[xbmcqueue(1)]: xbmcqueue.1.html
+[zdate(1)]: zdate.1.html

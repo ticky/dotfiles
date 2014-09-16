@@ -1,0 +1,14 @@
+breakpt-test(1) -- console breakpoint test
+==========================================
+
+## SYNOPSIS
+
+`breakpt-test`
+
+## DESCRIPTION
+
+The breakpt-test(1) command tests the current terminal window against all breakpt(1)'s supported breakpoints, displaying which currently match.
+
+## SEE ALSO
+
+breakpt(1)
