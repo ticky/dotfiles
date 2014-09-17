@@ -14,11 +14,11 @@ The tminus(1) command will print a human-readable difference between two times, 
 * `--help`, `-h`:
   print a help message and exit
 * `--start time`, `-s time`:
-  set the start time for comparison; accepts a UNIX timestamp
+  set the start time for comparison; accepts Unix time
 * `--verbose`, `-v`:
   print debug information when calculating output
 * <var>finish</var>:
-  set the finish time for the comparison; accepts a UNIX timestamp
+  set the finish time for the comparison; accepts Unix time
 
 ## SEE ALSO
 

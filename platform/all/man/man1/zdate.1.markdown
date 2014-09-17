@@ -15,7 +15,7 @@ The zdate(1) command formats a date using your system's strftime(3) via the zsh/
   specifies the format to display the time in. Accepts either one of the [PRESET FORMATS][], or a full format string like strftime(3), with additions as specified in the [FORMAT][] section.
 
 * [<var>datestamp</var>]:
-  UNIX datestamp specifying the date and time to render. If unset, the current date and time are retrieved automatically.
+  Unix time to render. If unset, the current date and time are retrieved automatically.
 
 ## FORMAT
 
