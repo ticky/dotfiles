@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# 28point8
+# Party like it's 1996; compress images to within an inch of their lives
+
+if [[ $# = 0 ]]; then
+	echo "usage: $(basename $0) [<iterations>] [<image>...] <image>"
+	echo
+	echo "Parameters:"
+	echo "    image        any image file ImageMagick or GraphicsMagick support."
+	echo "    [iterations] how many times the image will be (badly) JPEG compressed. The default is 1."
+	echo
+	echo "Output filename is the original filename with '.jpg' appended."
+	exit
+fi
+
+if ! command -v convert > /dev/null 2>&1; then
+	echo "$(basename $0): convert not found. ImageMagick or GraphicsMagick must be installed." >&2
+	exit 1
+fi
+
+n=1
+
+if printf "%g" "$1" > /dev/null 2>&1; then
+	n=$1
+	shift
+fi
+
+echo "Using $n iterations"
+
+for ARG in "$@"; do
+	convert $ARG \
+		$(printf "%${n}s" | sed 's/ / \( -quality 10 -interlace Plane -modulate 100,120 -format jpeg \)/g') \
+		$ARG.jpg || exit $?
+done

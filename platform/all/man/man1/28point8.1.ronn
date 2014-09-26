@@ -1,0 +1,22 @@
+28point8(1) -- compress images to within an inch of their lives
+===============================================================
+
+## SYNOPSIS
+
+`28point8` [<iterations>] [<image>...] <image>
+
+## DESCRIPTION
+
+The 28point8(1) command compresses input images with terrible JPEG compression.
+
+## OPTIONS
+
+* <image>:
+  any image file ImageMagick or GraphicsMagick support.
+
+* [<iterations>]:
+  how many times the image will be (badly) JPEG compressed. The default is 1.
+
+## SEE ALSO
+
+convert(1)

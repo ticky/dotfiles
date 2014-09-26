@@ -126,6 +126,7 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 
 ### Utilities
 
+* `28point8` ([manual](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/man/man1/28point8.1.markdown)): Compress input images with terrible JPEG compression.
 * `applink` ([source](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/darwin/bin/applink)): (OS X only) Create symlinks to Dropbox or SparkleShare for app data.
 * `chcase` ([manual](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/man/man1/chcase.1.markdown)): Change the case of text input. Uses `tr` internally to support multiple character sets.
 * `colourtest` ([manual](https://gitlab.com/geoffstokes/dotfiles/blob/master/platform/all/man/man1/colourtest.1.markdown)): Print out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh)).
