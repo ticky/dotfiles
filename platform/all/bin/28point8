@@ -10,7 +10,7 @@ if [[ $# = 0 ]]; then
 	echo "    image        any image file ImageMagick or GraphicsMagick support."
 	echo "    [iterations] how many times the image will be (badly) JPEG compressed. The default is 1."
 	echo
-	echo "Output filename is the original filename with '.jpg' appended."
+	echo "Output filename is the original filename with -28p8 and the number of iterations appended."
 	exit
 fi
 
@@ -30,6 +30,6 @@ echo "Using $n iterations"
 
 for ARG in "$@"; do
 	convert $ARG \
-		$(printf "%${n}s" | sed 's/ / \( -quality 10 -interlace Plane -modulate 100,120 -format jpeg \)/g') \
-		$ARG.jpg || exit $?
+		$(printf "%${n}s" | sed 's/ / \( -quality 10 -interlace Plane -modulate 100,101 -format jpeg \)/g') \
+		"${ARG%.*}-28p8@$n.jpg" || exit $?
 done

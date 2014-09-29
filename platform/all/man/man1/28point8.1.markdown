@@ -9,6 +9,8 @@
 
 The 28point8(1) command compresses input images with terrible JPEG compression.
 
+The output filename is the original filename with "-28p8" and the number of iterations appended
+
 ## OPTIONS
 
 * <var>image</var>:
