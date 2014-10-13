@@ -29,5 +29,5 @@
 	st       = stash                                             # Stash
 	sp       = stash pop                                         # Pop Stash
 	u        = "!git remote update -p; git merge --ff-only @{u}" # Update
-	for-work = config user.email gstokes@movideo.com             # Quickly set work config
+	for-work = config user.email geoff.stokes@bugherd.com        # Quickly set work config
 	for-home = config --unset user.email                         # Quickly unset work config
