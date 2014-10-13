@@ -95,6 +95,11 @@ mkcd() {
   mkdir -p "$@" && eval cd "$@";
 }
 
+# Load RVM into a shell session *as a function*
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  source "$HOME/.rvm/scripts/rvm"
+fi
+
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
   play() {
