@@ -59,6 +59,10 @@ iTunes() {
 	linker "iTunes" "$1/iTunes" "$HOME/Library/iTunes" Scripts
 }
 
+iTerm() {
+	linker "iTerm 2" "$1/Preferences" "$HOME/Library/Preferences" com.googlecode.iterm2.plist
+}
+
 Services() {
 	linker "Services" "$1" "$HOME/Library" Services
 }
@@ -88,6 +92,9 @@ case $2 in
 		;;
 	itunes|iTunes)
 		iTunes "$LINKDIR"
+		;;
+	iterm|iTerm|iterm2|iTerm2)
+		iTerm "$LINKDIR"
 		;;
 	services)
 		Services "$LINKDIR"
