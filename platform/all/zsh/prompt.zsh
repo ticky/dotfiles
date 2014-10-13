@@ -81,11 +81,11 @@ prompt_git_need_push() {
 }
 
 prompt_userhost() {
-  if [[ -n "$TMUX" ]]; then
-    # Inside tmux, just show username
+  if [[ -n "$TMUX" || -n "$STY" ]]; then
+    # Inside tmux or GNU screen, just show username
     echo -n "%n"
   else
-    # If we're not inside tmux
+    # If we're not inside tmux or GNU screen
     if breakpt xs; then
       # If the terminal is small, just show the host
       echo -n "%m"
