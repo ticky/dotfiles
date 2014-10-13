@@ -125,7 +125,7 @@ prompt_clock() {
   fi
 }
 
-export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$(prompt_userhost)%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:$(prompt_cwd)\n› %{$reset_color%}'
+export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$(prompt_userhost)%{$reset_color%}:%{$fg[$PROMPT_PRIMARY]%}$(prompt_cwd)\n› %{$reset_color%}'
 export RPROMPT=$' $(prompt_git_status)$(prompt_clock)'
 export PS2=$'› '
 
