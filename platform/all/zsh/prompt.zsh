@@ -11,7 +11,10 @@ else
   git="/usr/bin/git"
 fi
 
-git_status() {
+prompt_git_status() {
+  if ! breakpt md-up; then
+    return
+  fi
   st=$($git status 2>/dev/null | tail -n 1)
   if [[ $st == "" ]]; then
     echo ""
@@ -21,9 +24,9 @@ git_status() {
     op=""
 
     # Fetch flag variables
-    gle="$(git_local_email)"
-    gnp="$(git_need_push)"
-    gcb="$(git_current_branch)"
+    gle="$(prompt_git_local_email)"
+    gnp="$(prompt_git_need_push)"
+    gcb="$(prompt_git_current_branch)"
 
     # Add email if it's there
     if [[ $gle != "" ]]; then
@@ -53,7 +56,7 @@ git_status() {
   fi
 }
 
-git_local_email() {
+prompt_git_local_email() {
   if [[ $($git config user.email) != $($git config --global user.email) ]]; then
     if breakpt md-up; then
       $git config user.email
@@ -63,12 +66,12 @@ git_local_email() {
   fi
 }
 
-git_current_branch() {
+prompt_git_current_branch() {
   ref=$($git symbolic-ref HEAD 2>/dev/null) || ref=$(git show-ref --head -s --abbrev | head -n1 2> /dev/null) || return
   echo "${ref#refs/heads/}"
 }
 
-git_need_push() {
+prompt_git_need_push() {
   up=$($git cherry -v @{upstream} 2>/dev/null)
   if [[ $up == "" ]]; then
     echo ""
@@ -77,8 +80,53 @@ git_need_push() {
   fi
 }
 
-export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$(breakpt sm-up && echo -n "%n@")%m%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:$(breakpt xl && echo -n "%d" || (breakpt xs && echo -n "%1d" || echo -n "%~"))\n› %{$reset_color%}'
-export RPROMPT=$' $(breakpt md-up && git_status)$(breakpt md-up && echo -n "%{$reset_color%} "; breakpt xl && zdate l || (breakpt lg-up && zdate m || (breakpt md-up && zdate s)))'
+prompt_userhost() {
+  if [[ -n "$TMUX" ]]; then
+    # Inside tmux, just show username
+    echo -n "%n"
+  else
+    # If we're not inside tmux
+    if breakpt xs; then
+      # If the terminal is small, just show the host
+      echo -n "%m"
+    else
+      # If the terminal is not small, show user and host
+      echo -n "%n@%m"
+    fi
+  fi
+}
+
+prompt_cwd() {
+  if breakpt xl; then
+    # Show fully-qualified cwd
+    echo -n "%d"
+  else
+    if breakpt xs; then
+      # Show only current directory name
+      echo -n "%1d"
+    else
+      # Show directory relative to ~
+      echo -n "%~"
+    fi
+  fi
+}
+
+prompt_clock() {
+  if breakpt md-up; then
+    echo -n "%{$reset_color%} "
+  fi
+
+  if breakpt xl; then
+    zdate l
+  elif breakpt lg-up; then
+    zdate m
+  elif breakpt md-up; then
+    zdate s
+  fi
+}
+
+export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$(prompt_userhost)%{$reset_color%}%{$fg[$PROMPT_PRIMARY]%}:$(prompt_cwd)\n› %{$reset_color%}'
+export RPROMPT=$' $(prompt_git_status)$(prompt_clock)'
 export PS2=$'› '
 
 if [[ -r /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
