@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# mdwrap
+# wraps piped text for Markdown output
+
+printf "\`\`\`\n%s\n\`\`\`\n" "$(< /dev/stdin)"
