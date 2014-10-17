@@ -1,0 +1,14 @@
+mdwrap(1) -- wraps piped text for Markdown output
+=================================================
+
+## SYNOPSIS
+
+`mdwrap`
+
+## DESCRIPTION
+
+Pipe text into the mdwrap(1) command to have it wrapped in Markdown's \`\`\` fence.
+
+Output is then perfect for putting into GitHub Markdown snippets, or Slack.
+
+Even better, pair it with pbcopy(1) to take it straight to the clipboard!
