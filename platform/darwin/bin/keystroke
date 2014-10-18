@@ -1,4 +1,4 @@
-#!/usr/bin/env osascript -l AppleScript
+#!/usr/bin/env osascript
 
 -- keystroke
 -- Send keystrokes from the command line

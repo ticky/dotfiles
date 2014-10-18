@@ -1,4 +1,4 @@
-#!/usr/bin/env osascript -l AppleScript
+#!/usr/bin/env osascript
 
 -- np
 -- Current iTunes playback information

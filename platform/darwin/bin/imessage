@@ -1,4 +1,4 @@
-#!/usr/bin/env osascript -l AppleScript
+#!/usr/bin/env osascript
 
 -- imessage
 -- Send messages (iMessages by default) from the command line

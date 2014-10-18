@@ -1,4 +1,4 @@
-#!/usr/bin/env osascript -l AppleScript
+#!/usr/bin/env osascript
 
 -- finder-path
 -- Output the path of the most recently used Finder window
