@@ -10,6 +10,10 @@
 	ui = true
 [help]
 	autocorrect = 1
+[man]
+	viewer = mansi
+[man "mansi"]
+	cmd = mansi
 [include]
 	path = .gitaliases
 	path = .gitplatform
