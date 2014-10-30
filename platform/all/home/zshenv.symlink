@@ -9,7 +9,7 @@
 if [[ $- != *i* ]] && [[ $- != *l* ]]; then
 
   # Shortcut to dotfiles directory
-  export DOTFILES="$HOME/dotfiles"
+  export DOTFILES="${$(dirname "$(readlink ~/.zshenv)")%/platform/all/home}"
 
   export UNAME=$($DOTFILES/platform/all/bin/nuname)
 

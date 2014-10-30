@@ -4,8 +4,14 @@
 shopt -s extglob
 shopt -s nullglob
 
+# detect dotfiles directory
+pushd "$(pwd)" > /dev/null
+cd $(dirname $0)
+DOTFILES=$(pwd)
+popd > /dev/null
+
 # kernel name
-UNAME="$(~/dotfiles/platform/all/bin/nuname)"
+UNAME="$($DOTFILES/platform/all/bin/nuname)"
 
 echo "# Geoff's Dotfiles"
 echo "https://gitlab.com/geoffstokes/dotfiles"
@@ -15,7 +21,7 @@ if [[ -z "$UNAME" ]]; then
   echo "Installation aborted." >&2
   exit 1
 fi
-echo "Setting up for platform \"$UNAME\""
+echo "Setting up dotfiles in \"$DOTFILES\" for platform \"$UNAME\""
 echo
 
 echo "## Checking for missing dependencies..."
@@ -100,7 +106,7 @@ else
   echo
   echo "### Installing symlinks..."
 
-  for file in ~/dotfiles/platform/all/home/*.symlink ~/dotfiles/platform/$UNAME/home/*.symlink ~/dotfiles/platform/all-but-!($UNAME)/home/*.symlink; do
+  for file in $DOTFILES/platform/all/home/*.symlink $DOTFILES/platform/$UNAME/home/*.symlink $DOTFILES/platform/all-but-!($UNAME)/home/*.symlink; do
 
     basename=$(basename "$file")
     target=~/.${basename%.symlink}
@@ -132,7 +138,7 @@ else
     echo
     echo "### Installing LaunchAgents..."
 
-    for file in ~/dotfiles/platform/darwin/LaunchAgents/*.plist; do
+    for file in $DOTFILES/platform/darwin/LaunchAgents/*.plist; do
 
       basename="$(basename "$file")"
       target=~/Library/LaunchAgents/$basename
@@ -166,7 +172,7 @@ else
   echo
   echo "### Concatenating files..."
 
-  for file in ~/dotfiles/platform/all/home/*.concat ~/dotfiles/platform/$UNAME/home/*.concat ~/dotfiles/platform/all-but-!($UNAME)/home/*.concat; do
+  for file in $DOTFILES/platform/all/home/*.concat $DOTFILES/platform/$UNAME/home/*.concat $DOTFILES/platform/all-but-!($UNAME)/home/*.concat; do
 
     basename=$(basename "$file")
     target=~/.${basename%.concat}
@@ -182,7 +188,7 @@ else
 
   done
 
-  for file in ~/dotfiles/platform/all/home/*.concat ~/dotfiles/platform/$UNAME/home/*.concat ~/dotfiles/platform/all-but-!($UNAME)/home/*.concat; do
+  for file in $DOTFILES/platform/all/home/*.concat $DOTFILES/platform/$UNAME/home/*.concat $DOTFILES/platform/all-but-!($UNAME)/home/*.concat; do
 
     basename=$(basename "$file")
     target=~/.${basename%.concat}

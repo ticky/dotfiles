@@ -4,7 +4,7 @@
 # Merges custom spelling dictionary with the user's local spelling dictionaty
 
 # Load existing dictionary words, and custom additions
-WORDS=$(cat ~/Library/Spelling/LocalDictionary ~/dotfiles/platform/darwin/ext/Spelling\ Dictionary.txt)
+WORDS=$(cat ~/Library/Spelling/LocalDictionary $DOTFILES/platform/darwin/ext/Spelling\ Dictionary.txt)
 
 # Put the list of words back in the LocalDictionary file, delimited with newlines, and alphabetically
 (IFS=$'\n'; echo "${WORDS[*]}") | sort | uniq > ~/Library/Spelling/LocalDictionary

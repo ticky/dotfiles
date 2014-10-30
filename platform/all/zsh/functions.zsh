@@ -37,32 +37,32 @@ _hex_to_rgb() {
 }
 
 platformbindir() {
-  if [[ -d "$HOME/dotfiles/platform/$UNAME/bin" ]]; then
-    echo "$HOME/dotfiles/platform/$UNAME/bin"
+  if [[ -d "$DOTFILES/platform/$UNAME/bin" ]]; then
+    echo "$DOTFILES/platform/$UNAME/bin"
   else
-    mkdir -p "$HOME/dotfiles/platform/$UNAME/bin" && PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH" && echo "$HOME/dotfiles/platform/$UNAME/bin"
+    mkdir -p "$DOTFILES/platform/$UNAME/bin" && PATH="$DOTFILES/platform/$UNAME/bin:$PATH" && echo "$DOTFILES/platform/$UNAME/bin"
   fi
 }
 
-profile() {
+dotfiles() {
   case $1 in
     edit|ed|e)
-      command "$EDITOR" "$HOME/dotfiles"
+      command "$EDITOR" "$DOTFILES"
       ;;
     load|lo|l)
       source "$HOME/.zshrc"
       ;;
     install|inst|in|i)
-      command "$HOME/dotfiles/install.sh" && \
-      profile load
+      command "$DOTFILES/install.sh" && \
+      $0 load
       ;;
     update|up|u)
-      cd "$HOME/dotfiles" && \
+      cd "$DOTFILES" && \
       command git stash && \
       command git pull && \
       command git stash pop && \
       cd - && \
-      profile install
+      $0 install
       ;;
     *)
       echo "Usage: $0 <command>" && \
@@ -82,7 +82,6 @@ profile() {
       ;;
   esac
 }
-alias p="profile"
 
 # retrieves the last (hopefully most relevant) IP address in the `ipls` list
 cip() {

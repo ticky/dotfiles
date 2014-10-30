@@ -310,7 +310,7 @@ profile() {
       ;;
     install|inst|in|i)
       command $HOME/dotfiles/install.sh && \
-      profile load
+      $0 load
       ;;
     update|up|u)
       cd $HOME/dotfiles && \
@@ -318,7 +318,7 @@ profile() {
       command git fetch && \
       command git stash pop && \
       cd - && \
-      profile install
+      $0 install
       ;;
     *)
       echo "Usage: $0 <command>" && \
