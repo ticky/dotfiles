@@ -9,6 +9,7 @@ if ! command -v icns2png >/dev/null 2>&1; then
 fi
 
 SIZES=("16 32 256 512")
+DEPTHS=("32 16 8 4 1")
 
 for ARG in "$@"; do
 
@@ -27,17 +28,32 @@ for ARG in "$@"; do
 
 		for SIZE in $SIZES; do
 
-			printf "Processing at %d pixels..." $SIZE
+			printf "Working with %d pixel size...\n" $SIZE
+
+			CURRENTDEPTH=
+
+			for DEPTH in $DEPTHS; do
+
+				printf "Checking for %dbpp version..." $DEPTH
+				if [[ -f "${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x${DEPTH}.png" ]]; then
+					printf " Found!\n"
+					BASESCALE=$SIZE
+					BASEDEPTH=$DEPTH
+					break;
+				else
+					printf "\n"
+				fi
+
+			done
 			
-			if [[ -f "${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x32.png" ]]; then
+			if [[ "$BASESIZE" -eq "$SIZE" ]]; then
 		
-				printf " size exists!\n"
-				BASESCALE=$SIZE
+				printf "Size exists!\n"
 		
 			else
 		
-				printf " size does not exist, creating based on %d pixel size\n" $BASESCALE
-				convert "${TEMPDIR}/${FILENAME}_${BASESCALE}x${BASESCALE}x32.png" -filter Point -resize ${SIZE}x${SIZE} "png32:${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x32.png"
+				printf "Size does not exist, creating based on %d pixel, %dbpp size.\n" $BASESCALE $BASEDEPTH
+				convert "${TEMPDIR}/${FILENAME}_${BASESCALE}x${BASESCALE}x${BASEDEPTH}.png" -filter Point -resize ${SIZE}x${SIZE} "png32:${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x32.png"
 		
 			fi
 		
@@ -45,7 +61,7 @@ for ARG in "$@"; do
 
 		printf "Converting to icns...\n"
 		mv "$ARG" "${FILENAMEPREFIX}.bak.icns"
-		png2icns "$ARG" ${TEMPDIR}/*.png
+		png2icns "$ARG" ${TEMPDIR}/*x32.png
 		rm -r ${TEMPDIR}
 		printf "Done.\n\n"
 
