@@ -4,8 +4,8 @@
 # TLC for old, pixel art icns files
 
 if ! command -v icns2png >/dev/null 2>&1; then
-	echo "$0: icns2png not found" 1>&2
-	exit 1
+  echo "$0: icns2png not found" 1>&2
+  exit 1
 fi
 
 SIZES=("16 32 256 512")
@@ -13,60 +13,60 @@ DEPTHS=("32 16 8 4 1")
 
 for ARG in "$@"; do
 
-	TEMPDIR=$(mktemp -d "/tmp/$(basename "$0").XXXXXX")
+  TEMPDIR=$(mktemp -d "/tmp/$(basename "$0").XXXXXX")
 
-	if [[ -f "$ARG" ]]; then
+  if [[ -f "$ARG" ]]; then
 
-		FILENAMEPREFIX=${ARG%.*}
-		FILENAME=$(basename "$FILENAMEPREFIX")
-		BASESCALE=32
+    FILENAMEPREFIX=${ARG%.*}
+    FILENAME=$(basename "$FILENAMEPREFIX")
+    BASESCALE=32
 
-		printf "Processing \"%s\"\n\n" "$FILENAME"
+    printf "Processing \"%s\"\n\n" "$FILENAME"
 
-		# Extract from ICNS file
-		icns2png -x "$ARG" -o "$TEMPDIR"
+    # Extract from ICNS file
+    icns2png -x "$ARG" -o "$TEMPDIR"
 
-		for SIZE in $SIZES; do
+    for SIZE in $SIZES; do
 
-			printf "Working with %d pixel size...\n" $SIZE
+      printf "Working with %d pixel size...\n" $SIZE
 
-			CURRENTDEPTH=
+      CURRENTDEPTH=
 
-			for DEPTH in $DEPTHS; do
+      for DEPTH in $DEPTHS; do
 
-				printf "Checking for %dbpp version..." $DEPTH
-				if [[ -f "${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x${DEPTH}.png" ]]; then
-					printf " Found!\n"
-					BASESCALE=$SIZE
-					BASEDEPTH=$DEPTH
-					break;
-				else
-					printf "\n"
-				fi
+        printf "Checking for %dbpp version..." $DEPTH
+        if [[ -f "${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x${DEPTH}.png" ]]; then
+          printf " Found!\n"
+          BASESCALE=$SIZE
+          BASEDEPTH=$DEPTH
+          break;
+        else
+          printf "\n"
+        fi
 
-			done
-			
-			if [[ "$BASESIZE" -eq "$SIZE" ]]; then
-		
-				printf "Size exists!\n"
-		
-			else
-		
-				printf "Size does not exist, creating based on %d pixel, %dbpp size.\n" $BASESCALE $BASEDEPTH
-				convert "${TEMPDIR}/${FILENAME}_${BASESCALE}x${BASESCALE}x${BASEDEPTH}.png" -filter Point -resize ${SIZE}x${SIZE} "png32:${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x32.png"
-		
-			fi
-		
-		done
+      done
+      
+      if [[ "$BASESIZE" -eq "$SIZE" ]]; then
+    
+        printf "Size exists!\n"
+    
+      else
+    
+        printf "Size does not exist, creating based on %d pixel, %dbpp size.\n" $BASESCALE $BASEDEPTH
+        convert "${TEMPDIR}/${FILENAME}_${BASESCALE}x${BASESCALE}x${BASEDEPTH}.png" -filter Point -resize ${SIZE}x${SIZE} "png32:${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x32.png"
+    
+      fi
+    
+    done
 
-		printf "Converting to icns...\n"
-		mv "$ARG" "${FILENAMEPREFIX}.bak.icns"
-		png2icns "$ARG" ${TEMPDIR}/*x32.png
-		rm -r ${TEMPDIR}
-		printf "Done.\n\n"
+    printf "Converting to icns...\n"
+    mv "$ARG" "${FILENAMEPREFIX}.bak.icns"
+    png2icns "$ARG" ${TEMPDIR}/*x32.png
+    rm -r ${TEMPDIR}
+    printf "Done.\n\n"
 
-	else
-		printf "%s: not a file\n" "$ARG" 1>&2
-	fi
+  else
+    printf "%s: not a file\n" "$ARG" 1>&2
+  fi
 
 done
