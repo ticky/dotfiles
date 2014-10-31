@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# icnsrescue
+# TLC for old, pixel art icns files
+
+if ! command -v icns2png >/dev/null 2>&1; then
+	echo "$0: icns2png not found" 1>&2
+	exit 1
+fi
+
+SIZES=("16 32 256 512")
+
+for ARG in "$@"; do
+
+	TEMPDIR=$(mktemp -d "/tmp/$(basename "$0").XXXXXX")
+
+	if [[ -f "$ARG" ]]; then
+
+		FILENAMEPREFIX=${ARG%.*}
+		FILENAME=$(basename "$FILENAMEPREFIX")
+		BASESCALE=32
+
+		printf "Processing \"%s\"\n\n" "$FILENAME"
+
+		# Extract from ICNS file
+		icns2png -x "$ARG" -o "$TEMPDIR"
+
+		for SIZE in $SIZES; do
+
+			printf "Processing at %d pixels..." $SIZE
+			
+			if [[ -f "${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x32.png" ]]; then
+		
+				printf " size exists!\n"
+				BASESCALE=$SIZE
+		
+			else
+		
+				printf " size does not exist, creating based on %d pixel size\n" $BASESCALE
+				convert "${TEMPDIR}/${FILENAME}_${BASESCALE}x${BASESCALE}x32.png" -filter Point -resize ${SIZE}x${SIZE} "png32:${TEMPDIR}/${FILENAME}_${SIZE}x${SIZE}x32.png"
+		
+			fi
+		
+		done
+
+		printf "Converting to icns...\n"
+		mv "$ARG" "${FILENAMEPREFIX}.bak.icns"
+		png2icns "$ARG" ${TEMPDIR}/*.png
+		rm -r ${TEMPDIR}
+		printf "Done.\n\n"
+
+	else
+		printf "%s: not a file\n" "$ARG" 1>&2
+	fi
+
+done
