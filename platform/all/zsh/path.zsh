@@ -1,15 +1,41 @@
+path-contains() {
+  [[ :$PATH: == *:"$1":* ]]
+}
+
+path-append() {
+  if ! path-contains "$1"; then
+    export PATH="$PATH:$1"
+  fi
+}
+
+path-prepend() {
+  if ! path-contains "$1"; then
+    export PATH="$1:$PATH"
+  fi
+}
+
 # we want the various sbins on the path along with /usr/local/bin
-PATH="$PATH:/usr/local/sbin:/usr/sbin:/sbin"
-PATH="/usr/local/bin:$PATH"
+path-append /usr/local/sbin
+path-append /usr/sbin
+path-append /sbin
 
 # bring in NPM
-if [[ -d "/usr/local/share/npm/bin" ]]; then
-  PATH="$PATH:/usr/local/share/npm/bin"
-fi
+path-append /usr/local/share/npm/bin
 
-# Prepend all-platform bin directory, platform-based bin directories, all-but-platform directories and user bin directory to PATH
-for dir in $DOTFILES/platform/all/bin(N) $DOTFILES/platform/$UNAME/bin(N) $DOTFILES/platform/all-but-^$UNAME/bin(N) ~/bin(N); do
-  PATH="$dir:$PATH"
+# bring in RVM
+path-append "$HOME/.rvm/bin"
+
+# add go support
+export GOPATH="$HOME/go"
+path-prepend "$GOPATH/bin"
+
+# Prepend all-platform bin directory, platform-based bin directories and all-but-platform directories
+for dir in $DOTFILES/platform/all/bin(N) $DOTFILES/platform/$UNAME/bin(N) $DOTFILES/platform/all-but-^$UNAME/bin(N); do
+  path-prepend "$dir"
 done
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# add user bin directory
+path-prepend "$HOME/bin"
+
+export PATH
+export GOPATH
