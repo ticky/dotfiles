@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+
+# word
+# outputs one random word from the system dictionary
+
+open words, "</usr/share/dict/words";
+
+while (<words>) {
+  if (rand($.) < 1) {
+    $word=$_
+  }
+}
+
+print $word
