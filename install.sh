@@ -13,8 +13,8 @@ popd > /dev/null
 # kernel name
 UNAME="$($DOTFILES/platform/all/bin/nuname)"
 
-echo "# Geoff's Dotfiles"
-echo "https://gitlab.com/geoffstokes/dotfiles"
+echo "# Jessica's Dotfiles"
+echo "https://gitlab.com/grapegravity/dotfiles"
 if [[ -z "$UNAME" ]]; then
   echo "Unable to determine platform." >&2
   echo >&2

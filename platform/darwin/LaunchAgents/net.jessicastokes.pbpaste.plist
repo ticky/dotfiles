@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
      <key>Label</key>
-     <string>net.geoffstokes.pbcopy</string>
+     <string>net.jessicastokes.pbpaste</string>
      <key>EnvironmentVariables</key>
      <dict>
           <key>LC_ALL</key>
@@ -11,7 +11,7 @@
      </dict>
      <key>ProgramArguments</key>
      <array>
-         <string>/usr/bin/pbcopy</string>
+         <string>/usr/bin/pbpaste</string>
      </array>
      <key>inetdCompatibility</key>
      <dict>
@@ -23,7 +23,7 @@
           <key>Listeners</key>
           <dict>
                <key>SockServiceName</key>
-               <string>2224</string>
+               <string>2225</string>
                <key>SockNodeName</key>
                <string>127.0.0.1</string>
           </dict>

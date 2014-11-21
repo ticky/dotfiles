@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # ZSH Profile Configuration
-# Geoff Stokes <https://gitlab.com/geoffstokes/dotfiles>
+# Jessica Stokes <https://gitlab.com/grapegravity/dotfiles>
 
 # This file loads path.zsh files when in an interactive, login shell.
 # This behaviour is necessary to override OS X' path configuration in /etc/zprofile.

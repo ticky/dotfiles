@@ -19,6 +19,7 @@ python(1), python3(1), pwd(1), ruby(1)
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 
+[28point8(1)]: 28point8.1.html
 [anycopy(1)]: anycopy.1.html
 [anypaste(1)]: anypaste.1.html
 [breakpt-test(1)]: breakpt-test.1.html
@@ -33,6 +34,7 @@ python(1), python3(1), pwd(1), ruby(1)
 [gz(1)]: gz.1.html
 [ipgrep(1)]: ipgrep.1.html
 [mansi(1)]: mansi.1.html
+[mdwrap(1)]: mdwrap.1.html
 [nuname(1)]: nuname.1.html
 [pycturetube(1)]: pycturetube.1.html
 [returnOneOf(1)]: returnOneOf.1.html

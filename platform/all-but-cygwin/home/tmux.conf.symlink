@@ -1,4 +1,4 @@
-# Geoff's tmux configuration
+# Jessica's tmux configuration
 
 ## Guidelines for Configuration ##
 # Always use `set` (alias for `set-option`) and `bind` (alias for `bind-key`) in lieu of their longer counterparts

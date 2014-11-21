@@ -73,7 +73,7 @@ alias disk-free="df -h"
 # coloured man pages
 alias man="mansi"
 
-alias man-update="ronn --roff --markdown --manual \"Geoff Stokes' Dotfiles\" $DOTFILES/platform/*/man/**/*.ronn"
+alias man-update="ronn --roff --markdown --manual \"Jessica Stokes' Dotfiles\" $DOTFILES/platform/*/man/**/*.ronn"
 
 alias rm!="rm -rf"
 
