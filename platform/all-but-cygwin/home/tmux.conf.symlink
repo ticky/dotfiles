@@ -98,14 +98,14 @@ bind 'Tab' select-pane -t :.+
 # Horizontal window splits with |
 unbind '%'
 unbind '|'
-bind '|' split-window -h
+bind '|' split-window -c '#{pane_current_path}' -h
 
 # Use alt+split buttons to open a new split and immediately run a command
-bind 'M-"' command-prompt -p "Open a new horizontal split pane and run" "split-window 'exec $SHELL -ci \"%%\"'"
-bind 'M-|' command-prompt -p "Open a new verical split pane and run" "split-window -h 'exec $SHELL -ci \"%%\"'"
+bind 'M-"' command-prompt -p "Open a new horizontal split pane and run" "split-window -c '#{pane_current_path}' 'exec $SHELL -ci \"%%\"'"
+bind 'M-|' command-prompt -p "Open a new verical split pane and run" "split-window -h -c '#{pane_current_path}' 'exec $SHELL -ci \"%%\"'"
 
 # Open man page with /
-bind '/' command-prompt -p "Show manual for" "split-window -h 'exec $SHELL -ci \"man %%\"'"
+bind '/' command-prompt -p "Show manual for" "split-window -h -c '#{pane_current_path}' 'exec $SHELL -ci \"man %%\"'"
 
 # Cross-platform, SSH-aware clipboard integration
 bind 'C-c' run 'tmux save-buffer - | anycopy'
