@@ -95,6 +95,14 @@ bind 'b' set status
 unbind 'Tab'
 bind 'Tab' select-pane -t :.+
 
+# Create new windows with c
+unbind 'c'
+bind 'c' new-window -c '#{pane_current_path}'
+
+# Vertical window splits with "
+unbind '"'
+bind '"' split-window -c '#{pane_current_path}'
+
 # Horizontal window splits with |
 unbind '%'
 unbind '|'
