@@ -1,19 +1,21 @@
 [user]
 	name = Jessica Stokes
 	email = hello@jessicastokes.net
+[color]
+	ui = true
 [core]
 	excludesfile = ~/.gitignore
 	quotepath = false
-[hub]
-	protocol = https
-[color]
-	ui = true
 [help]
 	autocorrect = 1
+[hub]
+	protocol = https
+[include]
+	path = .gitaliases
+	path = .gitplatform
+[instaweb]
+  httpd = webrick
 [man]
 	viewer = mansi
 [man "mansi"]
 	cmd = mansi
-[include]
-	path = .gitaliases
-	path = .gitplatform
