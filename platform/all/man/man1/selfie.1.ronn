@@ -1,0 +1,14 @@
+selfie(1) -- put a nice, pretty picture of you on your desktop
+==============================================================
+
+## SYNOPSIS
+
+`selfie`
+
+## DESCRIPTION
+
+The selfie(1) command uses imagesnap(1) to put a nice, pretty picture of you on your desktop.
+
+## SEE ALSO
+
+imagesnap(1)

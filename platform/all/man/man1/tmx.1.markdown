@@ -43,6 +43,7 @@ tmux(1)
 [nuname(1)]: nuname.1.html
 [pycturetube(1)]: pycturetube.1.html
 [returnOneOf(1)]: returnOneOf.1.html
+[selfie(1)]: selfie.1.html
 [shttp(1)]: shttp.1.html
 [simplify(1)]: simplify.1.html
 [sshmux(1)]: sshmux.1.html

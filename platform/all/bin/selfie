@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+# selfie
+# put a nice, pretty picture of you on your desktop
+
+imagesnap -q -w 2 "$HOME/Desktop/Snapshot $(zdate "%Y-%m-%d at %H.%M.%S").png"

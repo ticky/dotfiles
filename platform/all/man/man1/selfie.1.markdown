@@ -1,30 +1,21 @@
-sshmux(1) -- ssh with automatic tmux (re)attachment
-===================================================
+selfie(1) -- put a nice, pretty picture of you on your desktop
+==============================================================
 
 ## SYNOPSIS
 
-`sshmux`
+`selfie`
 
 ## DESCRIPTION
 
-The sshmux(1) command runs ssh(1) with any specified paramaters, remotely creating or reconnecting to a tmux(1) session.
-
-This script transmits an altered version of tmx(1) which will instead launch the default login shell if tmux(1) is not available remotely.
-
-## USAGE
-
-You can use any ssh(1) arguments on sshmux(1) in the same way.
-
-Note that sshmux(1) uses ssh(1)'s `-t` flag internally, so this will change its behaviour if used.
+The selfie(1) command uses imagesnap(1) to put a nice, pretty picture of you on your desktop.
 
 ## SEE ALSO
 
-tmx(1), ssh(1)
+imagesnap(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
 [DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
-[USAGE]: #USAGE "USAGE"
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 
