@@ -94,8 +94,11 @@ mkcd() {
   mkdir -p "$@" && eval cd "$@";
 }
 
-# Load RVM into a shell session *as a function*
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+if [[ -s "/usr/local/share/chruby/chruby.sh" ]]; then
+  # Load chruby
+  source "/usr/local/share/chruby/chruby.sh"
+elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+  # Load RVM into a shell session *as a function*
   source "$HOME/.rvm/scripts/rvm"
 fi
 
