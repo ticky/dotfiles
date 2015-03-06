@@ -10,9 +10,17 @@ tell application "iTunes"
 		if player state is playing then
 			set icon to "▶"
 		end if
-		icon & " " & name of myTrack & " by " & artist of myTrack & " from " & album of myTrack
+		if podcast of myTrack is true then
+			if album of myTrack is in name of myTrack then
+				icon & " “" & name of myTrack & "” (Podcast)"
+			else
+				icon & " “" & album of myTrack & ", " & name of myTrack & "” (Podcast)"
+			end if
+		else
+			icon & " “" & name of myTrack & "” by “" & artist of myTrack & "” from “" & album of myTrack & "”"
+		end if
 	else
-		set icon to "⬛︎"
+		set icon to "⬛️"
 		icon & " Nothing Playing"
 	end if
 end tell

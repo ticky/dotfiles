@@ -1,28 +1,21 @@
-ipgrep(1) -- calculate gzipped size of a file
-=============================================
+nps(1) -- current Sonos playback information
+============================================
 
 ## SYNOPSIS
 
-`ipgrep`
+`nps`
 
 ## DESCRIPTION
 
-The ipgrep(1) command filters out valid, non-loopback IP addresses from **STDIN**.
-
-## USAGE
-
-Pipe the output of ifconfig(8) into ipgrep(1) to list the IP addresses;
-
-	$ ifconfig | ipgrep
+The nps(1) command displays the details of the current playing track on the first detected Sonos device on your network.
 
 ## SEE ALSO
 
-ifconfig(8)
+np(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
 [DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
-[USAGE]: #USAGE "USAGE"
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 

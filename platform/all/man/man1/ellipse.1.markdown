@@ -39,6 +39,7 @@ The ellipse(1) command truncates text to the nearest space within a specified le
 [ipgrep(1)]: ipgrep.1.html
 [mansi(1)]: mansi.1.html
 [mdwrap(1)]: mdwrap.1.html
+[nps(1)]: nps.1.html
 [nuname(1)]: nuname.1.html
 [pycturetube(1)]: pycturetube.1.html
 [returnOneOf(1)]: returnOneOf.1.html

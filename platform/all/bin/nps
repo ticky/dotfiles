@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# nps
+# Current Sonos playback information
+
+import soco
+import sys
+
+zones = soco.discover()
+
+if zones == None:
+  print('No Sonos devices were found. Make sure you\'re on the same Wi-Fi network as your device!')
+  sys.exit(1)
+
+currentZone = zones.pop()
+
+currentTransportInfo = currentZone.get_current_transport_info()
+
+if currentTransportInfo['current_transport_state'] == 'PLAYING' or currentTransportInfo['current_transport_state'] == 'PAUSED':
+
+  currentTrackInfo = currentZone.get_current_track_info()
+
+  playbackInfo = {
+    'icon': '?',
+    'title': currentTrackInfo['title'],
+    'artist': currentTrackInfo['artist'],
+    'album': currentTrackInfo['album']
+  }
+
+  if currentTransportInfo['current_transport_state'] == 'PLAYING':
+    playbackInfo['icon'] = '▶'
+  elif currentTransportInfo['current_transport_state'] == 'PAUSED':
+    playbackInfo['icon'] = '❚❚'
+
+  print("%(icon)s “%(title)s” by “%(artist)s” from “%(album)s”" % playbackInfo)
+
+else: 
+
+  print(u"⬛️ Nothing Playing")
