@@ -1,17 +1,17 @@
-np(1) -- current iTunes playback information
-============================================
+textual-thumbnails-on(1) -- turn thumbnails on in Textual 5
+===========================================================
 
 ## SYNOPSIS
 
-`np`
+`textual-thumbnails-on`
 
 ## DESCRIPTION
 
-The np(1) command displays the details of the current playing track in iTunes.
+The textual-thumbnails-on(1) command turns thumbnails on in Textual 5, and restarts the app if it's running.
 
 ## SEE ALSO
 
-nps(1)
+textual-thumbnails-off(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"

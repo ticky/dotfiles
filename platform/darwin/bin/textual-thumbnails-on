@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+
+# textual-thumbnails-on
+# Turns thumbnails on in Textual 5, and restarts the app if it's running
+
+APPNAME="Textual 5"
+PLIST="Library/Group Containers/8482Q6EPL6.com.codeux.irc.textual/Library/Preferences/8482Q6EPL6.com.codeux.irc.textual"
+PREFKEY="DisplayEventInLogView -> Inline Media"
+RELAUNCH=NO
+
+if [[ $(defaults read "$PLIST" "$PREFKEY") -eq 1 ]]; then
+  echo Preference is already set correctly. >&2
+  exit
+fi
+
+if pgrep -qx "$APPNAME"; then
+  echo $APPNAME Process located >&2
+  RELAUNCH=YES
+  pkill -x "$APPNAME"
+fi
+
+defaults write "$PLIST" "$PREFKEY" -bool YES
+
+echo Relaunching\? $RELAUNCH >&2
+
+if [[ "$RELAUNCH" == "YES" ]]; then
+  open {,~}/Applications/Textual\ 5.app(N)
+fi

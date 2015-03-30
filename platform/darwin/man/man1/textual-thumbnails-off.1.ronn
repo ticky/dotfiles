@@ -1,0 +1,14 @@
+textual-thumbnails-off(1) -- turn thumbnails off in Textual 5
+=============================================================
+
+## SYNOPSIS
+
+`textual-thumbnails-off`
+
+## DESCRIPTION
+
+The textual-thumbnails-off(1) command turns thumbnails off in Textual 5, and restarts the app if it's running.
+
+## SEE ALSO
+
+textual-thumbnails-on(1)
