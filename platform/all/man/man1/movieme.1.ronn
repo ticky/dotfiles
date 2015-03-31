@@ -1,0 +1,35 @@
+movieme(1) -- create an animated gif from a movie file
+======================================================
+
+## SYNOPSIS
+
+`movieme` <path> [`--start` <start-time>] [`--duration` <duration>] [`--framerate` <framerate>] [`--width` <width>] [`--no-dither`] [`--wait`]
+
+## DESCRIPTION
+
+The movieme(1) command creates an animated gif from a movie file
+
+## OPTIONS
+
+* <path>:
+  path to the movie we're converting
+* `--start`, `-s`:
+  start time of the finished product  
+  Default: <0>
+* `--duration`, `-d`:
+  duration of the video sequence  
+  Default: <5>
+* `--framerate`, `-f`:
+  target framerate of the gif  
+  Default: <7>
+* `--no-dither`, `-n`:
+  disable dithering of the output gif. Can reduce file size in some cases
+* `--width`, `-w`:
+  target width of the gif  
+  Default: <500>
+* `--wait`, `-x`:
+  whether to wait after extracting frames for user input. This is useful for manually editing frames
+
+## SEE ALSO
+
+ffmpeg(1), convert(1)

@@ -1,26 +1,43 @@
-mansi(1) -- pass through to man(1) with colour enabled
+movieme(1) -- create an animated gif from a movie file
 ======================================================
 
 ## SYNOPSIS
 
-`mansi`
+`movieme` <var>path</var> [`--start` <var>start-time</var>] [`--duration` <var>duration</var>] [`--framerate` <var>framerate</var>] [`--width` <var>width</var>] [`--no-dither`] [`--wait`]
 
 ## DESCRIPTION
 
-The mansi(1) command runs man(1) with formatting overridden to be in colour.
+The movieme(1) command creates an animated gif from a movie file
 
-## USAGE
+## OPTIONS
 
-You can use any man(1) arguments on mansi(1) in the same way.
+* <var>path</var>:
+  path to the movie we're converting
+* `--start`, `-s`:
+  start time of the finished product  
+  Default: <var>0</var>
+* `--duration`, `-d`:
+  duration of the video sequence  
+  Default: <var>5</var>
+* `--framerate`, `-f`:
+  target framerate of the gif  
+  Default: <var>7</var>
+* `--no-dither`, `-n`:
+  disable dithering of the output gif. Can reduce file size in some cases
+* `--width`, `-w`:
+  target width of the gif  
+  Default: <var>500</var>
+* `--wait`, `-x`:
+  whether to wait after extracting frames for user input. This is useful for manually editing frames
 
 ## SEE ALSO
 
-man(1)
+ffmpeg(1), convert(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
 [DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
-[USAGE]: #USAGE "USAGE"
+[OPTIONS]: #OPTIONS "OPTIONS"
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 

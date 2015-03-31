@@ -71,6 +71,7 @@ date(1), strftime(3), zshmodules(1)
 [ipgrep(1)]: ipgrep.1.html
 [mansi(1)]: mansi.1.html
 [mdwrap(1)]: mdwrap.1.html
+[movieme(1)]: movieme.1.html
 [nps(1)]: nps.1.html
 [nuname(1)]: nuname.1.html
 [pycturetube(1)]: pycturetube.1.html

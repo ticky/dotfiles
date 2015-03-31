@@ -1,26 +1,61 @@
 #!/bin/sh
-#
-# MOVIE ME as in: "MOVIE ME AN ANIMATED GIF FROM THIS MOVIE, DAMMIT"
-#
-# Creates an animated gif from a movie file. Uploads to CloudApp. You must also
-# have `gifme` and `cloudapp` in your $PATH.
-#
-#   $1 - the path to the movie we're converting.
-#   $2 - the start time of the finished product.
-#        This can be in seconds, or it also accepts the "hh:mm:ss[.xxx]" format.
-#   $3 - the duration of the video sequence.
-#        This can be in seconds, or it also accepts the "hh:mm:ss[.xxx]" format.
-#   $4 - the target framerate of the gif.
-#        There is no default!!!
-#
-# Examples:
-#
-#   movieme <path> <start-time> <duration> <framerate>
-#   ~/Desktop/dr-strangelove.mp4 23:12 3 7
-#   ~/Desktop/holman-backflip-on-fire.mov 3.9 1.75 7
 
-# https://github.com/holman/dotfiles/blob/be084c8726153bfd799ef798418569e3a3d34e6b/bin/gifme
-# https://github.com/holman/dotfiles/blob/02f70e33975fc82fc93a08ed702ea5491fd7dbc8/bin/movieme
+# movieme
+# create an animated gif from a movie file
+
+FILE="$1"
+START=0
+DURATION=5
+FRAMERATE=7
+DITHER=-dither
+WIDTH=500
+WAIT=NO
+
+shift
+
+# "parse" options
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --start|-s)
+      shift
+      START=$1
+      ;;
+    --duration|-d)
+      shift
+      DURATION=$1
+      ;;
+    --framerate|-f)
+      shift
+      FRAMERATE=$1
+      ;;
+    --no-dither|-n)
+      DITHER=+dither
+      ;;
+    --width|-w)
+      shift
+      WIDTH=$1
+      ;;
+    --wait|-x)
+      WAIT=YES
+      ;;
+    *)
+      echo "Unrecognised argument \"$1\"." >&2
+      ;;
+  esac
+  shift
+done
+
+if ! [[ -f "$FILE" ]]; then
+  echo "Supplied file does not exist."
+  exit 1
+fi
+
+echo "movieme
+      File: $FILE
+Start time: $START
+  Duration: $DURATION
+ Framerate: $FRAMERATE
+     Width: $WIDTH"
 
 # cleanup
 rm -rf /tmp/movieme
@@ -29,7 +64,28 @@ rm -rf /tmp/movieme
 mkdir -p /tmp/movieme
 
 # split the movie into constituent frames
-ffmpeg -i $1 -f image2 -vf "scale=iw*sar:ih" -ss $2 -t $3 -r $4 /tmp/movieme/d-%05d.png
+ffmpeg \
+  -i "$FILE" \
+  -f image2 \
+  -vf "scale=iw*sar:ih" \
+  -ss "$START" \
+  -t "$DURATION" \
+  -r "$FRAMERATE" \
+  -loglevel fatal \
+  /tmp/movieme/d-%05d.png
 
-# ANIMATE
-gifme /tmp/movieme/* -d 0
+if [[ "$WAIT" == "YES" ]]; then
+  echo "Finished splitting frames. Manually edit files in /tmp/movieme, then press any key to continue."
+  read -n 1 -s
+fi
+
+# animate it
+convert \
+  -verbose \
+  -delay 0 \
+  $DITHER \
+  -loop 0 \
+  -resize $WIDTH \
+  -layers OptimizeTransparency \
+  /tmp/movieme/* \
+  "$HOME/Desktop/Animated $(zdate "%Y-%m-%d at %H.%M.%S").gif"

@@ -1,0 +1,58 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "MOVIEME" "1" "March 2015" "" "Jessica Stokes' Dotfiles"
+.
+.SH "NAME"
+\fBmovieme\fR \- create an animated gif from a movie file
+.
+.SH "SYNOPSIS"
+\fBmovieme\fR \fIpath\fR [\fB\-\-start\fR \fIstart\-time\fR] [\fB\-\-duration\fR \fIduration\fR] [\fB\-\-framerate\fR \fIframerate\fR] [\fB\-\-width\fR \fIwidth\fR] [\fB\-\-no\-dither\fR] [\fB\-\-wait\fR]
+.
+.SH "DESCRIPTION"
+The movieme(1) command creates an animated gif from a movie file
+.
+.SH "OPTIONS"
+.
+.TP
+\fIpath\fR
+path to the movie we\'re converting
+.
+.TP
+\fB\-\-start\fR, \fB\-s\fR
+start time of the finished product
+.
+.br
+Default: \fI0\fR
+.
+.TP
+\fB\-\-duration\fR, \fB\-d\fR
+duration of the video sequence
+.
+.br
+Default: \fI5\fR
+.
+.TP
+\fB\-\-framerate\fR, \fB\-f\fR
+target framerate of the gif
+.
+.br
+Default: \fI7\fR
+.
+.TP
+\fB\-\-no\-dither\fR, \fB\-n\fR
+disable dithering of the output gif\. Can reduce file size in some cases
+.
+.TP
+\fB\-\-width\fR, \fB\-w\fR
+target width of the gif
+.
+.br
+Default: \fI500\fR
+.
+.TP
+\fB\-\-wait\fR, \fB\-x\fR
+whether to wait after extracting frames for user input\. This is useful for manually editing frames
+.
+.SH "SEE ALSO"
+ffmpeg(1), convert(1)

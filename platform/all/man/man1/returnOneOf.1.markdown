@@ -36,6 +36,7 @@ The returnOneOf(1) command will print one of the given <var>item</var>s to STDOU
 [ipgrep(1)]: ipgrep.1.html
 [mansi(1)]: mansi.1.html
 [mdwrap(1)]: mdwrap.1.html
+[movieme(1)]: movieme.1.html
 [nps(1)]: nps.1.html
 [nuname(1)]: nuname.1.html
 [pycturetube(1)]: pycturetube.1.html
