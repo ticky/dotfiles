@@ -12,3 +12,5 @@ The textual-thumbnails-on(1) command turns thumbnails on in Textual 5, and resta
 ## SEE ALSO
 
 textual-thumbnails-off(1)
+tweetbot-thumbnails-off(1)
+tweetbot-thumbnails-on(1)

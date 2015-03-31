@@ -1,17 +1,19 @@
-np(1) -- current iTunes playback information
-============================================
+tweetbot-thumbnails-on(1) -- turn thumbnails on in Tweetbot
+===========================================================
 
 ## SYNOPSIS
 
-`np`
+`tweetbot-thumbnails-on`
 
 ## DESCRIPTION
 
-The np(1) command displays the details of the current playing track in iTunes.
+The tweetbot-thumbnails-on(1) command turns thumbnails on in Tweetbot, and restarts the app if it's running.
 
 ## SEE ALSO
 
-nps(1)
+textual-thumbnails-off(1)
+textual-thumbnails-on(1)
+tweetbot-thumbnails-off(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"

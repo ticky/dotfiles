@@ -1,0 +1,28 @@
+#!/usr/bin/env zsh
+
+# tweetbot-thumbnails-on
+# Turns thumbnails on in Tweetbot, and restarts the app if it's running
+
+APPNAME=Tweetbot
+PLIST=com.tapbots.TweetbotMac
+PREFKEY=statusViewImageType
+RELAUNCH=NO
+
+if [[ $(defaults read $PLIST $PREFKEY) -eq 0 ]]; then
+  echo Preference is already set correctly. >&2
+  exit
+fi
+
+if pgrep -qx "$APPNAME"; then
+  echo $APPNAME Process located >&2
+  RELAUNCH=YES
+  pkill -x "$APPNAME"
+fi
+
+defaults write $PLIST $PREFKEY -int 0
+
+echo Relaunching\? $RELAUNCH >&2
+
+if [[ "$RELAUNCH" == "YES" ]]; then
+  open {,~}/Applications/$APPNAME.app(N)
+fi
