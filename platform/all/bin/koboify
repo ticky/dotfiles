@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# koboify
+# Adjust images to suit the screen of a Kobo Glo HD
+
+for ARG in "$@"; do
+  if [[ -f "$ARG" ]]; then
+    convert \
+      "$ARG" \
+      -colorspace Gray \
+      -filter Lanczos \
+      -resize "1072x1448>" \
+      -colors 16 \
+      -depth 4 \
+      "${ARG%.*}-kobo.png"
+    optipng -o 9 -strip all "${ARG%.*}-kobo.png"
+    identify "${ARG%.*}-kobo.png"
+  else
+    printf "%s: not a file\n" "$ARG" 1>&2
+  fi
+done
