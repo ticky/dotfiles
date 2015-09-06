@@ -1,13 +1,13 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "MOVIEME" "1" "March 2015" "" "Jessica Stokes' Dotfiles"
+.TH "MOVIEME" "1" "September 2015" "" "Jessica Stokes' Dotfiles"
 .
 .SH "NAME"
 \fBmovieme\fR \- create an animated gif from a movie file
 .
 .SH "SYNOPSIS"
-\fBmovieme\fR \fIpath\fR [\fB\-\-start\fR \fIstart\-time\fR] [\fB\-\-duration\fR \fIduration\fR] [\fB\-\-framerate\fR \fIframerate\fR] [\fB\-\-width\fR \fIwidth\fR] [\fB\-\-no\-dither\fR] [\fB\-\-wait\fR]
+\fBmovieme\fR \fIpath\fR [\fB\-\-start\fR \fIstart\-time\fR] [\fB\-\-duration\fR \fIduration\fR] [\fB\-\-framerate\fR \fIframerate\fR] [\fB\-\-width\fR \fIwidth\fR] [\fB\-\-no\-dither\fR] [\fB\-\-interactive\fR | \fB\-\-continue\fR] [\fB\-\-cleanup\fR]
 .
 .SH "DESCRIPTION"
 The movieme(1) command creates an animated gif from a movie file
@@ -51,8 +51,16 @@ target width of the gif
 Default: \fI500\fR
 .
 .TP
-\fB\-\-wait\fR, \fB\-x\fR
-whether to wait after extracting frames for user input\. This is useful for manually editing frames
+\fB\-\-interactive\fR, \fB\-i\fR
+extract frames, then exit to allow modifying individual frames
+.
+.TP
+\fB\-\-continue\fR
+continue conversion after calling \fB\-\-interactive\fR
+.
+.TP
+\fB\-\-cleanup\fR
+delete temporary files after completion\. Cannot be used with \fB\-\-interactive\fR
 .
 .SH "SEE ALSO"
 ffmpeg(1), convert(1)

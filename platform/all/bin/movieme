@@ -3,15 +3,16 @@
 # movieme
 # create an animated gif from a movie file
 
-FILE="$1"
+FILE=
 START=0
 DURATION=5
 FRAMERATE=7
 DITHER=-dither
 WIDTH=500
-WAIT=NO
+INTERACTIVE=NO
+CONTINUE=NO
 
-shift
+TEMPDIR=/tmp/movieme
 
 # "parse" options
 while [[ $# -gt 0 ]]; do
@@ -35,57 +36,114 @@ while [[ $# -gt 0 ]]; do
       shift
       WIDTH=$1
       ;;
-    --wait|-x)
-      WAIT=YES
+    --interactive|-i)
+      if [[ "$CLEANUP" == "YES" ]]; then
+        echo "Invalid arguments; --interactive and --cleanup cannot be used together."
+        exit 1
+      fi
+      INTERACTIVE=YES
+      ;;
+    --continue)
+      CONTINUE=YES
+      ;;
+    --cleanup)
+      if [[ "$INTERACTIVE" == "YES" ]]; then
+        echo "Invalid arguments; --interactive and --cleanup cannot be used together."
+        exit 1
+      fi
+      CLEANUP=YES
       ;;
     *)
-      echo "Unrecognised argument \"$1\"." >&2
+      if [[ -f "$1" ]]; then
+        if [[ -z "$FILE" ]]; then
+          FILE=$1
+        else
+          echo "Too many files in arguments; using first."
+        fi
+      else
+        echo "Unrecognised argument \"$1\"." >&2
+      fi
       ;;
   esac
   shift
 done
 
-if ! [[ -f "$FILE" ]]; then
-  echo "Supplied file does not exist."
-  exit 1
-fi
-
-echo "movieme
+stats() {
+  echo "$(basename $0)
       File: $FILE
 Start time: $START
   Duration: $DURATION
  Framerate: $FRAMERATE
-     Width: $WIDTH"
+     Width: $WIDTH
+"
+}
 
-# cleanup
-rm -rf /tmp/movieme
+cleanup() {
+  rm -rf "$TEMPDIR"
+}
 
-# create tmp dir
-mkdir -p /tmp/movieme
+extractFrames() {
+  # create tmp dir
+  mkdir -p "$TEMPDIR"
 
-# split the movie into constituent frames
-ffmpeg \
-  -i "$FILE" \
-  -f image2 \
-  -vf "scale=iw*sar:ih" \
-  -ss "$START" \
-  -t "$DURATION" \
-  -r "$FRAMERATE" \
-  -loglevel fatal \
-  /tmp/movieme/d-%05d.png
+  ffmpeg \
+    -i "$FILE" \
+    -f image2 \
+    -vf "scale=iw*sar:ih" \
+    -ss "$START" \
+    -t "$DURATION" \
+    -r "$FRAMERATE" \
+    -loglevel fatal \
+    "$TEMPDIR/frame-%05d.png"
+}
 
-if [[ "$WAIT" == "YES" ]]; then
-  echo "Finished splitting frames. Manually edit files in /tmp/movieme, then press any key to continue."
-  read -n 1 -s
+animate() {
+  convert \
+    -verbose \
+    -delay 0 \
+    $DITHER \
+    -loop 0 \
+    -resize $WIDTH \
+    -layers OptimizeTransparency \
+    "$TEMPDIR/frame-[0-9]*.png" \
+    "$HOME/Desktop/Animated $(zdate "%Y-%m-%d at %H.%M.%S").gif"
+}
+
+if [[ "$CONTINUE" == "NO" ]]; then
+
+  if ! [[ -f "$FILE" ]]; then
+    echo "Supplied file does not exist."
+    exit 1
+  fi
+
+  stats
+  cleanup
+  extractFrames
+
+else
+
+  source "$TEMPDIR/interactive.meta.sh"
+  stats
+
 fi
 
-# animate it
-convert \
-  -verbose \
-  -delay 0 \
-  $DITHER \
-  -loop 0 \
-  -resize $WIDTH \
-  -layers OptimizeTransparency \
-  /tmp/movieme/* \
-  "$HOME/Desktop/Animated $(zdate "%Y-%m-%d at %H.%M.%S").gif"
+if [[ "$INTERACTIVE" == "YES" ]]; then
+
+  echo "FILE=$FILE
+START=$START
+DURATION=$DURATION
+FRAMERATE=$FRAMERATE
+DITHER=$DITHER
+WIDTH=$WIDTH" > "$TEMPDIR/interactive.meta.sh"
+  echo "Finished splitting frames. Manually edit files in $TEMPDIR, then run \"$(basename $0) --continue\"."
+  exit
+
+else
+
+  animate
+
+  if [[ "$CLEANUP" == "YES" ]]; then
+    cleanup
+  fi
+
+fi

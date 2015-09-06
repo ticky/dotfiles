@@ -3,7 +3,7 @@ movieme(1) -- create an animated gif from a movie file
 
 ## SYNOPSIS
 
-`movieme` <var>path</var> [`--start` <var>start-time</var>] [`--duration` <var>duration</var>] [`--framerate` <var>framerate</var>] [`--width` <var>width</var>] [`--no-dither`] [`--wait`]
+`movieme` <var>path</var> [`--start` <var>start-time</var>] [`--duration` <var>duration</var>] [`--framerate` <var>framerate</var>] [`--width` <var>width</var>] [`--no-dither`] [`--interactive` | `--continue`] [`--cleanup`]
 
 ## DESCRIPTION
 
@@ -27,8 +27,12 @@ The movieme(1) command creates an animated gif from a movie file
 * `--width`, `-w`:
   target width of the gif  
   Default: <var>500</var>
-* `--wait`, `-x`:
-  whether to wait after extracting frames for user input. This is useful for manually editing frames
+* `--interactive`, `-i`:
+  extract frames, then exit to allow modifying individual frames
+* `--continue`:
+  continue conversion after calling `--interactive`
+* `--cleanup`:
+  delete temporary files after completion. Cannot be used with `--interactive`
 
 ## SEE ALSO
 
