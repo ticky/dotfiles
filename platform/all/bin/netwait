@@ -1,0 +1,29 @@
+#!/usr/bin/env zsh
+
+# netwait
+# wait for the internet connection to be back up
+
+zmodload zsh/datetime
+
+STARTTIME=$EPOCHSECONDS
+WAITED=0
+IP=8.8.8.8
+
+while ! ping -c 1 $IP &>/dev/null; do
+  WAITED=1
+  sleep 1
+done
+
+ELAPSED=$(($EPOCHSECONDS-$STARTTIME))
+
+if [[ $WAITED -eq 0 ]]; then
+	echo "Internet already up!"
+	exit 1
+else
+	echo -n "Internet's up after $ELAPSED second"
+	if [[ $ELAPSED -eq 1 ]]; then
+		echo ""
+	else
+		echo "s"
+	fi
+fi
