@@ -6,10 +6,9 @@
 APPNAME=Tweetbot
 PLIST=com.tapbots.TweetbotMac
 PREFKEY=statusViewImageType
-PREFVAL=2
 RELAUNCH=NO
 
-if [[ $(defaults read $PLIST $PREFKEY) -eq $PREFVAL ]]; then
+if [[ $(defaults read $PLIST $PREFKEY) -eq 2 ]]; then
   echo Preference is already set correctly. >&2
   exit
 fi
@@ -17,13 +16,13 @@ fi
 if pgrep -qx "$APPNAME"; then
   echo $APPNAME Process located >&2
   RELAUNCH=YES
-  osascript -e "tell application \"$APPNAME\" to quit"
+  pkill -x "$APPNAME"
 fi
 
-defaults write $PLIST $PREFKEY -int $PREFVAL
+defaults write $PLIST $PREFKEY -int 2
 
 echo Relaunching\? $RELAUNCH >&2
 
 if [[ "$RELAUNCH" == "YES" ]]; then
-  osascript -e "tell application \"$APPNAME\" to activate"
+  open {,~}/Applications/$APPNAME.app(N)
 fi
