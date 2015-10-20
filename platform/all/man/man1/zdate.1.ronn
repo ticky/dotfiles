@@ -29,6 +29,8 @@ The format options are identical to your system's strftime(3), with the followin
 
 ## PRESET FORMATS
 
+* `apple`, `a`:
+  Apple timestamp format (as used for screen shots) - "2007-01-09 at 9.41.00 am". Equivalent to "%Y-%m-%d at %L.%M.%S %P"
 * `beats`, `b`:
   Swatch Internet Time - "@778". Equivalent to "@%i"
 * `short`, `s`:

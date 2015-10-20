@@ -13,6 +13,9 @@ fi
 
 # Preset Date Formats
 case $1 in
+	apple|a)
+		format="%Y-%m-%d at %L.%M.%S %P"
+		;;
 	beats|b)
 		format="@%i"
 		;;
