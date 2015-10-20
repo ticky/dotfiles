@@ -112,16 +112,26 @@ prompt_cwd() {
 }
 
 prompt_clock() {
+  LONG_FORMAT=l
+  MEDIUM_FORMAT=m
+  SHORT_FORMAT=s
+
   if breakpt md-up; then
     echo -n "%{$reset_color%} "
   fi
 
+  if [[ "$(TZ=Etc/GMT-1 zdate %m-%d)" == "04-01" ]]; then
+    LONG_FORMAT="%a %b %f @%i"
+    MEDIUM_FORMAT="%a @%i"
+    SHORT_FORMAT="@%i"
+  fi
+
   if breakpt xl; then
-    zdate l
+    zdate $LONG_FORMAT
   elif breakpt lg-up; then
-    zdate m
+    zdate $MEDIUM_FORMAT
   elif breakpt md-up; then
-    zdate s
+    zdate $SHORT_FORMAT
   fi
 }
 
