@@ -14,6 +14,7 @@
 	diff         = diff --word-diff                                    # Diff using word-diff
 	dc           = diff --word-diff --cached                           # Diff cached changes using word-diff
 	dh           = diff --word-diff HEAD                               # Diff from HEAD using word-diff
+	ds           = diff --stat                                         # Show diff stats
 	dt           = difftool                                            # Open diff tool
 	dtc          = difftool --cached                                   # Open cached changes in diff tool
 	dth          = difftool HEAD                                       # Open changes from HEAD in diff tool
