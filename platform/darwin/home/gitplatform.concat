@@ -1,10 +1,19 @@
 [push]
-    default = simple
-[difftool "Kaleidoscope"]
-    cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
-[difftool]
-    prompt = false
-[diff]
-    tool = Kaleidoscope
+  default = simple
 [credential]
-    helper = osxkeychain
+  helper = osxkeychain
+
+[diff]
+  tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+  prompt = false
+  
+[merge]
+  tool = Kaleidoscope
+[mergetool "Kaleidoscope"]
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustexitcode = true
+[mergetool]
+  prompt = false
