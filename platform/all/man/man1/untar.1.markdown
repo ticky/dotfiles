@@ -33,6 +33,7 @@ The untar(1) command untars archives supplied to it. It automatically applies th
 [movieme(1)]: movieme.1.html
 [nps(1)]: nps.1.html
 [nuname(1)]: nuname.1.html
+[onchange(1)]: onchange.1.html
 [pycturetube(1)]: pycturetube.1.html
 [returnOneOf(1)]: returnOneOf.1.html
 [selfie(1)]: selfie.1.html

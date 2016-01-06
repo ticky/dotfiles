@@ -1,0 +1,30 @@
+onchange(1) -- run a command when the output of another changes
+===============================================================
+
+## SYNOPSIS
+
+`onchange` <command> [`--interval` <seconds>] [`--onchange` <command>] [`--once`]
+
+## DESCRIPTION
+
+The onchange(1) command watches the output of a command, and triggers another when the output changes
+
+## OPTIONS
+
+* <command>:
+  command to monitor the output of
+* `--interval`, `-n`:
+  seconds to wait before running <command> again  
+  Default: <2>
+* `--onchange`, `-c`:
+  command to run when a change is detected
+* `--once`, `-o`:
+  exit when the first change is detected
+
+## CAVEATS
+
+Unlike watch(1), the output is neither displayed nor shown full-screen
+
+## SEE ALSO
+
+watch(1)

@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# onchange
+# Run a command when the output of another changes
+
+COMMAND=
+ONCHANGE=
+INTERVAL=2
+MD5COMMAND=
+ONCE=NO
+
+if which md5 >/dev/null 2>&1; then
+  MD5COMMAND=md5
+elif which md5sum >/dev/null 2>&1; then
+  MD5COMMAND=md5sum
+fi
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --interval|-n)
+      shift
+      INTERVAL=$1
+      ;;
+    --onchange|-c)
+      shift
+      ONCHANGE=$1
+      ;;
+    --once|-o)
+      ONCE=YES
+      ;;
+    *)
+      if [[ -z "$COMMAND" ]]; then
+        COMMAND=$1
+      else
+        echo "Too many commands in arguments; using first."
+      fi
+      ;;
+  esac
+  shift
+done
+
+if [[ -z "$COMMAND" ]]; then
+  echo "$(basename $0): No command supplied."
+  exit 1
+fi
+
+if [[ -z "$ONCHANGE" ]]; then
+  echo "$(basename $0): No on-change command supplied."
+  exit 1
+fi
+
+LASTSTATE=$(eval "$COMMAND" | $MD5COMMAND)
+
+while true; do
+    NEWSTATE=$(eval "$COMMAND" | $MD5COMMAND)
+    if [ "$NEWSTATE" != "$LASTSTATE" ]; then
+        eval "$ONCHANGE"
+        if [[ "$ONCE" == "YES" ]]; then
+          exit 0
+        fi
+        LASTSTATE="$NEWSTATE"
+    fi
+    sleep $INTERVAL
+done

@@ -1,0 +1,40 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "ONCHANGE" "1" "January 2016" "" "Jessica Stokes' Dotfiles"
+.
+.SH "NAME"
+\fBonchange\fR \- run a command when the output of another changes
+.
+.SH "SYNOPSIS"
+\fBonchange\fR \fIcommand\fR [\fB\-\-interval\fR \fIseconds\fR] [\fB\-\-onchange\fR \fIcommand\fR] [\fB\-\-once\fR]
+.
+.SH "DESCRIPTION"
+The onchange(1) command watches the output of a command, and triggers another when the output changes
+.
+.SH "OPTIONS"
+.
+.TP
+\fIcommand\fR
+command to monitor the output of
+.
+.TP
+\fB\-\-interval\fR, \fB\-n\fR
+seconds to wait before running \fIcommand\fR again
+.
+.br
+Default: \fI2\fR
+.
+.TP
+\fB\-\-onchange\fR, \fB\-c\fR
+command to run when a change is detected
+.
+.TP
+\fB\-\-once\fR, \fB\-o\fR
+exit when the first change is detected
+.
+.SH "CAVEATS"
+Unlike watch(1), the output is neither displayed nor shown full\-screen
+.
+.SH "SEE ALSO"
+watch(1)

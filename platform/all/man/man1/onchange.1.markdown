@@ -1,30 +1,39 @@
-sshmux(1) -- ssh with automatic tmux (re)attachment
-===================================================
+onchange(1) -- run a command when the output of another changes
+===============================================================
 
 ## SYNOPSIS
 
-`sshmux`
+`onchange` <var>command</var> [`--interval` <var>seconds</var>] [`--onchange` <var>command</var>] [`--once`]
 
 ## DESCRIPTION
 
-The sshmux(1) command runs ssh(1) with any specified paramaters, remotely creating or reconnecting to a tmux(1) session.
+The onchange(1) command watches the output of a command, and triggers another when the output changes
 
-This script transmits an altered version of tmx(1) which will instead launch the default login shell if tmux(1) is not available remotely.
+## OPTIONS
 
-## USAGE
+* <var>command</var>:
+  command to monitor the output of
+* `--interval`, `-n`:
+  seconds to wait before running <var>command</var> again  
+  Default: <var>2</var>
+* `--onchange`, `-c`:
+  command to run when a change is detected
+* `--once`, `-o`:
+  exit when the first change is detected
 
-You can use any ssh(1) arguments on sshmux(1) in the same way.
+## CAVEATS
 
-Note that sshmux(1) uses ssh(1)'s `-t` flag internally, so this will change its behaviour if used.
+Unlike watch(1), the output is neither displayed nor shown full-screen
 
 ## SEE ALSO
 
-tmx(1), ssh(1)
+watch(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
 [DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
-[USAGE]: #USAGE "USAGE"
+[OPTIONS]: #OPTIONS "OPTIONS"
+[CAVEATS]: #CAVEATS "CAVEATS"
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 
