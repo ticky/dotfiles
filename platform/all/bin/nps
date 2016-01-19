@@ -29,11 +29,11 @@ if currentTransportInfo['current_transport_state'] == 'PLAYING' or currentTransp
   }
 
   if currentTransportInfo['current_transport_state'] == 'PLAYING':
-    playbackInfo['icon'] = '▶'
+    playbackInfo['icon'] = u'▶'
   elif currentTransportInfo['current_transport_state'] == 'PAUSED':
-    playbackInfo['icon'] = '❚❚'
+    playbackInfo['icon'] = u'❚❚'
 
-  print("%(icon)s “%(title)s” by “%(artist)s” from “%(album)s”" % playbackInfo)
+  print(u"%(icon)s “%(title)s” by “%(artist)s” from “%(album)s”" % playbackInfo)
 
 else: 
 
