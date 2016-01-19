@@ -1,19 +1,17 @@
-tweetbot-thumbnails-on(1) -- turn thumbnails on in Tweetbot
-===========================================================
+pbcopyfile(1) -- copy a file to the pasteboard
+==============================================
 
 ## SYNOPSIS
 
-`tweetbot-thumbnails-on`
+`pbcopyfile` <var>file</var>
 
 ## DESCRIPTION
 
-The tweetbot-thumbnails-on(1) command turns thumbnails on in Tweetbot, and restarts the app if it's running.
+The pbcopyfile(1) command copies the specified file to the pasteboard (the Clipboard).
 
 ## SEE ALSO
 
-textual-thumbnails-off(1)
-textual-thumbnails-on(1)
-tweetbot-thumbnails-off(1)
+pbcopy(1), pbpaste(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"

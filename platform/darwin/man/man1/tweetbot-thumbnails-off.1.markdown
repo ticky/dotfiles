@@ -22,6 +22,7 @@ tweetbot-thumbnails-on(1)
 
 
 [np(1)]: np.1.html
+[pbcopyfile(1)]: pbcopyfile.1.html
 [textual-thumbnails-off(1)]: textual-thumbnails-off.1.html
 [textual-thumbnails-on(1)]: textual-thumbnails-on.1.html
 [tweetbot-thumbnails-off(1)]: tweetbot-thumbnails-off.1.html
