@@ -3,7 +3,6 @@ init-author-email = hello@jessicastokes.net
 init-license = MIT
 init-version = 0.0.1
 
-loglevel = info
 spin = false
 
 viewer = mansi
