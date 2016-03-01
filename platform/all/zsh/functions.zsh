@@ -102,6 +102,11 @@ elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   source "$HOME/.rvm/scripts/rvm"
 fi
 
+if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
+  export WORKON_HOME="$HOME/.virtualenv"
+  source "/usr/local/bin/virtualenvwrapper.sh"
+fi
+
 # suppress "Boot" app in dock when running an app in the Play framework
 if /usr/libexec/java_home >/dev/null 2>&1 && play --version >/dev/null 2>&1; then
   play() {
