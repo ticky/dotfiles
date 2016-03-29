@@ -37,6 +37,7 @@ anycopy(1), pbcopy(1), xclip(1)
 [divider(1)]: divider.1.html
 [ellipse(1)]: ellipse.1.html
 [fn(1)]: fn.1.html
+[git-develop(1)]: git-develop.1.html
 [git-push-all(1)]: git-push-all.1.html
 [gravatar(1)]: gravatar.1.html
 [gz(1)]: gz.1.html

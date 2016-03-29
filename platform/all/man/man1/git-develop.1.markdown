@@ -1,27 +1,21 @@
-divider(1) -- render a red divider
-==================================
+git-develop(1) -- switch to the primary branch of the project
+=============================================================
 
 ## SYNOPSIS
 
-`divider` [<var>text</var>]
+`git develop`
 
 ## DESCRIPTION
 
-The divider(1) command renders a divider which spans the width of your terminal.
-
-## OPTIONS
-
-* <var>text</var>:
-  Change the text rendered at the centre of the divider. If not set, this defaults to the current date and time.
+Switches to the primary branch of the project; prefers "develop" but will fall back to "master".
 
 ## SEE ALSO
 
-zdate(1)
+git-checkout(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
 [DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
-[OPTIONS]: #OPTIONS "OPTIONS"
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 

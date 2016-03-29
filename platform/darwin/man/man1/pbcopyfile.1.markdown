@@ -9,6 +9,8 @@ pbcopyfile(1) -- copy a file to the pasteboard
 
 The pbcopyfile(1) command copies the specified file to the pasteboard (the Clipboard).
 
+Copied from this StackOverflow answer: http://apple.stackexchange.com/a/15542
+
 ## SEE ALSO
 
 pbcopy(1), pbpaste(1)

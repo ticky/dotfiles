@@ -1,0 +1,14 @@
+git-develop(1) -- switch to the primary branch of the project
+=============================================================
+
+## SYNOPSIS
+
+`git develop`
+
+## DESCRIPTION
+
+Switches to the primary branch of the project; prefers "develop" but will fall back to "master".
+
+## SEE ALSO
+
+git-checkout(1)
