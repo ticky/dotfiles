@@ -80,7 +80,7 @@ beats() {
 
 	((BEATS=floor(($(strftime "%S" "$1")+$(strftime "%M" "$1")*60+$(strftime "%H" "$1")*3600)/86.4)))
 
-	printf $BEATS
+	printf ${(l:3::0:)BEATS}
 
 }
 
