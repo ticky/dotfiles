@@ -12,54 +12,56 @@ else
 fi
 
 prompt_git_status() {
+  if [[ ! -d "$PWD/.git" ]]; then
+    return
+  fi
+
   if ! breakpt md-up; then
     return
   fi
-  st=$($git status 2>/dev/null | tail -n 1)
-  if [[ $st == "" ]]; then
-    echo ""
-  else
 
-    # Output var
-    op=""
+  # Output var
+  git_output=""
+  git_flags=""
 
-    # Fetch flag variables
-    gle="$(prompt_git_local_email)"
-    gnp="$(prompt_git_need_push)"
-    gcb="$(prompt_git_current_branch)"
+  # Fetch flag variables
+  local_email="$(prompt_git_local_email)"
+  needs_push="$(prompt_git_need_push)"
+  current_branch="$(prompt_git_current_branch)"
 
-    # Add email if it's there
-    if [[ $gle != "" ]]; then
-      op="$gle "
-    fi
-
-    # Append branch info
-    op="$op%{$fg[$PROMPT_PRIMARY]%}⌥ %{$fg_bold[$PROMPT_PRIMARY]%}$gcb%{$reset_color%}"
-
-    # Add modified dot if status isn't "nothing to commit"
-    if [[ ! "$st" =~ ^nothing ]]; then
-      gf="$gf●"
-    fi
-
-    # Add the "needs push" indicator (output of git_need_push)
-    if [[ $gnp != "" ]]; then
-      gf="$gf$gnp"
-    fi
-
-    # Attach "gf" (git flags) to prompt if exists
-    if [[ $gf != "" ]]; then
-      op="$op %{$fg[$PROMPT_PRIMARY]%}$gf%{$reset_color%}"
-    fi
-
-    # Output
-    echo "$op"
+  # Add email if it's there
+  if [[ $local_email != "" ]]; then
+    git_output="$local_email "
   fi
+
+  # Append branch info
+  git_output="$git_output%{$fg[$PROMPT_PRIMARY]%}⌥ %{$fg_bold[$PROMPT_PRIMARY]%}$current_branch%{$reset_color%}"
+
+  git_status=$($git status --porcelain 2>/dev/null)
+  # Add modified dot if status isn't "nothing to commit"
+  if [[ ! "$git_status" =~ ^nothing ]]; then
+    git_flags="$git_flags●"
+  fi
+
+  # Add the "needs push" indicator
+  if [[ $needs_push != "" ]]; then
+    git_flags="$git_flags$needs_push"
+  fi
+
+  # Attach flags to prompt if exists
+  if [[ $git_flags != "" ]]; then
+    git_output="$git_output %{$fg[$PROMPT_PRIMARY]%}$git_flags%{$reset_color%}"
+  fi
+
+  # Output
+  echo "$git_output"
 }
 
 prompt_git_local_email() {
-  if [[ $($git config user.email) != $($git config --global user.email) ]]; then
+  local_email="$($git config user.email)"
+  if [[ $local_email != $($git config --global user.email) ]]; then
     if breakpt md-up; then
-      $git config user.email
+      echo $local_email
     else
       echo "@"
     fi
@@ -67,14 +69,14 @@ prompt_git_local_email() {
 }
 
 prompt_git_current_branch() {
-  ref=$($git symbolic-ref HEAD 2>/dev/null) || ref=$(git show-ref --head -s --abbrev | head -n1 2> /dev/null) || return
-  echo "${ref#refs/heads/}"
+  ref=$($git symbolic-ref --quiet --short HEAD 2>/dev/null) || ref=$($git show-ref --head --hash --abbrev | head -n1 2>/dev/null) || return
+  echo "$ref"
 }
 
 prompt_git_need_push() {
   up=$($git cherry -v @{upstream} 2>/dev/null)
   if [[ $up == "" ]]; then
-    echo ""
+    return
   else
     echo "⬆"
   fi
