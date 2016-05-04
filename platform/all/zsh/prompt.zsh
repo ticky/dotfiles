@@ -38,8 +38,8 @@ prompt_git_status() {
   git_output="$git_output%{$fg[$PROMPT_PRIMARY]%}⌥ %{$fg_bold[$PROMPT_PRIMARY]%}$current_branch%{$reset_color%}"
 
   git_status=$($git status --porcelain 2>/dev/null)
-  # Add modified dot if status isn't "nothing to commit"
-  if [[ ! "$git_status" =~ ^nothing ]]; then
+  # Add modified dot if status isn't empty
+  if [[ "$git_status" != "" ]]; then
     git_flags="$git_flags●"
   fi
 
