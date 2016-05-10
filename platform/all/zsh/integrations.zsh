@@ -10,8 +10,10 @@ if [[ -d "$HOME/.nvm/nvm.sh" ]]; then
   source "$NVM_DIR/nvm.sh"
 fi
 
-# chruby or RVM (Ruby)
-if [[ -s "/usr/local/share/chruby/chruby.sh" ]]; then
+# rbenv or chruby or RVM (Ruby)
+if which rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+elif [[ -s "/usr/local/share/chruby/chruby.sh" ]]; then
   # Load chruby
   source "/usr/local/share/chruby/chruby.sh"
 elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
