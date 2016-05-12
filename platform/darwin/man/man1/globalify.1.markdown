@@ -7,7 +7,7 @@ globalify(1) -- make your Australian contact entries work internationally
 
 ## DESCRIPTION
 
-The np(1) command updates all non-internationally prefixed Australian (see [CAVEATS][]) with a +61 prefix, so your address book works if you jump to an international carrier.
+The globalify(1) command updates all non-internationally prefixed Australian (see [CAVEATS][]) with a +61 prefix, so your address book works if you jump to an international carrier.
 
 ## CAVEATS
 
