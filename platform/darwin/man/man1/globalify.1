@@ -1,0 +1,30 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "GLOBALIFY" "1" "May 2016" "" "Jessica Stokes' Dotfiles"
+.
+.SH "NAME"
+\fBglobalify\fR \- make your Australian contact entries work internationally
+.
+.SH "SYNOPSIS"
+\fBglobalify\fR
+.
+.SH "DESCRIPTION"
+The np(1) command updates all non\-internationally prefixed Australian (see \fICAVEATS\fR) with a +61 prefix, so your address book works if you jump to an international carrier\.
+.
+.SH "CAVEATS"
+.
+.IP "\(bu" 4
+Only formats numbers with a leading zero\.
+.
+.IP "\(bu" 4
+Assumes any number beginning with a 0 MUST be an Australian number\.
+.
+.IP "\(bu" 4
+Is naive about "trimming" and formatting numbers (read: won\'t write pretty numbers, OS X/iOS will display them nicely though)\.
+.
+.IP "\(bu" 4
+Success is indicated by the output of "missing value" >_>\.
+.
+.IP "" 0
+

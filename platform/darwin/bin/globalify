@@ -1,0 +1,25 @@
+#!/usr/bin/env osascript
+
+-- globalify
+-- Make your Australian contact entries work internationally
+--
+-- Caveats:
+-- * Only formats numbers with a leading zero
+-- * Assumes any number beginning with a 0 MUST be an Australian number.
+-- * Is naïve about "trimming" and formatting numbers
+--   (read: won't write pretty numbers, OS X/iOS will display them nicely though)
+-- * Success is indicated by the output of "missing value" >_>
+
+tell application "Contacts"
+  repeat with contact in every person
+    repeat with phoneEntry in every phone in contact
+      set phoneNumber to value of phoneEntry as string
+      if phoneNumber starts with "0" then
+        -- this needs to be done as "me" (read: the script interpreter) to avoid a "Privilege Violation Error"
+        tell me to set tweakedNumber to do shell script "echo " & quoted form of phoneNumber & " | sed s/^0/+61/"
+        set value of phoneEntry to tweakedNumber
+      end if
+    end repeat
+  end repeat
+  save
+end tell

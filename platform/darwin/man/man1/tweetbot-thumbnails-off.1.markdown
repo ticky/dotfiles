@@ -21,6 +21,7 @@ tweetbot-thumbnails-on(1)
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 
+[globalify(1)]: globalify.1.html
 [np(1)]: np.1.html
 [pbcopyfile(1)]: pbcopyfile.1.html
 [textual-thumbnails-off(1)]: textual-thumbnails-off.1.html

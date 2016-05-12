@@ -1,0 +1,17 @@
+globalify(1) -- make your Australian contact entries work internationally
+=========================================================================
+
+## SYNOPSIS
+
+`globalify`
+
+## DESCRIPTION
+
+The np(1) command updates all non-internationally prefixed Australian (see [CAVEATS][]) with a +61 prefix, so your address book works if you jump to an international carrier.
+
+## CAVEATS
+
+  * Only formats numbers with a leading zero.
+  * Assumes any number beginning with a 0 MUST be an Australian number.
+  * Is naive about "trimming" and formatting numbers (read: won't write pretty numbers, OS X/iOS will display them nicely though).
+  * Success is indicated by the output of "missing value" >_>.
