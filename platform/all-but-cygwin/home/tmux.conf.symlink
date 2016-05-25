@@ -72,11 +72,8 @@ set -g -s escape-time 50
 # Turn on xterm keys
 set -w -g xterm-keys on
 
-# Enable mouse interaction (can't believe I was missing out on this)
-set -w -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
-set -g mouse-select-window on
+# Enable mouse interaction
+set -g mouse on
 
 # GNU Screen-style prefix key
 unbind 'C-b'
