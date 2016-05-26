@@ -74,6 +74,9 @@ set -w -g xterm-keys on
 
 # Enable mouse interaction
 set -g mouse on
+# Mousewheel bindings pinched from https://github.com/tmux/tmux/issues/145#issuecomment-151123624
+bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
+bind -n WheelDownPane select-pane -t= \; send-keys -M
 
 # GNU Screen-style prefix key
 unbind 'C-b'
