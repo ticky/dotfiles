@@ -6,6 +6,8 @@
 [core]
 	excludesfile = ~/.gitignore
 	quotepath = false
+[diff]
+	compactionHeuristic = true
 [help]
 	autocorrect = 1
 [hub]
