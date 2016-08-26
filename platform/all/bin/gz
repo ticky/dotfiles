@@ -1,16 +1,28 @@
 #!/usr/bin/env bash
 
 # gz
-# Output gzipped size of a file
+# Output gzipped size of files
+
+origtotal=0
+gziptotal=0
 
 for ARG in "$@"; do
 	if [[ -f "$ARG" ]]; then
 		origsize=$(wc -c < "$ARG")
 		gzipsize=$(gzip -c "$ARG" | wc -c)
-		ratio=$(echo "100 - ($gzipsize * 100 / $origsize)" | bc -l)
+		ratio=$(bc -l <<<"100 - ($gzipsize * 100 / $origsize)")
 
 		printf "%s: %d bytes -> %d bytes (%2.2f%% reduction)\n" "$ARG" "$origsize" "$gzipsize" "$ratio"
+
+    if [[ $# -gt 1 ]]; then
+      origtotal=$((origtotal + origsize))
+      gziptotal=$((gziptotal + gzipsize))
+    fi
 	else
 		printf "%s: not a file\n" "$ARG" 1>&2
 	fi
 done
+
+if [[ $# -gt 1 ]]; then
+  printf "\ntotal: %d bytes -> %d bytes (%2.2f%% reduction)\n" "$origtotal" "$gziptotal" "$(bc -l <<<"100 - ($gziptotal * 100 / $origtotal)")"
+fi

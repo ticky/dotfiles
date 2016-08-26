@@ -1,5 +1,5 @@
-gz(1) -- calculate gzipped size of a file
-=========================================
+gz(1) -- calculate gzipped size of files
+========================================
 
 ## SYNOPSIS
 
@@ -7,7 +7,7 @@ gz(1) -- calculate gzipped size of a file
 
 ## DESCRIPTION
 
-The gz(1) command calculates the gzipped size of files. Each file's non-gzipped size is printed, along with the gzipped size, and the percent reduction in size.
+The gz(1) command calculates the gzipped size of files. Each file's non-gzipped size is printed, along with the gzipped size, and the percent reduction in size. If more than one file is specified, totals are displayed for original, gzipped size, and percent reduction.
 
 This is intended to be useful for testing the transmitted sizes of website resources.
 
