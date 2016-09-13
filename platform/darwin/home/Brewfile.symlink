@@ -1,0 +1,6 @@
+brew 'bash-completion'
+brew 'git'
+brew 'reattach-to-user-namespace'
+brew 'tmux'
+brew 'zsh'
+brew 'zsh-syntax-highlighting'
