@@ -1,30 +1,25 @@
 #!/usr/bin/env bash
 
-# make sure extended and null globbing are on
-shopt -s extglob
-shopt -s nullglob
-
-# detect dotfiles directory
-pushd "$(pwd)" > /dev/null
-cd $(dirname $0)
-DOTFILES=$(pwd)
-popd > /dev/null
+# get dotfiles directory
+DOTFILES="$HOME/.dotfiles"
 
 # kernel name
 UNAME="$($DOTFILES/platform/all/bin/nuname)"
 
+# banner
 echo "# Jessica's Dotfiles"
 echo "https://github.com/ticky/dotfiles"
+echo
+
+# platform check
 if [[ -z "$UNAME" ]]; then
   echo "Unable to determine platform." >&2
   echo >&2
   echo "Installation aborted." >&2
   exit 1
 fi
-echo "Setting up dotfiles in \"$DOTFILES\" for platform \"$UNAME\""
-echo
 
-echo "## Checking for missing dependencies..."
+echo "## Checking for missing dependencies for platform \"$UNAME\"..."
 MISSINGDEPS="NO"
 MISSINGLIST="Missing Depdnencies:"
 
@@ -99,115 +94,8 @@ if [[ "$MISSINGDEPS" == "YES" ]]; then
 
 else
 
-  echo "Dependencies satisfied."
+  echo "Dependencies satisfied!"
   echo
-  echo "## Installing files..."
-
-  echo
-  echo "### Installing symlinks..."
-
-  for file in $DOTFILES/platform/all/home/*.symlink $DOTFILES/platform/$UNAME/home/*.symlink $DOTFILES/platform/all-but-!($UNAME)/home/*.symlink; do
-
-    basename=$(basename "$file")
-    target=~/.${basename%.symlink}
-
-    if [[ -r "$file" ]]; then
-
-      if [[ "$(readlink "$target")" != "$file" ]]; then
-
-        echo "* Linking \"${target/$HOME/~}\" to \"$basename\""
-
-        if [[ "$UNAME" = "cygwin" ]]; then
-          ln -f "$file" "$target"
-        else
-          ln -sf "$file" "$target"
-        fi
-
-      else
-
-        echo "* \"${target/$HOME\//}\" is already linked"
-
-      fi
-
-    fi
-
-  done
-
-  if [[ "$UNAME" = "darwin" ]]; then
-
-    echo
-    echo "### Installing LaunchAgents..."
-
-    for file in $DOTFILES/platform/darwin/LaunchAgents/*.plist; do
-
-      basename="$(basename "$file")"
-      target=~/Library/LaunchAgents/$basename
-
-      if [[ -r "$file" ]]; then
-
-        if [[ "$(readlink "$target")" != "$file" ]]; then
-
-          echo "* Installing \"${target/$HOME/~}\" to \"$basename\""
-
-          ln -sf "$file" "$target"
-
-          launchctl load "$target"
-
-        else
-
-          echo "* \"$basename\" is already linked; reloading"
-
-          launchctl unload "$target" 2>/dev/null
-
-          launchctl load "$target"
-
-        fi
-
-      fi
-
-    done
-
-  fi
-
-  echo
-  echo "### Concatenating files..."
-
-  for file in $DOTFILES/platform/all/home/*.concat $DOTFILES/platform/$UNAME/home/*.concat $DOTFILES/platform/all-but-!($UNAME)/home/*.concat; do
-
-    basename=$(basename "$file")
-    target=~/.${basename%.concat}
-
-    if [[ -r "$file" ]]; then
-
-      if [[ -r "$target" ]]; then
-        echo "* Moving \"${target/$HOME\//}\" to \"${target/$HOME\//}.bak\""
-        mv "$target" "$target.bak"
-      fi
-
-    fi
-
-  done
-
-  for file in $DOTFILES/platform/all/home/*.concat $DOTFILES/platform/$UNAME/home/*.concat $DOTFILES/platform/all-but-!($UNAME)/home/*.concat; do
-
-    basename=$(basename "$file")
-    target=~/.${basename%.concat}
-
-    if [[ -r "$file" ]]; then
-
-      echo "* Adding to \"${target/$HOME\//}\" from \"${file/$HOME/~}\""
-
-      if [[ -d "$file" ]]; then
-        cp -R "$file" "$target"
-      else
-        cat "$file" >> "$target"
-      fi
-
-    fi
-
-  done
-
-  echo "Installation complete. Please restart your shell."
-  exit 0
+  "$HOME/.dotfiles/script/setup" --quiet
 
 fi
