@@ -14,7 +14,7 @@ popd > /dev/null
 UNAME="$($DOTFILES/platform/all/bin/nuname)"
 
 echo "# Jessica's Dotfiles"
-echo "https://gitlab.com/grapegravity/dotfiles"
+echo "https://github.com/ticky/dotfiles"
 if [[ -z "$UNAME" ]]; then
   echo "Unable to determine platform." >&2
   echo >&2

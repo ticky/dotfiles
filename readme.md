@@ -61,7 +61,7 @@ After completing the relevant platform-specific section,
 * (if using `zsh`) install [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * (if using `bash`) install [git-bash-completion](https://github.com/markgandolfo/git-bash-completion)
 * `cpan Regexp::Common` (frustratingly, will require some basic interaction if you haven't set up CPAN before)
-* `git clone https://gitlab.com/grapegravity/dotfiles.git ~/dotfiles`
+* `git clone https://github.com/ticky/dotfiles.git ~/dotfiles`
 * `~/dotfiles/install.sh`  
   _**NOTE**: If `install.sh` detects that dependencies are missing, it will notify you and abort._
 * Restart your shell
@@ -126,35 +126,35 @@ There are no shortcuts for configuring this, however, it relies on the same `$UN
 
 ### Utilities
 
-* `28point8` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/28point8.1.markdown)): Compress input images with terrible JPEG compression.
-* `applink` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/darwin/bin/applink)): (OS X only) Create symlinks to Dropbox or SparkleShare for app data.
-* `chcase` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/chcase.1.markdown)): Change the case of text input. Uses `tr` internally to support multiple character sets.
-* `colourtest` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/colourtest.1.markdown)): Print out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh)).
-* `divider` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/divider.1.markdown)): Renders a red divider on the screen, with the current date and time displayed by default.
-* `ellipse` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/ellipse.1.markdown)): Truncate a string to a particular length, appending ellipses if necessary.
-* `finder-path` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/darwin/bin/finder-path)): (OS X only) Output the path of the most recently used Finder window.
-* `fl` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/darwin/bin/fl)): (OS X only) Show (and, if not done already, enable) the Adobe Flash debug log.
-* `fn` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/fn.1.markdown)): Find files under the current directory by name. (uses Spotlight's cache on OS X and `find` on other systems)
-* `gravatar` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/gravatar.1.markdown)): Output gravatar URLs for email addresses passed in.
-* `gz` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/gz.1.markdown)): Output the current size and gzipped size of a file
-* `ipgrep` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/ipgrep.1.markdown)): Find valid IP addresses within input which are not link-local
-* `imessage` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/darwin/bin/imessage)): (OS X only) Send an iMessage to the specified address/number. (`imessage "+61491570156" "This is an iMessage to a fictitious Australian telephone number"`)
-* `keystroke` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/darwin/bin/keystroke)): (OS X only) Send text to whichever window is in focus (best used with a delay).
-* `learn-spelling` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/darwin/bin/learn-spelling)): (OS X only) Merge a backed up list of spelling words into the OS X user spell checking dictionary.
-* `mansi` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/mansi.1.markdown)): Colourful `man` output.
-* `np` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/darwin/bin/np)): (OS X only) Show the current iTunes playback status.
-* `nuname` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/nuname.1.markdown)): Normalised `uname` command; used to derive the `$UNAME` variable. Lower case for all platforms.
-* `osxdefaults` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/darwin/bin/osxdefaults)): (OS X only) Configure behaviours for the OS X desktop and applications.
-* `replacements2hotstrings` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/darwin/bin/replacements2hotstrings)): (OS X only) Export the current OS X Text Replacements as AutoHotKey HotStrings for use on Windows.
-* `returnOneOf` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/returnOneOf.1.markdown)): Pass in a bunch of parameters, it'll randomly echo one of them.
-* `shttp` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/shttp.1.markdown)): Start an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.
-* `simplify` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/simplify.1.markdown)): Simplify fractions when you're too lazy to.
-* `sshmux` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/sshmux.1.markdown)): `ssh` with automatic remote `tmux` (re)attachment, and fallback to the remote user's default shell.
-* `tminus` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/tminus.1.markdown)): Print the time until a unix date passed in.
-* `untar` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/untar.1.markdown)): You can `unzip`, why can't you `untar`?
-* `wed` ([source](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/cygwin/bin/wed)): (Cygwin only) Open a file or directory in Sublime Text 2 (if available), otherwise `vim`.
-* `xbmcplay` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/xbmcplay.1.markdown)): Tell an XBMC instance to open a URL.
-* `zdate` ([manual](https://gitlab.com/grapegravity/dotfiles/blob/master/platform/all/man/man1/zdate.1.markdown)): Date output which leverages `zsh` date utilities to provide consistent date output with nicer syntax than plain `strftime(3)`. custom formats are supported. built-in templates include;
+* `28point8` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/28point8.1.markdown)): Compress input images with terrible JPEG compression.
+* `applink` ([source](https://github.com/ticky/dotfiles/blob/master/platform/darwin/bin/applink)): (OS X only) Create symlinks to Dropbox or SparkleShare for app data.
+* `chcase` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/chcase.1.markdown)): Change the case of text input. Uses `tr` internally to support multiple character sets.
+* `colourtest` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/colourtest.1.markdown)): Print out a table of the main colour codes (borrowed from [iTerm 2](https://code.google.com/p/iterm2/source/browse/trunk/tests/colors.sh)).
+* `divider` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/divider.1.markdown)): Renders a red divider on the screen, with the current date and time displayed by default.
+* `ellipse` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/ellipse.1.markdown)): Truncate a string to a particular length, appending ellipses if necessary.
+* `finder-path` ([source](https://github.com/ticky/dotfiles/blob/master/platform/darwin/bin/finder-path)): (OS X only) Output the path of the most recently used Finder window.
+* `fl` ([source](https://github.com/ticky/dotfiles/blob/master/platform/darwin/bin/fl)): (OS X only) Show (and, if not done already, enable) the Adobe Flash debug log.
+* `fn` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/fn.1.markdown)): Find files under the current directory by name. (uses Spotlight's cache on OS X and `find` on other systems)
+* `gravatar` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/gravatar.1.markdown)): Output gravatar URLs for email addresses passed in.
+* `gz` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/gz.1.markdown)): Output the current size and gzipped size of a file
+* `ipgrep` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/ipgrep.1.markdown)): Find valid IP addresses within input which are not link-local
+* `imessage` ([source](https://github.com/ticky/dotfiles/blob/master/platform/darwin/bin/imessage)): (OS X only) Send an iMessage to the specified address/number. (`imessage "+61491570156" "This is an iMessage to a fictitious Australian telephone number"`)
+* `keystroke` ([source](https://github.com/ticky/dotfiles/blob/master/platform/darwin/bin/keystroke)): (OS X only) Send text to whichever window is in focus (best used with a delay).
+* `learn-spelling` ([source](https://github.com/ticky/dotfiles/blob/master/platform/darwin/bin/learn-spelling)): (OS X only) Merge a backed up list of spelling words into the OS X user spell checking dictionary.
+* `mansi` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/mansi.1.markdown)): Colourful `man` output.
+* `np` ([source](https://github.com/ticky/dotfiles/blob/master/platform/darwin/bin/np)): (OS X only) Show the current iTunes playback status.
+* `nuname` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/nuname.1.markdown)): Normalised `uname` command; used to derive the `$UNAME` variable. Lower case for all platforms.
+* `osxdefaults` ([source](https://github.com/ticky/dotfiles/blob/master/platform/darwin/bin/osxdefaults)): (OS X only) Configure behaviours for the OS X desktop and applications.
+* `replacements2hotstrings` ([source](https://github.com/ticky/dotfiles/blob/master/platform/darwin/bin/replacements2hotstrings)): (OS X only) Export the current OS X Text Replacements as AutoHotKey HotStrings for use on Windows.
+* `returnOneOf` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/returnOneOf.1.markdown)): Pass in a bunch of parameters, it'll randomly echo one of them.
+* `shttp` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/shttp.1.markdown)): Start an HTTP server for the current working directory using either Ruby's `httpd` or Python's `SimpleHTTPServer`.
+* `simplify` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/simplify.1.markdown)): Simplify fractions when you're too lazy to.
+* `sshmux` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/sshmux.1.markdown)): `ssh` with automatic remote `tmux` (re)attachment, and fallback to the remote user's default shell.
+* `tminus` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/tminus.1.markdown)): Print the time until a unix date passed in.
+* `untar` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/untar.1.markdown)): You can `unzip`, why can't you `untar`?
+* `wed` ([source](https://github.com/ticky/dotfiles/blob/master/platform/cygwin/bin/wed)): (Cygwin only) Open a file or directory in Sublime Text 2 (if available), otherwise `vim`.
+* `xbmcplay` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/xbmcplay.1.markdown)): Tell an XBMC instance to open a URL.
+* `zdate` ([manual](https://github.com/ticky/dotfiles/blob/master/platform/all/man/man1/zdate.1.markdown)): Date output which leverages `zsh` date utilities to provide consistent date output with nicer syntax than plain `strftime(3)`. custom formats are supported. built-in templates include;
     * `beats` or `b`: Swatch Internet Time - `@778`
     * `short` or `s`: time only - `9:41 am`
     * `medium` or `m`: time and day - `Tue 9:41 am`
