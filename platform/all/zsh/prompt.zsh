@@ -12,7 +12,7 @@ else
 fi
 
 prompt_git_status() {
-  if [[ ! -d "$PWD/.git" ]]; then
+  if [[ ! -e "$PWD/.git" ]]; then
     return
   fi
 
