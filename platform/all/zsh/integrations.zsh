@@ -20,3 +20,8 @@ elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   # Load RVM into a shell session *as a function*
   source "$HOME/.rvm/scripts/rvm"
 fi
+
+# iTerm 2 shell integration
+if [[ -e "${HOME}/.iterm2_shell_integration.zsh" ]]; then
+  source "${HOME}/.iterm2_shell_integration.zsh"
+fi
