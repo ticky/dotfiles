@@ -1,6 +1,9 @@
 [user]
 	name = Jessica Stokes
 	email = hello@jessicastokes.net
+	signingkey = 38F70FE9
+[commit]
+	gpgsign = true
 [color]
 	ui = true
 [core]
