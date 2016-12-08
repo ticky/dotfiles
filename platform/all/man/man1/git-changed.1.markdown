@@ -1,18 +1,24 @@
-git-develop(1) -- switch to the primary branch of the project
-=============================================================
+git-changed(1) -- get a list of files which have changed
+========================================================
 
 ## SYNOPSIS
 
-`git develop`
+`git changed`
 
 ## DESCRIPTION
 
-Switches to the primary branch of the project; prefers "develop" but will fall back to "master".
+Prints a list of files which differ from the "develop" or "master" branch, including those not yet staged.
+
+Useful for, for instance, running specs only on applicable files;
+
+`eslint $(git changed | grep .js$)`
+
+`rspec $(git changed | grep _spec.rb$)`
 
 ## SEE ALSO
 
-git-changed(1)
-git-checkout(1)
+git-diff(1)
+git-develop(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"

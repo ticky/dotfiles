@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+# git-changed
+# get a list of files which have changed
+
+PAGER=cat # make sure `git diff` won't take over the screen
+PRIMARY=master
+
+if git rev-parse --verify develop >/dev/null 2>&1; then
+  PRIMARY=develop
+fi
+
+(git diff --name-only; git diff-tree --no-commit-id --name-only -r $PRIMARY..) | uniq | sort

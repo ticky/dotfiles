@@ -1,0 +1,21 @@
+git-changed(1) -- get a list of files which have changed
+========================================================
+
+## SYNOPSIS
+
+`git changed`
+
+## DESCRIPTION
+
+Prints a list of files which differ from the "develop" or "master" branch, including those not yet staged.
+
+Useful for, for instance, running specs only on applicable files;
+
+`eslint $(git changed | grep .js$)`
+
+`rspec $(git changed | grep _spec.rb$)`
+
+## SEE ALSO
+
+git-diff(1)
+git-develop(1)

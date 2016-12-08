@@ -11,4 +11,5 @@ Switches to the primary branch of the project; prefers "develop" but will fall b
 
 ## SEE ALSO
 
+git-changed(1)
 git-checkout(1)

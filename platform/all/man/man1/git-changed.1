@@ -1,0 +1,25 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "GIT\-CHANGED" "1" "December 2016" "" "Jessica Stokes' Dotfiles"
+.
+.SH "NAME"
+\fBgit\-changed\fR \- get a list of files which have changed
+.
+.SH "SYNOPSIS"
+\fBgit changed\fR
+.
+.SH "DESCRIPTION"
+Prints a list of files which differ from the "develop" or "master" branch, including those not yet staged\.
+.
+.P
+Useful for, for instance, running specs only on applicable files;
+.
+.P
+\fBeslint $(git changed | grep \.js$)\fR
+.
+.P
+\fBrspec $(git changed | grep _spec\.rb$)\fR
+.
+.SH "SEE ALSO"
+git\-diff(1) git\-develop(1)
