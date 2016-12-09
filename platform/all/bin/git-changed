@@ -10,4 +10,17 @@ if git rev-parse --verify develop >/dev/null 2>&1; then
   PRIMARY=develop
 fi
 
-(git diff --name-only; git diff-tree --no-commit-id --name-only -r $PRIMARY..) | uniq | sort
+( \
+  git ls-files \
+    --deleted \
+    --modified \
+    --others \
+    --exclude-standard; \
+ \
+  git diff-tree \
+    --no-commit-id \
+    --name-only \
+    -r $PRIMARY..\
+) | \
+uniq | \
+sort
