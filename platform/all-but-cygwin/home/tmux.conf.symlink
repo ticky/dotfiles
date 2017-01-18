@@ -5,6 +5,11 @@
 # Where there exists an alias to a flagged option (e.g. `set-window-option` for `set-option -w`), use the flag instead
 # All key codes given to the `bind` command should be in single quotes, unless a single quote is required to be in the binding, in which case double quotes should be used
 
+## PREAMBLE ##
+# Version-detection technique borrowed from http://superuser.com/a/1151663
+# Set a variable of the tmux version
+run "tmux setenv -g TMUX_VERSION $(tmux -V | cut -c 6-)"
+
 ## GENERAL SETTINGS ##
 
 # Count windows like a person (1, 2, 3)
@@ -15,8 +20,11 @@ set -w -g pane-base-index 1
 set -g default-terminal "screen-256color"
 set -g history-limit 10000
 
-# UTF-8 because of course
-set -g status-utf8 on
+# UTF-8 because of course (but only if it needs saying)
+if '[ "$(echo "$TMUX_VERSION < 2.2" | bc)" = 1 ]' \
+  "set -g utf8 on; \
+   set -g status-utf8 on; \
+   set -g mouse-utf8 on"
 
 ## COLOURS AND LAYOUT ##
 
@@ -73,9 +81,18 @@ set -g -s escape-time 50
 set -w -g xterm-keys on
 
 # Enable mouse interaction
-set -g mouse on
+if '[ "$(echo "$TMUX_VERSION < 2.1" | bc)" = 1 ]' \
+  "set -g mouse-select-pane on; \
+   set -g mode-mouse on; \
+   set -g mouse-resize-pane on; \
+   set -g mouse-select-window on"
+
+# In version 2.1 "mouse" replaced the previous 4 mouse options
+if '[ "$(echo "$TMUX_VERSION >= 2.1" | bc)" = 1 ]' \
+  "set -g mouse on"
+
 # Mousewheel bindings pinched from https://github.com/tmux/tmux/issues/145#issuecomment-151123624
-bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
+bind -n WheelUpPane if -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
 bind -n WheelDownPane select-pane -t= \; send-keys -M
 
 # GNU Screen-style prefix key
@@ -86,7 +103,9 @@ set -g prefix 'C-a'
 bind 'C-a' send-prefix
 
 # Allow reloading source file
-bind 'r' source ~/.tmux.conf \; display-message "✔︎ Settings have been reloaded from `.tmux.conf`."
+bind 'r' \
+  source ~/.tmux.conf\; \
+  display-message "✔︎ Settings have been reloaded from `.tmux.conf`."
 
 # Toggle status bar
 bind 'b' set status
@@ -109,11 +128,20 @@ unbind '|'
 bind '|' split-window -c '#{pane_current_path}' -h
 
 # Use alt+split buttons to open a new split and immediately run a command
-bind 'M-"' command-prompt -p "Open a new horizontal split pane and run" "split-window -c '#{pane_current_path}' 'exec $SHELL -ci \"%%\"'"
-bind 'M-|' command-prompt -p "Open a new verical split pane and run" "split-window -h -c '#{pane_current_path}' 'exec $SHELL -ci \"%%\"'"
+bind 'M-"' \
+  command-prompt \
+  -p "Open a new horizontal split pane and run" \
+  "split-window -c '#{pane_current_path}' 'exec $SHELL -ci \"%%\"'"
+bind 'M-|' \
+  command-prompt \
+  -p "Open a new verical split pane and run" \
+  "split-window -h -c '#{pane_current_path}' 'exec $SHELL -ci \"%%\"'"
 
 # Open man page with /
-bind '/' command-prompt -p "Show manual for" "split-window -h -c '#{pane_current_path}' 'exec $SHELL -ci \"man %%\"'"
+bind '/' \
+  command-prompt \
+  -p "Show manual for" \
+  "split-window -h -c '#{pane_current_path}' 'exec $SHELL -ci \"man %%\"'"
 
 # Cross-platform, SSH-aware clipboard integration
 bind 'C-c' run 'tmux save-buffer - | anycopy'
@@ -122,7 +150,9 @@ bind ']' run 'anypaste | tmux load-buffer - \; paste-buffer -d'
 bind 'C-v' run 'anypaste | tmux load-buffer - \; paste-buffer -d'
 
 # 'Enter' key copies in copy mode (in 1.8+, where copy-pipe is available)
-if '[[ $($(command -v tmux) -V | sed -e "s/.* \([0-9]\)\.\([0-9]\).*/\1/") -gt 1 || $($(command -v tmux) -V | sed -e "s/.* \([0-9]\)\.\([0-9]\).*/\2/") -ge 8 ]]' "bind -t vi-copy 'Enter' copy-pipe 'anycopy'"
+if '[ "$(echo "$TMUX_VERSION >= 1.8" | bc)" = 1 ]' \
+  "bind -t vi-copy 'Enter' copy-pipe 'anycopy'"
 
 # If we're on OS X, load the extra OS X configuration
-if '[[ "$(uname -s)" = Darwin ]]' 'source $DOTFILES/platform/darwin/ext/tmux-integration.conf'
+if '[[ "$(uname -s)" = Darwin ]]' \
+  'source $DOTFILES/platform/darwin/ext/tmux-integration.conf'
