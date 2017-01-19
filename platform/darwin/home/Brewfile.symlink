@@ -1,5 +1,13 @@
+tap 'ticky/playstation'
+tap 'ticky/utilities'
+
+brew 'airchat'
 brew 'bash-completion'
+brew 'ddrescue'
 brew 'git'
+brew 'hub'
+brew 'jpegoptim'
+brew 'optipng'
 brew 'reattach-to-user-namespace'
 brew 'tmux'
 brew 'zsh'
