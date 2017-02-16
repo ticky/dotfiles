@@ -13,11 +13,14 @@ FILE=
 START=0
 DURATION=5
 FRAMERATE=7
+DELAY_START=$FALSE
+DELAY_END=$FALSE
 ALTERNATE=$FALSE
+DELAY_ALTERNATE=$FALSE
 
 # image options
 DITHER=$TRUE
-WIDTH=500
+SIZE="500x500>"
 
 # process options
 INTERACTIVE=$FALSE
@@ -40,15 +43,27 @@ while [[ $# -gt 0 ]]; do
       shift
       FRAMERATE=$1
       ;;
+    --delay-start)
+      shift
+      DELAY_START=$1
+      ;;
+    --delay-end)
+      shift
+      DELAY_END=$1
+      ;;
     --no-dither|-n)
       DITHER=$FALSE
       ;;
-    --width|-w)
-      shift
-      WIDTH=$1
-      ;;
     --alternate|-a)
       ALTERNATE=$TRUE
+      ;;
+    --delay-alternate)
+      shift
+      DELAY_ALTERNATE=$1
+      ;;
+    --size)
+      shift
+      SIZE=$1
       ;;
     --interactive|-i)
       if [[ "$CLEANUP" == "$TRUE" ]]; then
@@ -82,15 +97,25 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
+if [[ "$ALTERNATE" == "$FALSE" && "$DELAY_ALTERNATE" != "$FALSE" ]]; then
+  echo "Invalid arguments; --delay-alternate cannot be used without --alternate."
+  exit 1
+fi
+
 stats() {
-  echo "$(basename $0)
-      File: $FILE
-Start time: $START
-  Duration: $DURATION
- Framerate: $FRAMERATE
- Alternate: $ALTERNATE
-    Dither: $DITHER
-     Width: $WIDTH
+  echo "$(basename $0): $FILE
+* Start at: $START
+* Duration: $DURATION
+* Input FPS: $FRAMERATE
+* Animation
+  * Delays
+    * Start: $DELAY_START
+    * End: $DELAY_END
+  * Alternate: $ALTERNATE
+    * Delay: $DELAY_ALTERNATE
+* Output
+  * Dither: $DITHER
+  * Width: $SIZE
 "
 }
 
@@ -117,7 +142,7 @@ animate() {
   INPUT_ARGS="-verbose \
     -delay 0"
 
-  if [[ "$DITHER" -eq "$FALSE" ]]; then
+  if [[ "$DITHER" == "$FALSE" ]]; then
     INPUT_ARGS="${INPUT_ARGS} \
       +dither"
   fi
@@ -126,11 +151,32 @@ animate() {
     -loop 0 \
     -layers OptimizeTransparency"
 
-  POSTPROCESS_ARGS="-resize $WIDTH"
+  POSTPROCESS_ARGS="-resize $SIZE"
 
-  if [[ "$ALTERNATE" -eq "$TRUE" ]]; then
+  if [[ "$ALTERNATE" == "$TRUE" ]]; then
+    if [[ "$DELAY_ALTERNATE" != "$FALSE" ]]; then
+      POSTPROCESS_ARGS="${POSTPROCESS_ARGS} \
+        ( +clone -set delay $DELAY_ALTERNATE ) +swap +delete"
+    fi
+
+    if [[ "$DELAY_END" == "$FALSE" ]]; then
+      POSTPROCESS_ARGS="${POSTPROCESS_ARGS} \
+        -duplicate 1,-2-1"
+    else
+      # if we've got end delay, also duplicate the first frame, and apply the delay to that
+      POSTPROCESS_ARGS="${POSTPROCESS_ARGS} \
+        -duplicate 1,-2-0"
+    fi
+  fi
+
+  if [[ "$DELAY_START" != "$FALSE" ]]; then
     POSTPROCESS_ARGS="${POSTPROCESS_ARGS} \
-      -duplicate 1,-2-1"
+      ( -clone 0 -set delay $DELAY_START ) -swap 0 +delete"
+  fi
+
+  if [[ "$DELAY_END" != "$FALSE" ]]; then
+    POSTPROCESS_ARGS="${POSTPROCESS_ARGS} \
+      ( +clone -set delay $DELAY_END ) +swap +delete"
   fi
 
   convert \

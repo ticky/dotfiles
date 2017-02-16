@@ -3,7 +3,7 @@ movieme(1) -- create an animated gif from a movie file
 
 ## SYNOPSIS
 
-`movieme` <var>path</var> [`--start` <var>start-time</var>] [`--duration` <var>duration</var>] [`--framerate` <var>framerate</var>] [`--width` <var>width</var>] [`--alternate`] [`--no-dither`] [`--interactive` | `--continue`] [`--cleanup`]
+`movieme` <var>path</var> [`--start` <var>start-time</var>] [`--duration` <var>duration</var>] [`--framerate` <var>framerate</var>] [`--delay-start` <var>delay</var>] [`--delay-end` <var>delay</var>] [`--size` <var>size</var>] [`--alternate` [`--delay-alternate` <var>delay</var>]] [`--no-dither`] [`--interactive` | `--continue`] [`--cleanup`]
 
 ## DESCRIPTION
 
@@ -14,21 +14,27 @@ The movieme(1) command creates an animated gif from a movie file
 * <var>path</var>:
   path to the movie we're converting
 * `--start`, `-s`:
-  start time of the finished product  
+  start time within source video  
   Default: <var>0</var>
 * `--duration`, `-d`:
-  duration of the video sequence  
+  duration of video to convert  
   Default: <var>5</var>
 * `--framerate`, `-f`:
   target framerate of the gif  
   Default: <var>7</var>
+* `--delay-start`:
+  milliseconds of delay on the _first_ animation frame
+* `--delay-end`:
+  milliseconds of delay on the _last_ animation frame
 * `--alternate`, `-a`:
   loop the animation back and forth; Imagemagick calls this a "patrol cycle"
+* `--delay-alternate`:
+  milliseconds of delay on the _middle_ animation frame. Can only be used with `--alternate`
 * `--no-dither`, `-n`:
   disable dithering of the output gif. Can reduce file size in some cases
-* `--width`, `-w`:
-  target width of the gif  
-  Default: <var>500</var>
+* `--size`:
+  target size of the gif  
+  Default: 500x500>
 * `--interactive`, `-i`:
   extract frames, then exit to allow modifying individual frames
 * `--continue`:

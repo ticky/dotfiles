@@ -7,7 +7,7 @@
 \fBmovieme\fR \- create an animated gif from a movie file
 .
 .SH "SYNOPSIS"
-\fBmovieme\fR \fIpath\fR [\fB\-\-start\fR \fIstart\-time\fR] [\fB\-\-duration\fR \fIduration\fR] [\fB\-\-framerate\fR \fIframerate\fR] [\fB\-\-width\fR \fIwidth\fR] [\fB\-\-alternate\fR] [\fB\-\-no\-dither\fR] [\fB\-\-interactive\fR | \fB\-\-continue\fR] [\fB\-\-cleanup\fR]
+\fBmovieme\fR \fIpath\fR [\fB\-\-start\fR \fIstart\-time\fR] [\fB\-\-duration\fR \fIduration\fR] [\fB\-\-framerate\fR \fIframerate\fR] [\fB\-\-delay\-start\fR \fIdelay\fR] [\fB\-\-delay\-end\fR \fIdelay\fR] [\fB\-\-size\fR \fIsize\fR] [\fB\-\-alternate\fR [\fB\-\-delay\-alternate\fR \fIdelay\fR]] [\fB\-\-no\-dither\fR] [\fB\-\-interactive\fR | \fB\-\-continue\fR] [\fB\-\-cleanup\fR]
 .
 .SH "DESCRIPTION"
 The movieme(1) command creates an animated gif from a movie file
@@ -20,14 +20,14 @@ path to the movie we\'re converting
 .
 .TP
 \fB\-\-start\fR, \fB\-s\fR
-start time of the finished product
+start time within source video
 .
 .br
 Default: \fI0\fR
 .
 .TP
 \fB\-\-duration\fR, \fB\-d\fR
-duration of the video sequence
+duration of video to convert
 .
 .br
 Default: \fI5\fR
@@ -40,19 +40,31 @@ target framerate of the gif
 Default: \fI7\fR
 .
 .TP
+\fB\-\-delay\-start\fR
+milliseconds of delay on the \fIfirst\fR animation frame
+.
+.TP
+\fB\-\-delay\-end\fR
+milliseconds of delay on the \fIlast\fR animation frame
+.
+.TP
 \fB\-\-alternate\fR, \fB\-a\fR
 loop the animation back and forth; Imagemagick calls this a "patrol cycle"
+.
+.TP
+\fB\-\-delay\-alternate\fR
+milliseconds of delay on the \fImiddle\fR animation frame\. Can only be used with \fB\-\-alternate\fR
 .
 .TP
 \fB\-\-no\-dither\fR, \fB\-n\fR
 disable dithering of the output gif\. Can reduce file size in some cases
 .
 .TP
-\fB\-\-width\fR, \fB\-w\fR
-target width of the gif
+\fB\-\-size\fR
+target size of the gif
 .
 .br
-Default: \fI500\fR
+Default: 500x500>
 .
 .TP
 \fB\-\-interactive\fR, \fB\-i\fR
