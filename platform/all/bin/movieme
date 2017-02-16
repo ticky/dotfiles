@@ -13,9 +13,10 @@ FILE=
 START=0
 DURATION=5
 FRAMERATE=7
+ALTERNATE=$FALSE
 
 # image options
-DITHER=
+DITHER=$TRUE
 WIDTH=500
 
 # process options
@@ -40,11 +41,14 @@ while [[ $# -gt 0 ]]; do
       FRAMERATE=$1
       ;;
     --no-dither|-n)
-      DITHER=+dither
+      DITHER=$FALSE
       ;;
     --width|-w)
       shift
       WIDTH=$1
+      ;;
+    --alternate|-a)
+      ALTERNATE=$TRUE
       ;;
     --interactive|-i)
       if [[ "$CLEANUP" == "$TRUE" ]]; then
@@ -84,6 +88,8 @@ stats() {
 Start time: $START
   Duration: $DURATION
  Framerate: $FRAMERATE
+ Alternate: $ALTERNATE
+    Dither: $DITHER
      Width: $WIDTH
 "
 }
@@ -108,14 +114,29 @@ extractFrames() {
 }
 
 animate() {
-  convert \
-    -verbose \
-    -delay 0 \
-    $DITHER \
+  INPUT_ARGS="-verbose \
+    -delay 0"
+
+  if [[ "$DITHER" -eq "$FALSE" ]]; then
+    INPUT_ARGS="${INPUT_ARGS} \
+      +dither"
+  fi
+
+  INPUT_ARGS="${INPUT_ARGS} \
     -loop 0 \
-    -resize $WIDTH \
-    -layers OptimizeTransparency \
+    -layers OptimizeTransparency"
+
+  POSTPROCESS_ARGS="-resize $WIDTH"
+
+  if [[ "$ALTERNATE" -eq "$TRUE" ]]; then
+    POSTPROCESS_ARGS="${POSTPROCESS_ARGS} \
+      -duplicate 1,-2-1"
+  fi
+
+  convert \
+    $INPUT_ARGS \
     "$TEMPDIR/frame-[0-9]*.png" \
+    $POSTPROCESS_ARGS \
     "$HOME/Desktop/Animated $(zdate "%Y-%m-%d at %H.%M.%S").gif"
 }
 
@@ -143,6 +164,7 @@ if [[ "$INTERACTIVE" == "$TRUE" ]]; then
 START=$START
 DURATION=$DURATION
 FRAMERATE=$FRAMERATE
+ALTERNATE=$ALTERNATE
 DITHER=$DITHER
 WIDTH=$WIDTH" > "$TEMPDIR/interactive.meta.sh"
   echo "Finished splitting frames. Manually edit files in $TEMPDIR, then run \"$(basename $0) --continue\"."
