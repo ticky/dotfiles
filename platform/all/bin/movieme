@@ -3,14 +3,24 @@
 # movieme
 # create an animated gif from a movie file
 
+# boolean constants (with nice outputs)
+TRUE=Yes
+FALSE=No
+
 FILE=
+
+# animation options
 START=0
 DURATION=5
 FRAMERATE=7
+
+# image options
 DITHER=
 WIDTH=500
-INTERACTIVE=NO
-CONTINUE=NO
+
+# process options
+INTERACTIVE=$FALSE
+CONTINUE=$FALSE
 
 TEMPDIR=/tmp/movieme
 
@@ -37,21 +47,21 @@ while [[ $# -gt 0 ]]; do
       WIDTH=$1
       ;;
     --interactive|-i)
-      if [[ "$CLEANUP" == "YES" ]]; then
+      if [[ "$CLEANUP" == "$TRUE" ]]; then
         echo "Invalid arguments; --interactive and --cleanup cannot be used together."
         exit 1
       fi
-      INTERACTIVE=YES
+      INTERACTIVE=$TRUE
       ;;
     --continue)
-      CONTINUE=YES
+      CONTINUE=$TRUE
       ;;
     --cleanup)
-      if [[ "$INTERACTIVE" == "YES" ]]; then
+      if [[ "$INTERACTIVE" == "$TRUE" ]]; then
         echo "Invalid arguments; --interactive and --cleanup cannot be used together."
         exit 1
       fi
-      CLEANUP=YES
+      CLEANUP=$TRUE
       ;;
     *)
       if [[ -f "$1" ]]; then
@@ -109,7 +119,7 @@ animate() {
     "$HOME/Desktop/Animated $(zdate "%Y-%m-%d at %H.%M.%S").gif"
 }
 
-if [[ "$CONTINUE" == "NO" ]]; then
+if [[ "$CONTINUE" == "$FALSE" ]]; then
 
   if ! [[ -f "$FILE" ]]; then
     echo "Supplied file does not exist."
@@ -127,7 +137,7 @@ else
 
 fi
 
-if [[ "$INTERACTIVE" == "YES" ]]; then
+if [[ "$INTERACTIVE" == "$TRUE" ]]; then
 
   echo "FILE=$FILE
 START=$START
@@ -142,7 +152,7 @@ else
 
   animate
 
-  if [[ "$CLEANUP" == "YES" ]]; then
+  if [[ "$CLEANUP" == "$TRUE" ]]; then
     cleanup
   fi
 
