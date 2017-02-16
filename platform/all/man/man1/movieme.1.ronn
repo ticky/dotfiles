@@ -3,7 +3,7 @@ movieme(1) -- create an animated gif from a movie file
 
 ## SYNOPSIS
 
-`movieme` <path> [`--start` <start-time>] [`--duration` <duration>] [`--framerate` <framerate>] [`--width` <width>] [`--no-dither`] [`--interactive` | `--continue`] [`--cleanup`]
+`movieme` <path> [`--start` <start-time>] [`--duration` <duration>] [`--framerate` <framerate>] [`--width` <width>] [`--alternate`] [`--no-dither`] [`--interactive` | `--continue`] [`--cleanup`]
 
 ## DESCRIPTION
 
@@ -22,6 +22,8 @@ The movieme(1) command creates an animated gif from a movie file
 * `--framerate`, `-f`:
   target framerate of the gif  
   Default: <7>
+* `--alternate`, `-a`:
+  loop the animation back and forth; Imagemagick calls this a "patrol cycle"
 * `--no-dither`, `-n`:
   disable dithering of the output gif. Can reduce file size in some cases
 * `--width`, `-w`:
