@@ -1,13 +1,13 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "MOVIEME" "1" "September 2015" "" "Jessica Stokes' Dotfiles"
+.TH "MOVIEME" "1" "February 2017" "" "Jessica Stokes' Dotfiles"
 .
 .SH "NAME"
 \fBmovieme\fR \- create an animated gif from a movie file
 .
 .SH "SYNOPSIS"
-\fBmovieme\fR \fIpath\fR [\fB\-\-start\fR \fIstart\-time\fR] [\fB\-\-duration\fR \fIduration\fR] [\fB\-\-framerate\fR \fIframerate\fR] [\fB\-\-width\fR \fIwidth\fR] [\fB\-\-no\-dither\fR] [\fB\-\-interactive\fR | \fB\-\-continue\fR] [\fB\-\-cleanup\fR]
+\fBmovieme\fR \fIpath\fR [\fB\-\-start\fR \fIstart\-time\fR] [\fB\-\-duration\fR \fIduration\fR] [\fB\-\-framerate\fR \fIframerate\fR] [\fB\-\-width\fR \fIwidth\fR] [\fB\-\-alternate\fR] [\fB\-\-no\-dither\fR] [\fB\-\-interactive\fR | \fB\-\-continue\fR] [\fB\-\-cleanup\fR]
 .
 .SH "DESCRIPTION"
 The movieme(1) command creates an animated gif from a movie file
@@ -38,6 +38,10 @@ target framerate of the gif
 .
 .br
 Default: \fI7\fR
+.
+.TP
+\fB\-\-alternate\fR, \fB\-a\fR
+loop the animation back and forth; Imagemagick calls this a "patrol cycle"
 .
 .TP
 \fB\-\-no\-dither\fR, \fB\-n\fR
