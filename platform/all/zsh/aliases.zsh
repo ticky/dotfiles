@@ -55,6 +55,9 @@ else
 
 fi
 
+# disable shell globbing for "calc(1)"
+alias calc="noglob calc"
+
 # setup the main ls alias
 alias ls="${LS}"
 

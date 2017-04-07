@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# calc
+# do calculations quickly
+
+bc -l <<<"scale=4; $*;"
