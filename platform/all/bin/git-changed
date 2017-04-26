@@ -12,7 +12,6 @@ fi
 
 ( \
   git ls-files \
-    --deleted \
     --modified \
     --others \
     --exclude-standard; \
