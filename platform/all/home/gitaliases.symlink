@@ -26,5 +26,6 @@
 	r            = remote --verbose                                       # List remotes with useful detail
 	s            = status                                                 # Status
 	stat         = diff --stat                                            # Show diff stats
+	up           = "!gitup"                                               # Launch GitUp
 	for-work     = config user.email jessica.stokes@macropod.com          # Quickly set work config
 	for-home     = config --unset user.email                              # Quickly unset work config
