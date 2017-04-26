@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# Colour test script
+
+COLGROUPS=40
+
+if which tput >/dev/null 2>&1; then
+  COLGROUPS=$(( $(tput cols) / 7 ))
+fi
+
+for ((background=0;background<=255;background++)); do
+  echo -en "\033[48;5;${background}m"
+  for ((foreground=0;foreground<=255;foreground++)); do
+    echo -en "\033[38;5;${foreground}m•\033[39m"
+
+    if (( $foreground < 16 && $foreground % 4 == 3 )); then
+      echo ""
+    fi
+
+    if (( $foreground > 15 && $foreground < 232 && ($foreground - 15) % 6 == 0 )); then
+      echo -en "\033[49m \033[48;5;${background}m"
+      if (( ($foreground - 15) / 6 == $COLGROUPS )); then
+        echo ""
+      fi
+    fi
+
+    if (( $foreground == 231 || $foreground == 255 )); then
+      echo ""
+    fi
+  done
+done
