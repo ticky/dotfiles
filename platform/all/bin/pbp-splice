@@ -1,0 +1,155 @@
+#!/bin/sh
+
+# pbp-splice
+# splice a file into a PBP
+
+# boolean constants (with nice outputs)
+TRUE=Yes
+FALSE=No
+
+FILE=
+
+# components
+PARAM_SFO=PARAM.SFO
+ICON0_PNG=ICON0.PNG
+ICON1_PMF=ICON1.PMF
+PIC0_PNG=PIC0.PNG
+PIC1_PNG=PIC1.PNG
+SND0_AT3=SND0.AT3
+DATA_PSP=DATA.PSP
+DATA_PSAR=DATA.PSAR
+
+# process options
+CLEANUP=$FALSE
+INTERACTIVE=$FALSE
+CONTINUE=$FALSE
+
+TEMPDIR=/tmp/pbp-splice
+
+# "parse" options
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --interactive|-i)
+      if [[ "$CLEANUP" == "$TRUE" ]]; then
+        echo "Invalid arguments; --interactive and --cleanup cannot be used together."
+        exit 1
+      fi
+      INTERACTIVE=$TRUE
+      ;;
+    --continue)
+      CONTINUE=$TRUE
+      ;;
+    --cleanup)
+      if [[ "$INTERACTIVE" == "$TRUE" ]]; then
+        echo "Invalid arguments; --interactive and --cleanup cannot be used together."
+        exit 1
+      fi
+      CLEANUP=$TRUE
+      ;;
+    *)
+      if [[ -f "$1" ]]; then
+        if [[ -z "$FILE" ]]; then
+          FILE=$1
+        else
+          echo "Too many files in arguments; using first."
+        fi
+      else
+        echo "Unrecognised argument \"$1\"." >&2
+      fi
+      ;;
+  esac
+  shift
+done
+
+stats() {
+  echo "$(basename $0): $FILE
+  PARAM.SFO: $PARAM_SFO
+  ICON0.PNG: $ICON0_PNG
+  ICON1.PMF: $ICON1_PMF
+  PIC0.PNG: $PIC0_PNG
+  PIC1.PNG: $PIC1_PNG
+  SND0.AT3: $SND0_AT3
+  DATA.PSP: $DATA_PSP
+  DATA.PSAR: $DATA_PSAR
+"
+}
+
+cleanup() {
+  rm -rf "$TEMPDIR"
+}
+
+unpack() {
+  # create tmp dir
+  mkdir -p "$TEMPDIR"
+
+  cd "$TEMPDIR"
+
+  unpack-pbp "$FILE"
+}
+
+pack() {
+  cd "$TEMPDIR"
+
+  touch -a \
+    "$PARAM_SFO" \
+    "$ICON0_PNG" \
+    "$ICON1_PMF" \
+    "$PIC0_PNG" \
+    "$PIC1_PNG" \
+    "$SND0_AT3" \
+    "$DATA_PSP" \
+    "$DATA_PSAR"
+
+  pack-pbp \
+    "$FILE" \
+    "$PARAM_SFO" \
+    "$ICON0_PNG" \
+    "$ICON1_PMF" \
+    "$PIC0_PNG" \
+    "$PIC1_PNG" \
+    "$SND0_AT3" \
+    "$DATA_PSP" \
+    "$DATA_PSAR"
+}
+
+if [[ "$CONTINUE" == "$FALSE" ]]; then
+
+  if ! [[ -f "$FILE" ]]; then
+    echo "Supplied file does not exist."
+    exit 1
+  fi
+
+  stats
+  cleanup
+  unpack
+
+else
+
+  source "$TEMPDIR/interactive.meta.sh"
+  stats
+
+fi
+
+if [[ "$INTERACTIVE" == "$TRUE" ]]; then
+
+  echo "FILE=\"$FILE\"
+PARAM_SFO=\"$PARAM_SFO\"
+ICON0_PNG=\"$ICON0_PNG\"
+ICON1_PMF=\"$ICON1_PMF\"
+PIC0_PNG=\"$PIC0_PNG\"
+PIC1_PNG=\"$PIC1_PNG\"
+SND0_AT3=\"$SND0_AT3\"
+DATA_PSP=\"$DATA_PSP\"
+DATA_PSAR=\"$DATA_PSAR\"" > "$TEMPDIR/interactive.meta.sh"
+  echo "Finished extracting. Manually edit files in $TEMPDIR, then run \"$(basename $0) --continue\"."
+  exit
+
+else
+
+  pack
+
+  if [[ "$CLEANUP" == "$TRUE" ]]; then
+    cleanup
+  fi
+
+fi
