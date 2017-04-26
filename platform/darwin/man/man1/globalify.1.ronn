@@ -13,5 +13,5 @@ The globalify(1) command updates all non-internationally prefixed Australian (se
 
   * Only formats numbers with a leading zero.
   * Assumes any number beginning with a 0 MUST be an Australian number.
-  * Is naive about "trimming" and formatting numbers (read: won't write pretty numbers, OS X/iOS will display them nicely though).
+  * Is naive about "trimming" and formatting numbers (read: won't write pretty numbers, macOS/iOS will display them nicely though).
   * Success is indicated by the output of "missing value" >_>.

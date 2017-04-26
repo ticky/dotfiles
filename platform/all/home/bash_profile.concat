@@ -141,7 +141,7 @@ _git_prompt() {
 # (Hostname is always shown in hardstatus inside Screen)
 # TODO:
 # - Expand this to allow for tmux
-# - Find a way to implement similar behaviour on OS X (Cygwin/MSYS should be the same as this)
+# - Find a way to implement similar behaviour on macOS (Cygwin/MSYS should be the same as this)
 # - Show hostname if inside a remote ssh session (Maybe?)
 
 # "athost" variable is for disabling hostname in certain situations
@@ -179,7 +179,7 @@ prompt_color() {
 #  AUTOCOMPLETE
 # ----------------------------------------------------------------------
 
-# OS X-specific autocompletions
+# macOS-specific autocompletions
 if platformIsDarwin; then
   # if homebrew's bash_completion is installed, bring it in
   if [[ -f "$(brew --prefix)/etc/bash_completion" ]]; then

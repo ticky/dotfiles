@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 # fn
-# Find-by-Name (OS X version) - searches current directory and all subdirectories for the supplied name
+# Find-by-Name (macOS version) - searches current directory and all subdirectories for the supplied name
 
 mdfind -onlyin . "kMDItemDisplayName == '$@'wc";

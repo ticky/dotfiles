@@ -8,13 +8,13 @@ bindkey "\e[7~" beginning-of-line
 bindkey "\eOH" beginning-of-line
 bindkey "\eOF" end-of-line
 
-# for freebsd / OS X console
+# for freebsd / macOS console
 bindkey '^[[1;9D' backward-word
 bindkey '^[[1;9C' forward-word
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 
-# for OS X tmux
+# for macOS tmux
 bindkey '^[[1;3D' backward-word
 bindkey '^[[1;3C' forward-word
 bindkey "\e[1~" beginning-of-line

@@ -4,7 +4,7 @@
 -- Export the current Text Replacements as AutoHotKey HotStrings
 
 set replacementItems to "; AutoHotKey HotStrings
-; Generated from OS X NSUserDictionaryReplacementItems " & (current date) & "
+; Generated from macOS NSUserDictionaryReplacementItems " & (current date) & "
 "
 
 set theFile to (path to preferences folder from user domain) & ".GlobalPreferences.plist" as string

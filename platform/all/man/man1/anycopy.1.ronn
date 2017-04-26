@@ -11,7 +11,7 @@ The anycopy(1) command propagates STDIN to the first available clipboard. It is 
 
 It uses port 2224 to transmit pastes to an SSH client's clipboard, if available.
 
-It uses pbcopy(1) to propagate to the clipboard on OS X, via `reattach-to-user-namespace` if available.
+It uses pbcopy(1) to propagate to the clipboard on macOS, via `reattach-to-user-namespace` if available.
 
 xclip(1) is used where available.
 

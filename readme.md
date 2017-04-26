@@ -6,18 +6,18 @@ What I do have are a very particular set of dotfiles, dotfiles I have acquired o
 
 * colourful prompt, directory listing, `man` pages and `git` output
 * 2-line prompt with `git` status, clock and command syntax highlighting
-* works on OS X, Linux and Cygwin - and with both GNU and BSD core utilities
+* works on macOS, Linux and Cygwin - and with both GNU and BSD core utilities
 * shell history from `↑`/`↓` keys is from the current shell, `^r` is from all (`zsh` only)
-* stops `play` and `ant` from being unruly citizens on OS X
+* stops `play` and `ant` from being unruly citizens on macOS
 
 ## Requirements
 
 * `git` version 1.8 or newer
 * **Python 2.6/2.7 and 3.x**
 * **Homebrew**  
-  _OS X Only - This means you need Xcode installed first_
+  _macOS Only - This means you need Xcode installed first_
 * `reattach-to-user-namespace`  
-  _OS X Only - Allows lots of things to work better inside `tmux`_
+  _macOS Only - Allows lots of things to work better inside `tmux`_
 * `zsh-syntax-highlighting`
   _Only under `zsh` - provides syntax highlighting for the `zsh` prompt_
 * `ncurses`  
@@ -29,7 +29,7 @@ What I do have are a very particular set of dotfiles, dotfiles I have acquired o
 
 ### Supported Shells
 * **zsh 4.3** or newer  
-  _This is not a hard requirement, however, this version is the one supplied with OS X 10.8_
+  _This is not a hard requirement, however, this version is the one supplied with macOS 10.8_
 * **Bash 3.2** or newer  
   _Sorry, MinGW users_
 
@@ -39,9 +39,9 @@ The focus of future updates to these dotfiles will be `zsh`. At some point, `bas
 
 Setup involves a few steps specific to each platform, followed by the "all platforms" steps below.
 
-### OS X
+### macOS
 
-_**Note**: These dotfiles are configured for use with GitHub Strap - forking them to `{your-username}/dotfiles` will have them automatically set up when you use Strap on your OS X machine!_
+_**Note**: These dotfiles are configured for use with GitHub Strap - forking them to `{your-username}/dotfiles` will have them automatically set up when you use Strap on your macOS machine!_
 
 * install [Xcode](https://itunes.apple.com/app/xcode/id497799835)
 * install [Homebrew](https://github.com/Homebrew/homebrew)

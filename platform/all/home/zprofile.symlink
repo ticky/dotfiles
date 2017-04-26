@@ -4,7 +4,7 @@
 # Jessica Stokes <https://github.com/ticky/dotfiles>
 
 # This file loads path.zsh files when in an interactive, login shell.
-# This behaviour is necessary to override OS X' path configuration in /etc/zprofile.
+# This behaviour is necessary to override macOS' path configuration in /etc/zprofile.
 # Loading mechanism borrowed from Zach Holman's dotfiles <https://github.com/holman>
 
 if [[ $- == *i* ]] && [[ $- == *l* ]]; then

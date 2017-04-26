@@ -11,7 +11,7 @@ The anypaste(1) command propagates the contents of the first available clipboard
 
 It uses port 2225 to request pastes from an SSH client's clipboard, if available.
 
-It uses pbcopy(1) to retrieve the clipboard on OS X, via `reattach-to-user-namespace` if available.
+It uses pbcopy(1) to retrieve the clipboard on macOS, via `reattach-to-user-namespace` if available.
 
 xclip(1) is used where available.
 

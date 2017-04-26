@@ -153,6 +153,6 @@ bind 'C-v' run 'anypaste | tmux load-buffer - \; paste-buffer -d'
 if '[ "$(echo "$TMUX_VERSION >= 1.8" | bc)" = 1 ]' \
   "bind -t vi-copy 'Enter' copy-pipe 'anycopy'"
 
-# If we're on OS X, load the extra OS X configuration
+# If we're on macOS, load the extra macOS configuration
 if '[[ "$(uname -s)" = Darwin ]]' \
   'source $DOTFILES/platform/darwin/ext/tmux-integration.conf'

@@ -72,7 +72,7 @@ if [[ "$UNAME" = "cygwin" ]]; then
 
 fi
 
-# On OS X, check for Homebrew and reattach-to-user-namespace
+# On macOS, check for Homebrew and reattach-to-user-namespace
 if [[ "$UNAME" = "darwin" ]]; then
 
   if ! command -v brew >/dev/null 2>&1; then

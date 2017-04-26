@@ -9,7 +9,7 @@ fn(1) -- find a file by name
 
 Searches current directory and all subdirectories for files with the supplied name.
 
-There are two versions of this utility; on OS X, a version which makes use of mdfind(1) (which uses Spotlight's database), and on other platforms, a version which uses find(1).
+There are two versions of this utility; on macOS, a version which makes use of mdfind(1) (which uses Spotlight's database), and on other platforms, a version which uses find(1).
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
