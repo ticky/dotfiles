@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# git-make-nice
+# makes the sha1 of the last commit... nice
+
+while [[ "$(git rev-parse --verify HEAD)" != *69* ]]; do
+  git commit --amend --no-edit --quiet
+done
+
+echo "$(git rev-parse --verify HEAD)? Nice 👌🏼"
