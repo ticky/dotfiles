@@ -1,9 +1,6 @@
 [user]
 	name = Jessica Stokes
 	email = hello@jessicastokes.net
-	signingkey = 38F70FE9
-[commit]
-	gpgsign = true
 [color]
 	ui = true
 [core]
@@ -18,6 +15,7 @@
 [include]
 	path = .gitaliases
 	path = .gitplatform
+	path = .gitlocal
 [instaweb]
   httpd = webrick
 [man]
