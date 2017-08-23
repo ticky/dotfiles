@@ -22,6 +22,9 @@ path-append /sbin
 # bring in NPM
 path-append /usr/local/share/npm/bin
 
+# bring in Rust
+path-append "$HOME/.cargo/bin"
+
 # bring in RVM
 path-append "$HOME/.rvm/bin"
 
