@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# gynx
+# Pipe a gzipped file into lynx
+
+gunzip -c $@ | lynx -stdin
