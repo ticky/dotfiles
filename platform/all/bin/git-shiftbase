@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# git-shiftbase
+# tool for progressive rebasing of a feature branch
+
+set -euo pipefail
+
+GIT_SHIFTBASE=$(basename $0)
+
+short_sha_for() {
+  git rev-parse --short $1
+}
+
+if [[ $# = 0 ]]; then
+  echo "usage: $GIT_SHIFTBASE <branch>"
+  echo
+  echo "Parameters:"
+  echo "    branch        the branch on which to rebase the current branch."
+  echo
+  echo "Output filename is the original filename with -28p8 and the number of iterations appended."
+  exit
+fi
+
+GIT_SHIFTBASE_MERGE_BASE="$(git merge-base "$1" HEAD)"
+GIT_SHIFTBASE_REVS_SINCE=( $(git rev-list --reverse --merges --first-parent "$GIT_SHIFTBASE_MERGE_BASE...$1") )
+GIT_SHIFTBASE_REV_COUNT=${#GIT_SHIFTBASE_REVS_SINCE[@]}
+
+echo "$GIT_SHIFTBASE: found $GIT_SHIFTBASE_REV_COUNT merge commits found since $(git show --oneline $GIT_SHIFTBASE_MERGE_BASE)"
+
+read -p "$GIT_SHIFTBASE: Do you want to continue? " -n 1 -r
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  echo ""
+  echo "fair enough. everything's still where it was!"
+  exit 0
+fi
+
+echo ""
+echo "Let's do this. Good luck! <3"
+
+rev_index=0
+for revision in "${GIT_SHIFTBASE_REVS_SINCE[@]}"; do
+  echo "$GIT_SHIFTBASE: trying $(($rev_index + 1))/$GIT_SHIFTBASE_REV_COUNT: $(git show --oneline $revision)..."
+  git rebase "$revision"
+  rev_index=$(($rev_index + 1))
+done
