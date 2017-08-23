@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+sudo \
+  powermetrics \
+    -f plist \
+    --samplers tasks \
+    --show-process-energy \
+    --show-process-coalition \
+    --sample-count 1 \
+    | \
+  plutil \
+    -extract coalitions xml1 \
+    - \
+    -o - \
+    | \
+  plutil \
+    -convert json - \
+    -o - \
+    | \
+  jq \
+    "sort_by(.energy_impact) | reverse | [ limit(5;.[]) | select(.energy_impact > 1) | {name: (.tasks[0].name // .name), energy_impact} ]"
