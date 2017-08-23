@@ -3,6 +3,9 @@
 [credential]
   helper = osxkeychain
 
+[gpg]
+  program = /usr/local/bin/gpg
+
 [diff]
   tool = Kaleidoscope
 [difftool "Kaleidoscope"]
