@@ -1,0 +1,11 @@
+dotfiles-undoc(1) -- lists undocumented dotfiles scripts for the current platform
+=================================================================================
+
+## SYNOPSIS
+
+`dotfiles-undoc`
+
+## DESCRIPTION
+
+The dotfiles-undoc(1) command prints a list of dotfiles commands available on
+the current platform which do not currently have a manual page.

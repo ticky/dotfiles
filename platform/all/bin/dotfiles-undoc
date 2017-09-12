@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# dotfiles-undoc
+# Lists undocumented dotfiles scripts for the current platform
+
+PROGRAMS=$(
+  find \
+    "$DOTFILES/platform/$UNAME/bin" \
+    "$DOTFILES/platform/all-but-$UNAME/bin" \
+    "$DOTFILES/platform/all/bin" \
+    -type f
+)
+
+for PROGRAM in $PROGRAMS; do
+  if ! man -P $(which cat) "$(basename $PROGRAM)" >/dev/null 2>&1; then
+    echo "$PROGRAM"
+  fi
+done
