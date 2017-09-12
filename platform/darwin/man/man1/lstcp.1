@@ -1,0 +1,16 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "LSTCP" "1" "September 2017" "" "Jessica Stokes' Dotfiles"
+.
+.SH "NAME"
+\fBlstcp\fR \- list processes listening on TCP ports
+.
+.SH "SYNOPSIS"
+\fBlstcp\fR [\fIport\fR\.\.\.] \fIport\fR
+.
+.SH "DESCRIPTION"
+Lists the process IDs of any processes actively listening on specified ports\.
+.
+.P
+Useful for piping to ps(1) for more information, or for passing to kill(1) to force them to close\.

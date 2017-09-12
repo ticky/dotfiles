@@ -1,0 +1,12 @@
+lstcp(1) -- list processes listening on TCP ports
+=================================================
+
+## SYNOPSIS
+
+`lstcp` [<port>...] <port>
+
+## DESCRIPTION
+
+Lists the process IDs of any processes actively listening on specified ports.
+
+Useful for piping to ps(1) for more information, or for passing to kill(1) to force them to close.

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# lstcp
+# List processes listening on TCP ports
+
+for PORT in "$@"; do
+  # call lsof with a few interesting options:
+  #  • `-t`: print only port numbers, don't print errors
+  #  • `-i tcp:$PORT`: list processes with a handle on
+  #     the specified TCP port
+  #  • `-sTCP:LISTEN`: list only processes with a
+  #     TCP LISTEN handle on the specified port
+  lsof -t -i tcp:$PORT -sTCP:LISTEN
+done
