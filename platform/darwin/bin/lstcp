@@ -3,6 +3,17 @@
 # lstcp
 # List processes listening on TCP ports
 
+usage="usage: $(basename $0) [port...] port"
+
+for opt in $*; do
+    case $opt in
+        -h|-help|--help)
+            echo $usage
+            exit 0
+            ;;
+    esac
+done
+
 for PORT in "$@"; do
   # call lsof with a few interesting options:
   #  • `-t`: print only port numbers, don't print errors
