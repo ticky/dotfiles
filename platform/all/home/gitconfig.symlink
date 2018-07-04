@@ -28,3 +28,5 @@
 	required = true
 [mergetool]
 	keepBackup = false
+[push]
+	default = current
