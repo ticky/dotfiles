@@ -25,6 +25,11 @@ GIT_SHIFTBASE_MERGE_BASE="$(git merge-base "$1" HEAD)"
 GIT_SHIFTBASE_REVS_SINCE=( $(git rev-list --reverse --merges --first-parent "$GIT_SHIFTBASE_MERGE_BASE...$1") )
 GIT_SHIFTBASE_REV_COUNT=${#GIT_SHIFTBASE_REVS_SINCE[@]}
 
+if [[ $GIT_SHIFTBASE_REV_COUNT = 0 ]]; then
+  echo "$GIT_SHIFTBASE: No merge commits found since  since $GIT_SHIFTBASE_MERGE_BASE"
+  exit 1
+fi
+
 echo "$GIT_SHIFTBASE: found $GIT_SHIFTBASE_REV_COUNT merge commits found since $(git show --oneline $GIT_SHIFTBASE_MERGE_BASE)"
 
 read -p "$GIT_SHIFTBASE: Do you want to continue? " -n 1 -r
