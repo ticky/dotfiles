@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# exeicon
+
+set -eu -o pipefail
+shopt -s nullglob
+
+for ARG in "$@"; do
+
+  if [[ -f "$ARG" ]]; then
+
+    printf "Processing \"%s\"...\n" "$ARG"
+
+    OUT_DIR="$(cd "$(dirname "$ARG")"; pwd)"
+
+    ICON_NAME="$(wrestool -l --type=group_icon "$ARG" | awk '{print $2}' | sed 's/--name=//' | sed s/\'//g)"
+    TEMP_DIR=$(mktemp -d "/tmp/$(basename "$0").XXXXXX")
+
+    for ICON in $ICON_NAME; do
+        TEMP_ICO="$TEMP_DIR/$ICON.ico"
+        OUT_FILENAME="$(basename "$ARG")-$ICON.icns"
+
+        wrestool -x --type=group_icon --name="$ICON" --output="$TEMP_ICO" "$ARG"
+        icotool -x -i "$(icotool --list "$TEMP_ICO" | awk '{
+            ci=int(substr($2,index($2,"=") + 1)); cw=int(substr($3,index($3,"=") + 1)); cb=int(substr($5,index($5,"=") + 1));
+            if ((cw > w) || (cw == w && cb > b)) {b = cb;w = cw;i = ci;}} END {print i;}')" -o "$TEMP_DIR" "$TEMP_ICO"
+
+        printf "Converting icon \"%s\" to ICNS \"%s\"...\n" "$ICON" "$OUT_DIR/$OUT_FILENAME"
+
+        png2icns "$OUT_DIR/$OUT_FILENAME" $TEMP_DIR/${ICON}_*.png
+    done
+
+    rm -rf "$TEMP_DIR"
+
+  fi
+
+done
