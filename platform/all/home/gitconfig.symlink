@@ -16,6 +16,8 @@
 	path = .gitaliases
 	path = .gitplatform
 	path = .gitlocal
+[init]
+	templateDir = ~/.dotfiles/platform/all/git/template/
 [instaweb]
   httpd = webrick
 [man]

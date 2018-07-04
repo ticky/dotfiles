@@ -1,0 +1,7 @@
+Sorry, the default Git samples aren't included because they don't work with
+<https://github.com/ticky/dotfiles>' MIT license.
+
+If you need them, they'll be in `/usr{/local,}/share/git-core/templates(N)` on
+your system, or (in source form) at <https://github.com/git/git/tree/master/templates>.
+
+–Jessica
