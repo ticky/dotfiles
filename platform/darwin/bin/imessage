@@ -1,37 +1,31 @@
 #!/usr/bin/env osascript
 
 -- imessage
--- Send messages (iMessages by default) from the command line
+-- Send iMessages from the command line
 --
 -- Usage:
--- imessage <contact address> <message> [service type]
+-- imessage <contact address> [<contact address>...] <message>
 
 on run arguments
 	if count of arguments is not less than 2 then
-
-		set buddyAddress to item 1 of arguments
-		set messageText to item 2 of arguments
-
-		if count of arguments is 3 then
-			set serviceType to item 3 of arguments
-		else
-			set serviceType to "iMessage"
-		end if
+		set buddyAddressList to items 1 thru -2 of arguments
+		set messageText to last item of arguments
 
 		tell application "Messages"
 			set messagingService to missing value
-			set serviceList to get every service
-			repeat with currentService in every service
-				if service type of currentService as string is serviceType then
-					set messagingService to currentService
-				end if
-			end repeat
+			set messagingService to first service whose service type is iMessage
 			
 			if messagingService is not missing value then
-				send messageText to buddy buddyAddress of messagingService
+				set buddyList to {}
+				
+				repeat with buddyAddress in buddyAddressList
+					copy (buddy buddyAddress of messagingService) to the end of buddyList
+				end repeat
+
+				send messageText to make new text chat with properties {participants: buddyList}
 				return "Message Sent using " & service type of messagingService as string & " service \"" & name of messagingService & "\""
 			else
-				return "Error: Could not find a service whose type was called \"" & serviceType & "\""
+				return "Error: Could not find a configured iMessage service"
 			end if
 		end tell
 
