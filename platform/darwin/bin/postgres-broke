@@ -1,22 +1,32 @@
 #!/usr/bin/env bash
 
 # postgres-broke
-# Fix up postgres when it stops working after an unexpected reboot
+# Understandable. This'll up postgres when it stops working after an unexpected reboot
 
-PIDFILE=/usr/local/var/postgres/postmaster.pid
+POSTGRESES=$(brew list | grep postgresql)
+POSTGRES_COUNT=$(echo "$POSTGRESES" | wc -l)
 
-if [[ ! -d "$(brew --prefix)/opt/postgresql" ]]; then
-  echo "Posgres isn't installed!"
+if [[ $POSTGRES_COUNT -eq 0 ]]; then
+  echo "Postgres isn't installed!"
   exit 1
 fi
 
-brew services stop postgresql
+while read -r THIS_POSTGRES; do
+  brew services stop ${THIS_POSTGRES}
 
-if [[ ! -f "$PIDFILE" ]]; then
-  echo "Postgres' PID file ($PIDFILE) not found!"
+  PIDFILE="$(brew --prefix)/var/${THIS_POSTGRES}/postmaster.pid"
+
+  if [[ ! -f "$PIDFILE" ]]; then
+    echo "Postgres' PID file for ${THIS_POSTGRES} not found!"
+  else
+    echo "Found rogue ${THIS_POSTGRES} PID file. Deleting..."
+    rm "$PIDFILE"
+  fi
+done <<< "$POSTGRESES"
+
+if [[ $POSTGRES_COUNT -eq 1 ]]; then
+  echo "Restarting postgres..."
+  brew services start ${POSTGRESES}
 else
-  echo -n "Found rogue Postgres PID file ($PIDFILE). Deleting..."
-  rm "$PIDFILE"
+  echo "Multiple postgres installations detected. Not restarting postgres."
 fi
-
-brew services start postgresql
