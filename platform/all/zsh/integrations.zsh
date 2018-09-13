@@ -25,3 +25,9 @@ fi
 if [[ -e "${HOME}/.iterm2_shell_integration.zsh" ]]; then
   source "${HOME}/.iterm2_shell_integration.zsh"
 fi
+
+# ntfy (https://ntfy.readthedocs.io/en/latest/)
+if which ntfy >/dev/null 2>&1; then
+  export AUTO_NTFY_DONE_IGNORE="buildkite-agent"
+  eval "$(ntfy shell-integration)"
+fi
