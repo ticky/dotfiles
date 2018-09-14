@@ -25,6 +25,7 @@ the current platform which do not currently have a manual page.
 [divider(1)]: divider.1.html
 [dotfiles-undoc(1)]: dotfiles-undoc.1.html
 [ellipse(1)]: ellipse.1.html
+[ffcat(1)]: ffcat.1.html
 [fn(1)]: fn.1.html
 [git-changed(1)]: git-changed.1.html
 [git-develop(1)]: git-develop.1.html

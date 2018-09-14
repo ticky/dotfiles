@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# ffcat
+# concatenate a set of video files
+
+set -euo pipefail
+
+if [[ $# = 0 ]]; then
+  echo "usage: $(basename "$0") [<video>...] <video>"
+  echo
+  echo "Parameters:"
+  echo "    video     a video to add to the concatenated video."
+  echo "              Note that all input videos must be the same format."
+  echo
+  echo "Output filename is the first passed filename with -ffcat appended."
+  exit
+fi
+
+ffmpeg \
+  -hide_banner \
+  -safe 0 \
+  -f concat \
+  -i <( \
+  for ARG in "$@"; do \
+    printf "file '%s'\n" "$ARG"; \
+  done \
+  ) \
+  -c copy \
+  "${1%.*}-ffcat.${1##*.}"

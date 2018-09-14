@@ -1,0 +1,22 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "FFCAT" "1" "September 2018" "" "Jessica Stokes' Dotfiles"
+.
+.SH "NAME"
+\fBffcat\fR \- concatenate a set of video files
+.
+.SH "SYNOPSIS"
+\fBffcat\fR [\fIvideo\fR\.\.\.] \fIvideo\fR
+.
+.SH "DESCRIPTION"
+Pass in a set of video files, and they will be concatenated, in the passed order, to each other\.
+.
+.P
+This uses ffmpeg(1)\'s \fBconcat\fR demuxer, which only supports concatenation of files containing the same type of streams\.
+.
+.P
+For more information about the \fBconcat\fR demuxer, see the \fBconcat\fR section in the manual page for ffmpeg\-formats(1)\.
+.
+.SH "SEE ALSO"
+ffmpeg(1) cat(1) ffmpeg\-formats(1)

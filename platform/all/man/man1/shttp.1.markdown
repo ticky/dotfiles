@@ -27,8 +27,11 @@ python(1), python3(1), pwd(1), ruby(1)
 [chcase(1)]: chcase.1.html
 [colourtest(1)]: colourtest.1.html
 [divider(1)]: divider.1.html
+[dotfiles-undoc(1)]: dotfiles-undoc.1.html
 [ellipse(1)]: ellipse.1.html
+[ffcat(1)]: ffcat.1.html
 [fn(1)]: fn.1.html
+[git-changed(1)]: git-changed.1.html
 [git-develop(1)]: git-develop.1.html
 [git-push-all(1)]: git-push-all.1.html
 [gravatar(1)]: gravatar.1.html

@@ -1,0 +1,20 @@
+ffcat(1) -- concatenate a set of video files
+============================================
+
+## SYNOPSIS
+
+`ffcat` [<video>...] <video>
+
+## DESCRIPTION
+
+Pass in a set of video files, and they will be concatenated, in the passed order, to each other.
+
+This uses ffmpeg(1)'s `concat` demuxer, which only supports concatenation of files containing the same type of streams.
+
+For more information about the `concat` demuxer, see the `concat` section in the manual page for ffmpeg-formats(1).
+
+## SEE ALSO
+
+ffmpeg(1)
+cat(1)
+ffmpeg-formats(1)

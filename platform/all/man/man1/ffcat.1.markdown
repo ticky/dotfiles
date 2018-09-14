@@ -1,26 +1,27 @@
-tmx(1) -- automatic tmux (re)attachment
-===================================================
+ffcat(1) -- concatenate a set of video files
+============================================
 
 ## SYNOPSIS
 
-`tmx`
+`ffcat` [<var>video</var>...] <var>video</var>
 
 ## DESCRIPTION
 
-The tmx(1) command creates or reconnects to a tmux(1) session.
+Pass in a set of video files, and they will be concatenated, in the passed order, to each other.
 
-## USAGE
+This uses ffmpeg(1)'s `concat` demuxer, which only supports concatenation of files containing the same type of streams.
 
-tmx(1) accepts no arguments. if `tmux has-session` returns a non-error output, it calls `tmux attach`, otherwise, it calls `tmux`. The exact behaviour will depend upon your tmux(1) configuration.
+For more information about the `concat` demuxer, see the `concat` section in the manual page for ffmpeg-formats(1).
 
 ## SEE ALSO
 
-tmux(1)
+ffmpeg(1)
+cat(1)
+ffmpeg-formats(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
 [DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
-[USAGE]: #USAGE "USAGE"
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 
