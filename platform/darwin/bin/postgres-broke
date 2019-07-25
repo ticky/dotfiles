@@ -17,11 +17,20 @@ while read -r THIS_POSTGRES; do
   PIDFILE="$(brew --prefix)/var/${THIS_POSTGRES}/postmaster.pid"
 
   if [[ ! -f "$PIDFILE" ]]; then
-    echo "Postgres' PID file for ${THIS_POSTGRES} not found!"
-  else
-    echo "Found rogue ${THIS_POSTGRES} PID file. Deleting..."
-    rm "$PIDFILE"
+    PIDFILE="$(brew --prefix)/var/postgres/postmaster.pid"
+
+    if [[ "${THIS_POSTGRES}" = "postgresql" && -f "$PIDFILE" ]]; then
+      echo "Found rogue ${THIS_POSTGRES} PID file. Deleting..."
+      rm "$PIDFILE"
+    else
+      echo "Postgres' PID file for ${THIS_POSTGRES} not found!"
+    fi
+
+    continue
   fi
+
+  echo "Found rogue ${THIS_POSTGRES} PID file. Deleting..."
+  rm "$PIDFILE"
 done <<< "$POSTGRESES"
 
 if [[ $POSTGRES_COUNT -eq 1 ]]; then
