@@ -28,6 +28,6 @@ fi
 
 # ntfy (https://ntfy.readthedocs.io/en/latest/)
 if which ntfy >/dev/null 2>&1; then
-  export AUTO_NTFY_DONE_IGNORE="buildkite-agent"
   eval "$(ntfy shell-integration)"
+  export AUTO_NTFY_DONE_IGNORE="$AUTO_NTFY_DONE_IGNORE buildkite-agent"
 fi
