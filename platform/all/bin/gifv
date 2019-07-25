@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# gifv
+# convert a (probably gigantic) gif to an (hopefully small) mp4 video
+
+set -euo pipefail
+
+if [[ $# != 1 ]]; then
+  echo "usage: $(basename "$0") <gif>"
+  echo
+  echo "Parameters:"
+  echo "    gif       the gif to convert to an mp4 video"
+  echo
+  echo "Output filename is the input filename but with an mp4 extension."
+  exit
+fi
+
+# ffmpeg configuration based upon https://unix.stackexchange.com/a/294892
+
+ffmpeg \
+  -hide_banner \
+  -i "$1" \
+  -movflags faststart \
+  -pix_fmt yuv420p \
+  -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \
+  -crf 23 \
+  -maxrate 1M \
+  "${1%.*}.mp4"

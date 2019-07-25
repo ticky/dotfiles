@@ -1,0 +1,16 @@
+gifv(1) -- convert a (probably gigantic) gif to an (hopefully small) mp4 video
+==============================================================================
+
+## SYNOPSIS
+
+`gifv` <gif>
+
+## DESCRIPTION
+
+Pass in a gif file and it will be converted to an mp4 video.
+
+Output filename is the input filename but with an mp4 extension.
+
+## SEE ALSO
+
+ffmpeg(1)
