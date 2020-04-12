@@ -10,6 +10,11 @@ if [[ -d "$HOME/.nvm/nvm.sh" ]]; then
   source "$NVM_DIR/nvm.sh"
 fi
 
+# coloursum
+if which coloursum >/dev/null 2>&1; then
+  eval "$(coloursum --mode=1password shell-setup)"
+fi
+
 # rbenv or chruby or RVM (Ruby)
 if which rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
