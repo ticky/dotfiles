@@ -10,6 +10,11 @@ if [[ -d "$HOME/.nvm/nvm.sh" ]]; then
   source "$NVM_DIR/nvm.sh"
 fi
 
+# nodenv (node.js)
+if which nodenv >/dev/null 2>&1; then
+  eval "$(nodenv init -)"
+fi
+
 # coloursum
 if which coloursum >/dev/null 2>&1; then
   eval "$(coloursum --mode=1password shell-setup)"
