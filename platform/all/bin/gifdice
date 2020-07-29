@@ -1,0 +1,93 @@
+#!/bin/bash
+
+# gifdice
+# split & merge frames of an animated gif
+
+set -euo pipefail
+
+# boolean constants (with nice outputs)
+TRUE=Yes
+FALSE=No
+
+FILE=
+
+# process options
+SPLIT=$FALSE
+MERGE=$FALSE
+
+TEMPDIR=/tmp/gifdice
+
+# "parse" options
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    split)
+      if [[ "$MERGE" == "$TRUE" ]]; then
+        echo "Invalid arguments; split and merge cannot be used together."
+        exit 1
+      fi
+      SPLIT=$TRUE
+      ;;
+    merge)
+      if [[ "$SPLIT" == "$TRUE" ]]; then
+        echo "Invalid arguments; split and merge cannot be used together."
+        exit 1
+      fi
+      MERGE=$TRUE
+      ;;
+    *)
+      if [[ -z "$FILE" ]]; then
+        FILE=$1
+      else
+        echo "Too many files in arguments; using first."
+      fi
+      ;;
+  esac
+  shift
+done
+
+if [[ "$SPLIT" == "$TRUE" ]]; then
+
+  # The split command requires a file
+  if [[ ! -f "$FILE" ]]; then
+    echo "File does not seem to exist: \"$FILE\"." >&2
+    exit 1
+  fi
+
+  mkdir -p "$TEMPDIR"
+
+  convert \
+    -coalesce \
+    "$FILE" \
+    -set filename:delay '%T' \
+    "$TEMPDIR/gifdice-%05d-%[filename:delay].png"
+
+  echo "Finished splitting frames. Manually edit files in $TEMPDIR, then run \"$(basename "$0") merge\"."
+
+elif [[ "$MERGE" == "$TRUE" ]]; then
+
+  CONVERTCMD="convert"
+
+  # Get a sorted list of the extracted frames
+  FRAMEFILES=$(find "$TEMPDIR" -name "gifdice-*" | sort | xargs)
+
+  for FRAMEFILE in $FRAMEFILES; do
+    # Grab the frame delay out of the file name
+    FRAMEDELAY=$(echo "${FRAMEFILE}" | cut -d - -f3 | sed "s,.png,,")
+    CONVERTCMD="${CONVERTCMD} -delay $FRAMEDELAY \"$FRAMEFILE\""
+  done
+
+  # Final output options
+  CONVERTCMD="${CONVERTCMD} -layers Optimize \"$HOME/Desktop/Animated $(zdate "%Y-%m-%d at %H.%M.%S").gif\""
+
+  # I hate to do it, but, we're doing some eval
+  eval "$CONVERTCMD"
+
+  # Clean up after ourselves
+  rm -rf "$TEMPDIR"
+
+else
+
+  echo "You must specify a subcommand; either split or merge." >&2
+  exit 1
+
+fi

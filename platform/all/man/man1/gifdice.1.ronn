@@ -1,0 +1,22 @@
+gifdice(1) -- split & merge frames of an animated gif
+=====================================================
+
+## SYNOPSIS
+
+`gifdice` `split` <path>
+`gifdice` `merge`
+
+## DESCRIPTION
+
+The gifdice(1) command splits out the frames of an animated gif, preserving the per-frame delay information, and allows merging the modified result back into a gif image.
+
+After merging, GIFs will be saved to the Desktop folder, with a filename starting with "Animated" and based on the current date and time.
+
+## OPTIONS
+
+* <path>:
+  path to the gif to extract frames from
+
+## SEE ALSO
+
+movieme(1), convert(1)

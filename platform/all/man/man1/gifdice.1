@@ -1,0 +1,25 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "GIFDICE" "1" "July 2020" "" "Jessica Stokes' Dotfiles"
+.
+.SH "NAME"
+\fBgifdice\fR \- split & merge frames of an animated gif
+.
+.SH "SYNOPSIS"
+\fBgifdice\fR \fBsplit\fR \fIpath\fR \fBgifdice\fR \fBmerge\fR
+.
+.SH "DESCRIPTION"
+The gifdice(1) command splits out the frames of an animated gif, preserving the per\-frame delay information, and allows merging the modified result back into a gif image\.
+.
+.P
+After merging, GIFs will be saved to the Desktop folder, with a filename starting with "Animated" and based on the current date and time\.
+.
+.SH "OPTIONS"
+.
+.TP
+\fIpath\fR
+path to the gif to extract frames from
+.
+.SH "SEE ALSO"
+movieme(1), convert(1)
