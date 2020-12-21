@@ -1,3 +1,8 @@
+# Handle multiple Homebrews on Apple Silicon
+if [[ "$(/usr/sbin/sysctl -n hw.optional.arm64 2> /dev/null)" == "1" ]]; then
+  alias ibrew='arch -x86_64 /usr/local/bin/brew'
+fi
+
 # Virtualenv Wrapper (Python)
 if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
   export WORKON_HOME="$HOME/.virtualenv"

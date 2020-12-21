@@ -19,6 +19,11 @@ path-append /usr/local/sbin
 path-append /usr/sbin
 path-append /sbin
 
+# Handle multiple Homebrews on Apple Silicon
+if [[ "$(/usr/sbin/sysctl -n hw.optional.arm64 2> /dev/null)" == "1" ]]; then
+  path-prepend /opt/homebrew/bin
+fi
+
 # bring in NPM
 path-append /usr/local/share/npm/bin
 
