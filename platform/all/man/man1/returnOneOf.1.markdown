@@ -32,8 +32,10 @@ The returnOneOf(1) command will print one of the given <var>item</var>s to STDOU
 [ellipse(1)]: ellipse.1.html
 [ffcat(1)]: ffcat.1.html
 [fn(1)]: fn.1.html
+[gifdice(1)]: gifdice.1.html
+[gifv(1)]: gifv.1.html
 [git-changed(1)]: git-changed.1.html
-[git-develop(1)]: git-develop.1.html
+[git-main(1)]: git-main.1.html
 [git-push-all(1)]: git-push-all.1.html
 [gravatar(1)]: gravatar.1.html
 [gz(1)]: gz.1.html

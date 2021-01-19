@@ -1,0 +1,15 @@
+git-main(1) -- switch to the primary branch of the project
+==========================================================
+
+## SYNOPSIS
+
+`git main`
+
+## DESCRIPTION
+
+Switches to the primary branch of the project; prefers "main" but will fall back to "develop" or "master".
+
+## SEE ALSO
+
+git-changed(1)
+git-checkout(1)

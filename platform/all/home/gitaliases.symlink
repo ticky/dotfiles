@@ -18,7 +18,8 @@
 	hub          = "!hub browse"                                          # Go to GitHub page for branch
 	l            = log --decorate --graph --date-order                    # More useful log output
 	lg           = log --decorate --graph                                 # Log with a graph in merge order
-	master       = develop                                                # Shortcut to git-develop
+	master       = main                                                   # Shortcut to git-main
+	develop      = main                                                   # Shortcut to git-main
 	p            = push                                                   # Push
 	pl           = "!git remote update --prune; git merge --ff-only @{u}" # Pull (http://stackoverflow.com/a/15316602/1327915)
 	pr           = "!hub pull-request"                                    # Make a GitHub pull request from this branch
