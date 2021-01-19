@@ -3,15 +3,11 @@ path-contains() {
 }
 
 path-append() {
-  if ! path-contains "$1"; then
-    export PATH="$PATH:$1"
-  fi
+  export PATH="${PATH/:$1:/:}:$1"
 }
 
 path-prepend() {
-  if ! path-contains "$1"; then
-    export PATH="$1:$PATH"
-  fi
+  export PATH="$1:${PATH/:$1:/:}"
 }
 
 # we want the various sbins on the path along with /usr/local/bin
