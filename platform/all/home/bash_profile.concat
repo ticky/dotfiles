@@ -9,7 +9,7 @@
 export HOME=~
 
 # kernel name
-export UNAME="$($HOME/dotfiles/platform/all/bin/nuname)"
+export UNAME="$($HOME/.dotfiles/platform/all/bin/nuname)"
 
 # default editor is vim
 export EDITOR=vim
@@ -95,10 +95,10 @@ for dir in ~/dotfiles/platform/all/bin ~/dotfiles/platform/$UNAME/bin ~/dotfiles
 done
 
 platformbindir() {
-  if [[ -d "$HOME/dotfiles/platform/$UNAME/bin" ]]; then
-    echo "$HOME/dotfiles/platform/$UNAME/bin"
+  if [[ -d "$HOME/.dotfiles/platform/$UNAME/bin" ]]; then
+    echo "$HOME/.dotfiles/platform/$UNAME/bin"
   else
-    mkdir -p "$HOME/dotfiles/platform/$UNAME/bin" && PATH="$HOME/dotfiles/platform/$UNAME/bin:$PATH" && echo "$HOME/dotfiles/platform/$UNAME/bin:$PATH"
+    mkdir -p "$HOME/.dotfiles/platform/$UNAME/bin" && PATH="$HOME/.dotfiles/platform/$UNAME/bin:$PATH" && echo "$HOME/.dotfiles/platform/$UNAME/bin:$PATH"
   fi
 }
 
@@ -303,17 +303,17 @@ export HISTIGNORE="&:cl:x:exit"
 profile() {
   case $1 in
     edit|ed|e)
-      command $EDITOR $HOME/dotfiles
+      command $EDITOR $HOME/.dotfiles
       ;;
     load|lo|l)
       source $HOME/.bash_profile
       ;;
     install|inst|in|i)
-      command $HOME/dotfiles/install.sh && \
+      command $HOME/.dotfiles/install.sh && \
       $0 load
       ;;
     update|up|u)
-      cd $HOME/dotfiles && \
+      cd $HOME/.dotfiles && \
       command git stash && \
       command git fetch && \
       command git stash pop && \
