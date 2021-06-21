@@ -10,6 +10,9 @@ path-prepend() {
   export PATH="$1:${PATH/:$1:/:}"
 }
 
+# prepend /usr/local/bin in case we're on Tiger
+path-prepend /usr/local/bin
+
 # we want the various sbins on the path along with /usr/local/bin
 path-append /usr/local/sbin
 path-append /usr/sbin
