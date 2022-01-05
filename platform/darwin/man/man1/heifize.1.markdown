@@ -1,23 +1,29 @@
-tweetbot-thumbnails-off(1) -- turn thumbnails off in Tweetbot
-=============================================================
+heifize(1) -- creates HEIF copies of images
+===========================================
 
 ## SYNOPSIS
 
-`tweetbot-thumbnails-off`
+`heifize` [<var>image</var>...] <var>image</var>
 
 ## DESCRIPTION
 
-The tweetbot-thumbnails-off(1) command turns thumbnails off in Tweetbot, and restarts the app if it's running.
+The heifize(1) command creates HEIF copies of image file arguments, while preserving metadata
+
+The output filename is the original filename with a "heif" extension
+
+## OPTIONS
+
+* <var>image</var>:
+  any image file sips supports.
 
 ## SEE ALSO
 
-textual-thumbnails-off(1)
-textual-thumbnails-on(1)
-tweetbot-thumbnails-on(1)
+sips(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
 [DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
+[OPTIONS]: #OPTIONS "OPTIONS"
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 

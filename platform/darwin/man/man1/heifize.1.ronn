@@ -1,0 +1,21 @@
+heifize(1) -- creates HEIF copies of images
+===========================================
+
+## SYNOPSIS
+
+`heifize` [<image>...] <image>
+
+## DESCRIPTION
+
+The heifize(1) command creates HEIF copies of image file arguments, while preserving metadata
+
+The output filename is the original filename with a "heif" extension
+
+## OPTIONS
+
+* <image>:
+  any image file sips supports.
+
+## SEE ALSO
+
+sips(1)

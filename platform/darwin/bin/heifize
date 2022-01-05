@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# heifize
+# Creates HEIF copies of image file arguments, while preserving metadata
+
+set -euo pipefail
+
+for ARG in "$@"; do
+    CREATED_DATE="$(GetFileInfo -d "$ARG")"
+    OUTPUT_FILE="${ARG%.*}.heic"
+
+    sips -s format heic \
+         "$ARG" \
+         -o "$OUTPUT_FILE"
+
+    SetFile -d "$CREATED_DATE" \
+            "$OUTPUT_FILE"
+done
