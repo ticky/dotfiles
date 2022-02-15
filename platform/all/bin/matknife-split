@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# matknife-split
+# split a Unity-style metallic+smoothness texture into USDZ-style separated metallic and roughness form
+
+set -euo pipefail
+
+if [[ $# != 1 ]]; then
+  echo "usage: $(basename "$0") <combined-texture>"
+  echo
+  echo "Parameters:"
+  echo "    combined-texture    grayscale+alpha metallic/smoothness texture to split"
+  echo "                        into component parts."
+  echo
+  echo "Note that smoothness will be converted to roughness, which Pixar (and Apple)"
+  echo "USDZ tooling expects."
+  echo
+  echo "Output filename is the first passed filename with -Metallic or -Roughness appended."
+  exit
+fi
+
+convert \
+	"$1" \
+	-channel Gray,Opacity \
+	-separate \
+	\( \
+		-clone 0 \
+		-write "${1%.*}-Metallic.${1##*.}" \
+	\) \
+	\( \
+		-clone 1 \
+		-negate \
+		-write "${1%.*}-Roughness.${1##*.}" \
+	\) \
+	"NULL:"
+

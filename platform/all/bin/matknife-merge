@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# matknife-merge
+# merge a pair of USDZ-style metallic and roughness textures into Unity-style metallic+smoothness form
+
+set -euo pipefail
+
+if [[ $# != 2 ]]; then
+  echo "usage: $(basename "$0") <metallic-texture> <roughness-texture>"
+  echo
+  echo "Parameters:"
+  echo "    metallic-texture    grayscale texture to use for metallicness value."
+  echo "    roughness-texture   grayscale texture to use for the roughness value."
+  echo
+  echo "Note that roughness will be converted to smoothness, which Unity expects."
+  echo
+  echo "Output filename is the first passed filename with -MetallicSmoothness appended."
+  exit
+fi
+
+convert \
+	"$1" \
+	\( \
+		"$2" \
+		-negate \
+	\) \
+	-channel Gray,Opacity \
+	-combine \
+	"${1%.*}-MetallicSmoothness.${1##*.}"
