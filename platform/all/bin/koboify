@@ -13,7 +13,7 @@ for ARG in "$@"; do
       -colors 16 \
       -depth 4 \
       "${ARG%.*}-kobo.png"
-    optipng -o 9 -strip all "${ARG%.*}-kobo.png"
+    oxipng -o max --strip safe "${ARG%.*}-kobo.png"
     identify "${ARG%.*}-kobo.png"
   else
     printf "%s: not a file\n" "$ARG" 1>&2
