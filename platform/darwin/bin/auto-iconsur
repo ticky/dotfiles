@@ -1,0 +1,38 @@
+sudo iconsur set /Applications/Aegisub.app -l --color f4bfbf
+sudo iconsur set /Applications/Android\ File\ Transfer.app -l --color d9d9d7
+sudo iconsur set /Applications/AppCleaner.app -l
+sudo iconsur set /Applications/Bforartists.app -l --color e8f0ff
+sudo iconsur set /Applications/Discovery.app -l
+sudo iconsur set /Applications/Dolphin\ ƒ/*.app -l --color 33baff
+sudo iconsur set /Applications/driftstage.app -l
+sudo iconsur set /Applications/EasyRes.app -l
+sudo bash -c "iconsur set /Applications/Flycast.app --input <(curl -o - 'https://raw.githubusercontent.com/flyinghead/flycast/master/shell/linux/flycast.png')"
+sudo iconsur set /Applications/GDMENUCardManager.app -l
+sudo iconsur set /Applications/HandBrake.app -l
+sudo iconsur set /Applications/Impactor.app -l
+sudo iconsur set /Applications/Logic2.app -l --scale 1.2
+sudo iconsur set /Applications/LINE.app
+sudo iconsur set /Applications/MakeMKV.app -l --color 1086d2
+sudo iconsur set /Applications/MetaZ.app -l
+sudo iconsur set /Applications/mGBA.app -l --color 8158d5
+sudo iconsur set /Applications/MKVToolNix*.app -l --color 6b74bc
+sudo iconsur set /Applications/platinum-md.app -l --scale 1
+sudo iconsur set /Applications/redream.app -l --color 222222
+sudo iconsur set /Applications/RetroArch.app -l --color 000000
+sudo iconsur set /Applications/Right\ Click.app -l --scale 1
+sudo iconsur set /Applications/SD\ Card\ Formatter.app -l
+sudo iconsur set /Applications/Seashore.app -l
+sudo iconsur set /Applications/Second\ Life\ Viewer.app -l --scale 1
+sudo iconsur set /Applications/SideQuest.app -l --scale 1.2 --color 000000
+sudo iconsur set /Applications/Soulver\ 2.app -l
+sudo iconsur set /Applications/Steam.app -l --color 95bcd3
+sudo iconsur set /Applications/TimeMachineEditor.app -l --scale 1.025
+sudo iconsur set /Applications/TimeTimer.app
+sudo iconsur set /Applications/USBCaptureUtility.app -l --color 0000ff
+sudo iconsur set /Applications/WhatsYourSign.app -l --color 000000 --scale 0.85
+sudo iconsur set /Applications/Witgui.app -l --scale 0.95
+sudo iconsur set /Applications/Yubico\ Authenticator.app
+sudo iconsur set /Applications/zoom.us.app
+sudo iconsur set /Applications/Utilities/Transmission.app -l
+sudo iconsur set /Applications/Utilities/Wireshark.app -l --scale 0.8 --color 333
+sudo iconsur set /Applications/Utilities/XQuartz.app
