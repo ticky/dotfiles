@@ -14,5 +14,6 @@ for ARG in "$@"; do
          -o "$OUTPUT_FILE"
 
     SetFile -d "$CREATED_DATE" \
+            -m "$CREATED_DATE" \
             "$OUTPUT_FILE"
 done
