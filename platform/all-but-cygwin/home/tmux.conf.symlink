@@ -33,24 +33,17 @@ set -g set-titles on
 set -g set-titles-string "[#I] #W"
 
 # Pane border colours
-set -g pane-border-fg default
-set -g pane-border-bg default
-set -g pane-active-border-fg magenta
-set -g pane-active-border-bg default
+set -g pane-border-style fg=default,bg=default
+set -g pane-active-border-style fg=magenta,bg=default
 
 # Command/message line colors
-set -g message-fg default
-set -g message-bg default
+set -g message-style fg=default,bg=default
 
 # Selection and mode text colours
-set -g mode-fg blue
-set -g mode-bg default
-set -g mode-attr reverse
+set -g mode-style fg=blue,bg=default,reverse
 
 # Statusbar colours
-set -g status-fg default
-set -g status-bg default
-set -g status-attr default
+set -g status-style fg=default,bg=default,default
 
 # Status bar configuration
 set -g status-left "#[bg=magenta,bold]#h#[default]:"
@@ -58,12 +51,10 @@ set -g status-right "#(zdate m) "
 
 # Status item configuration
 set -g window-status-format "#I #F #W"
-set -w -g window-status-fg default
-set -w -g window-status-bg default
+set -w -g window-status-style fg=default,bg=default
 
 set -g window-status-current-format "#I #F #W"
-set -w -g window-status-current-fg default
-set -w -g window-status-current-bg magenta
+set -w -g window-status-current-style fg=default,bg=magenta
 
 # Clock Mode Colours
 set -w -g clock-mode-colour magenta
