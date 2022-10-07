@@ -10,8 +10,9 @@ if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
 fi
 
 # NVM (node.js)
-if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
-  export NVM_DIR="$HOME/.nvm"
+NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  export NVM_DIR
   source "$NVM_DIR/nvm.sh"
 fi
 
