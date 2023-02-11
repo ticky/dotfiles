@@ -16,4 +16,6 @@ for ARG in "$@"; do
     SetFile -d "$CREATED_DATE" \
             -m "$CREATED_DATE" \
             "$OUTPUT_FILE"
+
+    rm "$ARG"
 done
