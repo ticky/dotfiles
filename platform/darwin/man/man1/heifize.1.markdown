@@ -11,6 +11,8 @@ The heifize(1) command creates HEIF copies of image file arguments, while preser
 
 The output filename is the original filename with a "heif" extension
 
+If parallel(1) is available, the operations will be parallelised to run on all CPU cores
+
 ## OPTIONS
 
 * <var>image</var>:
@@ -18,7 +20,7 @@ The output filename is the original filename with a "heif" extension
 
 ## SEE ALSO
 
-sips(1)
+sips(1), parallel(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
