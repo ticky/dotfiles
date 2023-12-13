@@ -25,10 +25,15 @@
 [man "mansi"]
 	cmd = mansi
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
 [mergetool]
 	keepBackup = false
 [push]
 	default = current
+[rerere]
+	enabled = true
+[rebase]
+	rebaseMerges = true
