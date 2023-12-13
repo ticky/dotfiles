@@ -37,6 +37,11 @@ elif [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
   source "$HOME/.rvm/scripts/rvm"
 fi
 
+# .NET Core
+if [[ -d "/opt/homebrew/opt/dotnet/libexec" ]]; then
+  export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+fi
+
 # iTerm 2 shell integration
 if [[ -e "${HOME}/.iterm2_shell_integration.zsh" ]]; then
   source "${HOME}/.iterm2_shell_integration.zsh"
@@ -52,3 +57,4 @@ fi
 if [[ -S "$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh" ]]; then
   export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
 fi
+

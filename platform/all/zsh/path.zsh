@@ -36,6 +36,13 @@ path-append "$HOME/.rvm/bin"
 export GOPATH="$HOME/go"
 path-prepend "$GOPATH/bin"
 
+# add mono support
+if [[ -d "/Library/Frameworks/Mono.framework/Versions/Current/Commands" ]]; then
+  path-append "/Library/Frameworks/Mono.framework/Versions/Current/Commands"
+fi
+
+path-prepend "/opt/homebrew/opt/dotnet@6/bin"
+
 # Prepend all-platform bin directory, platform-based bin directories and all-but-platform directories
 for dir in $DOTFILES/platform/all/bin(N) $DOTFILES/platform/$UNAME/bin(N) $DOTFILES/platform/all-but-^$UNAME/bin(N); do
   path-prepend "$dir"
