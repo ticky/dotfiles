@@ -32,10 +32,6 @@ missingdep() {
 if ! command -v git >/dev/null 2>&1; then
   missingdep Git
 fi
-# Python
-if ! command -v python >/dev/null 2>&1; then
-  missingdep "Python 2.6/2.7"
-fi
 # SSH
 if ! command -v ssh >/dev/null 2>&1; then
   missingdep SSH
