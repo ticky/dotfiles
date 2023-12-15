@@ -20,7 +20,7 @@ DELAY_ALTERNATE=$FALSE
 
 # image options
 DITHER=$TRUE
-SIZE="500x500>"
+SIZE=500
 
 # process options
 INTERACTIVE=$FALSE
@@ -130,7 +130,7 @@ extractFrames() {
   ffmpeg \
     -i "$FILE" \
     -f image2 \
-    -vf "scale=iw*sar:ih" \
+    -vf "scale=$SIZE:$SIZE:force_original_aspect_ratio=decrease" \
     -ss "$START" \
     -t "$DURATION" \
     -r "$FRAMERATE" \
@@ -151,7 +151,7 @@ animate() {
     -loop 0 \
     -layers OptimizeTransparency"
 
-  POSTPROCESS_ARGS="-resize $SIZE"
+  POSTPROCESS_ARGS=""
 
   if [[ "$ALTERNATE" == "$TRUE" ]]; then
     if [[ "$DELAY_ALTERNATE" != "$FALSE" ]]; then
