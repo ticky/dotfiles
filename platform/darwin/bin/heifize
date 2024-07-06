@@ -19,7 +19,7 @@ CPU_COUNT=$(sysctl -n hw.logicalcpu_max)
 
 if [[ $# -gt 1 ]] && [[ $CPU_COUNT -gt 1 ]]; then
     echo "More than one file, and more than one core: running on all CPU cores" >&2
-    xargs -P $CPU_COUNT -n 1 "$0" <<< "$@"
+    printf "%s\0" "$@" | xargs -0 -P $CPU_COUNT -n 1 "$0"
 else
     for ARG in "$@"; do
         CREATED_DATE="$(GetFileInfo -d "$ARG")"
