@@ -32,6 +32,9 @@ path-append "$HOME/.cargo/bin"
 # bring in RVM
 path-append "$HOME/.rvm/bin"
 
+# bring in uv
+path-prepend "$HOME/.local/bin"
+
 # add go support
 export GOPATH="$HOME/go"
 path-prepend "$GOPATH/bin"
