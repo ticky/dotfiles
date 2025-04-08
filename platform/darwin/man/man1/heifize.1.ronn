@@ -20,4 +20,4 @@ If more than one CPU core is present, the operations will be parallelised to run
 
 ## SEE ALSO
 
-sips(1), xargs(1)
+jxlify(1), sips(1), xargs(1)

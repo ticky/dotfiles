@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# jxlify
+# Creates JPEG-XL copies of image file arguments, while preserving metadata
+
+set -euo pipefail
+
+if [[ $# = 0 ]]; then
+    echo "usage: $(basename $0) [<image>...] <image>"
+    echo
+    echo "Parameters:"
+    echo "    image        any image file cjxl supports"
+    echo
+    exit
+fi
+
+for ARG in "$@"; do
+    CREATED_DATE="$(GetFileInfo -d "$ARG")"
+    OUTPUT_FILE="${ARG%.*}.jxl"
+
+    cjxl \
+         "$ARG" \
+         "$OUTPUT_FILE"
+
+    SetFile -d "$CREATED_DATE" \
+            -m "$CREATED_DATE" \
+            "$OUTPUT_FILE"
+
+    rm "$ARG"
+done

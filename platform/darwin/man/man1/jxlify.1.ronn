@@ -1,0 +1,21 @@
+jxlify(1) -- creates HEIF copies of images
+===========================================
+
+## SYNOPSIS
+
+`jxlify` [<image>...] <image>
+
+## DESCRIPTION
+
+The jxlify(1) command creates JPEG-XL copies of image file arguments, while preserving metadata
+
+The output filename is the original filename with a "jxl" extension
+
+## OPTIONS
+
+* <image>:
+  any image file cjxl supports.
+
+## SEE ALSO
+
+heifize(1), cjxl(1), xargs(1)

@@ -20,7 +20,7 @@ If more than one CPU core is present, the operations will be parallelised to run
 
 ## SEE ALSO
 
-sips(1), xargs(1)
+jxlify(1), sips(1), xargs(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
@@ -31,6 +31,7 @@ sips(1), xargs(1)
 
 [globalify(1)]: globalify.1.html
 [heifize(1)]: heifize.1.html
+[jxlify(1)]: jxlify.1.html
 [lstcp(1)]: lstcp.1.html
 [np(1)]: np.1.html
 [pbcopyfile(1)]: pbcopyfile.1.html

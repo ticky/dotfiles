@@ -1,21 +1,29 @@
-np(1) -- current iTunes playback information
-============================================
+jxlify(1) -- creates HEIF copies of images
+===========================================
 
 ## SYNOPSIS
 
-`np`
+`jxlify` [<var>image</var>...] <var>image</var>
 
 ## DESCRIPTION
 
-The np(1) command displays the details of the current playing track in iTunes.
+The jxlify(1) command creates JPEG-XL copies of image file arguments, while preserving metadata
+
+The output filename is the original filename with a "jxl" extension
+
+## OPTIONS
+
+* <var>image</var>:
+  any image file cjxl supports.
 
 ## SEE ALSO
 
-nps(1)
+heifize(1), cjxl(1), xargs(1)
 
 
 [SYNOPSIS]: #SYNOPSIS "SYNOPSIS"
 [DESCRIPTION]: #DESCRIPTION "DESCRIPTION"
+[OPTIONS]: #OPTIONS "OPTIONS"
 [SEE ALSO]: #SEE-ALSO "SEE ALSO"
 
 
