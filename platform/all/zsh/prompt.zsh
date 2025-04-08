@@ -141,9 +141,20 @@ export PROMPT=$'%{$bg_bold[$PROMPT_PRIMARY]%}$(prompt_userhost)%{$reset_color%}:
 export RPROMPT=$' $(prompt_git_status)$(prompt_clock)'
 export PROMPT2=$'› '
 
-if [[ -r /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+ZSH_HIGHLIGHT=
 
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if which brew >/dev/null 2>&1 && \
+  [[ -r "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  ZSH_HIGHLIGHT="$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+elif [[ -r "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  ZSH_HIGHLIGHT="/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+elif [[ -r "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+  ZSH_HIGHLIGHT="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+if [[ -r "$ZSH_HIGHLIGHT" ]]; then
+
+  source "$ZSH_HIGHLIGHT"
 
   ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
