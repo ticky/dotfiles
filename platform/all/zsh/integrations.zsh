@@ -53,6 +53,11 @@ if which ntfy >/dev/null 2>&1; then
   export AUTO_NTFY_DONE_IGNORE="$AUTO_NTFY_DONE_IGNORE buildkite-agent"
 fi
 
+# OrbStack: command-line tools and integration
+if [[ -e "${HOME}/.orbstack/shell/init.zsh" ]]; then
+  source "${HOME}/.orbstack/shell/init.zsh"
+fi
+
 # Secretive (https://github.com/maxgoedjen/secretive)
 if [[ -S "$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh" ]]; then
   export SSH_AUTH_SOCK="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh"
