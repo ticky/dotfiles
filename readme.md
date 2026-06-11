@@ -6,9 +6,8 @@ What I do have are a very particular set of dotfiles, dotfiles I have acquired o
 
 * colourful prompt, directory listing, `man` pages and `git` output
 * 2-line prompt with `git` status, clock and command syntax highlighting
-* works on macOS, Linux and Cygwin - and with both GNU and BSD core utilities
+* works on macOS, and Linux - and with both GNU and BSD core utilities
 * shell history from `↑`/`↓` keys is from the current shell, `^r` is from all (`zsh` only)
-* stops `play` and `ant` from being unruly citizens on macOS
 
 ## Requirements
 
@@ -19,49 +18,30 @@ What I do have are a very particular set of dotfiles, dotfiles I have acquired o
 * `reattach-to-user-namespace`  
   _macOS Only - Allows lots of things to work better inside `tmux`_
 * `zsh-syntax-highlighting`
-  _Only under `zsh` - provides syntax highlighting for the `zsh` prompt_
+  _Provides syntax highlighting for the `zsh` prompt_
 * `ncurses`  
   _If this isn't installed, the `clear` command is missing_
 * `Regexp::Common` version `2013031301` or newer  
   _Perl module used for `ipgrep` and `ipls` commands. Older versions do not suport IPv6 and will break._
-* **DejaVu Sans Mono**  
-  _Cygwin Only - I use this font in MinTTY, and it'll fall back to Courier if it's not installed_
-
-### Supported Shells
 * **zsh 4.3** or newer  
   _This is not a hard requirement, however, this version is the one supplied with macOS 10.8_
-* **Bash 3.2** or newer  
-  _Sorry, MinGW users_
 
-The focus of future updates to these dotfiles will be `zsh`. At some point, `bash` support may be removed or reduced, but only once the environments I use consistently have a compatible `zsh` version available.
+> [!WARNING]
+> As of June 2026, Cygwin, `bash`, and `strap` support is no longer actively maintained. I would advise moving to WSL, `zsh`, and manual setup, respectively.
 
 ## Setup
 
-Setup involves a few steps specific to each platform, followed by the "all platforms" steps below.
+Setup involves a few steps specific to macOS, followed by the "all platforms" steps below.
 
 ### macOS
 
-_**Note**: These dotfiles are configured for use with GitHub Strap - forking them to `{your-username}/dotfiles` will have them automatically set up when you use Strap on your macOS machine!_
-
 * install [Xcode](https://itunes.apple.com/app/xcode/id497799835)
 * install [Homebrew](https://github.com/Homebrew/homebrew)
-* `brew install reattach-to-user-namespace`
-* (if using `zsh`) `brew install zsh-syntax-highlighting`
-* (if using `bash`) `brew install bash-completion`
-
-### Cygwin
-
-Cygwin has limited package management built-in. I recommend downloading [apt-cyg](http://code.google.com/p/apt-cyg/) which gives you a command-line interface for Cygwin's package manager.
-
-* `apt-cyg install openssh ncurses`
-* (if using `bash`) `apt-cyg install bash-completion`
+* `brew install reattach-to-user-namespace zsh-syntax-highlighting`
 
 ### All Platforms
 
-After completing the relevant platform-specific section,
-
-* (if using `zsh`) install [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-* (if using `bash`) install [git-bash-completion](https://github.com/markgandolfo/git-bash-completion)
+* install [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * `cpan Regexp::Common` (frustratingly, will require some basic interaction if you haven't set up CPAN before)
 * `git clone https://github.com/ticky/dotfiles.git ~/.dotfiles`
 * `~/.dotfiles/install.sh`  
