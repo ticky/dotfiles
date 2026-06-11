@@ -1,6 +1,9 @@
 # From http://dotfiles.org/~_why/.zshrc
 # Sets the window title nicely no matter where you are
 title() {
+  # Only run if stdout is a terminal (avoids polluting SwiftBar, cron, etc.)
+  [[ -t 1 ]] || return
+
   # escape '%' chars in $1, make nonprintables visible
   a=${(V)1//\%/\%\%}
 
