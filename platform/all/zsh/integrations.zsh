@@ -3,6 +3,11 @@ if [[ "$(/usr/sbin/sysctl -n hw.optional.arm64 2> /dev/null)" == "1" ]]; then
   alias ibrew='HOMEBREW_LOGS="${HOME}/Library/Logs/Homebrew (Intel)" arch -x86_64 /usr/local/bin/brew'
 fi
 
+# mise-en-place (dev env manager; https://mise.jdx.dev)
+if [[ -s "${HOME}/.local/bin/mise" ]]; then
+  eval "$(${HOME}/.local/bin/mise activate zsh)"
+fi
+
 # Virtualenv Wrapper (Python)
 if [[ -s "/usr/local/bin/virtualenvwrapper.sh" ]]; then
   export WORKON_HOME="$HOME/.virtualenv"
