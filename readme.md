@@ -6,7 +6,7 @@ What I do have are a very particular set of dotfiles, dotfiles I have acquired o
 
 * colourful prompt, directory listing, `man` pages and `git` output
 * 2-line prompt with `git` status, clock and command syntax highlighting
-* works on macOS, and Linux - and with both GNU and BSD core utilities
+* works on macOS and Linux - and with both GNU and BSD core utilities
 * shell history from `↑`/`↓` keys is from the current shell, `^r` is from all (`zsh` only)
 
 ## Requirements
@@ -27,7 +27,7 @@ What I do have are a very particular set of dotfiles, dotfiles I have acquired o
   _This is not a hard requirement, however, this version is the one supplied with macOS 10.8_
 
 > [!WARNING]
-> As of June 2026, Cygwin, `bash`, and `strap` support is no longer actively maintained. I would advise moving to WSL, `zsh`, and manual setup, respectively.
+> As of June 2026, Cygwin, `bash`, and `strap` support has been removed or is otherwise unmaintained. I would advise moving to WSL, `zsh`, and manual setup, respectively.
 
 ## Setup
 
