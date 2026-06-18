@@ -3,10 +3,10 @@
 # ZSH Environment Configuration
 # Jessica Stokes <https://github.com/ticky/dotfiles>
 
-# This file loads all path.zsh files when not in an interactive, login shell (so add path info to platform directories, not here).
+# This file loads all path.zsh files when not in a login shell (so add path info to platform directories, not here).
 # Loading mechanism borrowed from Zach Holman's dotfiles <https://github.com/holman>
 
-if [[ $- != *i* ]] && [[ $- != *l* ]]; then
+if [[ $- != *l* ]]; then
 
   # Shortcut to dotfiles directory
   export DOTFILES="${$(dirname "$(readlink ~/.zshenv)")%/platform/all/home}"
