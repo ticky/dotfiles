@@ -13,7 +13,7 @@ UNAME="$($DOTFILES/platform/all/bin/nuname)"
 # banner
 if [[ "$1" != "--quiet" ]]; then
   echo "# Jessica's Dotfiles"
-  echo "https://github.com/ticky/dotfiles"
+  echo "https://codeberg.org/ticky/dotfiles"
   echo
 fi
 

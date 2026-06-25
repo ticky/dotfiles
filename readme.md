@@ -43,7 +43,7 @@ Setup involves a few steps specific to macOS, followed by the "all platforms" st
 
 * install [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 * `cpan Regexp::Common` (frustratingly, will require some basic interaction if you haven't set up CPAN before)
-* `git clone https://github.com/ticky/dotfiles.git ~/.dotfiles`
+* `git clone https://codeberg.org/ticky/dotfiles.git ~/.dotfiles`
 * `~/.dotfiles/install.sh`  
   _**NOTE**: If `install.sh` detects that dependencies are missing, it will notify you and abort._
 * Restart your shell

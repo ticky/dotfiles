@@ -8,7 +8,7 @@ UNAME="$($DOTFILES/platform/all/bin/nuname)"
 
 # banner
 echo "# Jessica's Dotfiles"
-echo "https://github.com/ticky/dotfiles"
+echo "https://codeberg.org/ticky/dotfiles"
 echo
 
 # platform check
